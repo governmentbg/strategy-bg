@@ -1,0 +1,39 @@
+﻿@model Models.ViewModels.Portal.SystemNotificationVM
+@using Domain.Extensions
+@{
+    ViewData["SectionTitle"] = "Системни съобщения";
+
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index", "Home")">Начало</a>
+        / <a href="@Url.Action("Index")">Системни съобщения</a>
+    </div>
+}
+
+
+@{ if (@Model != null)
+    {
+
+        <div class="container-fluid information">
+            <div class="row">
+
+                <div class="col-md-9 body">
+                    <h2>
+                        @Html.Raw(Model.Title)
+                    </h2>
+                    <h4>
+                        @Model.MessageDate.ToString(GlobalConstants.DateFormat)
+                    </h4>
+
+                    <p class="title">
+                        @Html.Raw(Model.Body)
+                    </p>
+
+
+
+                </div>
+            </div>
+        </div>}
+}
+<!-- END COMMENTS -->

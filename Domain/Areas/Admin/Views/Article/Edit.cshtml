@@ -1,0 +1,52 @@
+﻿@model Models.Context.Legacy.Articles
+
+@{
+    ViewData["Title"] = "Новини и събития \"Партньорство за открито управление\"";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            <form asp-action="@ViewBag.actionName">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <textbox for="Title" type="textarea"></textbox>
+                <ddl for="ArticleCategoryId" data="@ViewBag.categories"></ddl>
+                <date-picker for="Date"></date-picker>
+                <textbox for="Text" type="textarea" edit-class="summernote"></textbox>
+                <checkbox for="IsMainTopic"></checkbox>
+                <checkbox for="IsOnMainPage"></checkbox>
+                <checkbox for="IsActive" text-class="label label-primary"></checkbox>
+                <checkbox for="IsApproved" text-class="label label-warning"></checkbox>
+                <checkbox for="IsDeleted" text-class="label label-danger"></checkbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    @if (Model.Id > 0)
+    {
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Основно изображение</h4>
+                <partial name="UsedImages" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.PartnershipImage, SourceID = Model.Id.ToString(),SingleFile=true })" />
+            </div>
+            <div class="col-lg-6">
+                <h4>Прикачени документи</h4>
+                <partial name="UsedDocuments" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.Partnership, SourceID = Model.Id.ToString() })" />
+            </div>
+        </div>
+    }
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            var snEditor = $('#Text').summernote();
+        });
+    </script>
+}
+

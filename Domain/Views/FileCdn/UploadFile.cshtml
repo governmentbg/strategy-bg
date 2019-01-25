@@ -1,0 +1,42 @@
+﻿@model FileCDN.Models.FileRequest
+<form asp-action="UploadFile" asp-controller="FileCdn" method="POST" id="cdnUploadFile" enctype="multipart/form-data">
+    <input asp-for="SourceType" type="hidden" />
+    <input asp-for="SourceID" type="hidden" />
+    <input asp-for="JScallback" type="hidden" />
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="control-label">Изберете файл</label>
+                <input type="file" id="files" name="files" />
+            </div>
+            <textbox for="FileTitle"></textbox>
+            <div class="form-group">
+                <input type="submit" value="Добави" class="btn btn-success" id="cdnUploadButton" />
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    $('form#cdnUploadFile').ajaxForm({
+        beforeSend: function () {
+            $('#cdnUploadButton').hide();
+        },
+
+        complete: function (xhr) {
+            $('#cdnUploadButton').show();
+            if (xhr.responseText === "ok") {
+                @if (!string.IsNullOrEmpty(Model.JScallback))
+                {
+                    @Model.JScallback
+                }
+                $('#cdnUploadButton').parents('div.modal:first').modal("hide");
+            } else {
+                if (xhr.responseText.length > 100) {
+                    // percent.html("Проблем при зареждане на файл.");
+                } else {
+                    // percent.html(xhr.responseText);
+                }
+            }
+        }
+    });
+</script>

@@ -1,0 +1,29 @@
+﻿@model Models.ViewModels.Questionary.PossibleAnswersViewModel
+
+@{
+    ViewData["Title"] = "Отговор към Анкета";
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-11">
+            @ViewBag.QuestionaryTitle
+        </div>
+    </div>
+    var questionaryHeaderId = (int)ViewBag.QuestionaryHeaderId;
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-action="EditAnswer">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.QuestionaryHeaderId)
+                @Html.EditorFor(m => m.Answer)
+                <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                <a asp-action="IndexAnswers" asp-route-questionaryHeaderId="@questionaryHeaderId" class="btn btn-danger btn-flat">Назад</a>
+            </form>
+        </div>
+    </div>
+</section>
+

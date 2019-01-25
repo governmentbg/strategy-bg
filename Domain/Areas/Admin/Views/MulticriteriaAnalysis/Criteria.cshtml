@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Критерии:";
+}
+<section class="content">
+    <div class="pull-left">
+        <a asp-action="CriteriaAdd" class="btn btn-success btn-flat">Добави</a>
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table> 
+</section>
+@section scripts{
+<script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadCriteria")',
+                 data: function (d) { },
+                 //    d.active = $('#cboxActive').is(':checked');
+                 //    d.confirmed = $('#cboxConfirmed').is(':checked');
+                 //},
+                 "type": "POST",
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "name",
+                     title: 'Наименование'
+                 },
+                 {
+                     data: "description",
+                     title: 'Описание'
+                 },
+                 {
+                     data: "impact",
+                     title: 'Тежест'
+                 },
+                 {
+                     data: "isActive",
+                     title: 'Активен запис'
+                 },
+                 {
+                     data: null,
+                     "render": function (item) {
+                         var CriteriaValuesUrl = '@Url.Action("CriteriaValues", new { _CriteriaID = 666})'.replace('666', item.id);  // to do CHECK IF ID IS CORRECT!
+                         var CriteriaButton = '<a href="' + CriteriaValuesUrl + '" class="btn btn-info">Позволени стойности</a>';
+                         return CriteriaButton;
+                     },
+                     sortable: false
+                 },
+                 {
+                     data: null,
+                     "render": function (item) {
+                         var updateUrl = '@Url.Action("EditCriteria", new { id = "666"})'.replace('666', item.id);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false
+                 }
+             ],
+             rowCallback: function (row, data) {
+                 if (data["isActive"] == false) {
+                     $(row).addClass("disabled");
+                 }
+                 if (data["isConfirmed"] == false) {
+                     $(row).addClass("unconfirmed");
+                 }
+             }
+        });
+        //$('#cboxActive, #cboxConfirmed').change(function () {
+        //    dt.ajax.reload();
+        //})
+    });
+
+</script>
+
+}

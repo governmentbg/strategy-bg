@@ -1,0 +1,7 @@
+﻿@model string
+
+<div class="form-group">
+    <label asp-for="@Model" class="control-label"></label>
+    <textarea asp-for="@Model" class="form-control summernote" rows="8">@Model</textarea>
+    <span asp-validation-for="@Model" class="text-danger"></span>
+</div>

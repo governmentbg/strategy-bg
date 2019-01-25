@@ -1,0 +1,64 @@
+﻿@model Models.ViewModels.ChangeProposalsViewModel
+@{
+    ViewData["Title"] = "Законодателнa инициативa";
+    ViewData["SectionTitle"] = ViewData["Title"];
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index", "Home")">Начало</a>
+        / <a href="@Url.Action("ListChangeProposals", "ChangeProposals")">Списък със законодателни инициативи</a>
+        / <a href="#">Законодателнa инициативa</a>
+    </div>
+}
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="body col-lg-8 col-md-12 col-lg-offset-2">
+            <h2>
+                @Html.Raw(Model.Title)
+            </h2>
+            <p class="title">
+                @Html.Raw(Model.Text)
+            </p>
+            <!-- TABLE DATES -->
+            <div class="row">
+                <div class="col-md-5">
+                    <table class="table table-bordered table--dates table--stripped">
+                        <tbody>
+                            <!-- LOOP -->
+                            <tr>
+                                <td>Група:</td>
+                                <td>@Model.CategoryMasterText</td>
+                            </tr>                            
+                            @if (Model.IsRejected)
+                            {
+                                <tr>
+                                    <td>Отказана:</td>
+                                    <td>ДА</td>
+                                </tr>
+                                <tr>
+                                    <td>Причина за отказ:</td>
+                                    <td>@Model.AdminRemark</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>Последна промяна:</td>
+                                <td>@Model.DateModified.ToString(GlobalConstants.DateFormat)</td>
+                            </tr>
+                            <!-- END LOOP -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TABLE DATES -->
+            @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.ChangeProposals, sourceId = Model.Id })
+
+            @if ((bool)ViewBag.HasQuestionary)
+            {
+                <div class="form-group">
+                    <a asp-action="FillQuestionaryBySourceType" asp-controller="Questionary" asp-route-sourceTypeID="@GlobalConstants.SourceTypes.ChangeProposals" asp-route-sourceId="@Model.Id" class="btn btn-info btn-flat">Анкета към инициативата</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

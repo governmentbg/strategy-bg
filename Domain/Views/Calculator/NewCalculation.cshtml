@@ -1,0 +1,29 @@
+﻿@model Models.ViewModels.Calculator.CalculatorViewModel
+
+@{
+    ViewData["Title"] = "Интерактивен калкулатор на Административната тежест";
+}
+@section breadcrumbs{
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="@Url.Action("Index","PublicConsultation")">Обществени консултации</a>
+    / <a href="#">Интерактивен калкулатор на Административната тежест</a>
+</div>
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-2">
+            <form asp-action="NewCalculation">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.EditorFor(m => m.AdministrativeBurdenName)
+                @Html.EditorFor(m => m.ActivityNumbers)
+                @Html.HiddenFor(m => m.CalculatorActivities)
+                <div class="form-group">
+                    <input type="submit" value="Продължи" class="btn btn-success btn-flat" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+

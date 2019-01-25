@@ -1,0 +1,95 @@
+﻿@{
+    SourceTypeVM sourceType = GlobalConstants.GetSourceType((int)ViewBag.source_type);
+}
+
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="box box-success">
+            <div class="box-header with-border" style="max-height:75vh;overflow-y:scroll;">
+                <div id="tree"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-6 col-sm-12">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <div style="max-height:75vh;overflow-y:scroll;">
+
+                    <div id="gridview">Изберете папка</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="pull-right">
+            <a href="#" id="divAddbtn" onclick="addFile(); return false;" class="btn btn-success" style="display:none;"><i class="fa fa-plus"></i> Добави нов файл</a>
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-default modal-hide">Отказ</button>
+
+        </div>
+    </div>
+</div>
+<script>
+    $('#tree')
+        .on('changed.jstree', function (e, data) {
+            selectedNode = data.node;
+            showFiles();
+            $('#divAddbtn').show();
+        })
+        .on('ready.jstree', function (e, data) {
+            //alert('ready');
+            data.instance.redraw(true);
+            $(this).jstree("open_all");
+        })
+        .jstree({
+            'core': {
+                'data': {
+                    'url': '@Html.Raw(Url.Action("GetTreeViewData", "Library", new { source_type = sourceType.Id, selectOnly = true }))'
+                }
+            }
+        });
+
+    var selectedNode = {};
+    function showFiles() {
+        $('#gridview').gridView({
+            url: '@(Url.Action("GetFileList","FileCdn", new { area = "" }))',
+            data: {
+                sourceType: @(sourceType.Id),
+                sourceId: selectedNode.id
+            },
+            filter: true,
+            template: '@((int)ViewBag.source_type == GlobalConstants.SourceTypes.Library_Images ? "#gridViewTemplateImages" : "#gridViewTemplateDocuments")',
+            empty_text:'Няма намерени елементи.'
+        });
+    }
+    function addFile() {
+        if (!selectedNode || !selectedNode.id) {
+            return false;
+        }
+        var uploadUrl = "@Html.Raw(Url.Action("UploadFile","FileCdn",new { area = "",sourceType = (int)ViewBag.source_type , sourceId = 666,callback= "showFiles();" }))";
+        uploadUrl = uploadUrl.replace('666', selectedNode.id);
+        ShowDialogFromAction('Добави @Html.Raw(sourceType.SingleName) в папка: ' + selectedNode.text, uploadUrl);
+    }
+</script>
+<script type="text/x-handlebars-template" id="gridViewTemplateDocuments">
+    <div class="gridview-item col-lg-4 file" data-id="{{id}}">
+        <a href="#" onclick="libSelectDocument('{{id}}','{{#if fileTitle}}{{fileTitle}}{{else}}{{fileName}}{{/if}}');return false;" title="Избери">
+            <div class="title">{{#if fileTitle}}{{fileTitle}}{{else}}{{fileName}}{{/if}} </div>
+            <div class="file">{{fileName}}</div>
+            <div class="date">{{dateUploadedText}}</div>
+        </a>
+    </div>
+</script>
+
+<script type="text/x-handlebars-template" id="gridViewTemplateImages">
+    <div class="gridview-item col-lg-4 img">
+        <a href="#" onclick="libSelectImage('{{id}}','{{fileTitle}}')" title="Избери">
+            <img src="@(Url.Action("ViewImage","FileCdn",new { area = "",sourceType = GlobalConstants.SourceTypes.Library_ImagesThumbs}))&sourceId={{id}}" />
+
+            <div class="file">{{fileName}}</div>
+            <div class="date">{{dateUploadedText}}</div>
+        </a>
+    </div>
+</script>

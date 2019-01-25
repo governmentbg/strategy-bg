@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Публикации";
+    ViewData["SectionTitle"] = ViewData["Title"];
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index")">Публикации</a>
+        @if (ViewBag.category > 0)
+        {
+            <text> / @Html.Raw(ViewBag.categoryName)</text>
+        }
+    </div>
+}
+<div class="container-fluid information">
+    <section>
+        <div id="gridview"></div>
+    </section>
+</div>
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#gridview').gridView({
+                url: '@(Url.Action("LoadDataGrid"))',
+                data: {category:@(ViewBag.category)},
+                filter: true,
+                template: '#publicationTemplate',
+                empty_text: 'Няма намерени елементи.'
+            });
+
+        });
+    </script>
+    <script type="text/x-handlebars-template" id="publicationTemplate">
+        <div class="col-md-3 col-sm-4">
+            <article class="article--news image--left">
+                <a href="@Url.Action("View")?id={{id}}">
+                    {{#if mainImageFileId}}
+                    <div class="image">
+                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs})+"&sourceId")={{mainImageFileId}}">
+                    </div>
+                    {{/if}}
+                    <h4 class="title">
+                        {{{title}}}
+                    </h4>
+                    <p class="date">{{eventDateTXT}}</p>
+                </a>
+                <p class="type"><i class="fa fa-folder" title="Категория"></i>&nbsp;<a href="@Url.Action("Index")?category={{categoryId}}" title="Преглед на всички публикации в категория: {{{categoryName}}}">{{{categoryName}}}</a></p>
+            </article>
+        </div>
+    </script>
+}

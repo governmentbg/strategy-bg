@@ -1,0 +1,92 @@
+﻿@using Models.Context.Ogp
+@{
+    NationalPlanElements element = (NationalPlanElements)ViewBag.element;
+
+    ViewData["Title"] += "Оценки към " + element.Title;
+    NationalPlanEstimations parent = (NationalPlanEstimations)ViewBag.parent;
+    if (parent != null)
+    {
+        ViewData["Title"] = "Елементи към оценка " + parent.Title;
+    }
+}
+@section breadcrumbs{
+
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("PlanElements")">Национални планове</a></li>
+        <li><a href="@Url.Action("PlanElements_Edit",new { id=element.Id})"><i class="fa fa-arrow-left"></i> @element.Title</a></li>
+        @if (parent != null)
+        {
+            <li><a href="@Url.Action("Estimations",new { elementId=parent.ElementID})"><i class="fa fa-arrow-left"></i> @parent.Title</a></li>
+        }
+    </ul>
+
+}
+<section class="content">
+    <div class="pull-left">
+        @if (parent != null)
+        {
+            <a asp-action="Estimations_Add" asp-route-elementId="@ViewBag.elementId" asp-route-parentId="@parent.Id" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Добави</a>
+        }
+        else
+        {
+            <a asp-action="Estimations_Add" asp-route-elementId="@ViewBag.elementId" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Добави</a>
+        }
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+        var dt = $('#mainTable').DataTable({
+            "ajax": {
+                "url": '@Url.Action("Estimations_LoadData")',
+                data: function (d) {
+                    d.elementId = '@ViewBag.elementId';
+                    d.parentId = '@ViewBag.parentId';
+                },
+                "type": "POST"
+            },
+            filter:false,
+            fnDrawCallback: function (settings) {
+                $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+            },
+            "columns": [
+                {
+                    data: "estimationTypeName",
+                    title: 'Тип'
+                },
+                {
+                    data: "title",
+                    title: 'Наименование'
+                },
+                {
+                    data: null,
+                    "render": function (item) {
+                        var subItemButton =''
+
+                        @if (parent == null)
+                        {
+                            <text>
+                        var subItemUrl = '@Url.Action("Estimations", new {elementId=0, parentId = "666"})'.replace('666', item.id);
+                        subItemButton = '&nbsp;&nbsp;<a href="' + subItemUrl + '" class="btn btn-info"><i class="fa fa-search"></i> Под-елементи</a>';
+                        </text>
+                        }
+                        if (item.estimationTypeId == '@GlobalConstants.EstimationTypes.ExternalEstimation') {
+                            subItemButton = '';
+                        }
+
+                        var updateUrl = '@Url.Action("Estimations_Edit", new { id = "666"})'.replace('666', item.id);
+                        var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+
+                        return updButton + subItemButton;
+                    },
+                    sortable: false
+                }
+            ]
+        });
+
+    });
+
+    </script>
+
+}

@@ -1,0 +1,63 @@
+@using System.Linq;
+@{
+    var currentUser = User.Identity;
+    bool isAuthenticated = currentUser?.IsAuthenticated ?? false;
+    var fullName = "";
+    var userId = "";
+    if (isAuthenticated)
+    {
+
+        var claims = (System.Security.Claims.ClaimsIdentity)currentUser;
+        fullName = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Name).FirstOrDefault()?.Value;
+        userId = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Sid).FirstOrDefault()?.Value;
+        if (string.IsNullOrEmpty(fullName?.Trim()))
+        {
+            fullName = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Email).FirstOrDefault()?.Value;
+        }
+    }
+}
+@if (isAuthenticated)
+{
+    <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
+                <span class="hidden-xs">
+                    @fullName
+                </span>
+            </a>
+            <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                    @*<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">*@
+                    <p>
+                        @fullName
+                        <small>Member since Nov @userId. 2012</small>
+                    </p>
+                </li>
+
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                    <div class="pull-left">
+                        <a href="#" class="btn btn-default btn-flat">Профил</a>
+                    </div>
+                    <div class="pull-right">
+                        <form asp-action="Logoff" asp-controller="Account" asp-area="">
+                            <input type="submit" class="btn btn-primary btn-flat" value="Изход" />
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <!-- Control Sidebar Toggle Button -->
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>
+            <a asp-action="Login" asp-controller="Account">Вход</a>
+        </li>
+        <!-- Control Sidebar Toggle Button -->
+    </ul>
+}

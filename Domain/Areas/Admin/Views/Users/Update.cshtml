@@ -1,0 +1,56 @@
+﻿@model UserEditVM
+@{
+    ViewData["Title"] = "Редакция на Потребител";
+}
+@section breadcrumbs{
+
+    <ul class="breadcrumb ">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Начало</a></li>
+        @if (ViewBag.backUrl != null)
+        {
+            <li><a href="@ViewBag.backUrl">Назад</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("Index", "Users")">Потребители</a></li>
+        }
+    </ul>
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+
+                <display for="UserName"></display>
+                <display for="UserType"></display>
+                <textbox for="Email"></textbox>
+                <textbox for="FirstName"></textbox>
+                <textbox for="LastName"></textbox>
+                <textbox for="Organization"></textbox>
+                <textbox for="Address"></textbox>
+                <textbox for="Phone"></textbox>
+                <checkbox for="IsActive"></checkbox>
+                <checkbox for="IsApproved"></checkbox>
+                <checkbox for="IsMailConfirmed"></checkbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    @if (ViewBag.backUrl != null)
+                    {
+                        <a href="@ViewBag.backUrl" class="btn btn-danger btn-flat">Назад</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                    }
+                    <div class="pull-right">
+                        <a asp-action="UserGroups" asp-route-userId="@Model.Id" class="btn btn-info btn-flat">Групи</a>
+                        &nbsp;
+                        <a asp-action="Roles" asp-route-userId="@Model.Id" class="btn btn-warning btn-flat">Роли</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

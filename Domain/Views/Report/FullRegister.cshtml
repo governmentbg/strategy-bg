@@ -1,0 +1,199 @@
+﻿@{
+    ViewData["Title"] = "Регистър";
+}
+<section class="content">
+
+
+
+
+    @using (Html.BeginForm())
+    {
+        <div class="search-form">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4> Параметри на командироващо/изпращащо лице и заявление</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <span>Регистрационен номер</span>
+                        @Html.TextBox("register_number", null, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Вид заявление</span>
+                        @Html.DropDownList("applicationTypeId", (IEnumerable<SelectListItem>)ViewBag.applicationTypeId, new { @class = "form-control" })
+                    </div>
+
+                    <div>
+                        <span>Идентификатор на организация</span>
+                        @Html.TextBox("org_identifier,", null, new { @class = "form-control" })
+                    </div>
+
+                    <div>
+                        <span>Име организация</span>
+                        @Html.TextBox("org_name,", null, new { @class = "form-control" })
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <span>Страна от ЕС</span>
+                        @Html.DropDownList("org_country_type", (IEnumerable<SelectListItem>)ViewBag.countryType, new { @class = "form-control" })
+                    </div>
+
+                    <div>
+                        <span>Страна</span>
+                        @Html.DropDownList("org_country_id", (IEnumerable<SelectListItem>)ViewBag.citizenshipId, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Характер на дейността</span>
+                        @Html.DropDownList("activity_type", (IEnumerable<SelectListItem>)ViewBag.activityTypeId, new { @class = "form-control" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <span>Период от</span>
+                        <div class="icon-wrapper">
+                            <i class="fa fa-calendar"></i>
+                            @Html.TextBox("periodStayFrom", null, new { @class = "form-control date-picker" })
+                        </div>
+                    </div>
+                    <div>
+                        <span>Период до</span>
+                        <div class="icon-wrapper">
+                            <i class="fa fa-calendar"></i>
+                            @Html.TextBox("periodStayTo", null, new { @class = "form-control date-picker" })
+                        </div>
+                    </div>
+                    <div>
+                        <span>датата на регистриране от</span>
+                        <div class="icon-wrapper">
+                            <i class="fa fa-calendar"></i>
+                            @Html.TextBox("periodRegistrationFrom", null, new { @class = "form-control date-picker" })
+                        </div>
+                    </div>
+                    <div>
+                        <span>датата на регистриране от</span>
+                        <div class="icon-wrapper">
+                            <i class="fa fa-calendar"></i>
+                            @Html.TextBox("periodRegistrationTo", null, new { @class = "form-control date-picker" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4> Параметри на командировно/изпратено лице</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <span>Вид документ</span>
+                        @Html.DropDownList("app_person_document_type_id", (IEnumerable<SelectListItem>)ViewBag.app_person_document_type_id, new { @class = "form-control" })
+
+                    </div>
+
+                    <div>
+                        <span>Страна от ЕС</span>
+                        @Html.DropDownList("app_person_country_typeid", (IEnumerable<SelectListItem>)ViewBag.countryType, new { @class = "form-control" })
+                    </div>
+
+                    <div>
+                        <span>Страна</span>
+                        @Html.DropDownList("app_person_citizenship_id", (IEnumerable<SelectListItem>)ViewBag.citizenshipId, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Характер на дейността</span>
+                        @Html.DropDownList("app_person_activity_type_id", (IEnumerable<SelectListItem>)ViewBag.activityTypeId, new { @class = "form-control" })
+                    </div>
+                    <div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4> Параметри на местно лице</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <span>Име на лице</span>
+                        @Html.TextBox("local_person_full_name,", null, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Идентификатор на лице</span>
+                        @Html.TextBox("local_person_identifier,", null, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Характер на дейността</span>
+                        @Html.DropDownList("local_person_activity_type_id", (IEnumerable<SelectListItem>)ViewBag.activityTypeId, new { @class = "form-control" })
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <span>Област</span>
+                        @Html.DropDownList("local_person_area_code", WebCommon.CommonContants.EmptySelectList(), new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Община</span>
+                        @Html.DropDownList("local_person_municipality_code", WebCommon.CommonContants.EmptySelectList(), new { @class = "form-control" })
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <a href="#" class="pull-right btn btn-info" onclick="$(this).closest('form').submit();">Експорт в Excel</a>
+
+     
+
+    }
+
+
+
+
+</section>
+
+@section scripts{
+    <script>
+    var dt = {};
+     $(function () {
+         comboLoadEkkate('#local_person_area_code', '-1', '');
+         $('#local_person_area_code').change(function () {
+             comboLoadEkkate('#local_person_municipality_code', $(this).val(), '');
+         }).trigger('change');
+
+
+        
+    });
+
+    </script>
+    }
+
+}

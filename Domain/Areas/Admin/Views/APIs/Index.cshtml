@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Search API Demo";
+}
+
+<section class="content">
+    @using (Html.BeginForm())
+    {
+        <div class="search-form">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <span>Фраза за търсене:</span>
+                        @Html.TextBox("searchPhrase", null, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="pull-right btn btn-info" onclick="dt.ajax.reload();">Търсене</a>
+
+    }
+
+
+    <table id="mainTable" class="table" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Path</th>
+                <th>Author</th>
+                <th>Score</th>
+                <th>docId</th>
+
+            </tr>
+        </thead>
+    </table>
+</section>
+@section scripts{
+
+    <script>
+    var dt = {};
+        $(function () {
+
+        dt = $('#mainTable').DataTable(
+            { "ajax": { "url": '@Url.Action("SearchDocument")',
+                data: function (d) {
+
+                     d.searchPhrase = $('#searchPhrase').val();
+                },
+
+                "type": "POST",
+                "datatype": "json"
+             },
+             filter: false,
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                },
+                "columns":
+                    [
+                        {
+                            data: "path",
+                            name: "Path"
+                        },
+                        {
+                            data: null,
+                            title: 'Автор',
+                            render: function (item) {
+                                    return item.attachment.author;
+                            },
+                            sortable: false
+                        },
+                        {
+                            data: "score",
+                            name: "Score",
+                            sortable: false
+                        },
+                        {
+                            data: "docId",
+                            name: "docId",
+                            sortable: false
+                        }
+
+                ],
+            });
+    });
+    </script>
+
+}

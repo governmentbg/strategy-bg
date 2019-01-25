@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["SectionTitle"] = "Календар на събитията";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+
+    </div>
+}
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
+        </div>
+        <div class="col-md-9 body">
+            <h2>
+                @ViewData["SectionTitle"]
+            </h2>
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <link rel="stylesheet" href="~/lib/fullcalendar/fullcalendar.print.min.css" media="print" />
+    <script>
+        $(document).ready(function () {
+
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay,agendaWeek'
+                },
+                locale: 'bg',
+                navLinks: true, // can click day/week names to navigate views
+                eventLimit: true, // allow "more" link when too many events
+                eventSources: [
+
+                    {
+                        url: '@Url.Action("SelectAsEvents","Article")' // use the `url` property
+                        //color: 'yellow',    // an option!
+                        //textColor: 'black'  // an option!
+                    }
+                ]
+            });
+
+        });
+    </script>
+}

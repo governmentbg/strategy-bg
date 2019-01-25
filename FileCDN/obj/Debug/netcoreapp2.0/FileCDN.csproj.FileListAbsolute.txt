@@ -1,0 +1,11 @@
+C:\Projects\GIT\FileCDN\bin\Debug\netcoreapp2.0\FileCDN.deps.json
+C:\Projects\GIT\FileCDN\bin\Debug\netcoreapp2.0\FileCDN.runtimeconfig.json
+C:\Projects\GIT\FileCDN\bin\Debug\netcoreapp2.0\FileCDN.runtimeconfig.dev.json
+C:\Projects\GIT\FileCDN\bin\Debug\netcoreapp2.0\FileCDN.dll
+C:\Projects\GIT\FileCDN\bin\Debug\netcoreapp2.0\FileCDN.pdb
+C:\Projects\GIT\FileCDN\obj\Debug\netcoreapp2.0\FileCDN.csprojResolveAssemblyReference.cache
+C:\Projects\GIT\FileCDN\obj\Debug\netcoreapp2.0\FileCDN.csproj.CoreCompileInputs.cache
+C:\Projects\GIT\FileCDN\obj\Debug\netcoreapp2.0\FileCDN.AssemblyInfoInputs.cache
+C:\Projects\GIT\FileCDN\obj\Debug\netcoreapp2.0\FileCDN.AssemblyInfo.cs
+C:\Projects\GIT\FileCDN\obj\Debug\netcoreapp2.0\FileCDN.dll
+C:\Projects\GIT\FileCDN\obj\Debug\netcoreapp2.0\FileCDN.pdb

@@ -1,0 +1,31 @@
+﻿@model RegisterPublicUserVM
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = "Регистрация";
+}
+
+<h3 style="margin-bottom:20px;">@ViewData["Title"]</h3>
+
+<form asp-action="@ViewBag.actionName">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <textbox for="FirstName"></textbox>
+    <textbox for="LastName"></textbox>
+    <textbox for="UserName"></textbox>
+    <textbox for="Password" type="password"></textbox>
+    <textbox for="PasswordAgain" type="password"></textbox>
+    <textbox for="Email"></textbox>
+    <checkbox for="IAgree"></checkbox>
+    <span asp-validation-for="IAgree" class="text-danger"></span>
+    <div class="row">
+        <div class="col-xs-8">
+            <a asp-action="Login" class="text-center">Обратно</a><br />
+        </div>
+        <div class="col-xs-4 submit">
+            <div class="pull--right">
+                <button type="submit" class="btn btn-default">Регистрация</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,1249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="AccountCreated" xml:space="preserve">
+    <value>Профилът е създаден</value>
+  </data>
+  <data name="AccountReady" xml:space="preserve">
+    <value>Вашият профил е създаден и Вие можете да започнете да ползвате форума.</value>
+  </data>
+  <data name="AccountReadyCheckEmail" xml:space="preserve">
+    <value>Моля, проверета Вашия e-mail и активирайте Вашия профил за да използвате форума.</value>
+  </data>
+  <data name="AccountVerified" xml:space="preserve">
+    <value>Вашият профил е активиран</value>
+  </data>
+  <data name="AlreadyCreatedAccount" xml:space="preserve">
+    <value>Вече сте вписан и имате профил.</value>
+  </data>
+  <data name="AsYouWouldLikeItToAppear" xml:space="preserve">
+    <value>(както бихте искали да се вижда)</value>
+  </data>
+  <data name="AtLeastSixChar" xml:space="preserve">
+    <value>(най-малко шест символа)</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>от</value>
+    <comment>context: "Last post: 12am by Jeff"</comment>
+  </data>
+  <data name="CreateAccountButton" xml:space="preserve">
+    <value>Създай профил</value>
+  </data>
+  <data name="CreateAnAccount" xml:space="preserve">
+    <value>Cъздай профилt</value>
+  </data>
+  <data name="EditYourProfile" xml:space="preserve">
+    <value>Редактирайте Вашия профил</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="EmailProblemAccount" xml:space="preserve">
+    <value>Възникна проблем с изпращане на активационния e-mail: </value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Любими</value>
+  </data>
+  <data name="Forbidden" xml:space="preserve">
+    <value>Съжаляваме, нямате права да видите това.</value>
+  </data>
+  <data name="Forums" xml:space="preserve">
+    <value>Форуми</value>
+  </data>
+  <data name="HaveReadTOS" xml:space="preserve">
+    <value>Прочетох и съм съгласен с правилата за ползване</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Последен</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Изход</value>
+  </data>
+  <data name="MarkAllForumsRead" xml:space="preserve">
+    <value>Маркирай всички форуми като прочетени</value>
+  </data>
+  <data name="MyBirthdayIsOnOrBefore" xml:space="preserve">
+    <value>Моят рожден ден е на {0}</value>
+    <comment>where {0} is a date</comment>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="NeedToVerifyExistingAccount" xml:space="preserve">
+    <value>Трябва да проверим съществуващ профил?</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Страницата не е намерена</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="Posts" xml:space="preserve">
+    <value>Публикации</value>
+  </data>
+  <data name="PrivateMessages" xml:space="preserve">
+    <value>Лично съобщение</value>
+  </data>
+  <data name="Recent" xml:space="preserve">
+    <value>Последни</value>
+  </data>
+  <data name="RegisteredUsers" xml:space="preserve">
+    <value>Регистрирани потребители</value>
+  </data>
+  <data name="RetypePassword" xml:space="preserve">
+    <value>Повторете паролата</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Търсене</value>
+  </data>
+  <data name="SubscribeToList" xml:space="preserve">
+    <value>Абонирайте се за мейлинг листа</value>
+  </data>
+  <data name="Subscriptions" xml:space="preserve">
+    <value>Абонаменти</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>Условия за ползване</value>
+  </data>
+  <data name="TimeZone" xml:space="preserve">
+    <value>Часова зона</value>
+  </data>
+  <data name="Topics" xml:space="preserve">
+    <value>Теми</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Общо</value>
+  </data>
+  <data name="TotalPosts" xml:space="preserve">
+    <value>Общо публикации</value>
+  </data>
+  <data name="TotalTopics" xml:space="preserve">
+    <value>Общо теми</value>
+  </data>
+  <data name="UseDaylight" xml:space="preserve">
+    <value>Използвай Лятно часово време</value>
+  </data>
+  <data name="UsersOnline" xml:space="preserve">
+    <value>Потребители на линия</value>
+  </data>
+  <data name="MustBe13" xml:space="preserve">
+    <value>Трябва да сте над 13 годишен за да се регистрирате</value>
+  </data>
+  <data name="MustAcceptTOS" xml:space="preserve">
+    <value>Трябва да приемете условията за ползване</value>
+  </data>
+  <data name="RetypeYourPassword" xml:space="preserve">
+    <value>Повторете Вашата парола</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Изисква се име</value>
+  </data>
+  <data name="NameInUse" xml:space="preserve">
+    <value>Това име вече се ползва</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Изисква се E-mail</value>
+  </data>
+  <data name="ValidEmailAddressRequired" xml:space="preserve">
+    <value>Изисква се валиден e-mail адрес</value>
+  </data>
+  <data name="EmailInUse" xml:space="preserve">
+    <value>Този e-mail адрес вече се ползва</value>
+  </data>
+  <data name="EmailBanned" xml:space="preserve">
+    <value>Този e-mail адрес е забранен</value>
+  </data>
+  <data name="IPBanned" xml:space="preserve">
+    <value>Вашият IP адрес е забранен</value>
+  </data>
+  <data name="RetypePasswordMustMatch" xml:space="preserve">
+    <value>Повторената парола трябва да съвпада</value>
+  </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>Редактирай акаунта</value>
+  </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Редактирай профила</value>
+  </data>
+  <data name="EnterVerificationCode" xml:space="preserve">
+    <value>Моля, въведете Вашия код</value>
+  </data>
+  <data name="ForumHomePage" xml:space="preserve">
+    <value>Начална страница на форума</value>
+  </data>
+  <data name="MustBeRegisteredToEditAccount" xml:space="preserve">
+    <value>Трябва да сте регистриран и вписан, за да редактирате профила си.</value>
+  </data>
+  <data name="NoUserFoundWithEmail" xml:space="preserve">
+    <value>Не е намерен потребител с този e-mail</value>
+  </data>
+  <data name="SendEmailWithNewCodeButton" xml:space="preserve">
+    <value>Изпрати E-mail с нов код</value>
+  </data>
+  <data name="VerificationEmailSent" xml:space="preserve">
+    <value>Вашият верификационен e-mail е изпратен</value>
+  </data>
+  <data name="VerificationFailure" xml:space="preserve">
+    <value>Верификацията е неуспешна</value>
+  </data>
+  <data name="VerificationIfYouNeed" xml:space="preserve">
+    <value>Ако се нуждаете от верификационен код, въведете Вашя e-mail тук</value>
+  </data>
+  <data name="VerificationLinkBad" xml:space="preserve">
+    <value>Съжаляваме, верификационнея линк или код е невалиден.</value>
+  </data>
+  <data name="VerifyAccount" xml:space="preserve">
+    <value>Верифицирай акаунта</value>
+  </data>
+  <data name="VerifyCodeButton" xml:space="preserve">
+    <value>Верификационен код</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>Аватар</value>
+  </data>
+  <data name="AvatarDelete" xml:space="preserve">
+    <value>Изтрий този аватар</value>
+  </data>
+  <data name="ChangeEmail" xml:space="preserve">
+    <value>Промени E-mail</value>
+  </data>
+  <data name="ChangeEmailButton" xml:space="preserve">
+    <value>Промени e-mail и изпрати код</value>
+  </data>
+  <data name="ChangeEmailConsequence" xml:space="preserve">
+    <value>Смяната на е-mail ще предизвика гинирирането и изпращането на нов верификационен код на адреса. Няма да можете да публикувате, докато не верифицирате новия e-mail.</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Смяна на парола</value>
+  </data>
+  <data name="ChangeYourEmailPassword" xml:space="preserve">
+    <value>Смяна на e-mail или парола</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Рождена дата</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детаили</value>
+  </data>
+  <data name="EmailChangeSuccess" xml:space="preserve">
+    <value>Вашия e-mail беше променен успешно</value>
+  </data>
+  <data name="EmailNew" xml:space="preserve">
+    <value>Нов e-mail адрес</value>
+  </data>
+  <data name="EmailNewRetype" xml:space="preserve">
+    <value>Въведете отново вашия e-mail адрес</value>
+  </data>
+  <data name="EmailNotFound" xml:space="preserve">
+    <value>E-mail не е намерен</value>
+  </data>
+  <data name="EmailSent" xml:space="preserve">
+    <value>Беше изпратен E-mail</value>
+  </data>
+  <data name="EmailsMustMatch" xml:space="preserve">
+    <value>Тези e-mail адреси не съвпадат</value>
+  </data>
+  <data name="EmailUser" xml:space="preserve">
+    <value>E-mail потребител</value>
+  </data>
+  <data name="ForcePlainTextBox" xml:space="preserve">
+    <value>Force plain text boxes</value>
+  </data>
+  <data name="ForgotInstructions" xml:space="preserve">
+    <value>Въведете e-mail адреса асоцииран с акаунта за да получите инструкции за подновяване на паролата:</value>
+  </data>
+  <data name="ForgotInstructionsSent" xml:space="preserve">
+    <value>Инструкциите са изпратени на Вашия e-mail</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забравена парола</value>
+  </data>
+  <data name="ForgotPasswordQuestion" xml:space="preserve">
+    <value>Забравена парола?</value>
+  </data>
+  <data name="HideVanity" xml:space="preserve">
+    <value>Hide vanity</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>в</value>
+    <comment>context: started by Jeff in General Forum</comment>
+  </data>
+  <data name="Joined" xml:space="preserve">
+    <value>Обединено</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Локация</value>
+  </data>
+  <data name="LoginAlready" xml:space="preserve">
+    <value>Вече сте вписан.</value>
+  </data>
+  <data name="LoginBad" xml:space="preserve">
+    <value>Грешен e-mail или парола</value>
+  </data>
+  <data name="ManagePhotos" xml:space="preserve">
+    <value>Управление на снимки</value>
+  </data>
+  <data name="ManageYourPhotos" xml:space="preserve">
+    <value>Управление на Вашите снимки</value>
+  </data>
+  <data name="NewPasswordSaved" xml:space="preserve">
+    <value>Новата парола е запазена</value>
+  </data>
+  <data name="NotRegisteredQuestion" xml:space="preserve">
+    <value>Не сте регистриран?</value>
+  </data>
+  <data name="OldPasswordIncorrect" xml:space="preserve">
+    <value>Старата парола е грешна</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Опции</value>
+  </data>
+  <data name="PasswordNew" xml:space="preserve">
+    <value>Нова парола</value>
+  </data>
+  <data name="PasswordNewRetype" xml:space="preserve">
+    <value>Въведете отново новата парола</value>
+  </data>
+  <data name="PasswordOld" xml:space="preserve">
+    <value>Стара парола</value>
+  </data>
+  <data name="PasswordReset" xml:space="preserve">
+    <value>Нулиране на паролата</value>
+  </data>
+  <data name="PasswordResetLinkInvalid" xml:space="preserve">
+    <value>Това не е валиден линк за нулиране на парола.</value>
+  </data>
+  <data name="PasswordResetNote" xml:space="preserve">
+    <value>Вашата нова парола е активна и Вие сте вписан.</value>
+  </data>
+  <data name="PasswordResetSuccess" xml:space="preserve">
+    <value>Паролата е нулирана успешно</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Снимка</value>
+  </data>
+  <data name="PhotoDelete" xml:space="preserve">
+    <value>Изтрий тази снимка</value>
+  </data>
+  <data name="PhotoNotApproved" xml:space="preserve">
+    <value>(тази снимка все още не е потвърдена от администратор)</value>
+  </data>
+  <data name="ProfileUpdated" xml:space="preserve">
+    <value>Профилът е обновен</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомни ме?</value>
+  </data>
+  <data name="Replies" xml:space="preserve">
+    <value>Отговори</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Запиши</value>
+  </data>
+  <data name="SendEmailButton" xml:space="preserve">
+    <value>Изпрати E-mail</value>
+  </data>
+  <data name="SendPM" xml:space="preserve">
+    <value>Изпрати лично съобщение</value>
+  </data>
+  <data name="ShowProfileDetails" xml:space="preserve">
+    <value>Покажи детайли за профила (но не e-mail)</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>Подпис</value>
+  </data>
+  <data name="StartedBy" xml:space="preserve">
+    <value>Започнато от</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>До</value>
+  </data>
+  <data name="UploadNew" xml:space="preserve">
+    <value>Качи нов</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>Потребителя не е намерен</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Прегледи</value>
+  </data>
+  <data name="Web" xml:space="preserve">
+    <value>Web</value>
+  </data>
+  <data name="WebVisit" xml:space="preserve">
+    <value>Посети потребителския Web site</value>
+  </data>
+  <data name="YourIP" xml:space="preserve">
+    <value>Вашият IP адрес</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Рожден ден</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Контакт</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="SendNameEmail" xml:space="preserve">
+    <value>Изпрати е-mail на {0}</value>
+    <comment>{0} is a name</comment>
+  </data>
+  <data name="SendNamePM" xml:space="preserve">
+    <value>Изпрати лично съобщение на {0}</value>
+    <comment>{0} is a name</comment>
+  </data>
+  <data name="Unsubscribe" xml:space="preserve">
+    <value>Отпиши се</value>
+  </data>
+  <data name="UnsubscribeFail" xml:space="preserve">
+    <value>Грешка при отписване</value>
+  </data>
+  <data name="UnsubscribeLinkBad" xml:space="preserve">
+    <value>Линкът, който следвате е невалиден.</value>
+  </data>
+  <data name="UnsubscribeNote" xml:space="preserve">
+    <value>Вашагта заявка за отписване е обработена. Можете да се абонирате наново през вашата профилна страница.</value>
+  </data>
+  <data name="AddForum" xml:space="preserve">
+    <value>Добави форум</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Добави нов</value>
+  </data>
+  <data name="AllowImages" xml:space="preserve">
+    <value>Позволи картинки</value>
+  </data>
+  <data name="Archived" xml:space="preserve">
+    <value>Архивирано</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Сигурен ли сте?</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>Ban</value>
+  </data>
+  <data name="BanRemove" xml:space="preserve">
+    <value>Премахни Ban</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="CategoryEditTitle" xml:space="preserve">
+    <value>Редактирай заглавие на категория</value>
+  </data>
+  <data name="CategoryMoveError" xml:space="preserve">
+    <value>Възникна неизвестна грешка при опит за преместване на категория</value>
+  </data>
+  <data name="CensorReplacementChar" xml:space="preserve">
+    <value>Символ за заместване при цензориране</value>
+  </data>
+  <data name="CensorWords" xml:space="preserve">
+    <value>Цензурирани думи</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Изтрий</value>
+  </data>
+  <data name="DeleteAndBanButton" xml:space="preserve">
+    <value>Изтрий и Ban на потребителя</value>
+  </data>
+  <data name="DeleteUserButton" xml:space="preserve">
+    <value>Изтрий потребител</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Надолу</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактирай</value>
+  </data>
+  <data name="EditForum" xml:space="preserve">
+    <value>Редактирай форум</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Редактирай потребител</value>
+  </data>
+  <data name="EmailBan" xml:space="preserve">
+    <value>E-mail Ban</value>
+  </data>
+  <data name="EmailIpBan" xml:space="preserve">
+    <value>E-mail/IP Ban</value>
+  </data>
+  <data name="EmailNewOptional" xml:space="preserve">
+    <value>Нов e-mail (опционално)</value>
+  </data>
+  <data name="EmailUsers" xml:space="preserve">
+    <value>E-mail потребители</value>
+  </data>
+  <data name="ErrorLog" xml:space="preserve">
+    <value>ErrorLog</value>
+  </data>
+  <data name="Forum" xml:space="preserve">
+    <value>Форум</value>
+  </data>
+  <data name="ForumAdapter" xml:space="preserve">
+    <value>Forum Adapter (optional, use "Namespace.Type, AssemblyName")</value>
+  </data>
+  <data name="ForumHome" xml:space="preserve">
+    <value>Forum Home</value>
+  </data>
+  <data name="ForumPermisions" xml:space="preserve">
+    <value>Forum Permissions</value>
+  </data>
+  <data name="ForumSettings" xml:space="preserve">
+    <value>Forum Settings</value>
+  </data>
+  <data name="ForumsUncat" xml:space="preserve">
+    <value>Uncategorized Forums</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>General Settings</value>
+  </data>
+  <data name="IpBan" xml:space="preserve">
+    <value>IP Ban</value>
+  </data>
+  <data name="IpHistory" xml:space="preserve">
+    <value>IP History</value>
+  </data>
+  <data name="IsApproved" xml:space="preserve">
+    <value>Is approved</value>
+  </data>
+  <data name="IsSubscribed" xml:space="preserve">
+    <value>Is subscribed</value>
+  </data>
+  <data name="LogErrors" xml:space="preserve">
+    <value>Log errors</value>
+  </data>
+  <data name="Logging" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="LogMod" xml:space="preserve">
+    <value>Log moderation</value>
+  </data>
+  <data name="LogSecurity" xml:space="preserve">
+    <value>Log security actions</value>
+  </data>
+  <data name="MinimumTimeBetweenPosts" xml:space="preserve">
+    <value>Minimum time between posts (seconds)</value>
+  </data>
+  <data name="ModerationLog" xml:space="preserve">
+    <value>Moderation Log</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Премести</value>
+  </data>
+  <data name="NewUserApprovedWithoutVerification" xml:space="preserve">
+    <value>New user is approved without verification</value>
+  </data>
+  <data name="NewUserImageApprovedWithoutMod" xml:space="preserve">
+    <value>New user image approved without moderation</value>
+  </data>
+  <data name="Parsing" xml:space="preserve">
+    <value>Parsing</value>
+  </data>
+  <data name="PasswordNewOptional" xml:space="preserve">
+    <value>Нова парола (опционално)</value>
+  </data>
+  <data name="PopForumsAdmin" xml:space="preserve">
+    <value>POP Forums Administration</value>
+  </data>
+  <data name="PostsPerPage" xml:space="preserve">
+    <value>Публикации за страница</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роля</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Сигурност</value>
+  </data>
+  <data name="SecurityLog" xml:space="preserve">
+    <value>Журнал Сигурност</value>
+  </data>
+  <data name="ServerTime" xml:space="preserve">
+    <value>Сървърно време</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Услуги</value>
+  </data>
+  <data name="SessionLength" xml:space="preserve">
+    <value>Дължина на сесията (минути)</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="SubjectAndBodyNotEmpty" xml:space="preserve">
+    <value>Темата и Съдържанието не могат да са празни</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="TopicsPerPage" xml:space="preserve">
+    <value>Теми за страница</value>
+  </data>
+  <data name="Нагоре" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="UserAvatarMaxDim" xml:space="preserve">
+    <value>User avatar max dimensions</value>
+  </data>
+  <data name="UserDeleteWarning" xml:space="preserve">
+    <value>WARNNG! Deleting an account is permanent</value>
+  </data>
+  <data name="UserImageApproval" xml:space="preserve">
+    <value>User Image Approval</value>
+  </data>
+  <data name="UserImageMaxDim" xml:space="preserve">
+    <value>User image max dimensions</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>Потребителски роли</value>
+  </data>
+  <data name="Visible" xml:space="preserve">
+    <value>Видим</value>
+  </data>
+  <data name="AddNewForum" xml:space="preserve">
+    <value>Добави нов форум</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="BodyHtml" xml:space="preserve">
+    <value>HTML Съдържание</value>
+  </data>
+  <data name="ClickToLoadMorePosts" xml:space="preserve">
+    <value>Щракнете тук за да заредите новите публикации, преди да отговорите</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
+  <data name="CommentsOptional" xml:space="preserve">
+    <value>Коментар (опционален)</value>
+  </data>
+  <data name="CreateJunkWordButton" xml:space="preserve">
+    <value>Create New Junk Word</value>
+  </data>
+  <data name="CreateNewReply" xml:space="preserve">
+    <value>Напишете Вашият отговор</value>
+  </data>
+  <data name="CreateNewRole" xml:space="preserve">
+    <value>Създай нова роля</value>
+  </data>
+  <data name="CreateNewTopic" xml:space="preserve">
+    <value>Създай нова тема</value>
+  </data>
+  <data name="DeleteAllErrors" xml:space="preserve">
+    <value>Изтрий всички грешки</value>
+  </data>
+  <data name="DeleteJunkWordButton" xml:space="preserve">
+    <value>Delete Selected Junk Word</value>
+  </data>
+  <data name="DeleteSelectedRole" xml:space="preserve">
+    <value>Изтрий избраната роля</value>
+  </data>
+  <data name="EditPost" xml:space="preserve">
+    <value>Редактирай съобщение</value>
+  </data>
+  <data name="EmailUsersQueued" xml:space="preserve">
+    <value>E-mail queued to subscribed users.</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Крайна дата</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Събитие</value>
+  </data>
+  <data name="EventTime" xml:space="preserve">
+    <value>Време на събитието</value>
+  </data>
+  <data name="FavoriteMustBeLoggedIn" xml:space="preserve">
+    <value>Трябва да бъдете вписан, за да видте любимите Ви теми.</value>
+  </data>
+  <data name="FavoritesDontHave" xml:space="preserve">
+    <value>Нямате любими теми.</value>
+  </data>
+  <data name="FavoriteTopics" xml:space="preserve">
+    <value>Любими теми</value>
+  </data>
+  <data name="ForumMoveError" xml:space="preserve">
+    <value>There was an unknown error while attempting to move forum</value>
+  </data>
+  <data name="ForumPermissionInstructions" xml:space="preserve">
+    <value>To remove posting or viewing restrictions, remove all roles from the appropriate box.</value>
+  </data>
+  <data name="FromEmailAddress" xml:space="preserve">
+    <value>От e-mail адрес</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IncludeSignature" xml:space="preserve">
+    <value>Включи подпис</value>
+  </data>
+  <data name="IndexingInterval" xml:space="preserve">
+    <value>Indexing Interval</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="IsRunning" xml:space="preserve">
+    <value>работи</value>
+  </data>
+  <data name="JunkWords" xml:space="preserve">
+    <value>Junk Words</value>
+  </data>
+  <data name="MarkForumRead" xml:space="preserve">
+    <value>Отбележи форума като прочетен</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Съобщение</value>
+  </data>
+  <data name="Millseconds" xml:space="preserve">
+    <value>Милисекунди</value>
+  </data>
+  <data name="NamePosts" xml:space="preserve">
+    <value>Публикациите на {0}</value>
+    <comment>{0} is a name</comment>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>(опционаленl)</value>
+  </data>
+  <data name="PermRoles" xml:space="preserve">
+    <value>Admin and Moderator are permanent roles, and can't be deleted.</value>
+  </data>
+  <data name="PostID" xml:space="preserve">
+    <value>PostID</value>
+  </data>
+  <data name="PostingRoles" xml:space="preserve">
+    <value>Posting Roles</value>
+  </data>
+  <data name="PostNewTopic" xml:space="preserve">
+    <value>Публикувай нова тема</value>
+  </data>
+  <data name="PreviewTopic" xml:space="preserve">
+    <value>Прегледай темата</value>
+    <comment>preview the verb, not adjective</comment>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Премахни</value>
+  </data>
+  <data name="RemoveAll" xml:space="preserve">
+    <value>Премахни всички</value>
+  </data>
+  <data name="SendingInterval" xml:space="preserve">
+    <value>Интервал за изпращане</value>
+  </data>
+  <data name="SmtpPassword" xml:space="preserve">
+    <value>SMTP Password</value>
+  </data>
+  <data name="SmtpPort" xml:space="preserve">
+    <value>Port (default is 25)</value>
+  </data>
+  <data name="SmtpServer" xml:space="preserve">
+    <value>SMTP Server</value>
+  </data>
+  <data name="SmtpUser" xml:space="preserve">
+    <value>SMTP User</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Начална дата</value>
+  </data>
+  <data name="SubmitNewTopic" xml:space="preserve">
+    <value>Въведи нова тема</value>
+  </data>
+  <data name="SubmitReply" xml:space="preserve">
+    <value>Публикувай отговор</value>
+  </data>
+  <data name="TopicID" xml:space="preserve">
+    <value>TopicID</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="UseEsmtpCred" xml:space="preserve">
+    <value>Use ESMTP for credentials</value>
+  </data>
+  <data name="UserID" xml:space="preserve">
+    <value>UserID</value>
+  </data>
+  <data name="UserIDTarget" xml:space="preserve">
+    <value>Target UserID</value>
+  </data>
+  <data name="UserImageApprovalNotReq" xml:space="preserve">
+    <value>User uploaded images currently do not require approval</value>
+  </data>
+  <data name="UseSsl" xml:space="preserve">
+    <value>Use SSL</value>
+  </data>
+  <data name="ViewingRoles" xml:space="preserve">
+    <value>Viewing Roles</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Затвори</value>
+  </data>
+  <data name="CloseOnReply" xml:space="preserve">
+    <value>Затвори при отговор</value>
+  </data>
+  <data name="FavoriteMake" xml:space="preserve">
+    <value>Добави в Любими</value>
+  </data>
+  <data name="FavoriteRemove" xml:space="preserve">
+    <value>Премахни от Любими</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Връзка</value>
+  </data>
+  <data name="Moderator" xml:space="preserve">
+    <value>Модератор</value>
+  </data>
+  <data name="NameAvatar" xml:space="preserve">
+    <value>Аватарът на {0}</value>
+    <comment>{0} is a name</comment>
+  </data>
+  <data name="NameLastEdit" xml:space="preserve">
+    <value>Последно редактирано от {0}</value>
+    <comment>{0} is a name</comment>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Отвори</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>ПИН</value>
+  </data>
+  <data name="PostReply" xml:space="preserve">
+    <value>Отговори</value>
+  </data>
+  <data name="Quote" xml:space="preserve">
+    <value>Цитат</value>
+  </data>
+  <data name="RecentTopics" xml:space="preserve">
+    <value>Последни теми</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Отговори</value>
+  </data>
+  <data name="ShowMorePosts" xml:space="preserve">
+    <value>Покажи още публикации</value>
+  </data>
+  <data name="ShowPreviousPosts" xml:space="preserve">
+    <value>Покажи предишни публикации</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Абонирай се</value>
+  </data>
+  <data name="Undelete" xml:space="preserve">
+    <value>Възстанови</value>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>Откачи</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Обнови</value>
+  </data>
+  <data name="Archive" xml:space="preserve">
+    <value>Архивирай</value>
+  </data>
+  <data name="NewPM" xml:space="preserve">
+    <value>New Private Message</value>
+  </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>Няма намерени резултати</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Изпрати</value>
+  </data>
+  <data name="Unarchive" xml:space="preserve">
+    <value>Разархивирай</value>
+  </data>
+  <data name="ViewArchivedMessages" xml:space="preserve">
+    <value>Прегледай архивираните съобщения</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Видимо име</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Грешка</value>
+  </data>
+  <data name="ErrorSettingUpDb" xml:space="preserve">
+    <value>There was an error setting up your database</value>
+  </data>
+  <data name="ForumReady" xml:space="preserve">
+    <value>Форумът е готов.</value>
+  </data>
+  <data name="ForumTitle" xml:space="preserve">
+    <value>Заглавие на форума</value>
+  </data>
+  <data name="GoAdmin" xml:space="preserve">
+    <value>Go to the admin section to finish setting up your Forum.</value>
+  </data>
+  <data name="InvalidLink" xml:space="preserve">
+    <value>Този линк вече не е валиден.</value>
+  </data>
+  <data name="NoDataConnection" xml:space="preserve">
+    <value>Няма връзка с базата данни</value>
+  </data>
+  <data name="PopForumsSetup" xml:space="preserve">
+    <value>POP Forums Setup</value>
+  </data>
+  <data name="SetupCantConnect" xml:space="preserve">
+    <value>The setup can't connect to the data store. Please check your connection string and configuration.</value>
+  </data>
+  <data name="SetupConnSuccess" xml:space="preserve">
+    <value>A database connection has been successful. Please fill out the following values to get started</value>
+  </data>
+  <data name="SetupDatabase" xml:space="preserve">
+    <value>Setup the database</value>
+  </data>
+  <data name="SetupFirstUser" xml:space="preserve">
+    <value>Setup your first user (will be granted admin and moderator rights)</value>
+  </data>
+  <data name="SubscribedTopics" xml:space="preserve">
+    <value>Теми с абонамент</value>
+  </data>
+  <data name="SubscribeLoggedIn" xml:space="preserve">
+    <value>Трябва да се впишете, за да видите темите с абонамент.</value>
+  </data>
+  <data name="SubscribeNone" xml:space="preserve">
+    <value>Не сте абониран за никоя тема.</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Успех!</value>
+  </data>
+  <data name="UnsubscribeTopic" xml:space="preserve">
+    <value>{0} премахна абонамента от тема {1}</value>
+    <comment>{0} is a name, {1} is a topic title</comment>
+  </data>
+  <data name="ArchivedNewPosts" xml:space="preserve">
+    <value>Архивирано с новите публикации</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Темата е затворена</value>
+  </data>
+  <data name="ClosedPinned" xml:space="preserve">
+    <value>Прикачената тема е затворена</value>
+  </data>
+  <data name="DeleteTopic" xml:space="preserve">
+    <value>Изтрий темата</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>Първи</value>
+  </data>
+  <data name="ForgotPasswordEmail" xml:space="preserve">
+    <value>За да нулираме паролата за {0}, моля последвайте този линк:{3}{1}{3}{3}{2}</value>
+    <comment>{0}=title of forum, {1}=email link, {2}=signature, {3}=new line</comment>
+  </data>
+  <data name="ForgotPasswordSubject" xml:space="preserve">
+    <value>Вашите инструкции за нулиране на парола за {0}</value>
+    <comment>{0} is name of forum</comment>
+  </data>
+  <data name="ForumNoPost" xml:space="preserve">
+    <value>Нямате позволение за публикуване в този форум</value>
+  </data>
+  <data name="ForumNoView" xml:space="preserve">
+    <value>Нямате позволение да разглеждате този форум</value>
+  </data>
+  <data name="LessThanMinute" xml:space="preserve">
+    <value>преди по-малко от минута</value>
+  </data>
+  <data name="LoginToPost" xml:space="preserve">
+    <value>Трябва да сте вписан за да публикувате</value>
+  </data>
+  <data name="MinutesAgo" xml:space="preserve">
+    <value>преди {0} минути</value>
+    <comment>{0} is a number</comment>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Още</value>
+  </data>
+  <data name="NewPosts" xml:space="preserve">
+    <value>Нови публикации</value>
+  </data>
+  <data name="NewPostsClosed" xml:space="preserve">
+    <value>Нови публикации, затворена тема</value>
+  </data>
+  <data name="NewPostsClosedPinned" xml:space="preserve">
+    <value>New posts, closed &amp; pinned topic</value>
+  </data>
+  <data name="NewPostsPinned" xml:space="preserve">
+    <value>Нови публикации, закачена тема</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Следващ</value>
+  </data>
+  <data name="NoNewPosts" xml:space="preserve">
+    <value>Няма нови публикации</value>
+  </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>Не сте вписан</value>
+  </data>
+  <data name="OneMinuteAgo" xml:space="preserve">
+    <value>преди 1 минута</value>
+  </data>
+  <data name="Pinned" xml:space="preserve">
+    <value>Закачена тема</value>
+  </data>
+  <data name="PMCreateWarnings" xml:space="preserve">
+    <value>Must include subject, message and at least one user</value>
+  </data>
+  <data name="PostEmpty" xml:space="preserve">
+    <value>Не можете да правите празни публикации</value>
+  </data>
+  <data name="PostWait" xml:space="preserve">
+    <value>Трябва да изчакате {0} секунди между публикациите и не може да дублирате Вашата последена публикация</value>
+    <comment>{0} is a number for seconds</comment>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Предишен</value>
+  </data>
+  <data name="RegisterEmailSubject" xml:space="preserve">
+    <value>Регистрация за форум - {0}</value>
+    <comment>{0} is name of forum</comment>
+  </data>
+  <data name="RegisterEmailThankYou" xml:space="preserve">
+    <value>Благодарим за регистрацията в {0}.{2}{2}{1}</value>
+    <comment>{0}=name of forum, {1}=forum link, {2}=new line</comment>
+  </data>
+  <data name="RegisterEmailThankYouVerify" xml:space="preserve">
+    <value>Thank you for registering with {0}. Please follow this link to confirm your registration:{5}{5}{1} {5}{5}If you can't follow this link, please visit the following page, and cut and paste the confirmation code:{5}{5}Link: {2} {5}Code: {3} {5}{5}{4}</value>
+    <comment>{0}=name of forum, {1}=auth link, {2}=verify link, {3}=auth code, {4}=sig, {5}new line</comment>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Настройките са запазени</value>
+  </data>
+  <data name="SubscribedEmailBody" xml:space="preserve">
+    <value>One or more responses have been posted to the following thread on {0}:{5}{5}{1}{5}{2}{5}{5}To stop receiving notifications visit this link:{5}{3}{5}{5}{4}</value>
+    <comment>{0}=name of forum, {1}=topic title, {2}=link, {3}=unsubscribe link, {4}=signature, {5}=new line</comment>
+  </data>
+  <data name="SubscribedEmailSubject" xml:space="preserve">
+    <value>Нови отговори: {0}</value>
+    <comment>{0}=topic title</comment>
+  </data>
+  <data name="TodayTime" xml:space="preserve">
+    <value>Днес, {0}</value>
+    <comment>{0} is a time like 1:43pm</comment>
+  </data>
+  <data name="TopicNotExist" xml:space="preserve">
+    <value>Тази тема не съществува</value>
+  </data>
+  <data name="YesterdayTime" xml:space="preserve">
+    <value>Вчера, {0}</value>
+    <comment>{0} a time like 1:43pm</comment>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Зареждане</value>
+  </data>
+  <data name="Voted" xml:space="preserve">
+    <value>За коментара е гласувано</value>
+  </data>
+  <data name="VoteUpPublishMessage" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; е гласувал за: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
+    <comment>{0} is uri to user, {1} is user name, {2} is uri to post, {3} is topic name</comment>
+  </data>
+  <data name="ScoringGame" xml:space="preserve">
+    <value>Scoring game</value>
+  </data>
+  <data name="Awards" xml:space="preserve">
+    <value>Awards</value>
+  </data>
+  <data name="EventDefinitions" xml:space="preserve">
+    <value>Event Definitions</value>
+  </data>
+  <data name="AwardDefinitions" xml:space="preserve">
+    <value>Award Definitions</value>
+  </data>
+  <data name="ManualEvent" xml:space="preserve">
+    <value>Manual Event</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Никой</value>
+  </data>
+  <data name="ActivityFeed" xml:space="preserve">
+    <value>Activity Feed</value>
+  </data>
+  <data name="NewReplyPublishMessage" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; made a post in the topic: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
+    <comment>{0} is uri to user, {1} is user name, {2} is uri to post, {3} is topic name</comment>
+  </data>
+  <data name="NewPostPublishMessage" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; started a new topic: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
+    <comment>{0} is uri to user, {1} is user name, {2} is uri to topic{3} is topic name</comment>
+  </data>
+  <data name="ExternalLogins" xml:space="preserve">
+    <value>External Logins</value>
+  </data>
+  <data name="UseExistingForumAccount" xml:space="preserve">
+    <value>Use existing forum account</value>
+  </data>
+  <data name="ExpiredLogin" xml:space="preserve">
+    <value>That login has expired or is not valid</value>
+  </data>
+  <data name="ExternalLoginsDisabled" xml:space="preserve">
+    <value>External logins are disabled</value>
+  </data>
+  <data name="NoExternalLoginsRegistered" xml:space="preserve">
+    <value>You have no external logins registered</value>
+  </data>
+  <data name="DeletePermanently" xml:space="preserve">
+    <value>Изтрий завинаги</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="AskAQuestion" xml:space="preserve">
+    <value>Задай въпрос</value>
+  </data>
+  <data name="Answers" xml:space="preserve">
+    <value>Отговори</value>
+  </data>
+  <data name="QuestionAnswered" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; chose an answer for the question: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
+    <comment>{0} is uri to user, {1} is user name, {2} is uri to post, {3} is topic name</comment>
+  </data>
+  <data name="ChooseAnswer" xml:space="preserve">
+    <value>Избери отговор</value>
+  </data>
+  <data name="PostAnswer" xml:space="preserve">
+    <value>Публикувай отговор</value>
+  </data>
+  <data name="SubmitAnswer" xml:space="preserve">
+    <value>Въведи отговор</value>
+  </data>
+  <data name="AppRestartRequired" xml:space="preserve">
+    <value>Налага се рестарт на приложението</value>
+  </data>
+</root>

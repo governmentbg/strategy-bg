@@ -1,0 +1,131 @@
+﻿@{
+    ViewData["Title"] = "Заявления";
+}
+
+<section class="content">
+    @using (Html.BeginForm())
+    {
+    <div class="search-form">
+        <div>
+            <span>Вид заявление</span>
+            @Html.DropDownList("applicationTypeId", (IEnumerable<SelectListItem>)ViewBag.applicationTypes, new { @class = "form-control" })
+        </div>
+        <div>
+            <span>От дата</span>
+            <div class="icon-wrapper">
+                <i class="fa fa-calendar"></i>
+                @Html.TextBox("dateRegFrom", null, new { @class = "form-control date-picker" })
+            </div>
+
+        </div>
+        <div>
+            <span>До дата</span>
+            <div class="icon-wrapper">
+                <i class="fa fa-calendar"></i>
+                @Html.TextBox("dateRegTo", null, new { @class = "form-control date-picker" })
+            </div>
+        </div>
+        <div>
+            <span>Организация</span>
+            @Html.TextBox("orgName", null, new { @class = "form-control" })
+        </div>
+        <div>
+            <span>Местно лице</span>
+            @Html.TextBox("localName", null, new { @class = "form-control" })
+        </div>
+        <div>
+            <span>Вид заявление</span>
+            @Html.DropDownList("stateId", (IEnumerable<SelectListItem>)ViewBag.applicationStates, new { @class = "form-control" })
+        </div>
+        <div>
+            <span>&nbsp;</span>
+            <a href="#" class="btn btn-primary" onclick="tbl.ajax.reload(); return false;">Търсене</a>
+        </div>
+    </div>
+    }
+    <table id="tblMain" class="table"></table>
+</section>
+@section scripts{
+    <script>
+        var tbl = {};
+        $(function () {
+
+            //comboLoadEkkate('#testObl', '-1', '');
+
+
+            tbl = $('#tblMain').DataTable({
+
+                "ajax": {
+                    "url": '@Url.Action("LoadData")',
+                    "type": "POST",
+                    "data": function (d) {
+                        d.applicationTypeId = $('#applicationTypeId').val();
+                        d.dateRegFrom = $('#dateRegFrom').val();
+                        d.dateRegTo = $('#dateRegTo').val();
+                        d.orgName = $('#orgName').val();
+                        d.localName = $('#localName').val();
+                        d.stateId = $('#stateId').val();
+                    }
+                },
+                    filter: false,
+                    fnDrawCallback: function (settings) {
+                        $(tbl).parent().toggle(settings.fnRecordsDisplay() > 0);
+                },
+                //"pageLength": 1,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        text: 'Експорт в Excel',
+                        action: function (e, dt, button, config) {
+                            dataTablesButtonExcel(e, dt, button, config);
+                        }
+                    }
+                ],
+                    "columns": [
+                    {
+                        data: "applicationTypeName",
+                        title: 'Вид заявление'
+                    },
+                    {
+                        data: "registerNumber",
+                        title: 'Регистрационен номер'
+                    }
+                    ,
+                    {
+                        data: "registerDate",
+                        title: 'Дата',
+                        "render": function (value) {
+                        return JsonBGdate(value);
+                    }
+                    },
+                    {
+                        data: "organizationName",
+                        title: 'Организация'
+                    },
+                    {
+                        data: "localName",
+                        title: 'Местно лице'
+                    },
+                    {
+                        data: "localAddress",
+                        title: 'Месторабота'
+                    },
+                    {
+                        data: "stateName",
+                        title: 'Статус'
+                     }
+                    ,{
+                        data: null,
+                        "render": function (item) {
+                            var previewUrl = '@Url.Action("preview", new { id = -222})'.replace('-222', item.id);
+                            return "<a href='" + previewUrl+"' class='btn btn-info btn-flat'>Преглед</a>";
+                        },
+                        sortable: false,
+                        className:"noExport"
+                    }
+                ]
+
+            });
+        });
+    </script>
+}

@@ -1,0 +1,69 @@
+﻿<div class="modal" tabindex="-1" role="dialog" id="global-modal">
+    <div class="modal-dialog modal-lg" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="plainModal" style="display:none;position:fixed;left: 0;top: 0;height:100%;width:100%;z-index:1000;background-color:rgba(3, 3, 3, 0.43);">
+    <div class="plainModal-content well" style="position:relative;left:10%;top:5%;width:80%;background-color:#fff; padding:10px;">
+        <h3 class="plainModal-title"></h3>
+        <div class="plainModal-body"></div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(document).on('click', '.modal-hide', function () {
+            if ($('.plainModal').is(':visible')) {
+                $('.plainModal').hide();
+            }
+        });
+    });
+    $(document).keyup(function (e) {
+        if (e.keyCode === 27) // esc
+        {
+            if ($('.plainModal').is(':visible')) {
+                $('.plainModal').hide();
+            }
+        }
+       
+    });
+    function ShowDialog(title, html, showBig) {
+        $('.modal-title').text(title);
+        $('.modal-body').html(html);
+        $('#global-modal').modal('show');
+    }
+    function ShowDialogFromAction(title, url) {
+        $.ajax({
+            url: url,
+            dataType: 'html',
+            cache: false,
+            success: function (content) {
+                ShowDialog(title, content);
+            }
+        });
+    }
+    function ShowPlainDialogFromAction(title, url) {
+        $.ajax({
+            url: url,
+            dataType: 'html',
+            cache: false,
+            success: function (content) {
+                $('.plainModal-title').text(title);
+                $('.plainModal-body').html(content);
+                $('.plainModal').show();
+            }
+        });
+    }
+    function HideDialog() {
+        $('.plainModal').hide();
+    }
+</script>

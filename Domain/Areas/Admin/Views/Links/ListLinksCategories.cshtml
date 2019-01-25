@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Категории връзки";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("ListLinksCategories", "Links")">Категории връзки</a>
+    </div>
+}
+
+<section class="content">
+    <div class="pull-left">
+        <a asp-action="AddLinksCategory" class="btn btn-success btn-flat">Добави категория връзки</a>
+        &nbsp;&nbsp;
+        <a asp-action="OrderLinksCategories" class="btn btn-success btn-flat">Подреди категории връзки</a>
+    </div>
+
+    <div>
+        &nbsp;&nbsp;
+        <label>
+            Активност
+        </label>
+        <select id="ddlActive">
+            <option value="-1">Всички</option>
+            <option value="1">Активни</option>
+            <option value="0">Неактивни</option>
+        </select>
+    </div>
+
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "bSort": false,
+             "ajax": {
+                 "url": '@Url.Action("LoadDataLinksCategories")',
+                 data: function (d) {
+                     d.active = $("#ddlActive").val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "name",
+                     title: 'Име',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "dateCreated",
+                     title: 'Дата на създаване',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "isActive",
+                     title: 'Активност',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("EditLinksCategories",new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("ListLinks",new { linksCategoryId = "666", active = 1})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-info">Връзки</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+             "order": [[0, "asc"]],
+        });
+
+        $('#ddlActive').change(function () {
+                dt.ajax.reload();
+            });
+        });
+    </script>
+
+}
+

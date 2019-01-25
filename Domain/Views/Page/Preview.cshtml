@@ -1,0 +1,77 @@
+﻿@model Page
+@{
+    ViewData["Title"] = Model.Title;
+    var breadcrumbs = (IEnumerable<BreadcrumbVM>)ViewBag.breadcrumbs;
+
+    var url = Url.Action("Preview", "Home", new { id = Model.ContentId, url = Model.Url }, (string)ViewBag.httpScheme);
+    var parents = (IQueryable<PageVM>)ViewBag.parents;
+    var rCol = "col-lg-12";
+    if (Model.PageLinks?.Count() > 0)
+    {
+        rCol = "col-lg-9";
+    }
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        @foreach (var item in breadcrumbs)
+        {
+            <span>/</span>
+            <a href="@item.Url">@item.Title</a>
+        }
+        <span>/</span>
+        <a href="#">@Model.Title</a>
+    </div>
+}
+
+
+<div class="container-fluid information">
+    <div class="row">
+
+
+        @if (Model.PageLinks?.Count() > 0)
+        {
+
+            <div class="col-lg-3">
+                <div class="aside row">
+                    @foreach (var item in Model.PageLinks)
+                    {
+                        <div class="title">
+                            <a href="@item.Href)">
+                                @item.Title
+                            </a>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        }
+        <div class="@rCol">
+            <h2>@Model.Title</h2>
+            @if (!string.IsNullOrEmpty(Model.SubTitle))
+            {
+                <h4>@Model.SubTitle</h4>
+            }
+            @Html.Raw(Model.Content)
+        </div>
+        <div class="published pull-right">Дата: @Model.DatePublished?.ToString("dd.MM.yyyy")</div>
+
+    </div>
+</div>
+@section scripts{
+    <script>
+    $(function () {
+        $('a[data-modal="true"]').click(function () {
+            var url = '@Url.Action("ModalPreview")';
+            var tag = $(this).data('tag');
+            requestContent(url, {
+                lang: '@Model.Lang'
+                , id: $(this).data('contentid')
+            }, function (data) {
+                ShowDialog(data.title, data.html, 1);
+                location.hash = "#" + tag;
+            });
+        });
+    });
+    </script>
+}

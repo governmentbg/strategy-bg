@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = "Моите категории";
+}
+
+<h3 style="margin-bottom:20px;">@ViewData["Title"]</h3>
+<a href="#" onclick="addCategory(); return false;" class="btn btn-success"><i class="fa fa-plus"></i> Добави категория</a>
+<table id="mainTable" class="table" cellspacing="0"></table>
+<a asp-action="Profile">Обратно</a>
+@section scripts{
+    <script>
+    var dt = {};
+    $(function () {
+         dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("Categories_LoadData")',
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "categoryName",
+                     title: 'Наименование'
+                 },
+                 {
+                     data: null,
+                     "render": function (item) {
+
+                         var btn = '<a href="#" onclick="removeCategory('+item.categoryId+',\''+item.categoryName+'\');" class="btn btn-sm btn-danger pull-right" title="Премахни"><i class="fa fa-remove"></i></a>';
+                         return btn;
+                     },
+                     sortable: false
+                 }
+             ],
+             filter: false,
+             paging: false,
+             "bInfo": false
+
+        });
+
+    });
+    function addCategory() {
+         var url = '@Url.Action("Categories_Add","Account")';
+         ShowPlainDialogFromAction('Добави категория', url);
+    }
+        function removeCategory(catId,catName) {
+            if (!confirm('Потвърдете премахването на категория: ' + catName)) {
+                return false;
+            }
+            requestContent('@Url.Action("Categories_Remove", "Account")', { categoryId: catId }, function () { dt.ajax.reload();});
+    }
+    </script>
+
+}

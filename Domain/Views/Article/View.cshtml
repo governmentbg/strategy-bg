@@ -1,0 +1,56 @@
+﻿@model ArticleVM
+@{
+    ViewData["SectionTitle"] = "Партньорство за открито управление";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index")">Новини и събития</a>
+    </div>
+}
+
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
+        </div>
+        <div class="col-md-9 body">
+
+
+            @if (!string.IsNullOrEmpty(Model.MainImageFileId))
+            {
+                <div class="article-image">
+                    <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",id=Model.MainImageFileId,max=400}))" />
+                </div>
+            }
+            <h2>
+                @Html.Raw(Model.Title)
+            </h2>
+            <h4>
+                @Model.EventDate.ToString(GlobalConstants.DateFormat)
+            </h4>
+            <p class="title">
+                @Html.Raw(Model.Content)
+            </p>
+            @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.Partnership, sourceId = Model.Id })
+            <!-- TABLE DATES -->
+            <div class="row">
+                <div class="col-md-5">
+                    <table class="table table-bordered table--dates table--stripped">
+                        <tbody>
+                            <!-- LOOP -->
+                            <tr>
+                                <td>Последна промяна:</td>
+                                <td>@Model.LastModified.ToString(GlobalConstants.DateFormat)</td>
+                            </tr>
+                            <!-- END LOOP -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TABLE DATES -->
+        </div>
+    </div>
+</div>
+<!-- END COMMENTS -->

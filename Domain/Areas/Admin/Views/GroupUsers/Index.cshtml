@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Групи потребители";
+}
+<section class="content">
+    @if ((bool)ViewBag.IsAdmin)
+    {
+        <div class="pull-left">
+            <a asp-action="Add" class="btn btn-success btn-flat">Добави</a>
+        </div>
+    }
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            var dt = $('#mainTable').DataTable({
+                "ajax": {
+                    "url": '@Url.Action("LoadData")',
+                    "type": "POST"
+                },
+                fnDrawCallback: function (settings) {
+                    $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                },
+                "columns": [
+                    {
+                        data: "organization",
+                        title: 'Наименование'
+                    },
+                    {
+                        data: null,
+                        title: 'Област',
+                        render: function (item) {
+                            switch (item.categoryParent) {
+                                case @(GlobalConstants.Category.Type_District) :
+                                    return 'обл. '+item.categoryName;
+                                case @(GlobalConstants.Category.Type_Municipal) :
+                                    return 'общ. '+item.categoryName;
+                                default:
+                                    return item.categoryName;
+                            }
+                        },
+                        sortable: false
+                    },
+                    {
+                        data: "address",
+                        title: 'Адрес'
+                    },
+                    {
+                        data: "email",
+                        title: 'Имейл'
+                    },
+                    {
+                        data: null,
+                        "render": function (item) {
+                            var updateUrl = '@Url.Action("Edit",new { id = "666"})'.replace('666', item.id);
+                            var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                            var usersUrl = '@Url.Action("Users",new { groupId = "666"})'.replace('666', item.id);
+                            var usersButton = '&nbsp;&nbsp;<a href="' + usersUrl + '" class="btn btn-info">Потребители</a>';
+                            return @if((bool)ViewBag.IsAdmin) { <text>updButton + </text>} usersButton;
+                        },
+                        sortable: false
+                    }
+                ]
+            });
+
+        });
+
+
+    </script>
+
+}

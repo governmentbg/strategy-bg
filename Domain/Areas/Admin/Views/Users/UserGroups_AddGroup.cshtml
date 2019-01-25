@@ -1,0 +1,15 @@
+﻿@model UserInGroupVM
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="@ViewBag.actionName" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="UserId" type="hidden" />
+            <input asp-for="UserFullName" type="hidden" />
+            <ddl for="GroupUserId" data="ViewBag.groups"></ddl>
+
+            <div class="form-group">
+                <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+            </div>
+        </form>
+    </div>
+</div>

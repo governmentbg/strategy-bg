@@ -1,0 +1,40 @@
+﻿@model string
+@inject Models.Contracts.IArticleService articleService
+@{
+    var articleCatergories = articleService.ArticleCategories_SelectCombo();
+}
+<div class="aside row">
+    <div class="title">
+        <a asp-action="Plans" asp-controller="Ogp" class="selected">
+            Национални планове
+        </a>
+    </div>
+    @*<div class="title">
+        <a asp-action="Index" asp-controller="Article">
+            Оценки
+        </a>
+    </div>*@
+    <div class="title">
+        <a asp-action="Index" asp-controller="Article">
+            Новини и събития
+        </a>
+    </div>
+
+    <ul class="list--default">
+        <li><a asp-action="Agenda" asp-controller="Ogp">Календар на събитията</a></li>
+        @foreach (var cat in articleCatergories)
+        {
+            <li><a asp-action="Index" asp-controller="Article" asp-route-category="@cat.Value">@Html.Raw(cat.Text)</a></li>
+        }
+    </ul>
+    <div class="title">
+        <a asp-action="Contacts" asp-controller="Ogp">
+            Контакти
+        </a>
+    </div>
+    @*<ul class="list--default">
+            <li><a href="#">Линк</a></li>
+            <li><a href="#">Линк</a></li>
+            <li><a href="#">Линк</a></li>
+        </ul>*@
+</div>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PageLink>
+@{
+    var page = (Page)ViewBag.page;
+
+    ViewData["Title"] = "Линкове към страница";
+}
+<section class="content">
+    <h4>@(page.Title)</h4>
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <a asp-action="Add" asp-route-pageId="@(page.Id)" class="btn btn-success">Добави</a>
+            &nbsp;&nbsp;
+            <a href="#" onclick="selectPage(); return false;" class="btn btn-warning"><i class="fa fa-file"></i> Добави от подчинени на страница</a>
+            <table class="table">
+                <tr>
+                    <th>Наименование</th>
+                    <th>Линк</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Href</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Редакция</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    function selectPage() {
+        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = GlobalConstants.PageTypes.Pages, callbackName = "callbackSelectPage", lang=page.Lang}))';
+        ShowPlainDialogFromAction('Избери страница, за добавяне на връзки към подчинените и елементи', url);
+    }
+    function callbackSelectPage(data) {
+        $('.plainModal').hide();
+        var _url = '@Url.Action("InsertFromSelectedPage")';
+        var _data = {
+            pageId:@(page.Id),
+            contentId: data.contentId,
+            lang : '@(page.Lang)'
+        };
+        postContent(_url, _data, function () {
+            window.location.href = window.location.href.replace('#','');
+         });
+    }
+</script>

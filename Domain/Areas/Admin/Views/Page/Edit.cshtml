@@ -1,0 +1,265 @@
+﻿@using Models.Context
+@model Page
+@{
+    var langName = GlobalConstants.SelectLangs().FirstOrDefault(x => x.Lang == Model.Lang).Title;
+
+    if (Model.Id > 0)
+    {
+        ViewData["Title"] = "Редактиране на статия на " + langName;
+    }
+    else
+    {
+        ViewData["Title"] = "Добавяне на статия на " + langName;
+    }
+}
+<section class="content">
+    @if (Model.Id > 0)
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                @foreach (var item in (IEnumerable<TranslationVM>)ViewBag.translations)
+                {
+
+                    var btnClass = "btn-default";
+                    if (item.Lang == Model.Lang)
+                    {
+                        btnClass = "btn-primary";
+                    }
+                    if (item.PageId > 0)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.PageId" class="btn @btnClass">@item.Lang.ToUpper()</a>
+                    }
+                    else
+                    {
+                        <a asp-action="AddTranslation" asp-route-id="@Model.Id" asp-route-lang="@item.Lang"><b>Добави превод на @item.Lang.ToUpper()</b></a>
+                    }
+
+                }
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-lg-8">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @if (Model.Id > 0)
+    {
+            <input asp-for="Id" type="hidden" />
+}
+                <input asp-for="PageTypeId" type="hidden" />
+                <input asp-for="ParentContentId" type="hidden" />
+                <input asp-for="OrderBy" type="hidden" />
+                <input asp-for="Lang" type="hidden" />
+                <input asp-for="ContentId" type="hidden" />
+
+                <textbox for="Title"></textbox>
+                <textbox for="SubTitle" type="textarea"></textbox>
+                <checkbox for="SpecialPage"></checkbox>
+                <div id="divSpecialPage" style="display:none;">
+                    <textbox for="Action"></textbox>
+                    <textbox for="Controller"></textbox>
+                </div>
+                <textbox for="Url"></textbox>
+                <textbox for="Content" type="textarea"></textbox>
+                <textbox for="ClassName"></textbox>
+                <checkbox for="ShowInMenu"></checkbox>
+                <div class="form-group">
+                    <label asp-for="StateID" class="control-label"></label>
+                    <br />
+                    <label style="color:#666;">@Html.RadioButtonFor(x => x.StateID, GlobalConstants.PageStates.Draft) Чернова</label>
+                    &nbsp;&nbsp;
+                    <label>@Html.RadioButtonFor(x => x.StateID, GlobalConstants.PageStates.Published) Публикувано</label>
+                    &nbsp;&nbsp;
+                    <label style="color:#cb4949">@Html.RadioButtonFor(x => x.StateID, GlobalConstants.PageStates.Deleted) ИЗТРИТО</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" asp-route-pageType="@Model.PageTypeId" asp-route-lang="@Model.Lang" class="btn btn-default btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4">
+            @if (Model.Id > 0)
+            {
+                <a asp-action="Index" asp-controller="PageLink" asp-route-pageId="@Model.Id" class="btn btn-info">Линкове</a>
+            }
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+        $('#Title').blur(function () {
+            if ($('#Url').val().length == 0) {
+                $('#Url').val(generateUrl($(this).val()));
+            }
+        });
+        $('#SpecialPage').change(function () {
+            if ($(this).is(':checked')) {
+                $('div#divSpecialPage').show();
+            } else {
+                $('div#divSpecialPage').hide();
+            }
+        }).trigger('change');
+        
+        var snEditor = $('#Content').summernote({
+
+            callbacks: {
+                onCreateLink: function (link) {
+                    return link;
+                },
+                onInit: function () {
+                    //debugger;
+                    var btnGroup = document.createElement("div");
+                    btnGroup.setAttribute('class', 'note-btn-group btn-group');
+
+                    var btnDoc = document.createElement("button");
+                    btnDoc.setAttribute('class', 'note-btn btn btn-warning btn-sm');
+                    btnDoc.innerHTML = '<i class="glyphicon glyphicon-paperclip"></i>';
+                    btnDoc.setAttribute('title', 'Вмъкни документ');
+                    btnDoc.onclick = function () { selectDocument(); return false; };
+                    btnGroup.appendChild(btnDoc);
+
+                    var btnImg = document.createElement("button");
+                    btnImg.setAttribute('class', 'note-btn btn btn-info btn-sm');
+                    btnImg.innerHTML = '<i class="fa fa-image"></i>';
+                    btnImg.setAttribute('title', 'Вмъкни изображение');
+                    btnImg.onclick = function () { selectImage(); return false; };
+                    btnGroup.appendChild(btnImg);
+
+                    var btnPage = document.createElement("button");
+                    btnPage.setAttribute('class', 'note-btn btn btn-primary btn-sm');
+                    btnPage.innerHTML = '<i class="fa fa-file"></i>';
+                    btnPage.setAttribute('title', 'Вмъкни страница');
+                    btnPage.onclick = function () { selectPage(); return false; };
+                    btnGroup.appendChild(btnPage);
+
+                    var btnTag = document.createElement("button");
+                    btnTag.setAttribute('class', 'note-btn btn btn-success btn-sm');
+                    btnTag.innerHTML = '<i class="fa fa-anchor"></i>';
+                    btnTag.setAttribute('title', 'Вмъкни отметка');
+                    btnTag.onclick = function () { appendTag(); return false; };
+                    btnGroup.appendChild(btnTag);
+
+                    var btnSubPages = document.createElement("button");
+                    btnSubPages.setAttribute('class', 'note-btn btn btn-warning btn-sm');
+                    btnSubPages.innerHTML = '<i class="fa fa-list"></i>';
+                    btnSubPages.setAttribute('title', 'Вмъкни линкове към подчинени страници');
+                    btnSubPages.onclick = function () { appendChildPageLinks(); return false; };
+                    btnGroup.appendChild(btnSubPages);
+
+                    $('.note-toolbar').append(btnGroup);
+
+                },
+                onBlur: function () {
+                    snEditor.summernote('saveRange');
+                },
+                onFocus: function () {
+                    snEditor.summernote('restoreRange');
+                }
+            }
+        });
+
+    });
+
+    function selectImage() {
+        var url = '@Html.Raw(Url.Action("Select","Library",new { source_type = GlobalConstants.SourceTypes.Library_Images}))';
+        ShowPlainDialogFromAction('Избери изображение', url);
+    }
+    function selectDocument() {
+        var url = '@Html.Raw(Url.Action("Select","Library",new { source_type = GlobalConstants.SourceTypes.Library_Documents}))';
+        ShowPlainDialogFromAction('Избери документ', url);
+    }
+    function selectPage() {
+        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = GlobalConstants.PageTypes.Pages, callbackName = "callbackSelectPage", lang=Model.Lang}))';
+        ShowPlainDialogFromAction('Избери страница', url);
+    }
+    function libSelectDocument(fileId, fileTitle) {
+        $('#Content').summernote('editor.restoreRange');
+        $('#Content').summernote('editor.focus');
+        $('#Content').summernote('createLink',
+            {
+                text: fileTitle,
+                url: '#file-' + fileId
+            });
+
+        $('.plainModal').hide();
+    }
+    function callbackSelectPage(data) {
+        $('#Content').summernote('editor.restoreRange');
+        $('#Content').summernote('editor.focus');
+        var link = document.createElement('a');
+        link.setAttribute('href', data.href);
+        link.innerText = data.title;
+        if (data.mode == '@GlobalConstants.PagelinkModes.Blank') {
+            link.setAttribute('target', data.mode);
+        }
+        $('#Content').summernote('insertNode', link);
+
+        $('.plainModal').hide();
+    }
+    function libSelectImage(fileId, fileTitle) {
+        $('.plainModal').hide();
+        var uploadUrl = "@Html.Raw(Url.Action("SelectImageForInsert", "FileCdn",new { id = 666,callback= "insertImage" }))";
+        uploadUrl = uploadUrl.replace('666', fileId);
+        ShowPlainDialogFromAction('Вмъкване на изображение', uploadUrl);
+    }
+
+    function insertImage(id, max, position, margin) {
+        var url = '@(Url.Action("ViewImage","FileCdn"))?id=' + id;
+        if (max > 0) {
+            url += '&max=' + max;
+        }
+        $('#Content').summernote('editor.restoreRange');
+        $('#Content').summernote('editor.focus');
+        $('#Content').summernote('insertImage', url, function ($image) {
+            $image.css('margin', margin);
+            switch (position) {
+                case '@GlobalConstants.ImagePositions.FloatLeft': {
+                    $image.css('float', 'left');
+                    break;
+                }
+                case '@GlobalConstants.ImagePositions.FloatRight': {
+                    $image.css('float', 'right');
+                    break;
+                }
+                case '@GlobalConstants.ImagePositions.Inline': {
+                    $image.css('display', 'inline-block');
+                    break;
+                }
+            }
+        });
+        HideDialog();
+    }
+
+    function appendTag() {
+        var tagName = prompt("Моля, въведете уникално име на отметка", "");
+        if (tagName == null) { return false;}
+        $('#Content').summernote('editor.restoreRange');
+        $('#Content').summernote('editor.focus');
+        var tag = document.createElement('span');
+        tag.setAttribute('id', tagName);
+        tag.setAttribute('title', tagName);
+        tag.setAttribute('class', 'page-tag');
+        tag.innerHTML = '<i class="fa fa-anchor"></i>';
+        $('#Content').summernote('insertNode', tag);
+    }
+
+    function appendChildPageLinks() {
+        if (!confirm('Потвърди добавянето на линкове към подчинените страници!')) { return false;}
+        var _url = '@Html.Raw(Url.Action("GetSubPageList", new { lang = Model.Lang, contentId = Model.ContentId}))';
+        //$('#Content').summernote('editor.restoreRange');
+        //$('#Content').summernote('editor.focus');
+        requestContent(_url, null, function (data) {
+            for (var i = 0; i < data.length; i++) {
+
+                var link = document.createElement('a');
+                var href = '#page-' + data[i].contentId + '-' + data[i].url;
+                link.setAttribute('href', href);
+                link.innerText = data[i].title;
+                var p = document.createElement('p');
+                p.append(link);
+                $('#Content').summernote('insertNode', p);
+            }
+        });
+    }
+</script>
