@@ -1,0 +1,292 @@
+﻿.button--users {
+    padding: 5px 20px;
+    line-height: 37px;
+}
+
+    .button--users ul {
+        margin: 0;
+        padding: 0;
+        display: none;
+        list-style: none;
+        position: absolute;
+        right: 0;
+        top: 50px;
+        width: 100%;
+        background-color: #fff;
+        z-index: 2000;
+    }
+
+        .button--users ul li {
+            padding: 5px 20px;
+            min-height: 1.5em;
+            margin-top: 1px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+    .button--users:hover {
+        position: relative;
+        /*height: auto;*/
+    }
+
+        .button--users:hover ul {
+            display: block;
+        }
+
+.user-notification {
+    margin-left: -85px;
+    float: left;
+    display: inline-block;
+}
+
+.section p.type {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.section:last-child {
+    padding: 0 20px 0 20px;
+}
+
+.section a {
+    text-decoration: none;
+}
+
+    .section a:hover .description {
+        color: #000 !important;
+    }
+
+.section .description {
+    margin-bottom: 15px;
+}
+
+.article--news.image--left div.image {
+    margin-right: 10px;
+}
+
+.article--news.image--left .title {
+    float: none;
+}
+
+.article--news .title {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.article--news {
+    min-height: 300px;
+}
+/*
+ * Component: Timeline
+ * -------------------
+ */
+.timeline {
+    position: relative;
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .timeline:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: #ddd;
+        left: 31px;
+        margin: 0;
+        border-radius: 2px;
+    }
+
+    .timeline > li {
+        position: relative;
+        margin-right: 10px;
+        margin-bottom: 15px;
+    }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li > .timeline-item {
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+            margin-top: 0;
+            background: #fff;
+            color: #444;
+            margin-left: 60px;
+            margin-right: 15px;
+            padding: 0;
+            position: relative;
+            background-color: #e6ebf1;
+        }
+
+            .timeline > li > .timeline-item > .time,
+            .time-line-info {
+                color: #999;
+                float: right;
+                padding: 10px 10px 10px 0;
+                font-size: 12px;
+            }
+
+
+
+            .timeline > li > .timeline-item > .timeline-header {
+                margin: 0;
+                color: #555;
+                border-bottom: 1px solid #f4f4f4;
+                padding: 10px;
+                font-size: 16px;
+                line-height: 1.1;
+            }
+
+                .timeline > li > .timeline-item > .timeline-header > a {
+                    font-weight: 600;
+                }
+
+            .timeline > li > .timeline-item > .timeline-body,
+            .timeline > li > .timeline-item > .timeline-footer {
+                padding: 10px;
+            }
+
+        .timeline > li > .fa,
+        .timeline > li > .glyphicon,
+        .timeline > li > .ion {
+            width: 30px;
+            height: 30px;
+            font-size: 15px;
+            line-height: 30px;
+            position: absolute;
+            color: #666;
+            background: #d2d6de;
+            border-radius: 50%;
+            text-align: center;
+            left: 18px;
+            top: 0;
+        }
+
+    .timeline > .time-label > span {
+        font-weight: 600;
+        padding: 5px;
+        display: inline-block;
+        /*background-color: #fff;*/
+        border-radius: 4px;
+    }
+
+.timeline-inverse > li > .timeline-item {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+    .timeline-inverse > li > .timeline-item > .timeline-header {
+        border-bottom-color: #ddd;
+    }
+
+.bg-aqua {
+    background-color: #00c0ef !important;
+    color: white !important;
+}
+
+ul.list-links > li {
+    padding: 3px 0;
+}
+
+    ul.list-links > li > a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+        ul.list-links > li > a:hover {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+.information .body .article-image {
+    display: block;
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.time-line-time {
+    color: #999;
+    float: left;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.ui-front {
+    z-index: 9999;
+}
+
+.table--documents td a:hover {
+    color: #337ab7;
+    text-decoration: solid;
+}
+
+.table--documents td {
+    vertical-align: middle !important;
+}
+
+.document--page {
+    position: relative;
+    background: #fff;
+    border: 1px solid #f4f4f4;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+a.colapsed-reason:hover, a.colapsed-reason:visited, a.colapsed-reason, a.colapsed-reason:active,
+a.page-tag:hover, a.page-tag:visited, a.page-tag {
+    text-decoration: none;
+}
+
+div.strat-container {
+    border-left: 1px solid #1b334e;
+    border-bottom: 1px solid #1b334e;
+    border-right: 1px solid #1b334e;
+    margin-bottom: 30px;
+}
+
+    div .strat-container .strat--title {
+        height: 30px;
+        width: 100%;
+        color: #fff !important;
+        font-size:1.2em;
+        font-weight: bolder;
+        line-height: 30px;
+        background: #1b334e;
+        padding: 0 10px;
+    }
+
+    div .strat-container .strat--body {
+        padding: 5px;
+    }
+
+fieldset .national-plan {
+    border: 1px solid #1b334e;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+    fieldset.national-plan legend {
+        position: relative;
+        left: -11px;
+        right: 0px;
+        color: #fff;
+        background: #1b334e;
+        padding: 5px 10px;
+        border: 1px solid #1b334e;
+    }

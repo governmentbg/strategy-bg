@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = "Моите целеви групи";
+}
+
+<h3 style="margin-bottom:20px;">@ViewData["Title"]</h3>
+<a href="#" onclick="addTargetGroup(); return false;" class="btn btn-success"><i class="fa fa-plus"></i> Добави целева група</a>
+<table id="mainTable" class="table" cellspacing="0"></table>
+<a asp-action="Profile">Обратно</a>
+@section scripts{
+<script>
+    var dt = {};
+    $(function () {
+         dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("TargetGroups_LoadData")',
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "targetGroupName",
+                     title: 'Наименование'
+                 },
+                 {
+                     data: null,
+                     "render": function (item) {
+
+                         var btn = '<a href="#" onclick="removeTargetGroup(' + item.targetGroupId + ',\'' + item.targetGroupName+'\');" class="btn btn-sm btn-danger pull-right" title="Премахни"><i class="fa fa-remove"></i></a>';
+                         return btn;
+                     },
+                     sortable: false
+                 }
+             ],
+             filter: false,
+             paging: false,
+             "bInfo": false
+
+        });
+
+    });
+    function addTargetGroup() {
+         var url = '@Url.Action("TargetGroups_Add","Account")';
+         ShowPlainDialogFromAction('Добави целева група', url);
+    }
+        function removeTargetGroup(id,name) {
+            if (!confirm('Потвърдете премахването на целева група: ' + name)) {
+                return false;
+            }
+            requestContent('@Url.Action("TargetGroups_Remove", "Account")', { targetGroupId: id }, function () { dt.ajax.reload();});
+    }
+</script>
+
+}

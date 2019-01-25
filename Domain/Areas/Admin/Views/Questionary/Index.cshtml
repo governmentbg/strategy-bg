@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Анкети";
+}
+
+<section class="content">
+    <div class="pull-left">
+        <a asp-action="Add" class="btn btn-success btn-flat">Добави нова анкета</a>
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadData")',
+                 data: function (d) { },
+                 //    d.active = $('#cboxActive').is(':checked');
+                 //    d.confirmed = $('#cboxConfirmed').is(':checked');
+                 //},
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "title",
+                     title: 'Заглавие',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "description",
+                     title: 'Описание',
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "openningDate",
+                     title: 'Начало',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "closingDate",
+                     title: 'Край',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("Edit",new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("IndexQuestions",new { questionaryHeaderId = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-info">Въпроси</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("IndexAnswers", new { questionaryHeaderId = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-primary">Отговори</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("FillQuestionary", new { questionaryHeaderId = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-success">Попълни</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("QuestionaryResults",new { questionaryHeaderId = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-danger">Резултати</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+             "order": [[0, "asc"]],
+        });
+    });
+
+    </script>
+
+}
+

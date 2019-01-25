@@ -1,0 +1,108 @@
+﻿@model Models.ViewModels.Consultations.ConsultationViewModel
+
+@{
+    ViewData["Title"] = "Обществена консултация";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(m => m.Id)
+                @Html.EditorFor(m => m.CategoryId, "Categories")
+                @Html.EditorFor(m => m.TargetGroupId, "GenericDropDown")
+                @Html.EditorFor(m => m.Title)
+                @Html.EditorFor(m => m.Summary)
+                @Html.EditorFor(m => m.OpenningDate)
+                @Html.EditorFor(m => m.ClosingDate)
+                <div id="shortTermContainer" class="">
+                    @Html.EditorFor(m => m.ShortTermReason)
+                </div>
+                @Html.EditorFor(m => m.IsActive)
+                @Html.EditorFor(m => m.IsApproved)
+                @Html.EditorFor(m => m.IsDeleted)
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                    @if (Model.Id > 0)
+                    {
+                        <a asp-action="Add" asp-controller="Questionary" asp-route-sourceTypeID="@GlobalConstants.SourceTypes.PublicConsultation" asp-route-sourceId="@Model.Id" class="btn btn-info btn-flat">Анкета към инициативата</a>
+                    }
+                </div>
+            </form>
+        </div>
+        @if (Model.Id > 0)
+        {
+            <div class="col-lg-6">
+                <div class="toolbar pull-right">
+                    <a asp-action="AddDocument" asp-route-consultationId="@Model.Id" class="btn btn-success btn-flat">Добави нов документ</a>
+                </div>
+                <h3>Документи</h3>
+                <table id="documentsTable" class="table" cellspacing="0"></table>
+            </div>
+        }
+    </div>
+</section>
+
+@section scripts{
+    <script>
+    $(function () {
+        var dt = $('#documentsTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("DocumentIndex")',
+                 data: function (d) {
+                     d.consultationId = @Model.Id;
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "dom": '<"toolbar">frtip',
+            "filter": false,
+             "bInfo": false,
+             "columns": [
+                 {
+                     data: "typeName",
+                     title: 'Тип',
+                     sortable: true,
+                     searchable: true
+                 },{
+                     data: "title",
+                     title: 'Заглавие',
+                     sortable: true,
+                     searchable: true
+                 },
+                 
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("EditDocument",new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ]
+        });
+
+        $('#@nameof(Model.OpenningDate)').on('change', checkPeriod());
+        $('#@nameof(Model.ClosingDate)').on('change', checkPeriod());
+
+        function checkPeriod() {
+            debugger;
+            var start = $('#@nameof(Model.OpenningDate)').val();
+            var end = $('#@nameof(Model.ClosingDate)').val();
+        }
+
+        $('#Summary').summernote();
+
+    });
+
+    </script>
+
+}
+
+

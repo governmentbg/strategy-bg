@@ -1,0 +1,29 @@
+﻿@model UserEditVM
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = "Потребителски профил";
+}
+
+<h3 style="margin-bottom:20px;">@ViewData["Title"]</h3>
+
+<form asp-action="@ViewBag.actionName">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <display for="UserName"></display>
+    <display for="Email"></display>
+    <textbox for="FirstName"></textbox>
+    <textbox for="LastName"></textbox>
+    <div class="row">
+        <div class="col-xs-8">
+            <a asp-action="Index" asp-controller="Home" class="text-center">Обратно</a><br />
+            <a asp-action="Categories" class="text-center">Моите категории</a><br />
+            <a asp-action="TargetGroups" class="text-center">Моите целеви групи</a><br />
+        </div>
+        <div class="col-xs-4 submit">
+            <div class="pull--right">
+                <button type="submit" class="btn btn-default">Запази</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+

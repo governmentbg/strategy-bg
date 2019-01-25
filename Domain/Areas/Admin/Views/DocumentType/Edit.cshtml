@@ -1,0 +1,24 @@
+﻿@model Models.ViewModels.DocumentTypeVM
+
+@{
+    ViewData["Title"] = "Тип на документ";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(m => m.Id)
+                @Html.EditorFor(m => m.Label)
+                @Html.EditorFor(m => m.IsActive)
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+

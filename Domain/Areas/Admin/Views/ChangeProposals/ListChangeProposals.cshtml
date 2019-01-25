@@ -1,0 +1,233 @@
+﻿@{
+    ViewData["Title"] = "Списък със законодателни инициативи";
+}
+@section breadcrumbs{
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")">Начало</a></li>
+        <li><a href="@Url.Action("ListChangeProposals", "ChangeProposals")">Списък със законодателни инициативи</a></li>
+    </ul>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="pull-left">
+            <span>&nbsp;</span>
+            <a asp-action="AddChangeProposals" class="btn btn-success btn-flat">Добави нова законодателна инициатива</a>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="col-lg-1">
+                        <label>Група</label>
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.DropDownList("CategoryMasterId", (IEnumerable<SelectListItem>)ViewBag.catMasters, new { @class = "form-control" })
+                    </div>
+
+                    <div id="natCat">
+                        <div class="col-lg-1">
+                            <label>Категория</label>
+                        </div>
+                        <div class="col-lg-3" id="natCat">
+                            @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.catNational, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div id="districtCat">
+
+                        <div class="col-lg-1">
+                            <label>Област</label>
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.catDistrict, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-lg-1">
+                            <label>Община</label>
+                        </div>
+                        <div class="col-lg-3" id="districtCat">
+                            @Html.DropDownList("MunicipalityId", (IEnumerable<SelectListItem>)@GlobalConstants.EmptyComboList, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-1">
+                    <label>Активност</label>
+                </div>
+                <div class="col-lg-1">
+                    <select id="ddlActive">
+                        <option value="-1">Всички</option>
+                        <option value="1">Активни</option>
+                        <option value="0">Неактивни</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-1">
+                    <span>&nbsp;</span>
+                    <button type="button" class="btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+<script>
+    $(function () {
+        var dt = $('#mainTable').DataTable({
+             searching: false,
+             "ajax": {
+                 "url": '@Url.Action("LoadDataChangeProposals")',
+                 data: function (d) {
+                     d.categoryId = GetCategoryId();
+                     d.active = $("#ddlActive").val();
+                     d.isMunicipality = IsMunicipality();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "title",
+                     title: 'Заглавие',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "categoryName",
+                     title: 'Категория/Община',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "adminRemark",
+                     title: 'Причина за отказ',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "dateCreated",
+                     title: 'Дата на създаване',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "isActive",
+                     title: 'Активност',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "isRejected",
+                     title: 'Отказана',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "isApproved",
+                     title: 'Одобрена',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("EditChangeProposals", new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+        });
+
+        $('button.dt-reload').click(function () {
+            dt.ajax.reload();
+        });
+
+        $('#CategoryMasterId').change(function () {
+            if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+                $('#natCat').show();
+                $('#districtCat').hide();
+            } else {
+                $('#natCat').hide();
+                $('#districtCat').show();
+            }
+        }).trigger('change');
+
+        $('#DistrictId').change(function () {
+            if ($(this).val() === '-1') {
+                $('#MunicipalityId').html('');
+                return false;
+            }
+            requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val() });
+        }).trigger('change');
+
+        function GetCategoryId() {
+            if ($('#natCat').is(":visible")) {
+                return $("#CategoryId").val();
+            }
+            else if ($("#DistrictId").val() == "-1") {
+                return "-1";
+            }
+            else if ($("#DistrictId").val() == $("#MunicipalityId").val()) {
+                return "-" + $("#MunicipalityId").val();
+            }
+            else {
+                return $("#MunicipalityId").val();
+            }
+        }
+
+        function IsMunicipality() {
+            if ($('#natCat').is(":hidden")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    });
+</script>
+
+<style>
+    .plainModal-content {
+        left: 30% !important;
+        top: 20% !important;
+        width: 40% !important;
+    }
+
+    @@media screen and (max-width: 800px) {
+        .plainModal-content {
+            left: 10% !important;
+            top: 10% !important;
+            width: 80% !important;
+        }
+    }
+</style>
+
+
+
+

@@ -1,0 +1,161 @@
+﻿@{
+
+    var lang = ViewBag.lang;
+    var pageType = (PageType)ViewBag.pageType;
+
+    ViewData["Title"] = pageType.Title;
+}
+<section class="content">
+    @using (Html.BeginForm())
+    {
+        <input type="hidden" name="lang" />
+        @foreach (var item in GlobalConstants.SelectLangs())
+        {
+            var btnClass = "btn-default";
+            if (item.Lang == lang)
+            {
+                btnClass = "btn-primary";
+            }
+            <a href="#" class="submit btn @btnClass" data-lang="@item.Lang">@item.Lang.ToUpper()</a>
+        }
+
+    }
+    <br />
+    <div class="box box-success">
+        <div class="box-header with-border">
+            @*<h3 class="box-title">Библиотеки "@sourceType.ListName"</h3>*@
+            <div id="tree"></div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+        $('#tree')
+            .on('changed.jstree', function (e, data) {
+                if (data.node.id == 'new') {
+                    window.location.href = data.node.a_attr.href;
+                } else {
+                    //selectedNode = data.node;
+                    //showFiles();
+                }
+            })
+            .jstree({
+                'core': {
+                    'data': {
+                        'url': '@Html.Raw(Url.Action("GetTreeViewData",new { lang, pageType = pageType.Id }))'
+                    },
+                    check_callback: true
+                }, 'contextmenu': {
+                    'items': customMenu
+                }
+
+                , 'plugins': ['contextmenu','dnd','changed']
+            })
+            .bind("loaded.jstree", function (event, data) {
+                //debugger;
+                // you get two params - event & data - check the core docs for a detailed description
+                //$(this).jstree("open_all");
+            }).bind("move_node.jstree", function (e, data) {
+               // debugger;
+                if (data.old_parent != data.parent) {
+                    //Смяна на нивото
+                    var newParent = data.parent;
+                    if (newParent == '#') {
+                        newParent = '-1';
+                    }
+                    $.post('@Url.Action("ChangeParent")?id=' + data.node.id + '&newParent=' + newParent, null,
+                        function (data) {
+                            $(this).jstree("refresh");
+                        }
+                    );
+
+                } else {
+                    if (data.old_position != data.position) {
+                        $.post('@Url.Action("ChangeOrder")?id=' + data.node.id + '&position_delta=' + (data.position - data.old_position).toString(), null,
+                        function (data) {
+                            $(this).jstree("refresh");
+                        }
+                    );
+
+                    }
+
+                }
+                // data.rslt.o is a list of objects that were moved
+                // Inspect data using your fav dev tools to see what the properties are
+            });
+
+        $('a.submit').click(function () {
+            var lang = $(this).data('lang');
+            $(this).parents('form:first').find('input[type="hidden"]').val(lang);
+        });
+    });
+    function customMenu(node)
+    {
+        if (node.id == 'new') {
+            return null;
+        }
+        var items = {
+            'itemEdit': {
+                'label': 'Редакция',
+                'icon': 'fa fa-edit',
+                'action': function () {
+                    window.location.href = node.a_attr.update;
+                }
+            }
+
+
+        }
+       // debugger;
+        for (var i = 0; i < node.original.t_attr.length; i++) {
+            var _url = node.original.t_attr[i].itemUrl;
+            var _title = node.original.t_attr[i].langName;
+            var _icon = 'fa fa-edit';
+            if (_url.indexOf('AddTranslation') > 0) {
+                _title = 'ДОБАВИ превод на ' + _title;
+                _icon = 'fa fa-plus';
+            } else {
+                _title = 'Редакция на ' + _title;
+
+            }
+            items["item" + node.original.t_attr[i].lang] = {
+                'label': _title,
+                'icon': _icon,
+                'action': function () {
+                    debugger;
+                    window.location.href = _url;
+                }
+            };
+        }
+        
+        items['itemSubPage'] = {
+            "separator_before": true,
+            'label': 'Добави под-страница',
+            'icon': 'fa fa-plus-square-o',
+            'action': function () {
+                window.location.href = node.a_attr.sub;
+            }
+        };
+        items['itemDelPage'] = {
+            "separator_before": true,
+            'label': 'Изтрий текущата страница',
+            'icon': 'fa fa-trash-o',
+            'action': function () {
+                if (!confirm('Потвърди изтриването на текущата страница!')) { return false; }
+                window.location.href = node.a_attr.deleteCurrent;
+            }
+        };
+
+        items['itemDelAllPage'] = {
+            'label': 'Изтрий всички преводи',
+            'icon': 'fa fa-trash',
+            'action': function () {
+                if (!confirm('Потвърди изтриването на всички преводи на тази страница!')) { return false; }
+                window.location.href = node.a_attr.deleteAll;
+            }
+        };
+
+        return items;
+    }
+
+
+</script>

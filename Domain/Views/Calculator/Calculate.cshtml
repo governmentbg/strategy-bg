@@ -1,0 +1,62 @@
+﻿@model Models.ViewModels.Calculator.CalculatorViewModel
+
+@{
+    ViewData["Title"] = "Интерактивен калкулатор на Административната тежест";
+}
+@section breadcrumbs{
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="@Url.Action("Index","PublicConsultation")">Обществени консултации</a>
+    / <a href="#">Интерактивен калкулатор на Административната тежест</a>
+</div>
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-9 col-lg-offset-2">
+            <p>
+                При оценката на въздействието задължително се изчислява административният товар. (виж <a href="#">Формулярите</a>).
+                Административният товар са разходите, наложени върху бизнеса, когато се спазват информационните задължения, произлизащи от правителствена разпоредба.
+                Използвайте този калкулатор, за да оцените административния товар за всяка опция, която се разглежда в оценката на въздействието.
+                За повече информация виж: <a href="#">Как да оценяваме разходите?</a>
+            </p>
+            <form asp-action="Calculate" id="form1">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(m => m.AdministrativeBurdenName)
+                @Html.HiddenFor(m => m.ActivityNumbers)
+
+                @Html.EditorFor(m => m.CalculatorActivities)
+
+                <span class="calculatorActivityId">
+                    @Html.EditorFor(x => x.TotalAdministrativeBurden)
+                </span>
+
+                <div class="form-group">
+                    <input type="submit" value="Изчисли" class="btn btn-success btn-flat" />
+                    <a asp-action="NewCalculation" class="btn btn-danger btn-flat">Назад</a>
+                    @if (Model.TotalAdministrativeBurden > 0)
+                    {
+                        <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/Calculator/ExportCalculationToPDF">
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnPDF").click(function () {
+                $("#form1").submit(function () {
+                    setTimeout('$("#form2").submit();', 10);
+                    return false;
+                });
+            });
+        });
+
+        $(function () {
+            $('.calculatorActivityId :input').attr("disabled", true);
+        });
+    </script>
+}

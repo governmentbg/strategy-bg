@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Подреди категории връзки";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("ListLinksCategories", "Links")">Списък с категории връзки</a>
+    </div>
+}
+<section class="content">
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            var dt = $('#mainTable').DataTable({
+                "bSort": false,
+                "ajax": {
+                    "url": '@Url.Action("LoadDataLinksCategories")',
+                    data: function (d) {
+                        d.active = 1;
+                    },
+                    "type": "POST"
+                },
+                fnDrawCallback: function (settings) {
+                    $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                },
+                "columns": [
+                    {
+                        data: "name",
+                        title: 'Име',
+                        sortable: true,
+                        searchable: true
+                    },
+                    {
+                        data: "id",
+                        "render": function (value) {
+                            var updateUrl = '@Url.Action("OrderLinksCategoriesUp", new { id = "666"})'.replace('666', value);
+                            var updButton = '<a href="' + updateUrl + '" class="glyphicon glyphicon-arrow-up"></a>';
+                            return updButton;
+                        },
+                        sortable: false,
+                        searchable: false
+                    },
+                    {
+                        data: "id",
+                        "render": function (value) {
+                            var updateUrl = '@Url.Action("OrderLinksCategoriesDown", new { id = "666"})'.replace('666', value);
+                            var updButton = '<a href="' + updateUrl + '" class="glyphicon glyphicon-arrow-down"></a>';
+                            return updButton;
+                        },
+                        sortable: false,
+                        searchable: false
+                    }
+                ],
+            });
+        });
+    </script>
+}
+

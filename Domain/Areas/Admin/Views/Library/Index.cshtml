@@ -1,0 +1,130 @@
+﻿@{
+    SourceTypeVM sourceType = GlobalConstants.GetSourceType((int)ViewBag.source_type);
+    ViewData["Title"] = sourceType.ListName;
+}
+<section class="content">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">Библиотеки "@sourceType.ListName"</h3>*@
+                    <div id="tree"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-6 col-sm-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    @*<h3 class="box-title">@sourceType.ListName</h3>*@
+                    <div>
+                        <a href="#" id="addFileButton" class="btn btn-success" onclick="addFile(); return false;">Добави @sourceType.SingleName</a>
+                        <div id="gridview">Изберете папка</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+        $('#addFileButton').hide();
+        $('#tree')
+            .on('changed.jstree', function (e, data) {
+                if (data.node.id == 'new') {
+                    window.location.href = data.node.a_attr.href;
+                } else {
+                    selectedNode = data.node;
+                    showFiles();
+                }
+            })
+            .jstree({
+                'core': {
+                    'data': {
+                        'url': '@Url.Action("GetTreeViewData",new { source_type = sourceType.Id })'
+                    }
+                }, 'contextmenu': {
+                    'items': customMenu
+                }
+                , 'plugins': ['contextmenu']
+            })
+            .bind("loaded.jstree", function (event, data) {
+                // you get two params - event & data - check the core docs for a detailed description
+                $(this).jstree("open_all");
+            });
+
+    });
+    function customMenu(node)
+    {
+        if (node.id == 'new') {
+            return null;
+        }
+        var items = {
+            'item1': {
+                'label': 'Редакция',
+                'action': function () {
+                    window.location.href = node.a_attr.update;
+                }
+            },
+            'item2': {
+                'label': 'Добави под-папка',
+                'icon' : 'fa fa-plus',
+                'action': function () {
+                    window.location.href = node.a_attr.sub;
+                }
+            }
+        }
+
+
+        return items;
+    }
+
+    var selectedNode = {};
+    function showFiles() {
+        $('#addFileButton').show();
+        $('#gridview').gridView({
+            url: '@(Url.Action("GetFileList","FileCdn",new { area=""}))',
+            data: {
+                sourceType: @(sourceType.Id),
+                sourceId: selectedNode.id
+            },
+            filter:true,
+            template: '@((int)ViewBag.source_type == GlobalConstants.SourceTypes.Library_Images ? "#gridViewTemplateImages" : "#gridViewTemplateFiles")',
+            empty_text:'Няма намерени елементи.'
+        });
+    }
+    function addFile() {
+        var uploadUrl = "@Html.Raw(Url.Action("UploadFile","FileCdn",new { area = "",sourceType = (int)ViewBag.source_type , sourceId = 666,callback= "showFiles();" }))";
+        uploadUrl = uploadUrl.replace('666', selectedNode.id);
+        //debugger;
+        ShowDialogFromAction('Добави @Html.Raw(sourceType.SingleName) в папка: ' + selectedNode.text, uploadUrl);
+    }
+    function removeFile(id) {
+        if (!confirm('Потвърди премахването на @(Html.Raw(sourceType.SingleName))!')) {
+            return false;
+        }
+        var url = '@(Url.Action("DisableFile","FileCdn",new { area = "" }))';
+        $.post(url, {id:id}, function (content) {
+            if (content == 'ok') {
+                showFiles();
+            };
+        });
+    }
+</script>
+
+<script type="text/x-handlebars-template" id="gridViewTemplateFiles">
+    <div class="gridview-item col-lg-4 file" data-id="{{id}}">
+        <div class="title"><a href="@(Url.Action("DownloadFile","FileCdn",new { area = "" }))?id={{id}}" title="Изтегли"><i class="glyphicon glyphicon-download"></i></a> {{#if fileTitle}}{{fileTitle}}{{else}}{{fileName}}{{/if}}</div>
+        <div class="file">{{fileName}} <a href="#" onclick="removeFile('{{id}}');return false;" title="Премахни"><i class="glyphicon glyphicon-remove"></i></a></div>
+        <div class="date">{{dateUploadedText}}</div>
+    </div>
+</script>
+
+<script type="text/x-handlebars-template" id="gridViewTemplateImages">
+    <div class="gridview-item col-lg-3 img">
+        <a href="@(Url.Action("ViewImage","FileCdn",new { area = "" }))?id={{id}}" title="{{#if fileTitle}}{{fileTitle}}{{else}}Няма въведено описание{{/if}}" target="_blank">
+            <img src="@(Url.Action("ViewImage","FileCdn",new {area = "",sourceType = GlobalConstants.SourceTypes.Library_ImagesThumbs}))&sourceId={{id}}" class="preview" />
+        </a>
+        <div class="file"><a href="@(Url.Action("DownloadFile","FileCdn",new { area = "" }))?id={{id}}" title="Изтегли"><i class="glyphicon glyphicon-download"></i></a> {{fileName}} <a href="#" onclick="removeFile('{{id}}');return false;" title="Премахни" class="danger"><i class="glyphicon glyphicon-remove"></i></a></div>
+        <div class="date">{{dateUploadedText}}</div>
+    </div>
+</script>

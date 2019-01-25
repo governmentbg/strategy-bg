@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Configurations>Debug;Release;Both sites</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Context\Application\Address.cs" />
+    <Compile Remove="Context\Application\Counter.cs" />
+    <Compile Remove="Context\Application\Country.cs" />
+    <Compile Remove="Context\Application\CountryType.cs" />
+    <Compile Remove="Context\Application\DocumentType.cs" />
+    <Compile Remove="Context\Application\Ekkate.cs" />
+    <Compile Remove="Context\Application\IdentifierType.cs" />
+    <Compile Remove="Context\Application\Person.cs" />
+    <Compile Remove="Context\Application\UserData.cs" />
+    <Compile Remove="Contracts\INomService.cs" />
+    <Compile Remove="Services\NomService.cs" />
+    <Compile Remove="Services\ReportService.cs" />
+    <Compile Remove="ViewModels\ReAddressVM.cs" />
+    <Compile Remove="ViewModels\RePersonVM.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FileCDN.Models\FileCDN.Models.csproj" />
+    <ProjectReference Include="..\WebCommon\WebCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\Application\" />
+    <Folder Include="Contracts\Portal\" />
+    <Folder Include="Services\Portal\" />
+    <Folder Include="ViewModels\Article\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,64 @@
+﻿@using Models.Context.Ogp
+@model NationalPlanElements
+@{
+    if (Model.Id > 0)
+    {
+        ViewData["Title"] = "Редакция на елемент";
+    }
+    else
+    {
+        ViewData["Title"] = "Добавяне на елемент";
+    }
+}
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="ParentID" type="hidden" />
+
+                <textbox for="Title" type="textarea"></textbox>
+                <ddl for="ElementTypeId" data="@ViewBag.types"></ddl>
+                <textbox for="Description" type="textarea"></textbox>
+                <div id="stateSelect">
+                    <ddl for="NationalPlanStateId" data="@ViewBag.states"></ddl>
+                </div>
+                <checkbox for="IsActive"></checkbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="PlanElements" asp-route-parentId="@Model.ParentID" class="btn btn-danger btn-flat">Назад</a>
+                    @if (Model.Id > 0 && Model.ElementTypeId == GlobalConstants.OgpElementTypes.NationalPlan)
+                    {
+                        <div class="pull-right">
+                            <a asp-action="Estimations" asp-route-elementId="@Model.Id" class="btn btn-warning btn-flat">Оценки</a>
+                        </div>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+    @if (Model.Id > 0)
+    {
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Прикачени документи</h4>
+                <partial name="UsedDocuments" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.NationalPlanElementsDocuments, SourceID = Model.Id.ToString() })" />
+            </div>
+        </div>
+    }
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            var snEditor = $('#Description').summernote();
+            $('#ElementTypeId').change(function () {
+                if ($(this).val() == '@GlobalConstants.OgpElementTypes.NationalPlan') {
+                    $('#stateSelect').show();
+                } else {
+                    $('#stateSelect').hide();
+                }
+            }).trigger('change');
+        });
+    </script>
+}

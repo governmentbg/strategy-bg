@@ -1,0 +1,12 @@
+﻿@model MessageDialogVM
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+}
+
+<h3 style="margin-bottom:20px;">@Model.Title</h3>
+<p @if (Model.IsError) { <text> class="text-danger" </text> }>
+    @Html.Raw(Model.Message)
+</p>
+<p style="margin-top:30px;">
+    <a asp-action="Index" class="text-center">Към @MessageConstants.SystemTitle</a><br />
+</p>

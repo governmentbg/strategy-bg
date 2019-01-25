@@ -1,0 +1,57 @@
+﻿@model RegisterInternalUserVM
+@{
+
+    ViewData["Title"] = "Регистрация на вътрешен потребител";
+    @if (Model.GroupId > 0)
+    {
+        ViewData["Title"] += " в група: " + Model.GroupName;
+    }
+
+}
+@section breadcrumbs{
+
+    <ul class="breadcrumb ">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Начало</a></li>
+        @if (Model.GroupId > 0)
+        {
+            <li><a href="@Url.Action("Users","GroupUsers",new { groupId=Model.GroupId})">@Model.GroupName</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("Index","Users")">Потребители</a></li>
+        }
+    </ul>
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @if (Model.GroupId > 0)
+                {
+                    <input asp-for="GroupId" type="hidden" />
+                    <input asp-for="GroupName" type="hidden" />
+                    <display for="GroupName"></display>
+                }
+                <textbox for="UserName"></textbox>
+                <textbox for="Email"></textbox>
+                <textbox for="FirstName"></textbox>
+                <textbox for="LastName"></textbox>
+                <textbox for="Organization"></textbox>
+                <textbox for="Address"></textbox>
+                <textbox for="Phone"></textbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    @if (Model.GroupId > 0 || !(bool)ViewBag.IsAdmin)
+                    {
+                        <a asp-action="Users" asp-controller="GroupUsers" asp-route-groupId="@Model.GroupId" class="btn btn-danger btn-flat">Назад</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,30 @@
+﻿@using Models.ViewModels.Ogp
+@model IQueryable<PlanItemVM>
+@{
+    var title = (string)ViewData["plan_title"];
+    var state = (int)ViewData["plan_state"];
+}
+
+<div class="strat-container">
+    <div class="strat--title">@title</div>
+    <div class="strat--body">
+
+
+        <table class="table table-bordered table--documents table--stripped">
+            <tbody>
+                @foreach (var plan in Model.Where(x => x.StateId == state))
+                {
+                    var urlView = Url.Action("Element", new { id = plan.Id });
+                    <tr>
+                        <td colspan="2">
+                            <a href="@urlView">@Html.Raw(plan.Title)</a>
+                        </td>
+                        <td style="width:250px;" class="text--center align-middle">
+                            <a href="@urlView"><i class="fa fa-search"></i> преглед</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

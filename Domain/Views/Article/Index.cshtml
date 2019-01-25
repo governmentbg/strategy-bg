@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Партньорство за открито управление";
+    ViewData["SectionTitle"] = ViewData["Title"];
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index")">Новини и събития</a>
+        @if (ViewBag.category > 0)
+        {
+            <text> / @ViewBag.categoryName</text>
+        }
+    </div>
+}
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-2">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
+        </div>
+        <div class="col-md-10">
+            <div id="gridview"></div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#gridview').gridView({
+                url: '@(Url.Action("LoadDataGrid"))',
+                data: {category:@(ViewBag.category)},
+                filter: true,
+                template: '#articleTemplate',
+                empty_text: 'Няма намерени елементи.'
+            });
+        });
+    </script>
+    <script type="text/x-handlebars-template" id="articleTemplate">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <article class="article--news image--left">
+                <a {{#if isRss}} href="{{rssPostLink}}" target="_blank" {{else}} href="@Url.Action("View")?id={{id}}" {{/if}}>
+                    {{#if mainImageFileId}}
+                    <div class="image">
+                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs})+"&sourceId")={{mainImageFileId}}">
+                    </div>
+                    {{/if}}
+                    <h4 class="title">
+                        {{{title}}}
+                    </h4>
+                    <p class="date">{{eventDateTXT}}</p>
+                </a>
+                <p class="type"><i class="fa fa-folder" title="Категория"></i>&nbsp;<a href="@Url.Action("Index")?category={{categoryId}}" title="Преглед на всички статии в категория: {{{categoryName}}}">{{{categoryName}}}</a></p>
+            </article>
+        </div>
+    </script>
+}

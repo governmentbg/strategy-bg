@@ -1,0 +1,9 @@
+﻿@model Models.ViewModels.Questionary.FillQuestionaryViewModel
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="#">Анкета</a>
+    </div>
+}
+
+<partial name="_FillQuestionarySuccess" model="@Model" />

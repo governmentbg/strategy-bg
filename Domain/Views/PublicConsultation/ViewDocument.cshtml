@@ -1,0 +1,115 @@
+﻿@model Models.ViewModels.Portal.ConsultationDocumentVM
+@using Domain.Extensions
+@{
+    ViewData["SectionTitle"] = "Обществени консултации";
+    var timeline = (IEnumerable<TimelineDocumentViewModel>)ViewBag.TimeLine;
+    List<SelectListItem> tagDdl = ViewBag.SectionList != null ? (List<SelectListItem>)ViewBag.SectionList : new List<SelectListItem>();
+}
+@section breadcrumbs{
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index", "Home")">Начало</a>
+    / <a href="@Url.Action("Index")">Обществени консултации</a>
+    / <a href="@Url.Action("View", new { id = Model.ConsultationId })">Назад към Консултацията</a>
+</div>
+}
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3 col-lg-3">
+            @(await Html.PartialAsync("_consultationLeftMenu"))
+        </div>
+        <div class="col-md-5 col-lg-6 body">
+            <h2>
+                @Html.Raw(Model.DocumentTitle)
+            </h2>
+            <section class="document--page">
+                @Html.Raw(Model.Content)
+            </section>
+
+            @if (Model.AttachedFiles.Any())
+            {
+                <div class="title">Прикачени файлове</div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table--documents table--stripped">
+                            <tbody>
+                                @foreach (var item in Model.AttachedFiles)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            <div class="icon">
+                                                <img src="@item.FileName.GetFileExtensionImage()" alt="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @Html.Raw(item.FileTitle)
+                                        </td>
+                                        <td style="width:250px;" class="text--center align-middle"><a href="@Url.Action("DownloadFile", "FileCDN", new { id = item.FileId })"><i class="fa fa-save"></i> изтегляне</a></td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+
+            @{await Html.RenderPartialAsync("_Comments",
+                  new CommentsRequestModel
+                  {
+                      SourceTypeId = GlobalConstants.SourceTypes.PublicConsultationDocuments,
+                      SourceId = Model.DocumentId,
+                      SectionList = tagDdl,
+                      CanComment = Model.IsLastRevision && Model.CanComment,
+                      UpdateCommentsCallback = "updateCommentsCount"
+                  });
+            }
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <ul class="timeline">
+                <li class="time-label">
+                    <span class="bg-danger">
+                        Приключване @Model.ClosingDate.ToLongDateString()
+                    </span>
+                </li>
+                @foreach (var item in timeline)
+                {
+                    <li>
+                        <i class="fa  fa-code-fork @(item.IsCurrent ? " bg-aqua" : String.Empty)"></i>
+                        <div class="timeline-item">
+                            <h3 class="timeline-header"><a href="@Url.Action("ViewDocument", new { id = item.DocumentId })">Версия @item.RevisionNumber</a></h3>
+                            <div class="timeline-body">
+                                <ul class="list-unstyled list-links"></ul>
+                            </div>
+                            <div class="clearfix">
+                                <span class="time-line-time"><i class="fa fa-calendar"></i> @item.DateCreated.ToString(GlobalConstants.DateFormat)</span>
+                                <span class="time-line-info">
+                                    <i class="fa fa-comments-o"></i> <span @(item.IsCurrent ? "id=currentCommentsCount" : String.Empty)>@item.CommentsCount</span>
+                                </span>
+                                @*<span class="time-line-info">Версия @item.RevisionNumber </span>*@
+                            </div>
+                        </div>
+                    </li>
+                }
+
+                <li class="time-label">
+                    <span class="bg-success">
+                        Откриване @Model.OpeningDate.ToLongDateString()
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(function () {
+            $('.page-tag>i').addClass('hidden');
+        });
+
+        function updateCommentsCount(number) {
+            $('#currentCommentsCount').text(number);
+        };
+    </script>
+}

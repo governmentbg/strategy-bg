@@ -1,0 +1,53 @@
+﻿@model LoginInputModel
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = "Вход в системата";
+}
+<div class="login-box">
+
+    <div class="login-logo">
+        <a href="#">Портал за обществени консултации</a>
+        <a href="#">Администрация</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">@ViewData["Title"]</p>
+
+        <form asp-action="@ViewBag.actionName">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <textbox for="Username" label="Потребителско име"></textbox>
+            <textbox for="Password" label="Парола" type="password"></textbox>
+            <div class="row">
+                <div class="col-xs-8">
+                    <a asp-action="Register" class="text-center">Регистрация</a><br />
+                    <a asp-action="ForgottenPassword" class="text-center">Забравена парола</a>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Вход</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+        @if (Model.ExternalLoginEnabled)
+        {
+            <div class="social-auth-links text-center">
+                <p>- OR -</p>
+                <a asp-action="ExternalLogin" asp-route-provider="Facebook" asp-route-returnUrl="/" class="btn btn-block btn-social btn-facebook btn-flat">
+                    <i class="fa fa-facebook"></i> Вход с Facebook
+                </a>
+                @*<a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                        <i class="fa fa-google-plus"></i> Sign in using
+                        Google+
+                    </a>*@
+            </div>
+            <!-- /.social-auth-links -->
+        }
+
+        @*<a href="#">I forgot my password</a><br>*@
+
+
+    </div>
+    @*@Html.Partial("_UserMessages")*@
+    <!-- /.login-box-body -->
+</div>

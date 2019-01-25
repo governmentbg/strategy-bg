@@ -1,0 +1,16 @@
+﻿{
+	"PopForums": {
+    "Database": {
+      "ConnectionString": "Server=192.168.200.91;Database=StrategyPortalDEV2;User ID=strategy;Password=strategy;MultipleActiveResultSets=true;"
+    },
+		"Cache": {
+			"Seconds": 180,
+			"ConnectionString": "127.0.0.1:6379,abortConnect=false",
+			"ForceLocalOnly": false
+		},
+		"Search": {
+			"Url": "popforumsdev",
+			"Key": "99011A70D3D50D251B0A6141A97B40E7"
+		}
+	}
+}

@@ -1,0 +1,61 @@
+﻿@model Models.ViewModels.Portal.StrategicDocumentPDFVM
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: "Verdana";
+            color: #4a4a4a;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4a4a4a;
+        }
+        .catTitle{
+            font-size:1.2em;
+            font-style:italic;
+        }
+        table {
+            border: none;
+            padding: 5px;
+        }
+
+            table .col1 {
+                width: 5%;
+                padding-right:10px;
+                text-align: right;
+            }
+
+            table .col2 {
+                width: 70%;
+            }
+
+            table .col3 {
+                width: 25%;
+            }
+    </style>
+</head>
+<body>
+    <h2>@Model.Title</h2>
+    @foreach (var cat in Model.CategoryRows.Where(x => x.LinkRows.Any()))
+    {
+        <div class="catTitle">Категория : @cat.Title</div>
+        <table>
+            @foreach (var doc in cat.LinkRows)
+            {
+                <tr>
+                    <td class="col1">@doc.OrderNumber</td>
+                    <td class="col2"><a href="@Url.Action("View","StrategicDocument",new { area="",id=doc.Id})"> @doc.Title</a></td>
+                    <td class="col3">валиден до : @(doc.ValidTo.Year > 2100 ? "Не е указан срок" : doc.ValidTo.ToString("yyyy г."))</td>
+                </tr>
+            }
+        </table>
+    }
+    <h3>Брой на документите в справката : @Model.DocumentsCount</h3>
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Държави";
+}
+<section class="content">
+    <div class="pull-left">
+        <a asp-action="Add" class="btn btn-success btn-flat">Добави</a>
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table> 
+</section>
+@section scripts{
+<script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadData", "Countries")',
+                 data: function (d) { },
+                 //    d.active = $('#cboxActive').is(':checked');
+                 //    d.confirmed = $('#cboxConfirmed').is(':checked');
+                 //},
+                 "type": "POST",
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "code",
+                     title: 'Код'
+                 },
+                 {
+                     data: "nameBG",
+                     title: 'Наименование БГ'
+                 },
+                 {
+                     data: "nameEN",
+                     title: 'Наименование ENG'
+                 },
+                 {
+                     data: "countryTypeId",
+                     title: 'Тип държава',
+                     visible: false
+                 },
+                 {
+                     data: "riskCategoryId",
+                     title: 'Рискова категория',
+                     visible: false
+                 },
+                 {
+                     data: "isActive",
+                     title: 'Активен запис'
+                 },
+                 {
+                     data: null,
+                     "render": function (item) {
+                         var updateUrl = '@Url.Action("Edit",new { id = "666"})'.replace('666', item.id);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false
+                 }
+             ],
+             "order": [[1, "asc"]],
+             rowCallback: function (row, data) {
+                 if (data["isActive"] == false) {
+                     $(row).addClass("disabled");
+                 }
+                 if (data["isConfirmed"] == false) {
+                     $(row).addClass("unconfirmed");
+                 }
+             }
+        });
+        //$('#cboxActive, #cboxConfirmed').change(function () {
+        //    dt.ajax.reload();
+        //})
+    });
+
+</script>
+
+}

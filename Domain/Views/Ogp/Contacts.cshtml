@@ -1,0 +1,27 @@
+﻿@using Models.Context
+@model GenericContent
+@{
+    ViewData["SectionTitle"] = Model.Title;
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        
+    </div>
+}
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
+        </div>
+        <div class="col-md-9 body">
+            <h2>
+                @Html.Raw(Model.Title)
+            </h2>
+            <p class="title">
+                @Html.Raw(Model.Text)
+            </p>
+        </div>
+    </div>
+</div>

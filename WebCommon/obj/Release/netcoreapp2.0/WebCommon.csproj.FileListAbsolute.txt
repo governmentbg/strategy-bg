@@ -1,0 +1,14 @@
+C:\Projects\GIT\WebCommon\bin\Release\netcoreapp2.0\WebCommon.deps.json
+C:\Projects\GIT\WebCommon\bin\Release\netcoreapp2.0\WebCommon.dll
+C:\Projects\GIT\WebCommon\bin\Release\netcoreapp2.0\WebCommon.pdb
+C:\Projects\GIT\WebCommon\bin\Release\netcoreapp2.0\FileCDN.Models.dll
+C:\Projects\GIT\WebCommon\bin\Release\netcoreapp2.0\ImageProcessor.dll
+C:\Projects\GIT\WebCommon\bin\Release\netcoreapp2.0\FileCDN.Models.pdb
+C:\Projects\GIT\WebCommon\bin\Release\netcoreapp2.0\ImageProcessor.pdb
+C:\Projects\GIT\WebCommon\obj\Release\netcoreapp2.0\WebCommon.csprojResolveAssemblyReference.cache
+C:\Projects\GIT\WebCommon\obj\Release\netcoreapp2.0\WebCommon.csproj.CoreCompileInputs.cache
+C:\Projects\GIT\WebCommon\obj\Release\netcoreapp2.0\WebCommon.AssemblyInfoInputs.cache
+C:\Projects\GIT\WebCommon\obj\Release\netcoreapp2.0\WebCommon.AssemblyInfo.cs
+C:\Projects\GIT\WebCommon\obj\Release\netcoreapp2.0\WebCommon.csproj.CopyComplete
+C:\Projects\GIT\WebCommon\obj\Release\netcoreapp2.0\WebCommon.dll
+C:\Projects\GIT\WebCommon\obj\Release\netcoreapp2.0\WebCommon.pdb

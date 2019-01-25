@@ -1,0 +1,94 @@
+﻿@model Models.Context.Legacy.StrategicDocuments
+
+@{
+    ViewData["Title"] = "Стратегически документи";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            <form asp-action="@ViewBag.actionName">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="tab-pane fade active in" id="category">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-12">
+                            <br />
+                            <ddl for="CategoryMasterId" data="@ViewBag.catMasters"></ddl>
+                            <div id="natCat">
+                                <ddl for="CategoryId" data="@ViewBag.catNational"></ddl>
+                            </div>
+                            <div id="districtCat">
+                                <ddl for="DistrictId" data="@ViewBag.catDistrict"></ddl>
+                                <ddl for="MunicipalityId" data="@GlobalConstants.EmptyComboList"></ddl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input asp-for="Id" type="hidden" />
+                <ddl for="DocumentTypeId" data="@ViewBag.documentType"></ddl>
+                <textbox for="DocumentNumber" type="textarea"></textbox>
+                <date-picker for="DocumentDate"></date-picker>
+
+                <textbox for="Title" type="textarea"></textbox>
+                <textbox for="Summary" type="textarea" edit-class="summernote"></textbox>
+                <ddl for="CategoryId" data="@ViewBag.categories"></ddl>
+
+                <date-picker for="ValidTo"></date-picker>
+
+
+                <checkbox for="IsActive" text-class="label label-primary"></checkbox>
+                <checkbox for="IsApproved" text-class="label label-warning"></checkbox>
+                <checkbox for="IsDeleted" text-class="label label-danger"></checkbox>
+
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    @if (Model.Id > 0)
+    {
+        <div class="row">
+  
+            <div class="col-lg-6">
+                <h4>Прикачени документи</h4>
+                <partial name="UsedDocuments" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.StrategicDocuments, SourceID = Model.Id.ToString() })" />
+            </div>
+        </div>
+    }
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            var snEditor = $('#Summary').summernote();
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#CategoryMasterId').change(function () {
+                if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+                    $('#natCat').show();
+                    $('#districtCat').hide();
+                } else {
+                    $('#natCat').hide();
+                    $('#districtCat').show();
+                }
+            }).trigger('change');
+            $('#DistrictId').change(function () {
+                if ($(this).val() === '-1') {
+                    $('#MunicipalityId').html('');
+                    return false;
+                }
+                requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val() });
+            }).trigger('change');
+
+            var snEditor = $('#Body').summernote();
+        });
+    </script>
+}
+

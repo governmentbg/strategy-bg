@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PageVM>
+@using WebCommon.Extensions
+@if (Model.Count() > 0)
+{
+
+    @foreach (var item in Model)
+    {
+        var linkUrl = Url.Action("Preview", "Page", new { id = item.ContentId, url = item.Url });
+        if (!string.IsNullOrEmpty(item.Action))
+        {
+            linkUrl = Url.Action(item.Action, item.Controller, new { area = "" });
+
+        }
+        <a href="@linkUrl"><p>@item.Title</p></a>
+    }
+
+}
+else
+{
+    <span>Няма данни.</span>
+}

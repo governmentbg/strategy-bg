@@ -1,0 +1,156 @@
+﻿@model CommentsRequestModel
+
+@using Domain.Extensions
+
+
+@if (User.Identity.IsAuthenticated && Model.CanComment)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <div class="pull-right">
+                    <button class="btn btn-info btn-flat" id="newCommentBtn"><i class="fa fa-plus"></i> Добави коментар</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row hidden" id="newCommentContainer">
+        <div class="col-lg-12">
+            <form id="commentForm" asp-action="AddComment" asp-controller="Ajax" method="post">
+                @Html.Hidden(nameof(Model.SourceId), Model.SourceId)
+                @Html.Hidden(nameof(Model.SourceTypeId), Model.SourceTypeId)
+                <div class="form-group">
+                    <label for="title" class="control-label">Заглавие</label>
+                    <input name="title" id="title" class="form-control" />
+                    <span class="text-danger" data-valmsg-for="Title"></span>
+                </div>
+                @if (Model.SectionList.Count > 0)
+                {
+                    <div class="form-group">
+                        <label asp-for="@Model.PageTag" class="control-label"></label>
+                        @Html.DropDownListFor(m => m.PageTag, Model.SectionList.SetSelected(Model.PageTag), new { @class = "form-control" })
+                    </div>
+                }
+
+                    <div class="form-group">
+                        <label for="comment" class="control-label">Коментар</label>
+                        <textarea name="comment" id="comment" class="form-control summernote"></textarea>
+                        <span class="text-danger" data-valmsg-for="Comment"></span>
+                    </div>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<div class="row  comments" id="commentsContainer"></div>
+
+<script type="text/x-handlebars-template" id="commentsTemplate">
+    {{#if comments}}
+    <div class="col-md-12 comment">
+        <div class="title">Коментари</div>
+    </div>
+    {{/if}}
+    {{#each comments}}
+    <div class="col-md-12 comment">
+        <div class="panel {{#if tookIntoConsideration}}panel-success{{/if}}">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{title}}</h3>
+            </div>
+            {{#if pageTag}}
+            <div class="panel-body">
+                <strong>Към</strong> <a href="#" data-element="{{pageTag}}" class="page-tag">{{pageTag}}</a>
+            </div>
+            {{/if}}
+            <div class="panel-body">{{{text}}}</div>
+            {{#if tookIntoConsiderationReason}}
+            <div class="panel-body">
+                <a data-toggle="collapse" href="#collapseReason{{commentId}}" role="button" aria-expanded="false" aria-controls="collapseExample" class="colapsed-reason {{#if tookIntoConsideration}}text-success{{else}}text-danger{{/if}}">
+                    Коментара{{#if tookIntoConsideration}} е{{else}} не е{{/if}} взет под внимание <i class="fa fa-arrow-circle-o-down"></i>
+                </a>
+                <div class="collapse" id="collapseReason{{commentId}}">{{tookIntoConsiderationReason}}</div>
+            </div>
+            {{/if}}
+            <div class="panel-footer">
+                <span class="name">{{fullName}}</span> {{dateFormat publish 'DD.MM.YYYY HH:mm:ss'}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $('#newCommentBtn').on('click', function () {
+            $('#newCommentContainer').toggleClass('hidden');
+        });
+
+        $('#commentForm').on('submit', function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            var valid = true;
+            var data = $(this).serialize();
+            if ($('#title').val().length < 1) {
+                $('#title').next('span').text('Полето е задължително');
+                valid = false;
+            }
+
+            if ($('#comment').val().length < 1) {
+                $('#comment').next('div').next('span').text('Полето е задължително');
+                valid = false;
+            }
+
+            if (valid) {
+                $.post('@Url.Action("AddComment", "Ajax")', data).done(function (data)
+            {
+                $('#title').val(' ');
+                $('.note-editable').html(' ');
+                $('#newCommentContainer').addClass('hidden');
+                getComents();
+            }).fail(function (jqxhr, status) {
+                console.log(jqxhr);
+                console.log(status);
+            });
+            }
+        });
+
+        $('.summernote').summernote({
+            height: 200,
+            minHeight: null,
+            maxHeight: null
+        });
+
+        getComents();
+    });
+
+    var getComents = function () {
+        var url = '@Html.Raw(Url.Action("GetComments", "Ajax", new { sourceTypeId = Model.SourceTypeId, sourceId = Model.SourceId }))';
+        $.get(url).then(function (data) {
+            var templateSrc = $('#commentsTemplate').html();
+            var template = Handlebars.compile(templateSrc);
+            $('#commentsContainer').html(template(data));
+
+            if (window['@Model.UpdateCommentsCallback']) {
+                window['@Model.UpdateCommentsCallback'](data.comments.length);
+            }
+
+            $('.page-tag').on('click', function (ev) {
+                ev.preventDefault();
+                ev.stopPropagation();
+
+                var elementId = $(this).data('element');
+                var element = document.getElementById(elementId);
+                element.scrollIntoView();
+                var $el = $(element).nex(),
+                    timeout = 2000;
+
+                $el.addClass('bg-warning');
+                setTimeout(function () {
+                    $el.removeClass('bg-warning');
+                }, timeout);
+            });
+        });
+    };
+</script>

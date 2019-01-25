@@ -1,0 +1,47 @@
+﻿@model Models.Context.Legacy.StrategicDocuments
+@using Domain.Extensions
+@{
+    ViewData["SectionTitle"] = "Стратегически документи";
+    var documents = (IQueryable<DocumentLinkVM>)ViewBag.documents;
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index")">Стратегически документи</a>
+    </div>
+}
+
+
+<div class="container-fluid information">
+    <div class="row">
+
+        <div class="col-md-9 body">
+            <h2>
+                @Html.Raw(Model.Title)
+            </h2>
+            <p class="title">
+                @Html.Raw(Model.Summary)
+            </p>
+            <!-- TABLE DATES -->
+            <div class="row">
+                <div class="col-md-5">
+                    <table class="table table-bordered table--dates table--stripped">
+                        <tbody>
+                            <!-- LOOP -->
+                            <tr>
+                                <td>Документът е валиден до края :</td>
+                                <td>@Model.ValidTo.ToString(GlobalConstants.DateFormat)</td>
+                            </tr>
+                            <!-- END LOOP -->
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TABLE DATES -->
+            @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.StrategicDocuments, sourceId = Model.Id })
+
+        </div>
+    </div>
+</div>
+<!-- END COMMENTS -->

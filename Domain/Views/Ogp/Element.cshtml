@@ -1,0 +1,92 @@
+﻿@using Models.ViewModels.Ogp
+@model PlanVM
+@{
+    ViewData["SectionTitle"] = Model.Plan.Title;
+    var estimations = (IQueryable<EstimationVM>)ViewBag.estimations;
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        @if (Model.Parent != null)
+        {
+            <span>/</span> <a href="@Url.Action("Element",new { id = Model.Parent.Id})">
+                @Html.Raw(Model.Parent.Title)
+            </a>
+        }
+    </div>
+}
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3">
+            @if (estimations.Any())
+            {
+
+                <div class="aside row">
+                    <div class="title">
+                        Оценки
+                    </div>
+                    <ul class="list--default">
+                        @foreach (var estimation in estimations)
+                        {
+                            var urlView = Url.Action("Estimation", new { id = estimation.Id });
+                            <li>
+                                <a href="@urlView">
+                                    <b>@estimation.EstimationTypeName:</b>
+                                    <br />
+                                    @estimation.Title
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            }
+            <partial name="_OgpLeftMenu" model="@("91023")" />
+        </div>
+        <div class="col-md-9 body">
+            <h2>
+                @Html.Raw(Model.Plan.Title)
+            </h2>
+            @if (!string.IsNullOrEmpty(Model.Plan.StateName))
+            {
+                <h4>
+                    @Model.Plan.StateName
+                </h4>
+            }
+            else
+            {
+                <h4>
+                    @Model.Plan.ElementTypeName
+                </h4>
+            }
+
+            <p class="title">
+                @Html.Raw(Model.Plan.Description)
+            </p>
+            @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.NationalPlanElementsDocuments, sourceId = Model.Plan.Id })
+            @if (Model.SubElements.Any())
+            {
+                <table class="table table-bordered table--documents table--stripped">
+                    <tbody>
+                        @foreach (var element in Model.SubElements)
+                        {
+                            var urlView = Url.Action("Element", new { id = element.Id });
+                            <tr>
+                                <td style="width:150px;">
+                                    @element.ElementTypeName
+                                </td>
+                                <td>
+                                    <a href="@urlView">@Html.Raw(element.Title)</a>
+                                </td>
+                                <td style="width:120px;" class="text--center align-middle">
+                                    <a href="@urlView"><i class="fa fa-search"></i> преглед</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>

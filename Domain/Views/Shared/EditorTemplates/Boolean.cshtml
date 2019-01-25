@@ -1,0 +1,8 @@
+﻿@model bool
+<div class="form-group">
+    <label asp-for="@Model" class="control-label">
+        <input asp-for="@Model" /> @Html.DisplayNameFor(model => model)
+    </label>
+   <br />
+    <span asp-validation-for="@Model" class="text-danger"></span>
+</div>

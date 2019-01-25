@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>PopForums.Data.Sql Class Library</Description>
+    <VersionPrefix>14.1.0</VersionPrefix>
+    <Authors>Jeff Putz</Authors>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>PopForums.Sql</AssemblyName>
+    <PackageId>PopForums.Sql</PackageId>
+	  <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+	  <AssemblyVersion>14.1.0</AssemblyVersion>
+	  <FileVersion>14.1.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="StrategyForumMigrationa.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="StrategyForumMigrationa.sql" />
+    <EmbeddedResource Include="PopForums.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PopForums\PopForums.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.2" />
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+  </ItemGroup>
+
+</Project>

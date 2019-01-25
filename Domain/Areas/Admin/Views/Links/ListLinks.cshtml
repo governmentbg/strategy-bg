@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Списък връзки";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("ListLinks", "Links")">Списък връзки</a>
+    </div>
+}
+
+    <section class="content">
+        <div class="pull-left">
+            <a asp-action="AddLinks" class="btn btn-success btn-flat">Добави връзка</a>
+            &nbsp;&nbsp;
+            <a asp-action="OrderLinks" class="btn btn-success btn-flat">Подреди връзки</a>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <label>Категория връзки</label>
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.DropDownList("LinksCategoryID", (IEnumerable<SelectListItem>)ViewBag.LinksCategoryID_ddl, new { @class = "form-control" })
+                    </div>
+
+                    <div class="col-lg-1">
+                        <label>Активност</label>
+                    </div>
+                    <div class="col-lg-1">
+                        <select id="ddlActive">
+                            <option value="-1">Всички</option>
+                            <option value="1">Активни</option>
+                            <option value="0">Неактивни</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table id="mainTable" class="table" cellspacing="0"></table>
+    </section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "bSort": false,
+             "ajax": {
+                 "url": '@Url.Action("LoadDataLinks")',
+                 data: function (d) {
+                     d.linksCategoryId = $("#LinksCategoryID").val();
+                     d.active = $("#ddlActive").val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "title",
+                     title: 'Заглавие',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "category",
+                     title: 'Категория',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "url",
+                     title: 'Интернет адрес',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "dateCreated",
+                     title: 'Дата на създаване',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "isActive",
+                     title: 'Активност',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("EditLinks",new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+        });
+
+        $('#ddlActive').change(function () {
+                dt.ajax.reload();
+        });
+
+        $('#LinksCategoryID').change(function () {
+            dt.ajax.reload();
+        });
+
+        });
+    </script>
+
+}
+

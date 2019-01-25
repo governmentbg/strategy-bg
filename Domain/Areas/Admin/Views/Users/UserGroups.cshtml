@@ -1,0 +1,74 @@
+﻿@{
+    UserEditVM user = (UserEditVM)ViewBag.user;
+    ViewData["Title"] = "Групи към потребител: " + user.GetFullName;
+}
+@section breadcrumbs{
+
+    <ul class="breadcrumb ">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Начало</a></li>
+        <li><a href="@Url.Action("Update","Users",new { id=user.Id})">@user.GetFullName</a></li>
+    </ul>
+}
+<section class="content">
+    <a href="#" class="btn btn-success btn-flat" onclick="AddGroup();"><i class="fa fa-user-plus"></i> Добави група</a>
+    <div class="row">
+        <div class="col-lg-6">
+            <table id="mainTable" class="table" cellspacing="0"></table>
+        </div>
+    </div>
+    <a href="@Url.Action("Update","Users",new { id=user.Id})" class="btn btn-default btn-flat"> Обратно</a>
+
+</section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("UserGroups_LoadData")',
+                 data: function (d) {
+                     d.userId = '@user.Id';
+                 },
+                 "type": "POST"
+             },
+             "columns": [
+                 {
+                     data: "groupName",
+                     title: 'Група'
+                 },
+                 {
+                     data: null,
+                     "render": function (item) {
+                         var updateUrl = '@Url.Action("Update",new { id = "666"})'.replace('666', item.userId);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning pull-right">Редакция</a>';
+                         var remButton = TemplateToHtml('#btnRemoveTemplate', item);
+                         return updButton+remButton;
+                     },
+                     sortable: false
+                 }
+             ]
+        });
+        $('.dt-reload').click(function () {
+            dt.ajax.reload();
+        });
+    });
+        function AddGroup() {
+            var url = '@Html.Raw(Url.Action("UserGroups_AddGroup", "Users",new { userId = user.Id}))';
+            ShowDialogFromAction('Добави група', url);
+        }
+         function RemoveGroup(groupId,userId) {
+            var url = '@Url.Action("Remove","GroupUsers")';
+             requestContent(url, { groupId: groupId, userId: userId }, function (result) {
+                 //debugger;
+                if (result === 'True') {
+                    document.location.reload();
+                }
+            });
+        }
+    </script>
+    <script type="text/x-handlebars-template" id="btnRemoveTemplate">
+        <a href="#" class="btn btn-danger pull-right"
+           onclick="if (!confirm('Потвърди премахването на групата!')) { return false; } RemoveGroup({{ groupUserId }}, {{ userId }});">
+            Премахни
+        </a>
+    </script>
+}

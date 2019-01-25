@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = "Стратегически документи";
+    ViewData["SectionTitle"] = ViewData["Title"];
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="#">Стратегически документи</a>
+    </div>
+}
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-12 body">
+            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label>Група</label>
+                @Html.DropDownList("CategoryMasterId", (IEnumerable<SelectListItem>)ViewBag.catMasters, new { @class = "form-control" })
+            </div>
+            <div id="natCat" class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label>Категория</label>
+                @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.catNational, new { @class = "form-control" })
+            </div>
+            <div id="districtCat">
+                <div id="districtCat" class="form-group col-lg-3 col-md-4 col-sm-6">
+                    <label>Област</label>
+                    @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.catDistrict, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                    <label>Община</label>
+                    @Html.DropDownList("MunicipalityId", GlobalConstants.EmptyComboList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group col-lg-1 col-md-2 col-sm-3">
+                <label>&nbsp; </label>
+                <button type="submit" class="form-control btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+            </div>
+            <div class="form-group col-lg-1 col-md-2 col-sm-3">
+                <label>&nbsp; </label>
+                <button type="button" class="form-control btn btn-info" onclick="ExportPDF();"><i class="fa fa-file-pdf-o"></i> Експорт</button>
+            </div>
+        </div>
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</div>
+
+
+
+@section scripts{
+    <script>
+    $(function () {
+        $('#CategoryMasterId').change(function () {
+            if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+                $('#natCat').show();
+                $('#districtCat').hide();
+            } else {
+                $('#natCat').hide();
+                $('#districtCat').show();
+            }
+        }).trigger('change');
+        $('#DistrictId').change(function () {
+            if ($(this).val() === '-1') {
+                $('#MunicipalityId').html('');
+                return false;
+            }
+            requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val() });
+        }).trigger('change');
+
+        });
+        function ExportPDF() {
+            window.open('@Url.Action("PdfExport")?cat=' + $('#CategoryMasterId').val(), '_blank');
+        }
+    </script>
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadData")',
+                 data: function (d) {
+                     d.categoryMasterId = $('#CategoryMasterId').val();
+                     d.categoryId = $('#CategoryId').val();
+                     d.municipalityId = $('#MunicipalityId').val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             filter: false,
+             "columns": [
+                 {
+                     data: "title",
+                     title: 'Наименование'
+                 },
+                 {
+                     data: "categoryText",
+                     title: 'Категория'
+                 },
+                 {
+                     data: "createDate",
+                     title: 'Дата на публикуване',
+                     orderDataType: 'date',
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 }
+                 ,
+                 {
+                     data: "validTo",
+                     title: 'Валиден до',
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 }
+                 ,
+                 {
+                     data: null,
+                     "render": function (item) {
+                         var url = '@Url.Action("View",new { id = "666"})'.replace('666', item.id);
+                         var btn = '<a href="' + url + '" class="btn btn-info">Преглед</a>';
+                         return btn;
+                     },
+                     sortable: false
+                 }
+             ]
+
+        });
+        dt.order([2, 'desc']).draw();
+        $('.dt-reload').click(function () {
+            dt.ajax.reload();
+        });
+    });
+
+    </script>
+
+}

@@ -1,0 +1,9 @@
+C:\Projects\GIT\ImageProcessor\bin\Debug\netcoreapp2.0\ImageProcessor.deps.json
+C:\Projects\GIT\ImageProcessor\bin\Debug\netcoreapp2.0\ImageProcessor.dll
+C:\Projects\GIT\ImageProcessor\bin\Debug\netcoreapp2.0\ImageProcessor.pdb
+C:\Projects\GIT\ImageProcessor\obj\Debug\netcoreapp2.0\ImageProcessor.csproj.CoreCompileInputs.cache
+C:\Projects\GIT\ImageProcessor\obj\Debug\netcoreapp2.0\ImageProcessor.AssemblyInfoInputs.cache
+C:\Projects\GIT\ImageProcessor\obj\Debug\netcoreapp2.0\ImageProcessor.AssemblyInfo.cs
+C:\Projects\GIT\ImageProcessor\obj\Debug\netcoreapp2.0\ImageProcessor.dll
+C:\Projects\GIT\ImageProcessor\obj\Debug\netcoreapp2.0\ImageProcessor.pdb
+C:\Projects\GIT\ImageProcessor\obj\Debug\netcoreapp2.0\ImageProcessor.csprojResolveAssemblyReference.cache

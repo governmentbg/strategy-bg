@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Списък на физическите и юридическите лица съгласно ЗНА";
+}
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="#">Списък на физическите и юридическите лица съгласно ЗНА</a>
+</div>
+
+<section class="content">
+    <div class="search-form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <span>Вид лице</span>
+                    @Html.DropDownList("PCSubjectsTypeID", (IEnumerable<SelectListItem>)ViewBag.PCSubjectsTypeID_ddl, new { @class = "form-control" })
+                </div>
+                <div>
+                    <span>Име</span>
+                    @Html.TextBox("name", null, new { @class = "form-control" })
+                </div>
+                <div id="eik_div">
+                    <div>
+                        <span>ЕИК</span>
+                        @Html.TextBox("eik", null, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div>
+                    <span>&nbsp;</span>
+                    <button type="button" class="btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+                </div>
+                <div>
+                    <span>&nbsp;</span>
+                    @Html.ActionLink("PDF eкспорт", "PCSubjectsPDF", "PCSubjects", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+        var dt = $('#mainTable').DataTable({
+            searching: false,
+             "ajax": {
+                 "url": '@Url.Action("LoadDataPCSubjects")',
+                 data: function (d) {
+                     d.name = $("#name").val();
+                     d.eik = $("#eik").val();
+                     d.pcSubjectsTypeID = $("#PCSubjectsTypeID").val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "name",
+                     title: 'Име',
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "isUL",
+                     title: 'Вид лице',
+                     sortable: false,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ЮЛ' : 'ФЛ';
+                     }
+                 },
+                 {
+                     data: "eik",
+                     title: 'ЕИК',
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "datePayment",
+                     title: 'Дата на плащане',
+                     sortable: false,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "paymentValue",
+                     title: 'Възнаграждение за извършените дейности',
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "activityDescription",
+                     title: 'Извършени дейности',
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+        });
+
+        $('button.dt-reload').click(function () {
+            dt.ajax.reload();
+        }).trigger('click');
+
+        $('#PCSubjectsTypeID').change(function () {
+            if ($('#PCSubjectsTypeID').val() == "-1" || $('#PCSubjectsTypeID').val() == "1") {
+                $('#eik_div').show();
+            }
+            else {
+                $('#eik_div').hide();
+                $('#eik').val("");
+            }
+
+            dt.ajax.reload();
+        });
+        });
+    </script>
+}
+
