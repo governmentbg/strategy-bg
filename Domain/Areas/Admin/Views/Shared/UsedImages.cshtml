@@ -1,0 +1,76 @@
+﻿@model FileCDN.Models.FileSelect
+<fieldset>
+    <div id="imgList-container">
+
+    </div>
+</fieldset>
+<script>
+    $(function () {
+        LoadAttachedImages();
+    });
+    function LoadAttachedImages() {
+        $.post('@Url.Action("GetFileList", "Ajax")',
+            { sourceType:@(Model.SourceType), sourceId:@(Model.SourceID)},
+            function (data) {
+                var canAdd = true;
+                if (@(Model.SingleFile ? "true" : "false") && data.length > 0) {
+                    canAdd = false;
+                }
+                var model = {
+                    items : data,
+                    canAdd: canAdd
+                };
+                $('#imgList-container').html(TemplateToHtml("#imageListTemplate", model));
+            });
+    }
+
+    function chooseImage() {
+        var url = '@Html.Raw(Url.Action("Select","Library",new { source_type = GlobalConstants.SourceTypes.Library_Images}))';
+        ShowPlainDialogFromAction('Избери изображение', url);
+    }
+    function libSelectImage(fileId, fileTitle) {
+        $.post('@Url.Action("AppendUsedFile", "Ajax")',
+            { sourceType:@(Model.SourceType), sourceId:@(Model.SourceID),fileId:fileId},
+            function (data) {
+                LoadAttachedImages();
+                return false;
+            });
+
+        $('.plainModal').hide();
+    }
+    function removeImage(fileId, fileTitle) {
+        if (!confirm('Потвърди премахването на изображението: ' + fileTitle)) {
+            return false;
+        }
+        $.post('@Url.Action("RemoveUsedFile", "Ajax")',
+            { sourceType:@(Model.SourceType), sourceId:@(Model.SourceID),fileId:fileId},
+            function (data) {
+                LoadAttachedImages();
+            });
+    }
+</script>
+<script type="text/x-handlebars-template" id="imageListTemplate">
+    <div class="row">
+        {{#each items}}
+        <div class="col-lg-6 col-md-12 used-file-block">
+            <div class="row">
+                <div class="col-lg-10">
+                    <a href="@Html.Raw(Url.Action("DownloadFile", "FileCdn", new { area = ""}))?id={{fileId}}">
+                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs}))&sourceId={{fileId}}" />
+                        <br />
+                        {{fileName}}
+                    </a>
+                </div>
+                <div class="col-lg-2 used-file-remove-button">
+                    <a href="#" onclick="removeImage('{{fileId}}','{{fileTitle}}');return false;" class="btn btn-xs btn-danger" title="Премахни"><i class="fa fa-remove"></i></a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{#if canAdd}}
+    <div class="used-file-add-button">
+        <a href="#" onclick="chooseImage();" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Добави</a>
+    </div>
+    {{/if}}
+</script>

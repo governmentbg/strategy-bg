@@ -1,0 +1,39 @@
+﻿@model Models.ViewModels.Questionary.FillQuestionaryViewModel
+@{
+    var titleSize = 12 - Model.QuestionaryPossibleAnswers.Count() - 6;
+}
+@Html.HiddenFor(m => m.Id)
+@Html.HiddenFor(m => m.QuestionaryHeaderId)
+@Html.HiddenFor(m => m.AnsweredStartDate)
+@Html.HiddenFor(m => m.QuestionaryTitle)
+@Html.HiddenFor(m => m.SourceId)
+@Html.HiddenFor(m => m.SourceType)
+
+<div class="data">
+    <div class="row">
+        <div class="col-lg-@(titleSize)">
+        </div>
+        @foreach (var item in Model.QuestionaryPossibleAnswers)
+        {
+            <div class="col-lg-1">
+                <text>@item.Answer</text>
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        @Html.EditorFor(x => x.QuestionaryQuestions)
+    </div>
+</div>
+
+<div class="data">
+    <div class="row">
+        <div class="col-lg-3">
+            @if (@Model.AnsweredUserId == null)
+            {
+                @Html.EditorFor(x => x.AnsweredUserName)
+                @Html.EditorFor(x => x.AnsweredUserEmail)
+            }
+        </div>
+    </div>
+</div>

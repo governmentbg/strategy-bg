@@ -1,0 +1,73 @@
+﻿@model GroupUserVM
+@{
+    ViewData["Title"] = "Потребители в група " + Model.Organization;
+}
+@section breadcrumbs{
+
+    <ul class="breadcrumb ">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Начало</a></li>
+
+        <li><a href="@Url.Action("Index","GroupUsers")">Потребителски групи</a></li>
+    </ul>
+}
+<section class="content">
+    <div class="pull-left">
+        <a asp-action="Register" asp-controller="Users" asp-route-groupId="@Model.Id" class="btn btn-success btn-flat">Регистрирай нов потребител</a>
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+        var dt = {};
+        $(function () {
+            dt = $('#mainTable').DataTable({
+                "ajax": {
+                    "url": '@Url.Action("Users_LoadData")',
+                    data: function (d) {
+                        d.groupId = '@Model.Id';
+                    },
+                    "type": "POST"
+                },
+                "columns": [
+                    {
+                        data: "userFullName",
+                        title: 'Имена'
+                    },
+                    {
+                        data: "userEmail",
+                        title: 'Имейл'
+                    },
+                    {
+                        data: null,
+                        "render": function (item) {
+                            var updateUrl = '@Url.Action("Update","Users",new { id = "666"})'.replace('666', item.userId);
+                            var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция на потребител</a>';
+
+                            //var remButton = '&nbsp;<a href="#" class="btn btn-danger" onclick="if(!confirm(\'Потвърди премахването на потребителя!\')){return false;} RemoveUser(' + item.groupUserId + ',' + item.userId + ');">Премахни</a>';
+                            var remButton = TemplateToHtml('#btnRemoveTemplate', item);
+                            return updButton + remButton;
+                        },
+                        sortable: false
+                    }
+                ]
+            });
+
+         });
+         function RemoveUser(groupId,userId) {
+            var url = '@Url.Action("Remove","GroupUsers")';
+            requestContent(url, { groupId: groupId, userId: userId }, function (result) {
+                if (result === 'True') {
+                    document.location.reload();
+                }
+            });
+        }
+
+    </script>
+    <script type="text/x-handlebars-template" id="btnRemoveTemplate">
+        &nbsp;
+        <a href="#" class="btn btn-danger"
+           onclick="if (!confirm('Потвърди премахването на потребителя!')) { return false; } RemoveUser({{ groupUserId }}, {{ userId }});">
+            Премахни
+        </a>
+    </script>
+}

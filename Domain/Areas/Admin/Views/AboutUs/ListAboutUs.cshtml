@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Списък контакти";
+}
+@section breadcrumbs{
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")">Начало</a></li>
+        <li><a href="@Url.Action("ListAboutUs", "AboutUs")">Списък контакти</a></li>
+    </ul>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="pull-left">
+            <span>&nbsp;</span>
+            <a asp-action="AddChangeProposals" class="btn btn-success btn-flat">Добави контакт</a>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-1">
+                    <label>Активност</label>
+                </div>
+                <div class="col-lg-1">
+                    <select id="ddlActive">
+                        <option value="-1">Всички</option>
+                        <option value="1">Активни</option>
+                        <option value="0">Неактивни</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+<script>
+    $(function () {
+        var dt = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadDataAboutUs")',
+                 data: function (d) {
+                     d.active = $("#ddlActive").val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "firstName",
+                     title: 'Имена',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "lastName",
+                     title: 'Институция',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "dateCreated",
+                     title: 'Дата на създаване',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "isActive",
+                     title: 'Активност',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("EditAboutUs", new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+        });
+
+        $('#ddlActive').change(function () {
+            dt.ajax.reload();
+        });
+    });
+</script>
+
+
+
+

@@ -1,0 +1,35 @@
+﻿@model UserInTargetGroupVM
+@{
+    Layout = null;
+}
+
+<form asp-action="@ViewBag.actionName">
+    <ddl for="TargetGroupId" data="@ViewBag.groups"></ddl>
+    <div class="row">
+        <div class="col-xs-8">
+        </div>
+        <div class="col-xs-4 submit">
+            <div class="pull--right">
+                <button type="submit" class="btn btn-success">Добави</button>
+                &nbsp;
+                <button type="button" class="btn btn-default modal-hide">Отказ</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<style>
+    .plainModal-content {
+        left: 30% !important;
+        top: 20% !important;
+        width: 40% !important;
+    }
+
+    @@media screen and (max-width: 800px) {
+        .plainModal-content {
+            left: 10% !important;
+            top: 10% !important;
+            width: 80% !important;
+        }
+    }
+</style>

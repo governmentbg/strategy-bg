@@ -1,0 +1,1101 @@
+2018-11-19 00:07:39,086 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 00:07:39,104 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 00:07:39,444 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 00:07:39,508 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 00:07:39,545 [15] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 00:07:42,917 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 00:07:46,355 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 00:07:46,376 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:19:12,458 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:19:12,479 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:19:12,789 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:19:12,856 [7] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:19:12,888 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:26:49,022 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:26:49,046 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:26:49,481 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:26:49,549 [7] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:26:49,588 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:27:41,554 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:27:41,583 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:27:51,061 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:27:52,281 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:28:03,642 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:28:05,992 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:28:06,077 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:29:37,310 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:29:37,331 [26] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:30:13,122 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:30:13,126 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:30:13,170 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:30:13,174 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:31:16,532 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:31:16,536 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:31:33,885 [39] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 09:31:33,894 [39] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:12:48,252 [10] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:12:48,271 [10] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:12:48,635 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:12:48,716 [15] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:12:48,752 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:20:02,016 [8] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+Microsoft.AspNetCore.Mvc.Razor.Compilation.CompilationFailedException: One or more compilation failures occurred:
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,31): error CS1525: Invalid expression term 'if'
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,31): error CS1026: ) expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,31): error CS1002: ; expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,45): error CS1525: Invalid expression term '<'
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,56): error CS1525: Invalid expression term '/'
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,62): error CS1525: Invalid expression term '}'
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,62): error CS1002: ; expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,63): error CS1513: } expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,69): error CS1002: ; expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,69): error CS1513: } expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,73): error CS1002: ; expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,73): error CS1513: } expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,80): error CS1002: ; expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,80): error CS1513: } expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,80): error CS1513: } expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,18): error CS1001: Identifier expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,18): error CS1003: Syntax error, ',' expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,19): error CS1031: Type expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,19): error CS8124: Tuple must contain at least two elements.
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,19): error CS1026: ) expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,19): error CS1001: Identifier expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,19): error CS1003: Syntax error, ',' expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,66): error CS1002: ; expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,66): error CS1022: Type or namespace definition, or end-of-file expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,34): error CS1001: Identifier expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,34): error CS1003: Syntax error, ',' expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,35): error CS1031: Type expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,35): error CS8124: Tuple must contain at least two elements.
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,35): error CS1026: ) expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,35): error CS1001: Identifier expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,35): error CS1003: Syntax error, ',' expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,61): error CS1031: Type expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,61): error CS1001: Identifier expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,61): error CS1003: Syntax error, ',' expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,76): error CS1031: Type expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,76): error CS1001: Identifier expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,76): error CS1026: ) expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,76): error CS1002: ; expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,76): error CS0116: A namespace cannot directly contain members such as fields or methods
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,80): error CS1022: Type or namespace definition, or end-of-file expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,82): error CS0116: A namespace cannot directly contain members such as fields or methods
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,102): error CS1022: Type or namespace definition, or end-of-file expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,110): error CS0116: A namespace cannot directly contain members such as fields or methods
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,129): error CS1022: Type or namespace definition, or end-of-file expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,131): error CS0116: A namespace cannot directly contain members such as fields or methods
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,134): error CS1022: Type or namespace definition, or end-of-file expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,136): error CS0116: A namespace cannot directly contain members such as fields or methods
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,150): error CS1022: Type or namespace definition, or end-of-file expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,151): error CS1022: Type or namespace definition, or end-of-file expected
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,4): error CS1520: Method must have a return type
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,4): error CS0501: '<invalid-global-code>.<invalid-global-code>(Html.Raw, (?, ?))' must declare a body because it is not marked abstract, extern, or partial
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,18): error CS1520: Method must have a return type
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,18): error CS0501: '<invalid-global-code>.<invalid-global-code>(Url.Action, (?, ?), ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(61,10): error CS0246: The type or namespace name 'Html' could not be found (are you missing a using directive or an assembly reference?)
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(99,24): error CS0246: The type or namespace name 'Url' could not be found (are you missing a using directive or an assembly reference?)
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(21,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(22,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(23,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(24,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(25,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(26,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(27,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(28,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(29,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(30,18): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,46): error CS0103: The name 'text' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,51): error CS0103: The name 'OPSA' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,57): error CS0103: The name 'text' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(36,65): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(39,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(39,50): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(39,91): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(40,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(41,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(41,50): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(41,91): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(42,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(43,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(43,50): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(43,91): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(44,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(45,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(45,50): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(45,91): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(46,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(47,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(47,50): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(47,91): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(48,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(49,22): error CS0103: The name 'Html' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(49,50): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(49,91): error CS0103: The name 'i' does not exist in the current context
+C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Views\Questionary\FillQuestionary.cshtml(50,22): error CS0103: The name 'Html' does not exist in the current context
+d4bxrm4g.gmv(404,30): error CS1001: Identifier expected
+d4bxrm4g.gmv(404,34): error CS1031: Type expected
+d4bxrm4g.gmv(404,34): error CS1001: Identifier expected
+d4bxrm4g.gmv(404,36): error CS1031: Type expected
+d4bxrm4g.gmv(404,36): error CS1001: Identifier expected
+d4bxrm4g.gmv(404,36): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(404,41): error CS1031: Type expected
+d4bxrm4g.gmv(404,41): error CS1001: Identifier expected
+d4bxrm4g.gmv(404,41): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(405,30): error CS1001: Identifier expected
+d4bxrm4g.gmv(408,13): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(409,13): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(409,65): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(409,140): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(409,142): error CS8124: Tuple must contain at least two elements.
+d4bxrm4g.gmv(409,143): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(410,41): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(410,96): error CS8124: Tuple must contain at least two elements.
+d4bxrm4g.gmv(410,97): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(411,13): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(411,78): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(411,166): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(411,168): error CS8124: Tuple must contain at least two elements.
+d4bxrm4g.gmv(411,169): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(412,41): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(412,109): error CS8124: Tuple must contain at least two elements.
+d4bxrm4g.gmv(412,110): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(413,65): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(413,72): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(413,81): error CS8124: Tuple must contain at least two elements.
+d4bxrm4g.gmv(413,110): error CS1003: Syntax error, '(' expected
+d4bxrm4g.gmv(413,110): error CS1026: ) expected
+d4bxrm4g.gmv(414,41): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(414,85): error CS8124: Tuple must contain at least two elements.
+d4bxrm4g.gmv(414,86): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(415,73): error CS1001: Identifier expected
+d4bxrm4g.gmv(416,13): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(416,17): error CS1031: Type expected
+d4bxrm4g.gmv(416,17): error CS8124: Tuple must contain at least two elements.
+d4bxrm4g.gmv(416,17): error CS1026: ) expected
+d4bxrm4g.gmv(416,17): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(416,53): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(416,70): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(420,53): error CS1001: Identifier expected
+d4bxrm4g.gmv(421,13): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(421,41): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(421,67): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(421,71): error CS8124: Tuple must contain at least two elements.
+d4bxrm4g.gmv(421,72): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(423,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(423,30): error CS1031: Type expected
+d4bxrm4g.gmv(423,30): error CS1001: Identifier expected
+d4bxrm4g.gmv(423,32): error CS1031: Type expected
+d4bxrm4g.gmv(423,32): error CS1001: Identifier expected
+d4bxrm4g.gmv(423,32): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(423,36): error CS1031: Type expected
+d4bxrm4g.gmv(423,36): error CS1001: Identifier expected
+d4bxrm4g.gmv(423,36): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(424,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(426,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(426,30): error CS1031: Type expected
+d4bxrm4g.gmv(426,30): error CS1001: Identifier expected
+d4bxrm4g.gmv(426,32): error CS1031: Type expected
+d4bxrm4g.gmv(426,32): error CS1001: Identifier expected
+d4bxrm4g.gmv(426,32): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(426,36): error CS1031: Type expected
+d4bxrm4g.gmv(426,36): error CS1001: Identifier expected
+d4bxrm4g.gmv(426,36): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(433,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(433,30): error CS1031: Type expected
+d4bxrm4g.gmv(433,30): error CS1001: Identifier expected
+d4bxrm4g.gmv(433,32): error CS1031: Type expected
+d4bxrm4g.gmv(433,32): error CS1001: Identifier expected
+d4bxrm4g.gmv(433,32): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(433,38): error CS1031: Type expected
+d4bxrm4g.gmv(433,38): error CS1001: Identifier expected
+d4bxrm4g.gmv(433,38): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(434,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(458,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(475,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(475,30): error CS1031: Type expected
+d4bxrm4g.gmv(475,30): error CS1001: Identifier expected
+d4bxrm4g.gmv(475,32): error CS1031: Type expected
+d4bxrm4g.gmv(475,32): error CS1001: Identifier expected
+d4bxrm4g.gmv(475,32): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(475,37): error CS1031: Type expected
+d4bxrm4g.gmv(475,37): error CS1001: Identifier expected
+d4bxrm4g.gmv(475,37): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(482,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(482,30): error CS1031: Type expected
+d4bxrm4g.gmv(482,30): error CS1001: Identifier expected
+d4bxrm4g.gmv(482,32): error CS1031: Type expected
+d4bxrm4g.gmv(482,32): error CS1001: Identifier expected
+d4bxrm4g.gmv(482,32): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(482,37): error CS1031: Type expected
+d4bxrm4g.gmv(482,37): error CS1001: Identifier expected
+d4bxrm4g.gmv(482,37): error CS1003: Syntax error, ',' expected
+d4bxrm4g.gmv(483,26): error CS1001: Identifier expected
+d4bxrm4g.gmv(510,9): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(522,5): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(523,1): error CS1022: Type or namespace definition, or end-of-file expected
+d4bxrm4g.gmv(420,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(420,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(__tagHelperExecutionContext.Output)' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(422,13): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(422,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(422,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(423,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(423,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(424,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(424,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(425,13): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(425,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(425,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(426,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(426,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(432,13): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(432,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(432,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(433,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(433,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(434,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(434,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(458,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(458,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(474,13): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(474,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(474,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(475,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(475,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(481,13): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(481,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(481,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(482,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(482,13): error CS0501: '<invalid-global-code>.<invalid-global-code>(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(483,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(483,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(509,13): error CS1520: Method must have a return type
+d4bxrm4g.gmv(509,13): error CS0501: '<invalid-global-code>.<invalid-global-code>()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(513,87): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(515,60): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(517,70): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(519,71): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(404,17): error CS1520: Method must have a return type
+d4bxrm4g.gmv(404,17): error CS0501: 'Areas_Admin_Views_Questionary_FillQuestionary.Areas_Admin_Views_Questionary_FillQuestionary(?, ?, ?)' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(405,17): error CS1520: Method must have a return type
+d4bxrm4g.gmv(405,17): error CS0501: 'Areas_Admin_Views_Questionary_FillQuestionary.Areas_Admin_Views_Questionary_FillQuestionary()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(406,17): error CS1520: Method must have a return type
+d4bxrm4g.gmv(406,17): error CS0501: 'Areas_Admin_Views_Questionary_FillQuestionary.Areas_Admin_Views_Questionary_FillQuestionary()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(420,19): error CS0246: The type or namespace name '__tagHelperExecutionContext' could not be found (are you missing a using directive or an assembly reference?)
+d4bxrm4g.gmv(413,82): error CS0246: The type or namespace name '__tagHelperAttribute_1' could not be found (are you missing a using directive or an assembly reference?)
+d4bxrm4g.gmv(415,19): error CS0246: The type or namespace name '__tagHelperRunner' could not be found (are you missing a using directive or an assembly reference?)
+d4bxrm4g.gmv(418,51): error CS0116: A namespace cannot directly contain members such as fields or methods
+d4bxrm4g.gmv(418,23): error CS0246: The type or namespace name '__tagHelperExecutionContext' could not be found (are you missing a using directive or an assembly reference?)
+d4bxrm4g.gmv(413,82): error CS0538: '__tagHelperAttribute_1' in explicit interface declaration is not an interface
+d4bxrm4g.gmv(413,105): error CS0501: '<invalid-global-code>.Value()' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(415,46): error CS0246: The type or namespace name '__tagHelperExecutionContext' could not be found (are you missing a using directive or an assembly reference?)
+d4bxrm4g.gmv(415,13): error CS0246: The type or namespace name 'await' could not be found (are you missing a using directive or an assembly reference?)
+d4bxrm4g.gmv(415,19): error CS0538: '__tagHelperRunner' in explicit interface declaration is not an interface
+d4bxrm4g.gmv(415,37): error CS0501: '<invalid-global-code>.RunAsync(__tagHelperExecutionContext)' must declare a body because it is not marked abstract, extern, or partial
+d4bxrm4g.gmv(418,17): error CS0246: The type or namespace name 'await' could not be found (are you missing a using directive or an assembly reference?)
+d4bxrm4g.gmv(418,23): error CS0538: '__tagHelperExecutionContext' in explicit interface declaration is not an interface
+d4bxrm4g.gmv(418,51): error CS0501: '<invalid-global-code>.SetOutputContentAsync()' must declare a body because it is not marked abstract, extern, or partial
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.CompileAndEmit(RazorCodeDocument codeDocument, String generatedCode)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.RazorViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Razor.Internal.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-11-19 13:44:55,567 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:44:55,588 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:44:55,924 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:44:55,993 [9] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:44:56,027 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:46:59,618 [8] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:46:59,682 [8] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:47:01,207 [8] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:47:03,679 [8] WARN  App  
+ The Include operation for navigation '[x].User' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:47:03,683 [8] WARN  App  
+ The Include operation for navigation '[x].Group' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:47:03,703 [8] WARN  App  
+ The Include operation for navigation '[x].User' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:47:03,707 [8] WARN  App  
+ The Include operation for navigation '[x].Group' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:47:09,833 [8] WARN  App  
+ The Include operation for navigation '[x].User' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:47:09,837 [8] WARN  App  
+ The Include operation for navigation '[x].Group' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:50:06,174 [24] ERROR App  
+ Failed executing DbCommand (137ms) [Parameters=[@__get_Item_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[Answer1], [e].[Answer1Short], [e].[Answer2], [e].[Answer2Short], [e].[Answer3], [e].[Answer3Short], [e].[Answer4], [e].[Answer4Short], [e].[Answer5], [e].[Answer5Short], [e].[Answer6], [e].[Answer6Short], [e].[AnswersNumber], [e].[CreateDate], [e].[CreateUserId], [e].[EndDate], [e].[QuestionaryDescription], [e].[QuestionaryTitle], [e].[ShortAnswersDescription], [e].[SourceId], [e].[SourceType], [e].[StartDate]
+FROM [questionary].[questionary_headers] AS [e]
+WHERE [e].[Id] = @__get_Item_0 
+ 
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:2459bb0a-c1ab-426a-ab5b-158c1bfb3342
+Error Number:207,State:1,Class:16
+2018-11-19 13:50:06,246 [24] ERROR App  
+ An exception occurred in the database while iterating the results of a query for context type 'Models.Context.MainContext'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+ClientConnectionId:2459bb0a-c1ab-426a-ab5b-158c1bfb3342
+Error Number:207,State:1,Class:16 
+ 
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+ClientConnectionId:2459bb0a-c1ab-426a-ab5b-158c1bfb3342
+Error Number:207,State:1,Class:16
+2018-11-19 13:50:06,263 [24] ERROR App  
+ An exception occurred in the database while iterating the results of a query for context type 'Models.Context.MainContext'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:2459bb0a-c1ab-426a-ab5b-158c1bfb3342
+Error Number:207,State:1,Class:16 
+ 
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:2459bb0a-c1ab-426a-ab5b-158c1bfb3342
+Error Number:207,State:1,Class:16
+2018-11-19 13:50:25,897 [24] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.Find(Object[] keyValues)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Find(Object[] keyValues)
+   at Models.Services.QuestionaryService.GetQuestionary(Int32 id) in C:\Projects\Strategy\newSingleSite\Models\Services\QuestionaryService.cs:line 40
+   at Domain.Areas.Admin.Controllers.QuestionaryController.Edit(Int32 id) in C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Controllers\QuestionaryController.cs:line 57
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:2459bb0a-c1ab-426a-ab5b-158c1bfb3342
+Error Number:207,State:1,Class:16
+2018-11-19 13:52:07,571 [26] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:52:07,581 [26] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:52:07,633 [26] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:52:07,685 [26] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:52:59,865 [39] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:52:59,869 [39] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:53:00,808 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 13:53:00,811 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:01:37,481 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:01:37,576 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:02:47,538 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:02:47,573 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:02:47,968 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:02:48,058 [7] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:02:48,097 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:03:56,753 [20] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:03:56,873 [21] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:04:36,648 [22] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:04:36,662 [22] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:14:23,384 [39] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:14:23,452 [39] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:16:34,959 [16] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:17:28,019 [16] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:17:28,022 [16] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:17:28,084 [16] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:17:28,087 [16] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:37:07,684 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:37:07,706 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:37:08,111 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:37:08,179 [7] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:37:08,216 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 16:37:08,746 [7] WARN  App  
+ Connection processing ended abnormally. 
+ 
+Microsoft.AspNetCore.Connections.ConnectionAbortedException: The connection was aborted
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2018-11-19 17:19:51,116 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:19:51,136 [7] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:19:51,436 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:19:51,500 [10] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:19:51,533 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:22:01,752 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:22:01,775 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:22:02,094 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:22:02,167 [15] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 17:22:02,200 [15] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:07:22,296 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:07:22,315 [7] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:07:22,613 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:07:22,678 [10] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:07:22,712 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:16:50,107 [47] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:16:50,175 [47] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:17:26,797 [47] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:18:04,565 [63] WARN  App  
+ The Include operation for navigation '[x].User' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:18:04,571 [63] WARN  App  
+ The Include operation for navigation '[x].Group' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:18:04,591 [63] WARN  App  
+ The Include operation for navigation '[x].User' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:18:04,602 [63] WARN  App  
+ The Include operation for navigation '[x].Group' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:20:18,477 [61] WARN  App  
+ The Include operation for navigation '[x].User' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:20:18,482 [61] WARN  App  
+ The Include operation for navigation '[x].Group' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:25:42,634 [93] ERROR App  
+ Failed executing DbCommand (3ms) [Parameters=[@__questionaryHeaderId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [x].[Id], [x].[Answer1], [x].[Answer1Short], [x].[Answer2], [x].[Answer2Short], [x].[Answer3], [x].[Answer3Short], [x].[Answer4], [x].[Answer4Short], [x].[Answer5], [x].[Answer5Short], [x].[Answer6], [x].[Answer6Short], [x].[AnswersNumber], [x].[CreateDate], [x].[CreateUserId], [x].[EndDate], [x].[QuestionaryDescription], [x].[QuestionaryTitle], [x].[ShortAnswersDescription], [x].[SourceId], [x].[SourceType], [x].[StartDate]
+FROM [questionary].[questionary_headers] AS [x]
+WHERE [x].[Id] = @__questionaryHeaderId_0 
+ 
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Answer1'.
+Invalid column name 'Answer1Short'.
+Invalid column name 'Answer2'.
+Invalid column name 'Answer2Short'.
+Invalid column name 'Answer3'.
+Invalid column name 'Answer3Short'.
+Invalid column name 'Answer4'.
+Invalid column name 'Answer4Short'.
+Invalid column name 'Answer5'.
+Invalid column name 'Answer5Short'.
+Invalid column name 'Answer6'.
+Invalid column name 'Answer6Short'.
+Invalid column name 'ShortAnswersDescription'.
+Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+ClientConnectionId:6bcebff6-c042-483b-a287-d79565b4b943
+Error Number:207,State:1,Class:16
+2018-11-19 20:25:42,650 [93] ERROR App  
+ An exception occurred in the database while iterating the results of a query for context type 'Models.Context.MainContext'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Answer1'.
+Invalid column name 'Answer1Short'.
+Invalid column name 'Answer2'.
+Invalid column name 'Answer2Short'.
+Invalid column name 'Answer3'.
+Invalid column name 'Answer3Short'.
+Invalid column name 'Answer4'.
+Invalid column name 'Answer4Short'.
+Invalid column name 'Answer5'.
+Invalid column name 'Answer5Short'.
+Invalid column name 'Answer6'.
+Invalid column name 'Answer6Short'.
+Invalid column name 'ShortAnswersDescription'.
+Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+ClientConnectionId:6bcebff6-c042-483b-a287-d79565b4b943
+Error Number:207,State:1,Class:16 
+ 
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Answer1'.
+Invalid column name 'Answer1Short'.
+Invalid column name 'Answer2'.
+Invalid column name 'Answer2Short'.
+Invalid column name 'Answer3'.
+Invalid column name 'Answer3Short'.
+Invalid column name 'Answer4'.
+Invalid column name 'Answer4Short'.
+Invalid column name 'Answer5'.
+Invalid column name 'Answer5Short'.
+Invalid column name 'Answer6'.
+Invalid column name 'Answer6Short'.
+Invalid column name 'ShortAnswersDescription'.
+Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+ClientConnectionId:6bcebff6-c042-483b-a287-d79565b4b943
+Error Number:207,State:1,Class:16
+2018-11-19 20:25:42,680 [93] ERROR App  
+ An exception occurred in the database while iterating the results of a query for context type 'Models.Context.MainContext'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Answer1'.
+Invalid column name 'Answer1Short'.
+Invalid column name 'Answer2'.
+Invalid column name 'Answer2Short'.
+Invalid column name 'Answer3'.
+Invalid column name 'Answer3Short'.
+Invalid column name 'Answer4'.
+Invalid column name 'Answer4Short'.
+Invalid column name 'Answer5'.
+Invalid column name 'Answer5Short'.
+Invalid column name 'Answer6'.
+Invalid column name 'Answer6Short'.
+Invalid column name 'ShortAnswersDescription'.
+Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:6bcebff6-c042-483b-a287-d79565b4b943
+Error Number:207,State:1,Class:16 
+ 
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Answer1'.
+Invalid column name 'Answer1Short'.
+Invalid column name 'Answer2'.
+Invalid column name 'Answer2Short'.
+Invalid column name 'Answer3'.
+Invalid column name 'Answer3Short'.
+Invalid column name 'Answer4'.
+Invalid column name 'Answer4Short'.
+Invalid column name 'Answer5'.
+Invalid column name 'Answer5Short'.
+Invalid column name 'Answer6'.
+Invalid column name 'Answer6Short'.
+Invalid column name 'ShortAnswersDescription'.
+Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+ClientConnectionId:6bcebff6-c042-483b-a287-d79565b4b943
+Error Number:207,State:1,Class:16
+2018-11-19 20:25:50,220 [97] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Answer1'.
+Invalid column name 'Answer1Short'.
+Invalid column name 'Answer2'.
+Invalid column name 'Answer2Short'.
+Invalid column name 'Answer3'.
+Invalid column name 'Answer3Short'.
+Invalid column name 'Answer4'.
+Invalid column name 'Answer4Short'.
+Invalid column name 'Answer5'.
+Invalid column name 'Answer5Short'.
+Invalid column name 'Answer6'.
+Invalid column name 'Answer6Short'.
+Invalid column name 'ShortAnswersDescription'.
+Invalid column name 'SourceType'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at lambda_method(Closure )
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Models.Services.QuestionaryService.SetAnswers(Int32 questionaryHeaderId) in C:\Projects\Strategy\newSingleSite\Models\Services\QuestionaryService.cs:line 152
+   at Domain.Areas.Admin.Controllers.QuestionaryController.FillQuestionary(Int32 questionaryHeaderId) in C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Controllers\QuestionaryController.cs:line 140
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:6bcebff6-c042-483b-a287-d79565b4b943
+Error Number:207,State:1,Class:16
+2018-11-19 20:28:52,755 [113] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:28:52,785 [113] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:30:05,515 [113] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:30:05,542 [113] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-19 20:30:08,790 [114] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 

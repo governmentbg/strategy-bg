@@ -1,0 +1,42 @@
+﻿@using Models
+
+<div id="messageContainer">
+    @if (TempData[GlobalConstants.UserMessages.Danger] != null)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-danger no-margin-bottom">
+                    <button data-dismiss="alert" class="close">×</button>
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    @TempData[GlobalConstants.UserMessages.Danger]
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (TempData[GlobalConstants.UserMessages.Warning] != null)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-warning no-margin-bottom">
+                    <button data-dismiss="alert" class="close">×</button>
+                    <i class="glyphicon glyphicon-warning-sign"></i>
+                    @TempData[GlobalConstants.UserMessages.Warning]
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (TempData[GlobalConstants.UserMessages.Success] != null)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-success no-margin-bottom">
+                    <button data-dismiss="alert" class="close">×</button>
+                    <i class="glyphicon glyphicon-check"></i>
+                    @TempData[GlobalConstants.UserMessages.Success]
+                </div>
+            </div>
+        </div>
+    }
+</div>

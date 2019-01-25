@@ -1,0 +1,148 @@
+[
+  {
+    "outputFileName": "wwwroot/prod/css/head.min.css",
+    "inputFiles": [
+      "wwwroot/lte/css/bootstrap.min.css",
+      "wwwroot/lte/css/AdminLTE.min.css",
+      "wwwroot/lte/css/jquery-ui.css",
+      "wwwroot/lte/css/_all-skins.min.css",
+      "wwwroot/lte/css/font-awesome/css/font-awesome.min.css",
+      "wwwroot/lte/css/ionicons.min.css",
+      "wwwroot/lte/css/iCheck/square/blue.css",
+      "wwwroot/lte/css/dataTables.bootstrap.min.css",
+      "wwwroot/lib/treeview/css/style.min.css",
+      "wwwroot/lib/gridview2smarterOne/gridview.css",
+      "wwwroot/lib/datetimePicker/bootstrap-datepicker.min.css",
+      "wwwroot/lib/datatables/buttons.dataTables.min.css",
+      "wwwroot/css/site.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/dist/min/head.min.css",
+    "inputFiles": [
+      "wwwroot/lte/css/jquery-ui.css",
+      "wwwroot/lte/css/font-awesome/css/font-awesome.min.css",
+      "wwwroot/lte/css/ionicons.min.css",
+      "wwwroot/lte/css/iCheck/square/blue.css",
+      "wwwroot/lte/css/dataTables.bootstrap.min.css",
+      "wwwroot/lib/treeview/css/style.min.css",
+      "wwwroot/lib/gridview2smarterOne/gridview.css",
+      "wwwroot/lib/datetimePicker/bootstrap-datepicker.min.css",
+      "wwwroot/lib/datatables/buttons.dataTables.min.css",
+      "wwwroot/lib/fullcalendar/fullcalendar.min.css",
+     // "wwwroot/lib/fullcalendar/fullcalendar.print.min.css",
+      "wwwroot/css/site.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/prod/css/head.plugins.min.css",
+    "inputFiles": [
+      "wwwroot/lib/summernote/summernote.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "adjustRelativePaths": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/prod/js/footer.min.js",
+    "inputFiles": [
+      "wwwroot/lte/js/bootstrap.min.js",
+      "wwwroot/lte/js/fastclick.js",
+      "wwwroot/lte/js/adminlte.min.js",
+      "wwwroot/lte/css/icheck/icheck.min.js",
+      "wwwroot/lib/moment-with-locales.js",
+      //"wwwroot/lib/gridview/gridview.js",
+      "wwwroot/lib/gridview2smarterOne/gridview.js",
+      "wwwroot/lib/datetimePicker/bootstrap-datepicker.min.js",
+      "wwwroot/lib/datetimePicker/bootstrap-datepicker.bg.min.js",
+
+      "wwwroot/lib/datatables/jquery.dataTables.min.js",
+      "wwwroot/lib/datatables/dataTables.bootstrap.min.js",
+      "wwwroot/lib/datatables/html5shiv.js",
+      "wwwroot/lib/datatables/dataTables.buttons2.min.js",
+      "wwwroot/lib/datatables/buttons.colVis.min.js",
+      "wwwroot/lib/datatables/buttons.flash.min.js",
+      "wwwroot/lib/datatables/buttons.html5.min.js",
+      "wwwroot/lib/datatables/buttons.print.min.js",
+      "wwwroot/lib/datatables/jszip.js",
+      "wwwroot/lib/datatables/export-extensions.js",
+      "wwwroot/lib/summernote/summernote.js",
+      "wwwroot/lib/summernote/plugin/specialchars/summernote-ext-specialchars.js",
+      "wwwroot/js/init.js",
+      "wwwroot/js/site.js",
+      //"wwwroot/js/ekkate-loader.js",
+      "wwwroot/js/google.loader.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/dist/min/footer.min.js",
+    "inputFiles": [
+      "wwwroot/lte/js/fastclick.js",
+      "wwwroot/lte/css/icheck/icheck.min.js",
+      "wwwroot/lib/moment-with-locales.js",
+      "wwwroot/lib/gridview2smarterOne/gridview.js",
+      "wwwroot/lib/datetimePicker/bootstrap-datepicker.min.js",
+      "wwwroot/lib/datetimePicker/bootstrap-datepicker.bg.min.js",
+
+      "wwwroot/lib/datatables/jquery.dataTables.min.js",
+      "wwwroot/lib/datatables/dataTables.bootstrap.min.js",
+      "wwwroot/lib/datatables/html5shiv.js",
+      "wwwroot/lib/datatables/dataTables.buttons2.min.js",
+      "wwwroot/lib/datatables/buttons.colVis.min.js",
+      "wwwroot/lib/datatables/buttons.flash.min.js",
+      "wwwroot/lib/datatables/buttons.html5.min.js",
+      "wwwroot/lib/datatables/buttons.print.min.js",
+      "wwwroot/lib/datatables/jszip.js",
+      "wwwroot/lib/datatables/export-extensions.js",
+      "wwwroot/lib/summernote/summernote.js",
+      "wwwroot/lib/summernote/plugin/specialchars/summernote-ext-specialchars.js",
+      "wwwroot/lib/fullcalendar/fullcalendar.min.js",
+      "wwwroot/js/init.js",
+      "wwwroot/js/site.js"
+      // "wwwroot/js/ekkate-loader.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/prod/js/head.min.js",
+    "inputFiles": [
+      "wwwroot/lte/js/jquery.min.js",
+      "wwwroot/lte/js/jquery-ui.js",
+      "wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "wwwroot/lib/common/jquery.form.js",
+      "wwwroot/lib/common/handlebars.js",
+      "wwwroot/lib/treeview/jstree.min.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/dist/min/head.min.js",
+    "inputFiles": [
+      "wwwroot/lib/common/handlebars.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
+  }
+]

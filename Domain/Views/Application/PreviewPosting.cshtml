@@ -1,0 +1,46 @@
+﻿@model Application
+@{
+    ViewData["Title"] = "Преглед на заявление";
+}
+<section class="content">
+    <h3>@Model.ApplicationType.NameBG</h3>
+    <display-horizontal for="RegistrationNumber" label="Регистрационен номер"></display-horizontal>
+    <display-horizontal for="RegistrationDate" label="Дата"></display-horizontal>
+    @Html.DisplayFor(x => x.OrganizationPerson, new { title = "I. Командироващо лице" })
+    <display-horizontal for="RepresentedBy" label="Представлявано от"></display-horizontal>
+    <display-horizontal for="ActivityType.NameBG" label="Характер на основната дейност на предприятието"></display-horizontal>
+
+    @Html.DisplayFor(x => x.HeadquatersAddress, new { title = "Седалище и адрес на управление" })
+    @Html.DisplayFor(x => x.PosteAddress, new { title = "Адрес за кореспонденция" })
+
+    @Html.DisplayFor(x => x.OfficialPerson, new { title = "II. Лице за осъществяване на връзка с компетентните органи в Република България за получаване и изпращане на документи" })
+    @Html.DisplayFor(x => x.OfficialAddress, new { title = "" })
+
+
+    @Html.DisplayFor(x => x.ContactPerson, new { title = "III. Лице за контакт, ако е необходимо, което действа като представител, чрез който съответните социални партньори могат да се опитват да привлекат работодателя към участие в колективно трудово договаряне за срока на предоставянето на услугите" })
+    @Html.DisplayFor(x => x.ContactAddress, new { title = "" })
+    <display-horizontal for="PersonCount" label="IV. Брой командировани лица"></display-horizontal>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <label class="control-label">V. Период на командироване</label>
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <b>@Model.SendDateFrom.ToString(GlobalConstants.DateFormat) - @Model.SendDateTo.ToString(GlobalConstants.DateFormat)</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.DisplayFor(x => x.LocalAddress, new { title = "VI. Място на командироване" })
+    @Html.DisplayFor(x => x.LocalPerson, new { title = "Местно лице" })
+    <display-horizontal for="LocalEntityType.NameBG" label="В качеството му на"></display-horizontal>
+    <display-horizontal for="LocalActivityType.NameBG" label="Характер на дейността"></display-horizontal>
+    @Html.DisplayFor(x => x.LocalLegalAddress, new { title = "Адрес по регистрация" })
+    @Html.DisplayFor(x => x.ApplicationPersons)
+    <display-horizontal for="User.FullName" label="VIII.Заявител"></display-horizontal>
+    @Html.Partial("ApplicationPreviewControls", Model)
+</section>

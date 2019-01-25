@@ -1,0 +1,5 @@
+﻿@model QuestionaryAnswerVM
+<div class="col-lg-1">
+    @Html.RadioButtonFor(x => x.Selected, Model.Value, new { name = string.Format("answers{0}", Model.QuestionId) })
+    <input asp-for="Value" type="hidden" />
+</div>

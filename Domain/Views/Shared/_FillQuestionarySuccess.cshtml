@@ -1,0 +1,26 @@
+﻿@model Models.ViewModels.Questionary.FillQuestionaryViewModel
+
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11">
+        @Html.Raw("Благодарим Ви! Вашето мнение е важно за нас.")
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11">
+        <a href="@Url.Action("QuestionaryResults", "Questionary", new { questionaryHeaderId = @Model.QuestionaryHeaderId })">Покажи резултати от анкетата</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11">
+        <a href="@Url.Action("FillQuestionaryPDF", "Questionary"
+              , new { questionaryHeaderId = @Model.QuestionaryHeaderId, userId = @Model.AnsweredUserId, userEmail = Model.AnsweredUserEmail })">Покажи попълнената от мен анкетата</a>
+    </div>
+</div>

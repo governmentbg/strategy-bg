@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPublicMain.cshtml";
+    var sectionTitle = ViewData["SectionTitle"];
+}
+<header class="header--category">
+    <div class="title">
+        @sectionTitle
+    </div>
+    <div class="image__wrapper">
+        <img src="~/dist/assets/header_gallery.png" alt="">
+    </div>
+</header>
+@section HeaderContent {
+    <script src="~/lib/PopForums/signalr.min.js"></script>
+    <script src="~/lib/PopForums/PopForums.js"></script>
+    <link href="~/lib/PopForums/PopForums.css" rel="stylesheet" />
+    @RenderSection("HeaderContent", required: false)
+}
+
+@RenderSection("breadcrumbs", false)
+@*<div class="breadcrumbs">
+        / <a href="#">Начало</a>
+        / <a href="#">Обществени консултации</a>
+        / <a href="#">Национални</a>
+        / <a href="#">Бизнес среда</a>
+    </div>*@
+@RenderBody()
+@section scripts{
+    @RenderSection("scripts", false)
+}

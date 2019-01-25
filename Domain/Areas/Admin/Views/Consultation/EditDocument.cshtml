@@ -1,0 +1,160 @@
+﻿@model Models.ViewModels.Consultations.DocumentViewModel
+@using Domain.Extensions
+
+@{
+    ViewData["Title"] = "Документ към консултация " + ViewBag.ConsultationTitle;
+    List<SelectListItem> documentTypes = ViewBag.DocumentTypes != null ? (List<SelectListItem>)ViewBag.DocumentTypes : new List<SelectListItem>();
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>@(Model.Revision > 0 ? $"Версия {@Model.Revision}" : "Нова версия")</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-action="EditDocument">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.MainId)
+                @Html.HiddenFor(m => m.Revision)
+                @Html.HiddenFor(m => m.ConsultationId)
+                <div class="form-group">
+                    <label asp-for="@Model.DocumentTypeId" class="control-label"></label>
+                    @Html.DropDownListFor(m => m.DocumentTypeId, documentTypes.SetSelected(Model.DocumentTypeId), new { @class = "form-control" })
+                    <span asp-validation-for="@Model.DocumentTypeId" class="text-danger"></span>
+                </div>
+                @Html.EditorFor(m => m.Title)
+                @Html.EditorFor(m => m.Content)
+
+                @Html.EditorFor(m => m.CanComment)
+                @Html.EditorFor(m => m.IsFinal)
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    @if (Model.Revision > 0)
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.ConsultationId" class="btn btn-danger btn-flat">Назад към консултацията</a>
+                    }
+                    else
+                    {
+                        <button id="backBtn" class="btn btn-warning btn-flat">Назад</button>
+                        <a asp-action="Edit" asp-route-id="@Model.ConsultationId" class="btn btn-danger btn-flat">Назад към консултацията</a>
+                    }
+                </div>
+            </form>
+            @if (Model.Id > 0)
+            {
+                <h3>Прикачени файлове</h3>
+                <partial name="UsedDocuments" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.PublicConsultationDocuments, SourceID = Model.Id.ToString() })" />
+            }
+        </div>
+        @if (Model.Id > 0)
+        {
+            <div class="col-lg-6">
+                <div class="toolbar pull-right">
+                    <a asp-action="AddVersion" asp-route-documentId="@Model.Id" class="btn btn-success btn-flat">Нова версия</a>
+                    <a asp-action="Index" asp-controller="Comments" asp-route-sourceId="@Model.Id" asp-route-sourceTypeId="@GlobalConstants.SourceTypes.PublicConsultationDocuments" class="btn btn-warning btn-flat">Коментари</a>
+                    <a asp-action="Export" asp-controller="Comments" asp-route-documentId="@Model.Id" class="btn btn-info btn-flat">Експорт</a>
+                </div>
+                <h3>Версии на документа</h3>
+                <table id="documentsTable" class="table" cellspacing="0"></table>
+            </div>
+        }
+    </div>
+</section>
+
+@section scripts{
+    <script>
+    $(function () {
+        var dt = $('#documentsTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("VersionIndex")',
+                 data: function (d) {
+                     d.documentId = @Model.Id;
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "dom": '<"toolbar">frtip',
+            "filter": false,
+             "bInfo": false,
+             "columns": [
+                 {
+                     data: "revision",
+                     title: 'Версия',
+                     sortable: true,
+                     searchable: true,
+                     render: function (value) {
+                         return "Версия " + value
+                     }
+                 },
+                 {
+                     data: "createDate",
+                     title: 'Дата',
+                     sortable: true,
+                     searchable: true,
+                     render: function (value) {
+                         return JsonBGdate(value)
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("EditDocument",new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+            ],
+            "order": [[1, "desc"]]
+        });
+
+        var smEditor = $('#Content').summernote({
+            callbacks: {
+                onInit: function () {
+                    //debugger;
+                    var btnGroup = document.createElement("div");
+                    btnGroup.setAttribute('class', 'note-btn-group btn-group');
+
+                    var btnTag = document.createElement("button");
+                    btnTag.setAttribute('class', 'note-btn btn btn-success btn-sm');
+                    btnTag.innerHTML = '<i class="fa fa-anchor"></i>';
+                    btnTag.setAttribute('title', 'Вмъкни отметка');
+                    btnTag.onclick = function () { appendTag(); return false; };
+                    btnGroup.appendChild(btnTag);
+
+                    $('.note-toolbar').append(btnGroup);
+
+                }
+            }
+        });
+
+        $('#backBtn').on('click', function goBack(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            history.go(-1);
+        });
+        });
+        function appendTag() {
+            var tagName = prompt("Моля, въведете уникално име на отметка", "");
+            if (tagName == null) { return false; }
+            $('.summernote').summernote('editor.restoreRange');
+            $('.summernote').summernote('editor.focus');
+            var tag = document.createElement('span');
+            tag.setAttribute('id', tagName);
+            tag.setAttribute('title', tagName);
+            tag.setAttribute('class', 'page-tag');
+            tag.innerHTML = '<i class="fa fa-anchor"></i>';
+            $('.summernote').summernote('insertNode', tag);
+        }
+
+    </script>
+
+}
+
+

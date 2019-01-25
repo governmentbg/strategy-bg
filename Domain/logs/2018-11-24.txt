@@ -1,0 +1,45 @@
+2018-11-24 00:46:41,723 [10] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 00:46:41,745 [10] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 00:46:42,322 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 00:46:42,394 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 00:46:42,450 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 21:11:13,967 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 21:11:13,993 [7] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 21:11:15,253 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 21:11:15,322 [10] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 21:11:15,354 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 23:43:47,800 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 23:43:47,820 [7] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 23:43:48,402 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 23:43:48,469 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-24 23:43:48,501 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 

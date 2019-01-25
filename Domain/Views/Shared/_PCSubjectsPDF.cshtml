@@ -1,0 +1,39 @@
+﻿@model List<Models.ViewModels.PCSubjectsModels.PCSubjectsListViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutQuestionary.cshtml";
+    ViewData["Title"] = "Списък на физическите и юридическите лица съгласно ЗНА";
+}
+
+<section class="content">
+    <h2>Списък на физическите и юридическите лица съгласно ЗНА</h2>
+    <table border="1">
+        <tr>
+            <th>Име</th>
+            <th>Вид лице</th>
+            <th>ЕИК</th>
+            <th>Дата на плащане</th>
+            <th>Възнаграждение за извършените дейности</th>
+            <th>Извършени дейности</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        @Html.Raw("<tr>")
+        @Html.Raw("<td>" + @item.Name + "</td>")
+        if(@item.IsUL == 1)
+        {
+        @Html.Raw("<td>ЮЛ</td>")
+        }
+        else
+        {
+        @Html.Raw("<td>ФЛ</td>")
+        }
+        @Html.Raw("<td>" + @item.EIK + "</td>")
+        @Html.Raw("<td>" + @item.DatePayment + "</td>")
+        @Html.Raw("<td align='right'>" + @item.PaymentValue + "</td>")
+        @Html.Raw("<td>" + @item.ActivityDescription + "</td>")
+        @Html.Raw("</tr>")
+        }
+
+    </table>
+</section>

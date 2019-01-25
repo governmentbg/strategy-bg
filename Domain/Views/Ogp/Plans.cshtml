@@ -1,0 +1,50 @@
+﻿@using Models.ViewModels.Ogp
+@model IQueryable<PlanItemVM>
+@{
+    ViewData["SectionTitle"] = "Национални планове";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index")">Национални планове</a>
+    </div>
+}
+
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
+        </div>
+        <div class="col-md-9 body">
+            <h2>@ViewData["SectionTitle"]</h2>
+            @{
+                ViewData["plan_title"] = "Нов план";
+                ViewData["plan_state"] = GlobalConstants.OgpElementStates.New;
+            }
+
+            <partial name="~/Views/Ogp/_Plan.cshtml" model="@Model"
+                     view-data="ViewData" />
+            @{
+                ViewData["plan_title"] = "Действащ план";
+                ViewData["plan_state"] = GlobalConstants.OgpElementStates.Actual;
+            }
+            <partial name="~/Views/Ogp/_Plan.cshtml" model="@Model"
+                     view-data="ViewData" />
+
+            @{
+                ViewData["plan_title"] = "Изпълнени планове";
+                ViewData["plan_state"] = GlobalConstants.OgpElementStates.Completed;
+            }
+            <partial name="~/Views/Ogp/_Plan.cshtml" model="@Model"
+                     view-data="ViewData" />
+
+            @*<partial name="~/Views/Ogp/_Plan.cshtml" model="@Model"
+                 view-data-title="@("Действащ план")" view-data-state="@GlobalConstants.OgpElementStates.Actual" />
+
+        <partial name="~/Views/Ogp/_Plan.cshtml" model="@Model"
+                 view-data-title="@("Изпълнени планове")" view-data-state="@GlobalConstants.OgpElementStates.Completed" />*@
+
+        </div>
+    </div>
+</div>

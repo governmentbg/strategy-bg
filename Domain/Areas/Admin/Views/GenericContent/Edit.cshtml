@@ -1,0 +1,39 @@
+﻿@model GenericContent
+@{
+    if (!string.IsNullOrEmpty(Model.Alias))
+    {
+        ViewData["Title"] = "Редакция на съдържание";
+    }
+    else
+    {
+        ViewData["Title"] = "Добавяне на съдържание";
+    }
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="SavedAlias" type="hidden" />
+
+                <textbox for="Alias"></textbox>
+                <textbox for="Title" type="textarea"></textbox>
+                <textbox for="Text" type="textarea"></textbox>
+                <textbox for="Remark" type="textarea"></textbox>
+                <checkbox for="IsActive"></checkbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            var snEditor = $('#Text').summernote();
+        });
+    </script>
+}
+

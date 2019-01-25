@@ -1,0 +1,68 @@
+﻿@model PageLink
+@{
+    var page = (Page)ViewBag.page;
+    if (Model.Id > 0)
+    {
+        ViewData["Title"] = "Редактиране на линк към " + page.Title;
+    }
+    else
+    {
+        ViewData["Title"] = "Добавяне на линк на " + page.Title;
+    }
+}
+<section class="content">
+
+    <div class="row">
+        <div class="col-lg-8">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @if (Model.Id > 0)
+                {
+                    <input asp-for="Id" type="hidden" />
+                }
+                <input asp-for="PageId" type="hidden" />
+                <input asp-for="OrderBy" type="hidden" />
+
+                <textbox for="Title"></textbox>
+                <textbox for="Href"></textbox>
+
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" asp-route-pageId="@Model.PageId" class="btn btn-default btn-flat">Назад</a>
+                    <div class="pull-right">
+                        <a asp-action="DeletePageLinkItem" asp-route-id="@Model.Id" class="btn btn-danger btn-flat" onclick="if (!confirm('Потвърди изтриването на линка!')) { return false;}">Изтриване</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+<script>
+    $(function () {
+        var btn = document.createElement("a");
+        btn.setAttribute('class', 'btn btn-sm btn-info');
+        btn.innerText = "Избери страница";
+        btn.onclick = function () { selectPage(); return false; };
+        $(btn).insertAfter('label[for= "Href"]');
+
+    });
+
+
+    function selectPage() {
+        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = GlobalConstants.PageTypes.Pages, callbackName = "callbackSelectPage", lang=page.Lang}))';
+        ShowPlainDialogFromAction('Избери страница', url);
+    }
+    function callbackSelectPage(data) {
+        //var link = document.createElement('a');
+        //var href = '#page-' + data.contentId + '-' + data.href;
+        //if (tag && tag != '-1') {
+        //    href += "#" + tag;
+        //}
+        $('#Href').val(data.href);
+        $('#Title').val(data.title);
+        $('.plainModal').hide();
+    }
+
+
+</script>

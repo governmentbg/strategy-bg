@@ -1,0 +1,79 @@
+﻿@model int
+
+@{
+    var fieldName = ViewData.TemplateInfo.HtmlFieldPrefix.Replace(".", "_") + "_category";
+}
+
+<div class="form-group">
+    <label asp-for="@Model" class="control-label"></label>
+    <input id="@fieldName" class="form-control" style="z-index:999" />
+    <input asp-for="@Model" type="hidden" />
+    <span asp-validation-for="@Model" class="text-danger"></span>
+</div>
+
+<script>
+    if (!!'@Model' && @Model > 0) {
+        loadAutoCompleteValue('@Model');
+    }
+
+    $.widget('custom.autocomplete_category', $.ui.autocomplete, {
+        _renderMenu: function _renderMenu(ul, items) {
+            var that = this;
+            var category = '';
+            $.each(items, function (index, item) {
+                if (item.category !== category) {
+                    ul.append('<li class="ui-autocomplete-category ui-state-disabled" aria-label="' + item.category + '">' + item.category + '</li>');
+                    category = item.category;
+                }
+                that._renderItemData(ul, item);
+            });
+        }
+    });
+
+    window.location_storage_activity = window.location_storage_activity || {};
+
+    $('#@fieldName').autocomplete_category({
+        minLength: 2,
+        delay: 0,
+        source: function source(request, response) {
+            var _window = window,
+                location_storage = _window.location_storage_activity;
+
+            if (!!location_storage[request.term]) return response(location_storage[request.term]);
+            $.get('@Url.Action("SearchCategory", "Ajax", new { area = "", query = "666" })'.replace('666', encodeURIComponent(request.term))).done(function (success) {
+                location_storage[request.term] = success.data;
+                return response(success.data);
+            }).fail(function (errors) {
+                console.log(errors);
+            });
+        },
+        select: function select(event, ui) {
+            if (ui.item != null) {
+                ui.item.value = ui.item.category + ', ' + ui.item.label;
+                var input_hidden = event.target.parentElement.querySelector('input[type="hidden"]');
+                input_hidden.value = ui.item.id;
+            }
+        }
+    }).change(function () {
+        var input = this;
+        if (!input.value || input.value < 2) {
+            var input_hidden = input.parentElement.querySelector('input[type="hidden"]');
+            input_hidden.value = '';
+        }
+    }).blur(function () {
+        var input = this;
+        if (!input.value || input.value < 2) {
+            var input_hidden = input.parentElement.querySelector('input[type="hidden"]');
+            input_hidden.value = '';
+        }
+    });
+
+    function loadAutoCompleteValue(id) {
+        $.get('@Url.Action("GetCategory", "Ajax", new { area = "", id = "666" })'.replace('666', id))
+            .done(function (data) {
+                $('#@fieldName').val(data.label + ', ' + data.category);
+            }).fail(function (errors) {
+                console.log(errors);
+            });
+    }
+</script>

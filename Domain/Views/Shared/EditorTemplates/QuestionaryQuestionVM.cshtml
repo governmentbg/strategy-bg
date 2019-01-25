@@ -1,0 +1,18 @@
+﻿@model QuestionaryQuestionVM
+@{
+    var titleSize = 12 - Model.QuestionaryAnswers.Count() - 6;
+}
+<div class="row">
+    <div class="col-lg-@(titleSize)">
+        <input asp-for="QuestionId" type="hidden" />
+        <input asp-for="Text" type="hidden" />
+        <label class="control-label">@Model.Text</label>
+    </div>
+    @foreach (var answer in Model.QuestionaryAnswers)
+    {
+        <div class="col-lg-1">
+            @Html.RadioButtonFor(x => x.AnswerId, answer.Value)
+        </div>
+    }
+</div>
+

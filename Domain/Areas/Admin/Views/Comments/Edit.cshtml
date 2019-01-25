@@ -1,0 +1,56 @@
+﻿@model Models.ViewModels.Portal.CommentVM
+
+@{
+    ViewData["Title"] = "Коментар";
+
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @if (!string.IsNullOrEmpty(Model.SourceItemTitle))
+                {
+                    <display for="SourceItemTitle"></display>
+                }
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@Model.Title</h3>
+                    </div>
+                    @if (!String.IsNullOrEmpty(Model.PageTag))
+                    {
+                        <div class="panel-body">
+                            <strong>Към</strong> <a href="#" data-element="@Model.PageTag" class="page-tag">@Model.PageTag</a>
+                        </div>
+                    }
+
+                    <div class="panel-body">@Html.Raw(Model.Text)</div>
+                    <div class="panel-footer clearfix">
+                        <div class="pull-right"><span class="name"><strong>@Model.FullName</strong></span> @Model.Publish.ToString("dd.MM.yyyy HH:mm:ss")</div>
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.CommentId)
+                @Html.HiddenFor(m => m.FullName)
+                @Html.HiddenFor(m => m.PageTag)
+                @Html.HiddenFor(m => m.Publish)
+                @Html.HiddenFor(m => m.Text)
+                @Html.HiddenFor(m => m.Title)
+                @Html.HiddenFor(m => m.UserName)
+                @Html.HiddenFor(m => m.SourceId)
+                @Html.HiddenFor(m => m.SourceTypeId)
+
+                @Html.EditorFor(m => m.TookIntoConsideration)
+                @Html.EditorFor(m => m.TookIntoConsiderationReason)
+                @Html.EditorFor(m => m.Remark)
+                @Html.EditorFor(m => m.StateId, "GenericDropDown")
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a href="@Url.Action("index", new { area = "admin", sourceTypeId = Model.SourceTypeId, sourceId = Model.SourceId })" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+

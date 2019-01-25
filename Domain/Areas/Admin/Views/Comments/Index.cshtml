@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Коментари";
+    var sourceItem = ViewBag.sourceItem!= null ? (SourceItemVM)ViewBag.sourceItem : new SourceItemVM() { SourceType = 0, SourceId = 0 };
+}
+
+<section class="content">
+    <table id="mainTable" class="table" cellspacing="0"></table>
+    @if (sourceItem.SourceId > 0)
+    {
+        <div class="toolbar pull-left">
+            <a href="@sourceItem.BackUrl" class="btn btn-danger btn-flat">Назад към @sourceItem.SourceTypeName</a>
+        </div>
+    }
+</section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadData")',
+                 data: function (d) {
+                     d.sourceTypeId = @sourceItem.SourceType;
+                     d.sourceId = @sourceItem.SourceId;
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "dom": '<"toolbar">frtip',
+             "order": [[1, "desc"]],
+             "columns": [
+                 {
+                     data: "itemTitle",
+                     title: 'Коментар към',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "title",
+                     title: 'Заглавие',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "CreateDate",
+                     title: 'Дата',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "state",
+                     title: 'Статус',
+                     sortable: true,
+                     searchable: true,
+                 },
+                 {
+                     data: "tookIntoConsideration",
+                     title: 'Взет предвид',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         if (value === null) {
+                             return '-';
+                         }
+
+                         return value ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("Edit",new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Модерация</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ]
+             //rowCallback: function (row, data) {
+             //    if (data["isActive"] === false) {
+             //        $(row).addClass("disabled");
+             //    }
+             //    if (data["isConfirmed"] === false) {
+             //        $(row).addClass("unconfirmed");
+             //    }
+             //}
+        });
+        //$('#cboxActive, #cboxConfirmed').change(function () {
+        //    dt.ajax.reload();
+        //})
+    });
+    
+    </script>
+
+}
+

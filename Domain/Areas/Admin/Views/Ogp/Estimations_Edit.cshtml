@@ -1,0 +1,63 @@
+﻿@using Models.Context.Ogp
+@model NationalPlanEstimations
+@{
+    if (Model.Id > 0)
+    {
+        ViewData["Title"] = "Редакция на оценка";
+    }
+    else
+    {
+        ViewData["Title"] = "Добавяне на оценка";
+    }
+}
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="ParentID" type="hidden" />
+                @if (Model.ParentID > 0)
+                {
+                    <ddl for="ElementID" data="@ViewBag.planElements"></ddl>
+                    <input asp-for="EstimationTypeId" type="hidden" />
+                }
+                else
+                {
+                    <input asp-for="ElementID" type="hidden" />
+                    <ddl for="EstimationTypeId" data="@ViewBag.types"></ddl>
+                }
+                <textbox for="Title" type="textarea"></textbox>
+                <textbox for="Description" type="textarea"></textbox>
+                <checkbox for="IsActive"></checkbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    @if (Model.ParentID > 0)
+                    {
+                        <a asp-action="Estimations" asp-route-elementId="0" asp-route-parentId="@Model.ParentID" class="btn btn-danger btn-flat">Назад</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Estimations" asp-route-elementId="@Model.ElementID" class="btn btn-danger btn-flat">Назад</a>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+    @if (Model.Id > 0)
+    {
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Прикачени документи</h4>
+                <partial name="UsedDocuments" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.PlanEstimations, SourceID = Model.Id.ToString() })" />
+            </div>
+        </div>
+    }
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            $('#Description').summernote();
+        });
+    </script>
+}

@@ -1,0 +1,134 @@
+﻿@model Models.ViewModels.Questionary.QuestionaryResultsListViewModel
+
+@{
+    ViewData["Title"] = "Резултати от проведена Анкета";
+
+    var titleSize = 12 - Model.PossibleAnswers.Count() - 6;
+    var j = 0;
+    var k = 0;
+
+    @foreach (var question in Model.Questions)
+    {
+        @Html.Raw("<span id='questionId" + k.ToString() + "' style='display: none'>" + question.Id.ToString() + "</span>")
+        k++;
+    }
+}
+
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11">
+        @Model.QuestionaryTitle
+        @if (Model.Questions.Count() > 0)
+        {
+            @Html.ActionLink("PDF eкспорт", "QuestionaryResultsPDF", "Questionary", new { area = "Admin", questionaryHeaderId = Model.QuestionaryHeaderId }, new { @class = "btn btn-primary" })
+        }
+    </div>
+</div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="data">
+                <div class="row">
+                    <div class="col-lg-@(titleSize)">
+                    </div>
+                    @foreach (var possibleAnswer in Model.PossibleAnswers)
+                    {
+                        <div class="col-lg-1">
+                            @Html.Raw(possibleAnswer.Answer)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.Questions.Count() == 0)
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.Raw("По текущата анкета няма получени отговори.")
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="data">
+                    @foreach (var question in Model.Questions)
+                    {
+                        <div class="row">
+                            <div class="col-lg-@(titleSize)">
+                                @Html.Raw("<span id='questionText" + j + "'>" + question.QuestionDescription + "</span>")
+                            </div>
+                            @foreach (var answer in question.answers.Where(x => x.QuestionId == question.Id))
+                            {
+                                <div class="col-lg-1">
+                                    @Html.Raw(answer.AnswersCheckedCount + " / " + answer.AnswersCheckedPercent + "%")
+                                </div>
+                            }
+                        </div>
+                        j++;
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    <div style="width:100%;padding-left:10%;">
+        @for (int i = 0; i < Model.Questions.Count(); i++)
+        {
+            @Html.Raw("<div id='piechart" + i.ToString() + "'></div>")
+        }
+    </div>
+</section>
+
+<script type="text/javascript" src="~/js/google.loader.js"></script>
+<script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Draw the chart and set the chart values
+        function drawChart() {
+            // Create our data table out of JSON data loaded from server.
+            for (var i = 0; i < @Model.Questions.Count(); i++) {
+                var jsonData = $.ajax({
+                    url: '@Url.Action("QuestinaryResultsLoadData")',
+                    data: {
+                        'questionaryHeaderId': @Model.QuestionaryHeaderId,
+                        'questionaryQuestionId': $("#questionId" + i).html()
+                    },
+                    "type": "POST",
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        data3 = getData(data);
+                    }
+                }).responseText;
+
+                // Optional; add a title and set the width and height of the chart
+                var text = $("#questionText" + i.toString()).html();
+                var options = { 'title': text, 'width': 550, 'height': 400 };
+
+                // Display the chart inside the <div> element with id="piechart"
+                var chart_div = document.getElementById('piechart' + i.toString());
+                var chart = new google.visualization.PieChart(chart_div);
+
+                chart.draw(data3, options);
+            }
+        }
+
+        function getData(chart_data) {
+            var jsonData = chart_data;
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'ColumnName');
+            data.addColumn('number', 'Value');
+            $.each(jsonData, function (i, jsonData) {
+                var columnName = jsonData.columnName;
+                var columnValue = parseFloat($.trim(jsonData.value));
+                data.addRows([[columnName, columnValue]]);
+            });
+            return data;
+    }
+</script>

@@ -1,0 +1,42 @@
+﻿@model LoginInputModel
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = "Вход в системата";
+}
+
+<h3 style="margin-bottom:20px;">@ViewData["Title"]</h3>
+
+<form asp-action="@ViewBag.actionName">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <textbox for="Username" label="Потребителско име"></textbox>
+    <textbox for="Password" label="Парола" type="password"></textbox>
+    <div class="row">
+        <div class="col-xs-8">
+            <a asp-action="Register" class="text-center">Регистрация</a><br />
+            <a asp-action="ForgottenPassword" class="text-center">Забравена парола</a>
+        </div>
+        <div class="col-xs-4 submit">
+            <div class="pull--right">
+                <button type="submit" class="btn btn-default">Вход</button>
+            </div>
+        </div>
+    </div>
+</form>
+@if (Model.ExternalLoginEnabled || true)
+{
+    <div class="social-auth-links text-center">
+        <p>- или -</p>
+        <a asp-action="ExternalLogin" asp-route-provider="@GlobalConstants.ExternalProviders.Facebook" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-sm btn-primary">
+            <i class="fa fa-facebook"></i> Вход с Facebook
+        </a>
+        <a asp-action="ExternalLogin" asp-route-provider="@GlobalConstants.ExternalProviders.Twitter" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-sm btn-info">
+            <i class="fa fa-twitter"></i> Вход с Twitter
+        </a>
+        @*<a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                <i class="fa fa-google-plus"></i> Sign in using
+                Google+
+            </a>*@
+    </div>
+    <!-- /.social-auth-links -->
+}
+

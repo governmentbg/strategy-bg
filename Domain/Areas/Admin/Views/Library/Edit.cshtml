@@ -1,0 +1,45 @@
+﻿@using Models.Context
+@model Library
+@{
+    var libName = string.Empty;
+    switch (Model.SourceType)
+    {
+        case GlobalConstants.SourceTypes.Library_Documents:
+            libName = "Документна библиотека";
+            break;
+        case GlobalConstants.SourceTypes.Library_Images:
+            libName = "Галерия";
+            break;
+    }
+
+    if (Model.Id > 0)
+    {
+        ViewData["Title"] = "Редактиране на " + libName;
+    }
+    else
+    {
+        ViewData["Title"] = "Добавяне на " + libName;
+
+    }
+}
+<section class="content">
+    <div class="row">
+        <div class="col-lg-8">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @if (Model.Id > 0)
+                {
+                    <input asp-for="Id" type="hidden" />
+                }
+                <input asp-for="ParentId" type="hidden" />
+                <input asp-for="SourceType" type="hidden" />
+                <textbox for="Title"></textbox>
+                <checkbox for="IsActive"></checkbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" asp-route-source_type="@Model.SourceType" class="btn btn-default btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

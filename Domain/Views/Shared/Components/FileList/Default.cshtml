@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DocumentLinkVM>
+@using WebCommon.Extensions
+@using Domain.Extensions
+@if (Model.Count() > 0)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table--documents table--stripped">
+                <tbody>
+
+                    @foreach (var file in Model)
+                    {
+                        <tr>
+                            <td style="width:55px;">
+                                <div class="icon">
+                                    <img src="@file.FileName.GetFileExtensionImage()" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                @Html.Raw(file.FileTitle)
+                            </td>
+                            <td style="width:250px;" class="text--center align-middle"><a href="@Url.Action("DownloadFile", "FileCDN", new { id = file.FileId })"><i class="fa fa-save"></i> изтегляне</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

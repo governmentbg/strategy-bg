@@ -1,0 +1,87 @@
+﻿@*@model Models.ViewModels.MulticriteriaAnalysis.MulticriteriaAnalysisVM
+
+    @{
+        ViewData["Title"] = "Мултикритериен анализ на Административната тежест";
+    }
+
+    @section breadcrumbs{
+        <div class="breadcrumbs">
+            / <a href="@Url.Action("Index","Home")">Начало</a>
+            / <a href="#">Мултикритериен анализ на Административната тежест</a>
+        </div>
+    }
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-9">
+                <form asp-action="NewMCACalculation">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @Html.EditorFor(m => m.AnalysisDate)
+                    @Html.EditorFor(m => m.Remark)
+                    @Html.HiddenFor(m => m.Criteria)
+                    <div class="form-group">
+                        <input type="submit" value="Продължи" class="btn btn-success btn-flat" />
+                    </div>
+                </form>
+        </div>
+        </div>
+    </section>*@
+@model Models.ViewModels.MulticriteriaAnalysis.MulticriteriaAnalysisVM
+
+@{
+    ViewData["Title"] = "Мултикритериен анализ на Административната тежест";
+}
+
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="#">Мултикритериен анализ на Административната тежест</a>
+    </div>
+}
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-9">
+            <form asp-action="mcaCalculate" id="form1">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(m => m.TotalAssessmentValue)
+                @Html.EditorFor(m => m.AnalysisDate)
+                @Html.EditorFor(m => m.Remark)
+                @Html.EditorFor(m => m.Criteria)
+
+                <span class="calculatorActivityId">
+                    @Html.EditorFor(m => m.TotalAssessmentValue)
+                </span>
+
+                <div class="form-group">
+                    <input type="submit" value="Изчисли" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                    @*@if (Model.TotalAssessmentValue > 0)
+                    {
+                        <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/MulticriteriaAnalysis/ExportCalculationToPDF">
+                    }*@
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnPDF").click(function () {
+                $("#form1").submit(function () {
+                    setTimeout('$("#form2").submit();', 10);
+                    return false;
+                });
+            });
+        });
+
+        $(function () {
+            $('.calculatorActivityId :input').attr("disabled", true);
+        });
+    </script>
+}

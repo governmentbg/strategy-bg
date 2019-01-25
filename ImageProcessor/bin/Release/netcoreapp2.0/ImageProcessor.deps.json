@@ -1,0 +1,60 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": "0e4cba1aa09fc7b7a7196d237c415f2305396a79"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "ImageProcessor/1.0.0": {
+        "dependencies": {
+          "SkiaSharp": "1.60.1"
+        },
+        "runtime": {
+          "ImageProcessor.dll": {}
+        }
+      },
+      "SkiaSharp/1.60.1": {
+        "runtime": {
+          "lib/netstandard1.3/SkiaSharp.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "rid": "osx",
+            "assetType": "native"
+          },
+          "runtimes/tizen-armel/native/libSkiaSharp.so": {
+            "rid": "tizen-armel",
+            "assetType": "native"
+          },
+          "runtimes/tizen-x86/native/libSkiaSharp.so": {
+            "rid": "tizen-x86",
+            "assetType": "native"
+          },
+          "runtimes/win7-x64/native/libSkiaSharp.dll": {
+            "rid": "win7-x64",
+            "assetType": "native"
+          },
+          "runtimes/win7-x86/native/libSkiaSharp.dll": {
+            "rid": "win7-x86",
+            "assetType": "native"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ImageProcessor/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SkiaSharp/1.60.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-da8H19f23Kr7dZkL3fgFJ154d9xS6JKhNsn+Wmtt2LoAscwLYLH8EMSb65Z9LB0Wx40jV0WUaKMHD02QvX5NYg==",
+      "path": "skiasharp/1.60.1",
+      "hashPath": "skiasharp.1.60.1.nupkg.sha512"
+    }
+  }
+}

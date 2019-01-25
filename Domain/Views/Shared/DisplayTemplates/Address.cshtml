@@ -1,0 +1,34 @@
+﻿@model Address
+@{
+    var title = ViewData["title"];
+}
+<div class="form-group">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <label class="control-label">@title</label>
+        </div>
+        <div class="col-lg-8 col-md-6 col-sm-12">
+            <b>@Html.DisplayFor(x => x.FullAddress)</b>
+            <div class="row">
+                @if (!string.IsNullOrEmpty(Model?.PostCode))
+                {
+                    <div class="col-lg-4">
+                        Пощенски код: @Html.DisplayFor(x => x.PostCode)
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model?.PhoneFax))
+                {
+                    <div class="col-lg-4">
+                        Тел/факс: @Html.DisplayFor(x => x.PhoneFax)
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model?.Email))
+                {
+                    <div class="col-lg-4">
+                        Имейл: @Html.DisplayFor(x => x.Email)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

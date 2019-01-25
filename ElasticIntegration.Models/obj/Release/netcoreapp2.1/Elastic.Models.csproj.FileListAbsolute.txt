@@ -1,0 +1,11 @@
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\bin\Release\netcoreapp2.1\Elastic.Models.deps.json
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\bin\Release\netcoreapp2.1\Elastic.Models.runtimeconfig.json
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\bin\Release\netcoreapp2.1\Elastic.Models.runtimeconfig.dev.json
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\bin\Release\netcoreapp2.1\Elastic.Models.dll
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\bin\Release\netcoreapp2.1\Elastic.Models.pdb
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\obj\Release\netcoreapp2.1\Elastic.Models.csprojAssemblyReference.cache
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\obj\Release\netcoreapp2.1\Elastic.Models.csproj.CoreCompileInputs.cache
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\obj\Release\netcoreapp2.1\Elastic.Models.AssemblyInfoInputs.cache
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\obj\Release\netcoreapp2.1\Elastic.Models.AssemblyInfo.cs
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\obj\Release\netcoreapp2.1\Elastic.Models.dll
+C:\Projects\Strategy\newSingleSite\ElasticIntegration.Models\obj\Release\netcoreapp2.1\Elastic.Models.pdb

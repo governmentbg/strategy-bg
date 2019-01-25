@@ -1,0 +1,35 @@
+﻿@model mcaCriteriaVM
+<div class="row">
+    <div class="col-lg-6" align="center">
+        <b>@Html.ValueFor(x => x.CriteriaName)</b><br>(@Html.ValueFor(x => x.CriteriaDescription))<br><br>
+    </div>
+    <div class="col-lg-6" align="center">
+        @if (Model.CriteriaValues != null)
+        {
+            @Html.DropDownListFor(x => x.CriteriaSelectedID, Model.CriteriaValues, "Изберете стойност")
+        }
+        else
+        {
+            <b>@Html.ValueFor(x => x.CriteriaSelectedText)</b>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-3">
+                @Html.HiddenFor(x => x.CriteriaId)
+            </div>
+            <div class="col-lg-3">
+                @Html.HiddenFor(x => x.CriteriaImpact)
+            </div>
+            <div class="col-lg-3">
+                @Html.HiddenFor(x => x.CriteriaSelectedValue)
+            </div>
+            <div class="col-lg-3">
+                @Html.HiddenFor(x => x.CriteriaTotalValue)
+            </div>
+        </div>
+    </div>
+</div>

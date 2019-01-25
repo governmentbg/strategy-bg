@@ -1,0 +1,12 @@
+﻿@model DateTime?
+
+<div class="form-group">
+    <label asp-for="@Model" class="control-label "></label>
+    <div class="input-group date">
+        <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+        </div>
+        <input asp-for="@Model" class="form-control date-picker" type="text" autocomplete="off" value="@(Model.HasValue && Model.Value > DateTime.MinValue ? Model.Value.ToString("dd.MM.yyyy") : String.Empty)" />
+    </div>
+    <span asp-validation-for="@Model" class="text-danger"></span>
+</div>

@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Портал за обществени консултации";
+}
+<section class="content">
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="box">
+                @*<div class="box-header with-border">
+                        <h2>Регистър на командированите лица и механизъм за оценяване на рисковия потенциал на командироващите предприятия от други държави в България</h2>
+                    </div>*@
+                <!-- /.box-body -->
+            </div>
+        </div>
+        <div class="col-lg-4" id="dashboard">
+
+
+            <!-- Info Boxes Style 2 -->
+            @*<div class="info-box bg-yellow">
+                    <span class="info-box-icon"><i class="ion ion-android-attach"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Нови заявления</span>
+                        <span class="info-box-number">125</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-description">
+                            чакащи за обработка нови заявления
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+                <div class="info-box bg-green">
+                    <span class="info-box-icon"><i class="ion ion-android-people"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Нови регистрации</span>
+                        <span class="info-box-number">3</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-description">
+                            чакащи за активиране и раздаване на роли
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>*@
+
+        </div>
+
+    </div>
+    @Html.Partial("FooterLogos")
+
+</section>
+@section scripts{
+    <script>
+    $(function(){
+
+    requestContent('@Url.Action("Dashboard", "Ajax")',null,function(data){
+        $('#dashboard').html(TemplateToHtml('#dashboardTemplate', data));
+    });
+    });
+    </script>
+    <script id="dashboardTemplate" type="text/x-handlebars-template">
+        {{#each this}}
+
+        <div class="info-box bg-{{style}}">
+            <a href="{{url}}">
+                <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{{title}}</span>
+                    <span class="info-box-number">{{count}} бр.</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-description">
+                        {{description}}
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </a>
+        </div>
+
+        {{/each}}
+    </script>
+    <style>
+        .info-box a {
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+}

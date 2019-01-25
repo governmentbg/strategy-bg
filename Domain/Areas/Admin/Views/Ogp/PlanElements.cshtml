@@ -1,0 +1,72 @@
+﻿@using Models.Context.Ogp
+@{
+    ViewData["Title"] = "Елементи";
+    NationalPlanElements parent = (NationalPlanElements)ViewBag.parent;
+    if (parent != null)
+    {
+        ViewData["Title"] += " към " + parent.Title;
+    }
+
+}
+@section breadcrumbs{
+    @if (parent != null)
+    {
+        <ul class="breadcrumb ">
+            <li><a href="@Url.Action("PlanElements")"><i class="fa fa-home"></i> Начало</a></li>
+            <li><a href="@Url.Action("PlanElements_Edit",new { id=parent.Id})"><i class="fa fa-arrow-left"></i> @parent.Title</a></li>
+        </ul>
+    }
+}
+<section class="content">
+    <div class="pull-left">
+        <a asp-action="PlanElements_Add" asp-route-parentId="@ViewBag.parentId" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Добави</a>
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+        var dt = $('#mainTable').DataTable({
+            "ajax": {
+                "url": '@Url.Action("PlanElements_LoadData")',
+                data: function (d) {
+                    d.parentId = '@ViewBag.parentId';
+                },
+                "type": "POST"
+            },
+            fnDrawCallback: function (settings) {
+                $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+            },
+            "columns": [
+                {
+                    data: "title",
+                    title: 'Наименование'
+                },
+                {
+                    data: "elementTypeName",
+                    title: 'Тип'
+                },
+                {
+                    data: "stateName",
+                    //orderData: "stateId",
+                    title: 'Статус'
+                },
+                {
+                    data: null,
+                    "render": function (item) {
+                        var subItemUrl = '@Url.Action("PlanElements", new { parentId = "666"})'.replace('666', item.id);
+                        var subItemButton = '<a href="' + subItemUrl + '" class="btn btn-info"><i class="fa fa-search"></i> Под-елементи</a>';
+                        var updateUrl = '@Url.Action("PlanElements_Edit", new { id = "666"})'.replace('666', item.id);
+                        var updButton = '&nbsp;&nbsp;<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                        return subItemButton + updButton;
+                    },
+                    sortable: false
+                }
+            ]
+        });
+
+    });
+
+    </script>
+
+}

@@ -1,0 +1,63 @@
+﻿@model UserInCategoryVM
+@{
+    Layout = null;
+}
+
+<form asp-action="@ViewBag.actionName">
+    <ddl for="CategoryMasterId" data="@ViewBag.catMasters"></ddl>
+    <div id="natCat">
+        <ddl for="CategoryId" data="@ViewBag.catNational"></ddl>
+    </div>
+    <div id="districtCat">
+        <ddl for="DistrictId" data="@ViewBag.catDistrict"></ddl>
+        <ddl for="MunicipalityId" data="@GlobalConstants.EmptyComboList"></ddl>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-8">
+        </div>
+        <div class="col-xs-4 submit">
+            <div class="pull--right">
+                <button type="submit" class="btn btn-success">Добави</button>
+                &nbsp;
+                <button type="button" class="btn btn-default modal-hide">Отказ</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        $('#CategoryMasterId').change(function () {
+            if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+                $('#natCat').show();
+                $('#districtCat').hide();
+            } else {
+                $('#natCat').hide();
+                $('#districtCat').show();
+            }
+        }).trigger('change');
+        $('#DistrictId').change(function () {
+            if ($(this).val() === '-1') {
+                $('#MunicipalityId').html('');
+                return false;
+            }
+            requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val() });
+        }).trigger('change');
+    });
+</script>
+<style>
+    .plainModal-content {
+        left: 30% !important;
+        top: 20% !important;
+        width: 40% !important;
+    }
+
+    @@media screen and (max-width: 800px) {
+        .plainModal-content {
+            left: 10% !important;
+            top: 10% !important;
+            width: 80% !important;
+        }
+    }
+</style>

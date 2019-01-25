@@ -1,0 +1,36 @@
+﻿@model Models.ViewModels.Questionary.FillQuestionaryViewModel
+@using Microsoft.Extensions.Options
+@using reCAPTCHA.AspNetCore
+@inject IOptions<RecaptchaSettings> RecaptchaSettings
+@{
+    ViewData["Title"] = "Анкета";
+    ViewData["SectionTitle"] = ViewData["Title"];
+    var titleSize = 12 - Model.QuestionaryPossibleAnswers.Count();
+    SourceItemVM sourceItem = (SourceItemVM)ViewBag.sourceItem;
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        @if (sourceItem != null)
+        {
+            <span>/</span> <a href="@sourceItem.BackUrl">@sourceItem.SourceTypeName</a>
+        }
+        / <a href="#">Анкета</a>
+    </div>
+}
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-2">
+            <h2> @Model.QuestionaryTitle</h2>
+            <form asp-action="FillQuestionary">
+
+                <partial name="_FillQuestionary" model="@Model" />
+                @Html.Recaptcha(RecaptchaSettings.Value)
+
+                <input type="submit" value="Предай" class="btn btn-success btn-flat" />
+            </form>
+        </div>
+    </div>
+</section>

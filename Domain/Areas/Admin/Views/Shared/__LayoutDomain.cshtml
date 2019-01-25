@@ -1,0 +1,219 @@
+﻿@inject WebCommon.Services.IUserContext userContext
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/prod/css/head.min.css" />
+    <link rel="stylesheet" href="~/prod/css/head.plugins.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script src="~/prod/js/head.min.js"></script>
+    <script>
+        var currentCulture = 'bg-BG';
+    </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        <header class="main-header">
+
+            <!-- Logo -->
+            <a href="@Url.Action("Index","Home")" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>ОК</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">ОК</span>
+            </a>
+
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <partial name="_LoginPartial" />
+                    @*@Html.Partial("_LoginPartial")*@
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <!--  <li class="header">MAIN NAVIGATION</li> -->
+                    <li><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> <span>Начало</span></a></li>
+
+
+
+                    @if (userContext.IsInRole("content-admin") || true)
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cubes"></i> <span>Съдържание</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a asp-controller="News" asp-action="Index"><i class="fa fa-info"></i> Новини</a></li>
+                                <li><a asp-controller="Publication" asp-action="Index"><i class="fa fa-newspaper-o"></i> Публикации</a></li>
+                                <li><a asp-controller="StrategicDocument" asp-action="Index"><i class="fa fa-info"></i> Стратегически документи</a></li>
+                                <li class="devider"><a href="#"></a></li>
+                                <li><a asp-controller="GenericContent" asp-action="Index"><i class="fa fa-list-ol"></i> Статично съдържание</a></li>
+                                <li><a asp-controller="Page" asp-action="Index" asp-route-pageType="@GlobalConstants.PageTypes.Pages"><i class="fa fa-file"></i> Оценка на въздействието</a></li>
+                                <li><a asp-controller="MulticriteriaAnalysis" asp-action="Criteria"><i class="fa fa-list-ul"></i> Мултикритериен анализ</a></li>
+                                <li class="devider"><a href="#"></a></li>
+                                <li class="devider"><a href="#"></a></li>
+                                <li><a asp-controller="Library" asp-action="Index" asp-route-source_type="@GlobalConstants.SourceTypes.Library_Documents"><i class="glyphicon glyphicon-paperclip"></i> Документи</a></li>
+                                <li><a asp-controller="Library" asp-action="Index" asp-route-source_type="@GlobalConstants.SourceTypes.Library_Images"><i class="fa fa-image"></i> Изображения</a></li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (userContext.IsInRole(GlobalConstants.Roles.Admin))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bullhorn"></i> <span>Обществени консултации</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a href="@Url.Action("Index", "Consultation")"><i class="fa fa-bullhorn"></i> <span>Консултации</span></a></li>
+                                <li><a href="@Url.Action("Index", "Comments")"><i class="fa fa-comments-o"></i> <span>Коментари</span></a></li>
+                                <li><a href="@Url.Action("Index", "Questionary")"><i class="fa fa-check-square-o"></i> <span>Анкети</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-hand-o-up"></i> <span>Партньорство за ОУ</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a asp-controller="Ogp" asp-action="PlanElements"><i class="fa fa-calendar-check-o"></i> Планове и оценки</a></li>
+                                <li><a asp-controller="Article" asp-action="Index"><i class="fa fa-info"></i> Новини и събития</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-link"></i> <span>Връзки</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a asp-controller="Links" asp-action="ListLinksCategories"><i class="fa fa-external-link"></i> Категории връзки</a></li>
+                                <li><a asp-controller="Links" asp-action="ListLinks"><i class="fa fa-list-ul"></i> Списък връзки</a></li>
+                                <li><a asp-controller="Links" asp-action="OrderLinks"><i class="fa fa-sort"></i> Подредба връзки</a></li>
+                                <li><a asp-controller="Links" asp-action="OrderLinksCategories"><i class="fa fa-sort-alpha-asc"></i> Подредба категории връзки</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-rebel"></i> <span>Лица и възнаграждения</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a asp-controller="PCSubjects" asp-action="ListPCSubjects"><i class="fa fa-list-ul"></i> Списък с ФЛ/ЮЛ</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-gamepad"></i> <span>Законодателни инициативи</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a asp-controller="ChangeProposals" asp-action="ListChangeProposals"><i class="fa fa-list-ul"></i> Списък със законодателни инициативи</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-address-book"></i> <span>За нас</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a asp-controller="AboutUs" asp-action="ListAboutUs"><i class="fa fa-list-ul"></i> Списък контакти</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cogs"></i> <span>Номенклатури</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a asp-controller="DocumentType" asp-action="Index"><i class="fa fa-file-o"></i> Типове документи</a></li>
+                                <li><a asp-controller="Categories" asp-action="ListCategories"><i class="fa fa-external-link"></i> Списък с категории</a></li>
+                                <li><a asp-controller="TargetGroups" asp-action="ListTargetGroups"><i class="fa fa-arrow-up"></i> Списък с целеви групи</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (userContext.IsInRole(GlobalConstants.Roles.Admin) || userContext.IsInRole(GlobalConstants.Roles.AdminGroup))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cog"></i> <span>Управление потребители</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                @if (userContext.IsInRole(GlobalConstants.Roles.Admin))
+                                {
+                                    <li><a asp-controller="Users" asp-action="Index"><i class="fa fa-user-o"></i> Потребители</a></li>
+                                }
+                                <li><a asp-controller="GroupUsers" asp-action="Index"><i class="fa fa-group"></i> Групи</a></li>
+                                <li><a asp-controller="Notifications" asp-action="SendByFilter"><i class="fa fa-bell-o"></i> Известяване</a></li>
+                            </ul>
+                        </li>
+                    }
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <div class="content-wrapper" style="min-height: 990.28px;">
+            @RenderSection("breadcrumbs", false)
+            <section class="content-header">
+
+                <partial name="_UserMessages" />
+                @*@Html.Partial("_UserMessages")*@
+                <h2>@ViewData["Title"]</h2>
+            </section>
+            @RenderBody()
+
+        </div>
+    </div>
+    @Html.Partial("ModalDialog")
+    <script type="text/javascript">
+        var rootPath = '@Url.Action("Index","Home",new { area= ""})';
+    </script>
+    <script src="~/prod/js/footer.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

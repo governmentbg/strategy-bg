@@ -1,0 +1,280 @@
+2018-11-22 08:45:56,111 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 08:45:56,131 [7] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 08:45:56,485 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 08:45:56,550 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 08:45:56,587 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 08:46:01,381 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 08:46:01,473 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:01,668 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:01,690 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:02,004 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:02,068 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:02,102 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:09,086 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:09,939 [12] WARN  App  
+ Connection processing ended abnormally. 
+ 
+Microsoft.AspNetCore.Connections.ConnectionAbortedException: The connection was aborted
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2018-11-22 15:44:14,337 [10] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:14,342 [10] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:14,432 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:14,436 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:46,851 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:44:46,928 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:45:01,499 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:45:01,523 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:45:44,448 [21] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:45:44,465 [21] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 15:45:45,927 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 16:51:56,029 [10] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 16:51:56,055 [10] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 16:51:56,404 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 16:51:56,470 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 16:51:56,506 [7] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 17:07:54,035 [36] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 17:07:54,124 [36] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 17:09:24,873 [31] WARN  App  
+ Connection processing ended abnormally. 
+ 
+Microsoft.AspNetCore.Connections.ConnectionAbortedException: The connection was aborted
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2018-11-22 17:33:10,061 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 17:33:10,080 [7] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 17:33:10,401 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 17:33:10,467 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 17:33:10,498 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 17:33:10,984 [8] WARN  App  
+ Connection processing ended abnormally. 
+ 
+Microsoft.AspNetCore.Connections.ConnectionAbortedException: The connection was aborted
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2018-11-22 17:33:10,991 [7] WARN  App  
+ Connection processing ended abnormally. 
+ 
+Microsoft.AspNetCore.Connections.ConnectionAbortedException: The connection was aborted
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2018-11-22 21:58:10,062 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 21:58:10,086 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 21:58:10,494 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 21:58:10,564 [10] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 21:58:10,634 [10] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:15:53,221 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:15:53,246 [7] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:15:53,556 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:15:53,622 [15] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:15:53,656 [15] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:17:29,745 [9] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:22:29,714 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:22:29,740 [7] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:22:30,141 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:22:30,209 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:22:30,241 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:22:38,592 [8] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:37:37,609 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:37:37,628 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:37:38,027 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:37:38,100 [7] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:37:38,176 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:38:48,907 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:38:48,932 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:38:49,303 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:38:49,374 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:38:49,407 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:40:34,169 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:40:34,190 [8] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:40:34,501 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:40:34,569 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:40:34,602 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:42:54,854 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:42:54,882 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:42:55,180 [7] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:42:55,244 [8] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:42:55,276 [8] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:47:12,365 [7] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:47:51,321 [9] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:47:51,343 [9] WARN  App  
+ The Include operation for navigation '[g].TargetGroup' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:47:51,638 [8] WARN  App  
+ The Include operation for navigation '[g].Category' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:47:51,703 [9] WARN  App  
+ The Include operation for navigation '[x].PublicationCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:47:51,741 [9] WARN  App  
+ The Include operation for navigation '[x].NewsCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-11-22 22:48:02,955 [8] WARN  App  
+ The Include operation for navigation '[x].UsersType' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 

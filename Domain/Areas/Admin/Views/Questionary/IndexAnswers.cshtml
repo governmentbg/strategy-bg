@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Отговори към анкета";
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-11">
+            @ViewBag.QuestionaryTitle
+        </div>
+    </div>
+    var questionaryHeaderId = (int)ViewBag.QuestionaryHeaderId;
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index", "Questionary")">Анкети-списък</a>
+    </div>
+}
+
+<section class="content">
+    <div class="pull-left">
+        <a asp-action="AddAnswer" class="btn btn-success btn-flat" asp-route-questionaryHeaderId="@questionaryHeaderId">Добави нов отговор</a>
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadDataAnswers")',
+                 data: function (d) {
+                     d.questionaryHeaderId = @questionaryHeaderId
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "answer",
+                     title: 'Отговор',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("EditAnswer", new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+             "order": [[0, "asc"]],
+        });
+    });
+
+    </script>
+}
+
+<section class="content">
+    <div class="pull-left">
+        <div class="form-group">
+            <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+        </div>
+    </div>
+</section>
+

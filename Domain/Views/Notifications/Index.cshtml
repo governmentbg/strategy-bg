@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Системни съобщения";
+    ViewData["SectionTitle"] = ViewData["Title"];
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="#">Системни съобщения</a>
+    </div>
+}
+
+<div class="row">
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</div>
+
+
+
+@section scripts{
+
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadData")',
+                 data: function (d) {},
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             filter: false,
+             "columns": [
+                 {
+                     data: "title",
+                     title: 'Относно'
+                 },
+                 //{
+                 //    data: "body",
+                 //    title: 'Съобщение'
+                 //},
+
+                 {
+                     data: "messageDate",
+                     title: 'Дата на публикуване',
+                     orderDataType: 'date',
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 }
+                 ,
+                 {
+                     data: "systemStatusName",
+                     title: 'Статус'
+                 }
+                 ,
+
+
+                   {
+                       data: "userNotificationId",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("View", new { id = "666"})'.replace('666', value);
+                         var viewButton = '<a href="' + updateUrl + '" class="btn btn-info">Преглед</a>';
+                         return viewButton;
+                       },
+
+                     sortable: false,
+                     searchable: false
+                 }
+
+             ],
+             "createdRow": function (row, data, dataIndex) {
+                 if (data.systemStatusId == '@GlobalConstants.SystemMessageStatus.НовоСъобщение') {
+                     $(row).addClass('unread');
+                 }
+             }
+
+        });
+        dt.order([1, 'desc']).draw();
+        $('.dt-reload').click(function () {
+            dt.ajax.reload();
+        });
+    });
+
+    </script>
+    <style>
+        tr.unread td {
+            font-weight: bolder;
+        }
+    </style>
+}

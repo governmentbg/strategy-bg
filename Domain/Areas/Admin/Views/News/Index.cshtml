@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Новини";
+}
+<section class="content">
+
+    <a asp-action="Add" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Добави новина</a>
+
+    <div class="search-form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <span>Дата от</span>
+                    @Html.TextBox("dateFrom", null, new { @class = "form-control date-picker" })
+                </div>
+                <div>
+                    <span>Дата до</span>
+                    @Html.TextBox("dateTo", null, new { @class = "form-control date-picker" })
+                </div>
+                <div>
+                    <span>Заглавие</span>
+                    @Html.TextBox("term", null, new { @class = "form-control" })
+                </div>
+                <div>
+                    <span>&nbsp;</span>
+                    <button type="button" class="btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gridview" class="news-list"></div>
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            $('button.dt-reload').click(function () {
+                LoadData();
+                return false;
+            }).trigger('click');
+        });
+        function LoadData() {
+             $('#gridview').gridView({
+                url: '@(Url.Action("LoadDataGrid"))',
+                 data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val(), term: $('#term').val()},
+                filter: false,
+                template: '#listTemplate',
+                empty_text: 'Няма намерени елементи.'
+            });
+        }
+    </script>
+    <script type="text/x-handlebars-template" id="listTemplate">
+        <div class="col-md-4 col-sm-6">
+            <article class="article--news image--left">
+                <a href="@Url.Action("Edit")?id={{id}}" title="Редакция">
+                    {{#if mainImageFileId}}
+
+                    <div class="image">
+                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs, max=75}))&sourceId={{mainImageFileId}}">
+                    </div>
+                    {{/if}}
+                    <h4 class="title">
+                        {{{title}}}
+                    </h4>
+                    <p class="type">
+                        {{{categoryName}}}
+                    </p>
+                    <p class="date">{{eventDateTXT}}</p>
+                    <p class="date">{{eventDateTXT}}</p>
+                </a>
+            </article>
+        </div>
+    </script>
+}

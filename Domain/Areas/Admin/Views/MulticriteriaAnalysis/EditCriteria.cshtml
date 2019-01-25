@@ -1,0 +1,30 @@
+﻿@model Models.Context.MulticriteriaAnalysis.Criteria
+@{
+    if (Model.Id > 0)
+    {
+        ViewData["Title"] = "Редакция на критерий '" + ViewBag.CriteriaName + "'";
+    }
+    else
+    {
+        ViewData["Title"] = "Добавяне критерии";
+    }
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <form asp-action="@ViewBag.actionName" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <textbox for="Name"></textbox>
+                <textbox for="Description"></textbox>
+                <textbox for="Impact" type="number"></textbox>
+                <checkbox for="IsActive"></checkbox>
+                <input asp-for="UserWrt" type="hidden" />
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Criteria" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

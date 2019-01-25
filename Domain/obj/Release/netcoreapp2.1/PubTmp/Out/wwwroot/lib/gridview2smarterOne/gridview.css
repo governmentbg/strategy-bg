@@ -1,0 +1,86 @@
+﻿.gridview-container {
+    display: block;
+    width: 100%;
+    min-height: 200px;
+    margin-top: 20px;
+}
+
+.gridview-footer {
+    display: block;
+    position: static;
+    width: 100%;
+    bottom: 0;
+    margin-top: 20px;
+}
+
+    .gridview-footer a {
+        display: inline-block;
+        padding:0 6px;
+        min-width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        margin-right: 3px;
+        margin-bottom: 3px;
+        border: 1px solid #bbb;
+        border-radius: 6px;
+        background: none;
+    }
+
+        .gridview-footer a.selected, .gridview-footer a:hover {
+            background: #fff;
+            border: 2px solid #74b2e0;
+            /*border-color: #74b2e0;*/
+        }
+
+
+.gridView-size-selector {
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+
+    .gridView-size-selector a {
+        display: inline-block;
+        color: #aaa;
+        margin-left: 10px;
+    }
+
+        .gridView-size-selector a.selected {
+            color: #57ca63;
+            font-weight: bold;
+           
+        }
+/*=======================================================*/
+/*      Основни темлейти за файлове и изображения        */
+/*=======================================================*/
+.gridview-item {
+    display: block;
+
+    /*width: 250px;*/
+    min-height: 120px;
+    /*margin-right: 5px;*/
+    margin-bottom: 5px;
+}
+
+    .gridview-item.file .file {
+        font-weight: bold;
+    }
+
+        .gridview-item.file .file a, .gridview-item.img .file a.danger {
+            color: #dd4b39;
+        }
+
+    .gridview-item .date {
+        color: #aaa;
+        font-style: italic;
+    }
+
+    .gridview-item.img {
+        width: 180px;
+        height: 200px;
+    }
+
+        .gridview-item.img img.preview {
+            cursor: zoom-in;
+        }

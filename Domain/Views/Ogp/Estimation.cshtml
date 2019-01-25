@@ -1,0 +1,34 @@
+﻿@using Models.ViewModels.Ogp
+@model EstimationVM
+@{
+    ViewData["SectionTitle"] = Model.Title;
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Element",new { id = Model.ElementId})">
+            @Html.Raw(Model.ElementName)
+        </a>
+    </div>
+}
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
+        </div>
+        <div class="col-md-9 body">
+            <h2>
+                @Html.Raw(Model.Title)
+            </h2>
+            <h4>
+                @Html.Raw(Model.EstimationTypeName)
+            </h4>
+            <p class="title">
+                @Html.Raw(Model.Description)
+            </p>
+            @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.PlanEstimations, sourceId = Model.Id })
+
+        </div>
+    </div>
+</div>

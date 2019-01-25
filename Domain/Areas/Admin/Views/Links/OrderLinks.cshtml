@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Подреди връзки";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("ListLinks", "Links")">Списък с връзки</a>
+    </div>
+}
+<div>
+    &nbsp;&nbsp;
+    <span>Категория връзки</span>
+    @Html.DropDownList("LinksCategoryID", (IEnumerable<SelectListItem>)ViewBag.LinksCategoryID_ddl, new { @class = "form-control" })
+</div>
+
+<section class="content">
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            var dt = $('#mainTable').DataTable({
+                "bSort": false,
+                "ajax": {
+                    "url": '@Url.Action("LoadDataLinks")',
+                    data: function (d) {
+                        d.linksCategoryId = $("#LinksCategoryID").val();
+                        d.active = 1;
+                    },
+                    "type": "POST"
+                },
+                fnDrawCallback: function (settings) {
+                    $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                },
+                "columns": [
+                    {
+                        data: "title",
+                        title: 'Име',
+                        sortable: true,
+                        searchable: true
+                    },
+                    {
+                        data: "id",
+                        "render": function (value) {
+                            var updateUrl = '@Url.Action("OrderLinksUp", new { id = "666"})'.replace('666', value);
+                            var updButton = '<a href="' + updateUrl + '" class="glyphicon glyphicon-arrow-up"></a>';
+                            return updButton;
+                        },
+                        sortable: false,
+                        searchable: false
+                    },
+                    {
+                        data: "id",
+                        "render": function (value) {
+                            var updateUrl = '@Url.Action("OrderLinksDown", new { id = "666"})'.replace('666', value);
+                            var updButton = '<a href="' + updateUrl + '" class="glyphicon glyphicon-arrow-down"></a>';
+                            return updButton;
+                        },
+                        sortable: false,
+                        searchable: false
+                    }
+                ],
+            });
+
+            $('#LinksCategoryID').change(function () {
+                dt.ajax.reload();
+            });
+
+        });
+    </script>
+}
+

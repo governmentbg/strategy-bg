@@ -1,0 +1,177 @@
+﻿@{
+    ViewData["Title"] = "Категории";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("ListCategories", "Categories")">Списък с категории</a>
+    </div>
+}
+
+<section class="content">
+    <div class="pull-left">
+        <a asp-action="AddCategory" class="btn btn-success btn-flat">Добави категория</a>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-1">
+                    <label>Главна категория</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DropDownList("ParentId", (IEnumerable<SelectListItem>)ViewBag.ParentCategoryID_ddl, new { @class = "form-control" })
+                </div>
+
+                @if (ViewBag.SectionCategoryID_ddl.Count > 0)
+                {
+                    <div id="hide" style="display:none">0</div>
+                }
+                else
+                {
+                    <div id="hide" style="display:none">1</div>
+                }
+                
+                <div id="hideThis">
+                <div class="col-lg-1" id="div_SectionId">
+                    <label>Област</label>
+                </div>
+                <div class="col-lg-4">
+                    @Html.DropDownList("SectionId", (IEnumerable<SelectListItem>)ViewBag.SectionCategoryID_ddl, new { @class = "form-control" })
+                </div>
+                </div>
+
+                <div class="col-lg-1">
+                    <label>Активност</label>
+                </div>
+                <div class="col-lg-1">
+                    <select id="ddlActive">
+                        <option value="-1">Всички</option>
+                        <option value="1" selected="selected">Активни</option>
+                        <option value="0">Неактивни</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            if ($("#hide").html() == "1") {
+                $("#hideThis").hide();
+            }
+            else {
+                $("#hideThis").show();
+            }
+         var dt  = $('#mainTable').DataTable({
+             "bSort": false,
+             "ajax": {
+                 "url": '@Url.Action("LoadDataCategories")',
+                 data: function (d) {
+                     d.active = $("#ddlActive").val();
+                     d.parentId = $("#ParentId").val();
+                     d.sectionId = $("#SectionId").val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "name",
+                     title: 'Име',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "dateCreated",
+                     title: 'Дата на създаване',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "isActive",
+                     title: 'Активност',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("EditCategory",new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+             "order": [[0, "asc"]],
+        });
+
+        $('#ddlActive').change(function () {
+                dt.ajax.reload();
+        });
+
+        $('#ParentId').change(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "GetSections",
+                        data:
+                            {
+                            "parentId": $("#ParentId").val(),
+                            },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function OnSuccess(data) {
+                            //console.log(data);
+                            var $dropdown = $("#SectionId");
+                            $dropdown.html('');
+
+                            var showDdl = false;
+                            $.each(data, function () {
+                                $dropdown.append($("<option />").val(this.value).text(this.text).selected(this.selected));
+                                showDdl = true;
+                            });
+
+                            if (showDdl) {
+                                $("#hideThis").show();
+                            }
+                            else {
+                                $("#hideThis").hide();
+                            }
+                            dt.ajax.reload();
+
+                            return true;
+                        },
+                        error: function (data, status, jqXHR) {
+                            //console.log(data);
+                            //alert("error 2");
+                            return false;
+                        },
+                        failure: function (data) {
+                            //alert("error 3");
+                            return false;
+                        }
+            });
+        });
+
+        $('#SectionId').change(function () {
+            dt.ajax.reload();
+        });
+
+     });
+    </script>
+}
+

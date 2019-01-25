@@ -1,0 +1,175 @@
+﻿@model Models.ViewModels.Consultations.ConsultationViewModel
+@using Domain.Extensions
+@using Models
+
+@{
+    ViewData["SectionTitle"] = "Обществени консултации";
+    var documents = (IEnumerable<TimelineDocumentViewModel>)ViewBag.documents;
+    var mainDocuments = (IEnumerable<IGrouping<string, TimelineDocumentViewModel>>)ViewBag.mainDocuments; ;
+
+    string GetDocumentTypeIcon(int typeId)
+    {
+        string icon = String.Empty;
+
+        switch (typeId)
+        {
+            case GlobalConstants.DocumentTypes.Consultation:
+                icon = "fa-bullhorn";
+                break;
+            case GlobalConstants.DocumentTypes.Evaluation:
+                icon = "fa-star-half-o";
+                break;
+            case GlobalConstants.DocumentTypes.Etalon:
+                icon = "fa-star-o";
+                break;
+            default:
+                icon = "fa-code-fork";
+                break;
+        }
+
+        return icon;
+    };
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index")">Обществени консултации</a>
+    </div>
+}
+
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3">
+            @if ((bool)ViewBag.hasQuestionary)
+            {
+                <div class="aside row">
+                    <div class="title">
+                        <a asp-action="FillQuestionaryBySourceType" asp-controller="Questionary" asp-area="" asp-route-sourceTypeID="@GlobalConstants.SourceTypes.PublicConsultation" asp-route-sourceId="@Model.Id">Анкета</a>
+                    </div>
+                </div>
+            }
+            @(await Html.PartialAsync("_consultationLeftMenu", Model))
+        </div>
+        <div class="col-md-5 col-lg-6 body">
+            <h2>
+                @Html.Raw(Model.Title)
+            </h2>
+            <p class="title">
+                @Html.Raw(Model.Summary)
+            </p>
+            <!-- TABLE DATES -->
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table table-bordered table--dates table--stripped">
+                        <tbody>
+                            <!-- LOOP -->
+                            <tr>
+                                <td>Дата на откриване:</td>
+                                <td>@Model.OpenningDate.ToString(GlobalConstants.DateFormat)</td>
+                            </tr>
+                            <!-- END LOOP -->
+                            <tr>
+                                <td>Дата на приключване:</td>
+                                <td>@Model.ClosingDate.ToString(GlobalConstants.DateFormat)</td>
+                            </tr>
+                            <tr>
+                                <td>Сфера на действие:</td>
+                                <td>@Html.Raw(Model.CategoryName)</td>
+                            </tr>
+                            @if (!String.IsNullOrEmpty(Model.ShortTermReason))
+                            {
+                                <tr>
+                                    <td colspan="2">@Model.ShortTermReason</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TABLE DATES -->
+            <!-- TABLE DOCUMENTS -->
+            @if (documents.Any())
+            {
+                @foreach (var item in mainDocuments)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="strat-container">
+                                <div class="strat--title">@item.Key</div>
+                                <div class="strat--body">
+                                    @foreach (var doc in item)
+                                    {
+                                        <table class="table table-bordered table--documents table--stripped">
+                                            <tbody>
+                                                <tr>
+                                                    @*<td style="width:100px">Версия @item.RevisionNumber</td>*@
+                                                    <td colspan="2">
+                                                        <a href="@Url.Action("ViewDocument", new { id = doc.DocumentId })">@doc.DocumentTitle</a>
+                                                    </td>
+                                                    <td style="width:200px;" class="text--center align-middle"><a href="@Url.Action("ViewDocument", new { id = doc.DocumentId })"><i class="fa fa-file-o"></i> преглед</a></td>
+                                                </tr>
+
+                                                @foreach (var file in doc.AttachedFiles)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <div class="icon">
+                                                                <img src="@file.FileName.GetFileExtensionImage()" alt="">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            @Html.Raw(file.FileTitle)
+                                                        </td>
+                                                        <td style="width:200px;" class="text--center align-middle"><a href="@Url.Action("DownloadFile", "FileCDN", new { id = file.FileId })"><i class="fa fa-save"></i> изтегляне</a></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <ul class="timeline">
+                <li class="time-label">
+                    <span class="bg-danger">
+                        Приключване @Model.ClosingDate.ToLongDateString()
+                    </span>
+                </li>
+                @foreach (var item in documents)
+                {
+                    <li>
+                        <i class="fa  @GetDocumentTypeIcon(item.DocumentTypeId)"></i>
+                        <div class="timeline-item">
+                            <div class="timeline-body">
+                                <ul class="list-unstyled list-links">
+                                    <li>
+                                        <a href="@Url.Action("ViewDocument", new { id = item.DocumentId })"><div>@item.DocumentTitle</div></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix">
+                                <span class="time-line-time"><i class="fa fa-calendar"></i> @item.DateCreated.ToString(GlobalConstants.DateFormat)</span>
+                                <span class="time-line-info"><i class="fa fa-comments-o"></i> @item.CommentsCount</span>
+                                <span class="time-line-info">Версия @item.RevisionNumber </span>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+                <li class="time-label">
+                    <span class="bg-success">
+                        Откриване @Model.OpenningDate.ToLongDateString()
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
