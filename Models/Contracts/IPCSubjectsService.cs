@@ -14,5 +14,9 @@ namespace Models.Contracts
 		IEnumerable<SelectListItem> GetPCSubjectTypesDDL(bool addAll = true);
 		IQueryable<PCSubjectsListViewModel> GetPCSubjectsAutocompleteEIK(string eik);
 		IQueryable<PCSubjectsListViewModel> GetPCSubjectsAutocompleteName(string name);
-	}
+
+    IEnumerable<SelectListItem> GetCategoriesDDL(int categoryId, int? selectedId);
+
+    IQueryable<PCSubjectsExportListViewModel> GetPCSubjectsGetExport();
+  }
 }

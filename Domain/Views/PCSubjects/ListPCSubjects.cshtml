@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Списък на физическите и юридическите лица съгласно ЗНА";
+    ViewData["SectionTitle"] = ViewData["Title"];
 }
 <div class="breadcrumbs">
     / <a href="@Url.Action("Index","Home")">Начало</a>
@@ -80,22 +81,47 @@
                  },
                  {
                      data: "datePayment",
-                     title: 'Дата на плащане',
-                     sortable: false,
+                     title: 'Дата на договор',
+                     sortable: true,
                      searchable: false,
                      "render": function (value) {
                          return JsonBGdate(value);
                      }
                  },
                  {
+                     data: "contractingAuthority",
+                     title: 'Възложител',
+                     sortable: true,
+                     searchable: false
+                 },
+                 {
                      data: "paymentValue",
-                     title: 'Възнаграждение за извършените дейности',
+                     title: 'Възнаграждение за извършените услуги в лева',
+                     sortable: true,
+                     searchable: false
+                 },
+                 {
+                     data: "paymentValue",
+                     title: 'с ДДС',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "activityDescription",
+                     title: 'Описание на извършените услуги',
                      sortable: false,
                      searchable: false
                  },
                  {
-                     data: "activityDescription",
-                     title: 'Извършени дейности',
+                     data: "filesForDownload",
+                     title: 'Прикачени файлове',
+                     "render": function (value) {
+                         return value;
+                     },
                      sortable: false,
                      searchable: false
                  }

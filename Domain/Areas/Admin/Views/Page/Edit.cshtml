@@ -43,9 +43,9 @@
             <form asp-action="@ViewBag.actionName" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @if (Model.Id > 0)
-    {
-            <input asp-for="Id" type="hidden" />
-}
+                {
+                    <input asp-for="Id" type="hidden" />
+                }
                 <input asp-for="PageTypeId" type="hidden" />
                 <input asp-for="ParentContentId" type="hidden" />
                 <input asp-for="OrderBy" type="hidden" />
@@ -87,6 +87,7 @@
     </div>
 </section>
 <script>
+    var snEditor = {};
     $(function () {
         $('#Title').blur(function () {
             if ($('#Url').val().length == 0) {
@@ -100,8 +101,8 @@
                 $('div#divSpecialPage').hide();
             }
         }).trigger('change');
-        
-        var snEditor = $('#Content').summernote({
+
+        snEditor = $('#Content').summernote({
 
             callbacks: {
                 onCreateLink: function (link) {
@@ -116,61 +117,65 @@
                     btnDoc.setAttribute('class', 'note-btn btn btn-warning btn-sm');
                     btnDoc.innerHTML = '<i class="glyphicon glyphicon-paperclip"></i>';
                     btnDoc.setAttribute('title', 'Вмъкни документ');
-                    btnDoc.onclick = function () { selectDocument(); return false; };
+                    btnDoc.onclick = function () { selectDocument(); return false;}
                     btnGroup.appendChild(btnDoc);
 
                     var btnImg = document.createElement("button");
                     btnImg.setAttribute('class', 'note-btn btn btn-info btn-sm');
                     btnImg.innerHTML = '<i class="fa fa-image"></i>';
                     btnImg.setAttribute('title', 'Вмъкни изображение');
-                    btnImg.onclick = function () { selectImage(); return false; };
+                    btnImg.onclick = function () { selectImage(); return false; }
                     btnGroup.appendChild(btnImg);
 
                     var btnPage = document.createElement("button");
                     btnPage.setAttribute('class', 'note-btn btn btn-primary btn-sm');
                     btnPage.innerHTML = '<i class="fa fa-file"></i>';
                     btnPage.setAttribute('title', 'Вмъкни страница');
-                    btnPage.onclick = function () { selectPage(); return false; };
+                    btnPage.onclick = function () { selectPage(); return false; }
                     btnGroup.appendChild(btnPage);
 
                     var btnTag = document.createElement("button");
                     btnTag.setAttribute('class', 'note-btn btn btn-success btn-sm');
                     btnTag.innerHTML = '<i class="fa fa-anchor"></i>';
                     btnTag.setAttribute('title', 'Вмъкни отметка');
-                    btnTag.onclick = function () { appendTag(); return false; };
+                    btnTag.onclick = function () { appendTag(); return false; }
                     btnGroup.appendChild(btnTag);
 
                     var btnSubPages = document.createElement("button");
                     btnSubPages.setAttribute('class', 'note-btn btn btn-warning btn-sm');
                     btnSubPages.innerHTML = '<i class="fa fa-list"></i>';
                     btnSubPages.setAttribute('title', 'Вмъкни линкове към подчинени страници');
-                    btnSubPages.onclick = function () { appendChildPageLinks(); return false; };
+                    btnSubPages.onclick = function () { appendChildPageLinks(); return false; }
                     btnGroup.appendChild(btnSubPages);
 
                     $('.note-toolbar').append(btnGroup);
 
-                },
-                onBlur: function () {
-                    snEditor.summernote('saveRange');
-                },
-                onFocus: function () {
-                    snEditor.summernote('restoreRange');
                 }
+                //,
+                //onBlur: function () {
+                //    snEditor.summernote('saveRange');
+                //},
+                //onFocus: function () {
+                //    snEditor.summernote('restoreRange');
+                //}
             }
         });
 
     });
 
     function selectImage() {
+        snEditor.summernote('saveRange');
         var url = '@Html.Raw(Url.Action("Select","Library",new { source_type = GlobalConstants.SourceTypes.Library_Images}))';
         ShowPlainDialogFromAction('Избери изображение', url);
     }
     function selectDocument() {
+        snEditor.summernote('saveRange');
         var url = '@Html.Raw(Url.Action("Select","Library",new { source_type = GlobalConstants.SourceTypes.Library_Documents}))';
         ShowPlainDialogFromAction('Избери документ', url);
     }
     function selectPage() {
-        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = GlobalConstants.PageTypes.Pages, callbackName = "callbackSelectPage", lang=Model.Lang}))';
+        snEditor.summernote('saveRange');
+        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = Model.PageTypeId, callbackName = "callbackSelectPage", lang=Model.Lang}))';
         ShowPlainDialogFromAction('Избери страница', url);
     }
     function libSelectDocument(fileId, fileTitle) {
@@ -232,6 +237,7 @@
     }
 
     function appendTag() {
+        snEditor.summernote('saveRange');
         var tagName = prompt("Моля, въведете уникално име на отметка", "");
         if (tagName == null) { return false;}
         $('#Content').summernote('editor.restoreRange');
@@ -245,6 +251,7 @@
     }
 
     function appendChildPageLinks() {
+        snEditor.summernote('saveRange');
         if (!confirm('Потвърди добавянето на линкове към подчинените страници!')) { return false;}
         var _url = '@Html.Raw(Url.Action("GetSubPageList", new { lang = Model.Lang, contentId = Model.ContentId}))';
         //$('#Content').summernote('editor.restoreRange');

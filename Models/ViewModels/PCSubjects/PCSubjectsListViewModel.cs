@@ -17,13 +17,22 @@ namespace Models.ViewModels.PCSubjectsModels
 		[JsonProperty("eik")]
 		public string EIK { get; set; }
 
-		[JsonProperty("paymentValue")]
+		[JsonProperty("contractingAuthority")]
+    public string ContractingAuthority { get; set; }
+
+    [JsonProperty("paymentValue")]
 		public decimal PaymentValue { get; set; }
 
-		[JsonProperty("activityDescription")]
+    [JsonProperty("paymentIncludeVAT")]
+    public bool PaymentVaPaymentIncludeVAT { get; set; }
+
+    [JsonProperty("activityDescription")]
 		public string ActivityDescription { get; set; }
 
 		[JsonProperty("datePayment")]
 		public DateTime DatePayment { get; set; }
-	}
+
+    [JsonProperty("filesForDownload")]
+    public string FilesForDownload { get; set; }
+  }
 }

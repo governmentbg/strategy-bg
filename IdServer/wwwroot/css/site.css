@@ -1,0 +1,61 @@
+﻿.flags {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+}
+
+    .flags.bg {
+        background: url(/images/flag-bg.png) no-repeat;
+    }
+
+    .flags.en {
+        background: url(/images/flag-en.png) no-repeat;
+    }
+
+.git-login-logo {
+    display: block;
+    width: 75px;
+    height: 75px;
+    background: url(/images/logo.jpg) no-repeat;
+    float: left;
+    margin-right: 10px;
+}
+
+.login-box-msg {
+    text-align: left;
+    font-weight: bolder;
+    font-size: 18pt;
+    clear: right;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+div#messageContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+li.jstree-node a {
+    font-size: 14pt;
+    margin-bottom: 5px;
+}
+
+    li.jstree-node a:hover {
+        background-color: #b5d5e8;
+    }
+
+
+.dropdown-menu li.danger {
+    background-color: #dd4b39;
+    color: white !important;
+}
+
+    .dropdown-menu li.danger a {
+        color: white !important;
+    }
+
+        .dropdown-menu li.danger a:hover {
+            background-color: #ff0000 !important;
+        }

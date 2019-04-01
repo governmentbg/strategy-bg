@@ -1,12 +1,15 @@
-﻿@model ArticleVM
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@model ArticleVM
 @{
-    ViewData["SectionTitle"] = "Новини";
+    ViewData["Title"] = Localizer["MENU_NEWS"];
+    ViewData["SectionTitle"] = ViewData["Title"];
 }
 @section breadcrumbs{
-    <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="@Url.Action("Index")">Новини</a>
-    </div>
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a>
+    / <a href="@Url.Action("Index")">Новини</a>
+    / <a href="@Url.Action("Index", new { category = Model.CategoryId })">@Model.CategoryName</a>
+</div>
 }
 
 
@@ -15,7 +18,7 @@
         <div class="col-md-3">
             <div class="aside row">
                 <div class="title">
-                    Новини
+                    @ViewData["Title"]
                 </div>
                 @*<ul class="list--default">
                         <li><a href="#">Заглавие</a></li>
@@ -52,20 +55,20 @@
             </p>
             @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.News, sourceId = Model.Id })
             <!-- TABLE DATES -->
-            <div class="row">
+            @*<div class="row">
                 <div class="col-md-5">
                     <table class="table table-bordered table--dates table--stripped">
                         <tbody>
                             <!-- LOOP -->
                             <tr>
-                                <td>Последна промяна:</td>
+                                <td>@Localizer["NEWS_LAST_EDITED"]</td>
                                 <td>@Model.LastModified.ToString(GlobalConstants.DateFormat)</td>
                             </tr>
                             <!-- END LOOP -->
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div>*@
             <!-- END TABLE DATES -->
         </div>
     </div>

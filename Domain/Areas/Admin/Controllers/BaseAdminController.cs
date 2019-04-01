@@ -19,7 +19,7 @@ namespace Domain.Areas.Admin.Controllers
 
             ViewBag.IsAdmin = false;
             var user = this.User;
-            if (user != null && user.Claims.All(x => x.Type == ClaimTypes.Role && x.Value == GlobalConstants.Roles.Admin))
+            if (user != null && user.Claims.Any(x => x.Type == ClaimTypes.Role && x.Value == GlobalConstants.Roles.Admin))
             {
                 ViewBag.IsAdmin = true;
             }

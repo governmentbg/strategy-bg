@@ -1,4 +1,5 @@
-﻿using Models.ViewModels.Questionary;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Models.ViewModels.Questionary;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,7 +7,7 @@ namespace Models.Contracts
 {
 	public interface IQuestionaryService
 	{
-		IQueryable<QuestionaryListViewModel> GetQuestionaries();
+		IQueryable<QuestionaryListViewModel> GetQuestionaries(int? status);
 		bool SaveQuestionary(QuestionaryViewModel model, int userId);
 		QuestionaryViewModel GetQuestionary(int id);
 		QuestionaryViewModel GetQuestionary(int sourceTypeID, int sourceId);
@@ -24,5 +25,7 @@ namespace Models.Contracts
 		QuestionaryResultsListViewModel GetResults(int questionaryHeaderId);
 		List<QuestionChartResultViewModel> QuestinaryResultsLoadData(int questionaryHeaderId, int questionaryQuestionId);
 		FilledQuestionaryViewModel GetFilledQuestionary(int questionaryHeaderId, int? userId, string userEmail);
-	}
+
+    List<SelectListItem> GetStatusID_DDL();
+  }
 }

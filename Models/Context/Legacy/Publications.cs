@@ -30,7 +30,7 @@ namespace Models.Context.Legacy
         [Display(Name = "PageTitle")]
         public string PageTitle { get; set; }
 
-        [Display(Name = "IsMainTopic")]
+        [Display(Name = "Водеща публикация")]
         public bool IsMainTopic { get; set; }
 
         [Display(Name = "Водеща публикация")]

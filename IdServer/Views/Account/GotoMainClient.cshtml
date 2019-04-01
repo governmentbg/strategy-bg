@@ -1,0 +1,24 @@
+﻿@inject IStringLocalizer<SharedResources> Localizer
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = Localizer["Title"];
+}
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <div class="pull-right">
+            @Html.Partial("_LangSelect")
+        </div>
+        <br />
+        <br />
+        <br />
+        <h3><a href="@ViewBag.url">@Localizer["GotoMainClient"]</a></h3>
+        <br />
+        <br />
+        <p>
+            @Localizer["GotoMainClientDescription"]
+        </p>
+    </div>
+
+    <!-- /.login-box-body -->
+</div>

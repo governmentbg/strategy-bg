@@ -6,13 +6,23 @@
 
 <h3 style="margin-bottom:20px;">@ViewData["Title"]</h3>
 
+
 <form asp-action="@ViewBag.actionName">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <textbox for="FirstName"></textbox>
     <textbox for="LastName"></textbox>
-    <textbox for="UserName"></textbox>
-    <textbox for="Password" type="password"></textbox>
-    <textbox for="PasswordAgain" type="password"></textbox>
+    <div class="myTooltip">
+        <textbox for="UserName"></textbox>
+        <span class="tooltiptext">A..Z,a..z,0..9</span>
+    </div>
+    <div class="myTooltip">
+        <textbox for="Password" type="password"></textbox>
+        <span class="tooltiptext">a..z, а..я, A..Z, А..Я, 0..9, ! , ( ) - . _ [ ] ' ~ ; # $ % + =</span>
+    </div>
+    <div class="myTooltip">
+        <textbox for="PasswordAgain" type="password"></textbox>
+        <span class="tooltiptext">a..z, а..я, A..Z, А..Я, 0..9, ! , ( ) - . _ [ ] ' ~ ; # $ % + =</span>
+    </div>
     <textbox for="Email"></textbox>
     <checkbox for="IAgree"></checkbox>
     <span asp-validation-for="IAgree" class="text-danger"></span>

@@ -1,0 +1,12 @@
+﻿@model DateTime?
+@{
+    var hasValue = Model.HasValue && (Model.Value.Year > 1900) && (Model.Value.Year < 2100);
+    string strValue = (Model.HasValue) ? Model.Value.ToString("yyyy") : "";
+}
+<div class="form-group dateyear-with-empty">
+    <label asp-for="@Model" class="control-label"></label>
+    <input type="hidden" asp-for="@Model" />
+    <input class="form-control" type="text" autocomplete="off" value="@(strValue)" />
+    <label><input type="checkbox" data-val="@strValue" @if (!hasValue) { <text> checked</text>} />&nbsp;Без указан срок</label>
+    <span asp-validation-for="@Model" class="text-danger"></span>
+</div>

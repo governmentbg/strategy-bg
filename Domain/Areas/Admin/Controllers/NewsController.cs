@@ -29,26 +29,27 @@ namespace Domain.Areas.Admin.Controllers
             service = _service;
             dataIndexerService = _dataIndexerService;
         }
-        public IActionResult Index()
+        public IActionResult Index(int lang = GlobalConstants.LangBG)
         {
+            ViewBag.lang = lang;
             return View();
         }
+
         [HttpPost]
-        public JsonResult LoadDataGrid([FromBody]GridRequestModel data)
+        public IActionResult LoadData(IDataTablesRequest request, DateTime? dateFrom, DateTime? dateTo, string term, int lang)
         {
-            DateTime? dateFrom = ((string)data.param.dateFrom).ParseDateTime();
-            DateTime? dateTo = ((string)data.param.dateTo).ParseDateTime();
-            string term = (string)data.param.term;
+            var data = service.News_AdminSelect(dateFrom, dateTo, null, term.EmptyToNull()).Where(x => x.LanguageId == lang);
+            var filtered = data;
+            var response = request.GetResponse(data, filtered);
 
-            var model = service.News_AdminSelect(dateFrom, dateTo, null, term.EmptyToNull());
+            return new DataTablesJsonResult(response, true);
+        }        
 
-            return Json(new GridResponseModel<ArticleListAdminVM>(data, model));
-        }
-
-        public IActionResult Add()
+        public IActionResult Add(int lang)
         {
-            var model = new News()
+      var model = new News()
             {
+                LanguageId = lang,
                 IsActive = true,
                 IsApproved = true,
                 Date = DateTime.Now
@@ -59,7 +60,8 @@ namespace Domain.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(News model)
         {
-            SetViewBag(model);
+      model.IsApproved = true;
+      SetViewBag(model);
             if (!ModelState.IsValid)
             {
                 return View(nameof(Edit), model);
@@ -68,20 +70,20 @@ namespace Domain.Areas.Admin.Controllers
             SetSavedMessage = service.News_SaveData(model);
             if (SetSavedMessage)
             {
-              //***Indexing in Elastic******************************************************************
-              try
-              {
-                  elasticContent _document = new elasticContent();
-                  _document.Content = Convert.ToBase64String(Encoding.UTF8.GetBytes(model.Text));
-                  _document.Path = dataIndexerService.PathCreator(SystemPaths.News, model.Id);
-                  _document.docId = model.Id.ToString();
-                  dataIndexerService.indexDocument(_document);
-              }
-              catch (Exception es_ex)
-              {}
-              //***************************************************************************************
+                //***Indexing in Elastic******************************************************************
+                try
+                {
+                    elasticContent _document = new elasticContent();
+                    _document.Content = Convert.ToBase64String(Encoding.UTF8.GetBytes(model.Text));
+                    _document.Path = dataIndexerService.PathCreator(SystemPaths.News, model.Id);
+                    _document.docId = model.Id.ToString();
+                    dataIndexerService.indexDocument(_document);
+                }
+                catch (Exception es_ex)
+                { }
+                //***************************************************************************************
 
-              return RedirectToAction(nameof(Edit), new { id = model.Id });
+                return RedirectToAction(nameof(Edit), new { id = model.Id });
             }
             return View(nameof(Edit), model);
         }
@@ -92,6 +94,8 @@ namespace Domain.Areas.Admin.Controllers
             model.Title = model.Title.DecodeIfNeeded();
             model.Text = model.Text.DecodeIfNeeded();
 
+      model.IsApproved = true;
+
             SetViewBag(model);
             return View(model);
         }
@@ -99,6 +103,7 @@ namespace Domain.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(News model)
         {
+      model.IsApproved = true;
             SetViewBag(model);
             if (!ModelState.IsValid)
             {
@@ -111,7 +116,8 @@ namespace Domain.Areas.Admin.Controllers
 
         private void SetViewBag(News model)
         {
-            ViewBag.categories = service.NewsCategories_SelectCombo().ToSelectList(model.NewsCategoryId);
+            ViewBag.categories = service.NewsCategories_SelectCombo(model.LanguageId).ToSelectList(model.NewsCategoryId);
+            //AddLanguageNameToViewbag(model.LanguageId);
         }
     }
 }

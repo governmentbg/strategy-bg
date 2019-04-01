@@ -7,7 +7,7 @@ namespace Models.Contracts
 {
 	public interface ICategoriesService
 	{
-		IQueryable<CateroriesListViewModel> GetCategories(int active, int parentId, int sectionId);
+		IQueryable<CateroriesListViewModel> GetCategories(int active, int parentId, int sectionId, int lang = GlobalConstants.LangBG);
 		bool SaveCategory(CategoryViewModel model);
 		CategoryViewModel GetCategory(int id);
 		IEnumerable<SelectListItem> GetParentCategoriesDDL();

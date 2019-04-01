@@ -81,6 +81,7 @@ namespace Domain.Areas.Admin.Controllers
         private void SetViewBag(int pageId)
         {
             var page = pageService.GetByID(pageId);
+
             ViewBag.page = page;
         }
 

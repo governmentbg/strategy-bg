@@ -29,6 +29,7 @@
 
 @{
     ViewData["Title"] = "Мултикритериен анализ на Административната тежест";
+    ViewData["SectionTitle"] = ViewData["Title"];
 }
 
 @section breadcrumbs{
@@ -39,8 +40,11 @@
 }
 
 
-<section class="content">
+<section class="container-fluid information">
     <div class="row">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu",title="Оценка на въздействието" })
+        </div>
         <div class="col-lg-9">
             <form asp-action="mcaCalculate" id="form1">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -57,9 +61,9 @@
                     <input type="submit" value="Изчисли" class="btn btn-success btn-flat" />
                     <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
                     @*@if (Model.TotalAssessmentValue > 0)
-                    {
-                        <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/MulticriteriaAnalysis/ExportCalculationToPDF">
-                    }*@
+                        {
+                            <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/MulticriteriaAnalysis/ExportCalculationToPDF">
+                        }*@
                 </div>
             </form>
         </div>

@@ -1,8 +1,15 @@
 ﻿// Write your JavaScript code.
 $(function () {
-    $('a.submit').on('click', function () {
+
+    $('.lang-select a').click(function () {
+        var newLang = $(this).attr('data-lang');
+        $(this).parents('form:first').find('input[name="culture"]').val(newLang);
         $(this).parents('form:first').trigger('submit');
     });
+
+    $('a.submit').on('click', function () {
+        $(this).parents('form:first').trigger('submit');
+    });    
 
     $('#messageContainer').delay(6000).slideUp(1000);
 });
@@ -138,7 +145,7 @@ function generateUrl(title) {
         .trim()
         .replace(/ /g, '-')
         .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
-        
+
     var maxUrlLendth = 150;
     if (url.length > maxUrlLendth) {
         url = url.substr(0, maxUrlLendth);
@@ -147,11 +154,15 @@ function generateUrl(title) {
     return url;
 }
 
-$.validator.methods.range = function (value, element, param) {
-    var globalizedValue = value.replace(",", ".");
-    return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
-};
 
-$.validator.methods.number = function (value, element) {
-    return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
-};
+try {
+    $.validator.methods.range = function (value, element, param) {
+        var globalizedValue = value.replace(",", ".");
+        return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    };
+
+    $.validator.methods.number = function (value, element) {
+        return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    };
+
+} catch (e) { var rr = 1; }

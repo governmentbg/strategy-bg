@@ -50,7 +50,7 @@
 
 
     function selectPage() {
-        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = GlobalConstants.PageTypes.Pages, callbackName = "callbackSelectPage", lang=page.Lang}))';
+        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = page.PageTypeId, callbackName = "callbackSelectPage", lang=page.Lang}))';
         ShowPlainDialogFromAction('Избери страница', url);
     }
     function callbackSelectPage(data) {

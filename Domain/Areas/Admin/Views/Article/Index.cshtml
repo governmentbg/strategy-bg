@@ -41,8 +41,9 @@
         function LoadData() {
              $('#gridview').gridView({
                 url: '@(Url.Action("LoadDataGrid"))',
-                 data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val(), term: $('#term').val()},
-                filter: false,
+                data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val(), term: $('#term').val()},
+                 filter: false,
+                 size_selector: false,
                 template: '#listTemplate',
                 empty_text: 'Няма намерени елементи.'
             });

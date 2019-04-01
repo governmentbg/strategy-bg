@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebCommon.Models;
 //using Models;
 
@@ -50,7 +51,7 @@ namespace WebCommmon.Controllers
                 ViewBag.actionName = controllerActionDescriptor.ActionName;
             }
 
-            
+
         }
 
         private bool _setSavedMessage;
@@ -113,5 +114,27 @@ namespace WebCommmon.Controllers
         {
             return RedirectToAction("Message", "Home");
         }
+
+        public void AddLangComboToViewbag(int? lang = 1)
+        {
+            List<SelectListItem> result = new List<SelectListItem>();
+            result.Add(new SelectListItem("Български", "1"));
+            result.Add(new SelectListItem("English", "2"));
+            ViewBag.langs = new SelectList(result, "Value", "Text", lang);
+        }
+        public void AddLanguageNameToViewbag(int lang = 1)
+        {
+            string result = "Език на съдържанието: ";
+            switch (lang)
+            {
+                case 2:
+                    ViewBag.LanguageName = result + "English";
+                    break;
+                default:
+                    ViewBag.LanguageName = result + "Български";
+                    break;
+            }
+        }
+
     }
 }

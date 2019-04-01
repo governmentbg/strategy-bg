@@ -35,10 +35,10 @@ namespace Models.Services
             return Find<PublicationCategories>(id);
         }
 
-        public IEnumerable<TextValueVM> PublicationCategories_SelectCombo()
+        public IEnumerable<TextValueVM> PublicationCategories_SelectCombo(int lang = GlobalConstants.LangBG)
         {
             return All<PublicationCategories>()
-                   .Where(x => x.IsActive && !x.IsDeleted && x.IsApproved && x.LanguageId == GlobalConstants.LangBG)
+                   .Where(x => x.IsActive && !x.IsDeleted && x.IsApproved && x.LanguageId == lang)
                    .OrderBy(x => x.Name)
                     .Select(x => new TextValueVM
                     {
@@ -47,7 +47,7 @@ namespace Models.Services
                     });
         }
 
-        public IQueryable<ArticleListAdminVM> Publication_AdminSelect(DateTime? dateFrom, DateTime? dateTo, int? category, string term)
+        public IQueryable<ArticleListAdminVM> Publication_AdminSelect(DateTime? dateFrom, DateTime? dateTo, int? category, string term, int active = -1)
         {
             return
                (from p in
@@ -56,7 +56,9 @@ namespace Models.Services
                .Where(x => (x.Date >= (dateFrom ?? x.Date)) && (x.Date <= (dateTo ?? x.Date)))
                .Where(x => x.PublicationCategoryId == (category ?? x.PublicationCategoryId) && x.Title.Contains(term ?? x.Title))
                //.Where(x => x.IsActive && !x.IsDeleted && !x.IsArchive && x.IsApproved)
-               .OrderByDescending(x => x.Date)
+               .Where(x=> (x.IsActive == ((active == -1) ? x.IsActive : (active == 1 ? true : false))))
+               .OrderBy(x => x.IsMainTopic)
+               .ThenByDescending(x => x.Date)
 
                 join f in db.FilesCDNUsed.Where(fu => fu.source_type == GlobalConstants.SourceTypes.PublicationsImages)
                 on p.Id equals f.source_id into n_f
@@ -64,6 +66,7 @@ namespace Models.Services
                 select new ArticleListAdminVM
                 {
                     Id = p.Id,
+                    LanguageId = p.LanguageId,
                     Title = p.Title,
                     CategoryId = p.PublicationCategoryId,
                     CategoryName = p.PublicationCategory.Name,
@@ -91,7 +94,8 @@ namespace Models.Services
                    CategoryId = x.PublicationCategoryId,
                    CategoryName = x.PublicationCategory.Name,
                    EventDate = x.Date,
-                   LastModified = x.DateModified
+                   LastModified = x.DateModified,
+                   lang_Id = x.LanguageId
                }).FirstOrDefault();
 
             var images = commService.FileCdn_GetList(GlobalConstants.SourceTypes.PublicationsImages, model.Id).ToList();
@@ -99,7 +103,59 @@ namespace Models.Services
             {
                 model.MainImageFileId = images.FirstOrDefault().FileId;
             }
-            return model;
+
+      var  prev = (from n in
+                  db.Publications
+                  .Include(x => x.PublicationCategory)
+                  //.Where(x => x.PublicationCategoryId == ( x.PublicationCategoryId) && x.Title.Contains( x.Title))
+                  .Where(x => x.LanguageId == model.lang_Id)
+                  .Where(x => x.Id < model.Id)
+                  .OrderByDescending(x => x.Date)
+
+                  join f in db.FilesCDNUsed.Where(fu => fu.source_type == GlobalConstants.SourceTypes.PublicationsImages)
+                  on n.Id equals f.source_id into n_f
+                  where n.IsActive && !n.IsDeleted && n.IsApproved
+                  from x in n_f.DefaultIfEmpty()
+                  select new ArticleListVM
+                  {
+                    Id = n.Id,
+                    LanguageId = n.LanguageId,
+                    Title = n.Title,
+                    CategoryId = n.PublicationCategoryId,
+                    CategoryName = n.PublicationCategory.Name,
+                    EventDate = n.Date,
+                    LastModified = n.DateModified,
+                    MainImageFileId = (x != null) ? x.cdn_file_id : null
+                  }).Take(1).ToList();
+
+       var next = (from n in
+            db.Publications
+            .Include(x => x.PublicationCategory)
+            //.Where(x => x.PublicationCategoryId == (x.PublicationCategoryId) && x.Title.Contains(x.Title))
+            .Where(x => x.LanguageId == model.lang_Id)
+            .Where(x => x.Id > model.Id)
+            .OrderBy(x => x.Date)
+
+                  join f in db.FilesCDNUsed.Where(fu => fu.source_type == GlobalConstants.SourceTypes.PublicationsImages)
+                  on n.Id equals f.source_id into n_f
+                  where n.IsActive && !n.IsDeleted && n.IsApproved
+                  from x in n_f.DefaultIfEmpty()
+                  select new ArticleListVM
+                  {
+                    Id = n.Id,
+                    LanguageId = n.LanguageId,
+                    Title = n.Title,
+                    CategoryId = n.PublicationCategoryId,
+                    CategoryName = n.PublicationCategory.Name,
+                    EventDate = n.Date,
+                    LastModified = n.DateModified,
+                    MainImageFileId = (x != null) ? x.cdn_file_id : null
+                  }).Take(1).ToList();
+
+      if (prev.Count()!=0) { model.prev_Id = prev.FirstOrDefault().Id; } else { model.prev_Id = model.Id; }
+      if (next.Count() != 0) { model.next_Id = next.FirstOrDefault().Id; } else { model.next_Id = model.Id; }
+
+      return model;
         }
 
         public bool Publication_SaveData(Publications model)
@@ -112,7 +168,6 @@ namespace Models.Services
                     saved.PublicationCategoryId = model.PublicationCategoryId;
                     saved.Title = model.Title;
                     saved.Text = model.Text;
-                    saved.IsOnMainPage = model.IsOnMainPage;
                     saved.IsMainTopic = model.IsMainTopic;
                     saved.IsActive = model.IsActive;
                     saved.IsApproved = model.IsApproved;
@@ -125,7 +180,6 @@ namespace Models.Services
                 }
                 else
                 {
-                    model.LanguageId = GlobalConstants.LangBG;
                     model.CreatedByUserId = userContext.UserId;
                     model.DateCreated = DateTime.Now;
 
@@ -144,7 +198,7 @@ namespace Models.Services
             }
         }
 
-        public IQueryable<ArticleListVM> Publication_Select(int? category, string term)
+        public IQueryable<ArticleListVM> Publication_Select(int? category, string term, int lang = GlobalConstants.LangBG)
         {
 
             return
@@ -152,6 +206,7 @@ namespace Models.Services
                db.Publications
                .Include(x => x.PublicationCategory)
                .Where(x => x.PublicationCategoryId == (category ?? x.PublicationCategoryId) && x.Title.Contains(term ?? x.Title))
+               .Where(x => x.LanguageId == lang)
                .OrderByDescending(x => x.Date)
 
                 join f in db.FilesCDNUsed.Where(fu => fu.source_type == GlobalConstants.SourceTypes.PublicationsImages)
@@ -161,6 +216,7 @@ namespace Models.Services
                 select new ArticleListVM
                 {
                     Id = n.Id,
+                    LanguageId = n.LanguageId,
                     Title = n.Title,
                     CategoryId = n.PublicationCategoryId,
                     CategoryName = n.PublicationCategory.Name,

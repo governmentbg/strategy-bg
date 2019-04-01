@@ -34,7 +34,7 @@
 
 <script>
     function selectPage() {
-        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = GlobalConstants.PageTypes.Pages, callbackName = "callbackSelectPage", lang=page.Lang}))';
+        var url = '@Html.Raw(Url.Action("Select","Page",new { pageType = page.PageTypeId, callbackName = "callbackSelectPage", lang=page.Lang}))';
         ShowPlainDialogFromAction('Избери страница, за добавяне на връзки към подчинените и елементи', url);
     }
     function callbackSelectPage(data) {

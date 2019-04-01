@@ -129,10 +129,27 @@ section.content-header h2 {
     color: #5d5d99;
 }
 
+
+.used-file-block .add-info {
+    font-style:italic;
+}
+
 h3.plainModal-title {
     margin-top: 5px;
 }
 
 .used-file-block i {
     color: #fff;
+}
+
+span.lang-name {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.checkbox label.control-label{
+    font-size:100% !important;
+    font-weight:700;   
 }

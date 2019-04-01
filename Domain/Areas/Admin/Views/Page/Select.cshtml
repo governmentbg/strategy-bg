@@ -15,13 +15,14 @@
             </div>
         </div>
         <div class="col-lg-3">
+
             <div class="form-group">
                 <label class="control-label">Отметка</label>
                 <select class="form-control" id="selectPageTag"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Наименование на линка</label>
-                <input type="text" class=" form-control" id="tbLinkTitle" />
+                <input type="text" class="form-control" id="selectPageLinkTitle" />
             </div>
             <div class="form-group">
                 <label class="control-label">Режим на зареждане</label>
@@ -31,59 +32,63 @@
                     <option value="@GlobalConstants.PagelinkModes.Modal">В модален диалог</option>
                 </select>
             </div>
-            <a href="#" id="btnSelectPage" class="btn btn-success">Избери</a>
+
+            <a href="#" id="selectPageConfirm" onclick="selectPageClick(this);" class="btn btn-success">Избери</a>
+
         </div>
     </div>
 </section>
 <script>
-    $(function () {
-        $('#tree')
-            .on('changed.jstree', function (e, data) {
-                $('#btnSelectPage')
-                    .attr('data-contentid', data.node.a_attr.contentId)
-                    .attr('data-url', data.node.a_attr.url)
-                    .attr('data-title', data.node.text);
-                $('#tbLinkTitle').val(data.node.text);
-
-                requestCombo("#selectPageTag", '@Url.Action("GetTagList")', { pageId : data.node.a_attr.id });
-            })
-            .jstree({
-                'core': {
-                    'data': {
-                        'url': '@Html.Raw(Url.Action("GetTreeViewData",new { lang, pageType = pageType.Id, selectOnly = true }))'
-                    },
-                    check_callback: true
-                }
-
-                , 'plugins': ['changed']
-            })
-            //.bind("loaded.jstree", function (event, data) {
-            //    // you get two params - event & data - check the core docs for a detailed description
-            //    $(this).jstree("open_all");
-            //});
-        $('#btnSelectPage').click(function () {
-            var contentId = $('#btnSelectPage').data('contentid');
-            var title = $('#tbLinkTitle').val();
-            var url = $('#btnSelectPage').data('url');
-            var tag = $('#selectPageTag').val();
-            var mode = $('#selectPageMode').val();
-            var href = '#page-';
-            href += contentId + '-' + url;
-            if (mode == '@GlobalConstants.PagelinkModes.Modal') {
-                href = '#modal-';
-            }
-            //href += contentId;
-            if (tag && tag != '-1') {
-                href += "#" + tag;
-            }
-            @(ViewBag.callbackName)(
+    function selectPageClick(e) {
+        //debugger;
+        var contentId = $(e).data('contentid');
+        var title = $('#selectPageLinkTitle').val();
+        var url = $(e).data('url');
+        var tag = $('#selectPageTag').val();
+        var mode = $('#selectPageMode').val();
+        var href = '#page-';
+        href += contentId + '-' + url;
+        if (mode == '@GlobalConstants.PagelinkModes.Modal') {
+            href = '#modal-';
+        }
+        //href += contentId;
+        if (tag && tag != '-1') {
+            href += "#" + tag;
+        }
+        @(ViewBag.callbackName)(
                 {
                     href: href,
                     contentId: contentId,
                     title: title,
                     mode:mode
                 });
-        });
+    }
+    $(function () {
+            $('#tree')
+                .on('changed.jstree', function (e, data) {
+                    $('#selectPageConfirm')
+                        .attr('data-contentid', data.node.a_attr.contentId)
+                        .attr('data-url', data.node.a_attr.url)
+                        .attr('data-title', data.node.text);
+                    $('#selectPageLinkTitle').val(data.node.text);
+
+                    requestCombo("#selectPageTag", '@Url.Action("GetTagList")', { pageId: data.node.a_attr.id });
+                })
+                .on('loaded.jstree', function (e, data) {
+                    $('#selectPageLinkTitle').focus();
+                    $('#tree').focus();
+                })
+                .jstree({
+                    'core': {
+                        'data': {
+                            'url': '@Html.Raw(Url.Action("GetTreeViewData",new { lang, pageType = pageType.Id, selectOnly = true }))'
+                        },
+                        check_callback: true
+                    }
+
+                    , 'plugins': ['changed']
+                });
+
     });
 
 </script>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/prod/css/head.min.css" />
+    <link rel="stylesheet" href="~/prod/css/head.plugins.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script src="~/prod/js/head.min.js"></script>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+
+            <!-- Logo -->
+            <a href="@Url.Action("Index","Home")" class="logo">
+                @*<!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><b>ГИТ</b></span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg">ИА <b>ГИТ</b></span>*@
+            </a>
+
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <!--  <li class="header">MAIN NAVIGATION</li> -->
+                    @*<li><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> <span>Начало</span></a></li>*@
+
+                    <li class="active treeview menu-open">
+                        <a href="#">
+                            <i class="fa fa-cubes"></i> <span>Администриране</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a asp-controller="Manage" asp-action="Users" target="_blank"><i class="fa fa-user"></i> Потребители</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <div class="content-wrapper" style="min-height: 990.28px;">
+           
+            <section class="content-header">
+                @Html.Partial("TempDataMessages")
+                <h2>@ViewData["Title"]</h2>
+            </section>
+            <section class="content">
+
+                @RenderBody()
+            </section>
+        </div>
+    </div>
+    @*@Html.Partial("ModalDialog")*@
+    <script src="~/prod/js/footer.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -9,6 +9,7 @@ namespace Models.ViewModels.Account
     {
         public int UserId { get; set; }
         public string UserFullName { get; set; }
+
         [Display(Name = "Група")]
         public int CategoryMasterId { get; set; }
 

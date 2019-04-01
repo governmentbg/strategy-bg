@@ -17,8 +17,8 @@ using System.ComponentModel;
 
 namespace Domain.Controllers
 {
-	public class CalculatorController : Controller
-	{
+	public class CalculatorController : BasePortalController
+    {
 		#region Calculator
 		public IActionResult NewCalculation()
 		{

@@ -18,5 +18,7 @@ namespace Models.ViewModels.Portal
         public string Comment { get; set; }
 
         public string PageTag { get; set; }
+
+        public int UserIdentityId { get; set; }
     }
 }

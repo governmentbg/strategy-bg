@@ -1,0 +1,18 @@
+﻿@using System.Linq;
+@{
+    var currentUser = User.Identity;
+    bool isAuthenticated = currentUser?.IsAuthenticated ?? false;
+    var fullName = "";
+    if (isAuthenticated)
+    {
+        var claims = (System.Security.Claims.ClaimsIdentity)currentUser;
+        fullName = claims.Claims.Where(x => x.Type == "full_name").FirstOrDefault()?.Value;
+    }
+}
+
+
+@if (isAuthenticated)
+{
+    <span>@fullName</span>
+
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "outputFileName": "wwwroot/prod/css/head.min.css",
+    "inputFiles": [
+      //"wwwroot/lib/boostrap/dist/css/bootstrap-337.min.css",
+      "wwwroot/lte/css/bootstrap.min.css",
+      "wwwroot/lte/css/font-awesome/css/font-awesome.min.css",
+      "wwwroot/lte/css/ionicons.min.css",
+      "wwwroot/lte/css/AdminLTE.min.css",
+      "wwwroot/lte/css/_all-skins.min.css",
+      "wwwroot/lte/css/iCheck/square/blue.css",
+      "wwwroot/lte/css/ionicons.min.css",
+      "wwwroot/lib/treeview/css/style.min.css",
+      "wwwroot/lib/gridview/gridview.css",
+      "wwwroot/lte/css/dataTables.bootstrap.min.css",
+      "wwwroot/css/site.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/prod/css/head.plugins.min.css",
+    "inputFiles": [
+      "wwwroot/lib/summernote/summernote.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "adjustRelativePaths": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/prod/js/footer.min.js",
+    "inputFiles": [
+      "wwwroot/lte/js/bootstrap.min.js",
+      "wwwroot/lte/js/fastclick.js",
+      "wwwroot/lte/js/adminlte.min.js",
+      "wwwroot/lte/css/icheck/icheck.min.js",
+      "wwwroot/lib/summernote/summernote.js",
+      "wwwroot/lib/summernote/summernote-ext-specialchars.js",
+      "wwwroot/lib/gridview/gridview.js",
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/prod/js/head.min.js",
+    "inputFiles": [
+      "wwwroot/lte/js/jquery.min.js",
+      "wwwroot/lib/common/jquery.form.js",
+      "wwwroot/lte/js/jquery.dataTables.min.js",
+      "wwwroot/lte/js/dataTables.bootstrap.min.js",
+      "wwwroot/lib/common/handlebars.js",
+      "wwwroot/lib/treeview/jstree.min.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]

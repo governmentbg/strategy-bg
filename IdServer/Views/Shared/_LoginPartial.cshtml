@@ -1,0 +1,60 @@
+@using System.Linq;
+@inject IStringLocalizer<SharedResources> Localizer
+@{
+    var currentUser = User.Identity;
+    bool isAuthenticated = currentUser?.IsAuthenticated ?? false;
+    var fullName = "";
+    if (isAuthenticated)
+    {
+        var claims = (System.Security.Claims.ClaimsIdentity)currentUser;
+        fullName = claims.Claims.Where(x => x.Type == "full_name").FirstOrDefault()?.Value;
+        if (string.IsNullOrEmpty(fullName))
+        {
+            fullName = claims.Claims.Where(x => x.Type == "given_name").FirstOrDefault()?.Value;
+        }
+    }
+}
+@if (isAuthenticated)
+{
+    <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
+                <span class="hidden-xs">
+                    @fullName
+                </span>
+            </a>
+            <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                    <p>
+                        @fullName
+                        <small>@currentUser.Name</small>
+                    </p>
+                </li>
+
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                    <div class="pull-left">
+                        <a href="@Url.Action("Profile","Manage")" target="_blank" class="btn btn-default btn-flat">@Localizer["Profile"]</a>
+                    </div>
+                    <div class="pull-right">
+                        <form asp-action="LogOff" asp-controller="Account" method="get">
+                            <input type="submit" class="btn btn-primary btn-flat" value="@Localizer["Logoff"]" />
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <!-- Control Sidebar Toggle Button -->
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>
+            <a asp-action="Login" asp-controller="Account">@Localizer["Login"]</a>
+        </li>
+        <!-- Control Sidebar Toggle Button -->
+    </ul>
+}

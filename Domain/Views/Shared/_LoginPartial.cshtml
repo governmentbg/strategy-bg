@@ -1,3 +1,4 @@
+@inject IStringLocalizer<AccountResources> Localizer
 @using System.Linq;
 @{
     var currentUser = User.Identity;
@@ -19,6 +20,7 @@
 @if (isAuthenticated)
 {
     @inject Models.Contracts.INotificationService notificationService;
+    @inject WebCommon.Services.IUserContext userContext;
     var notificationCount = notificationService.CurrentUserSystemNotification_NewMessages();
     if (notificationCount > 0)
     {
@@ -30,29 +32,34 @@
         </div>
     }
     <div class="button--users hidden-md hidden-sm hidden-xs">
-        <img src="~/dist/assets/users.svg" alt="Икона потребители" />&nbsp;
+        <img src="~/dist/assets/users.svg" alt="user" />&nbsp;
         <span>@fullName</span>
         <ul>
-            <li><a asp-action="Profile" asp-controller="Account" asp-area=""><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;Профил</a></li>
+            <li><a asp-action="Profile" asp-controller="Account" asp-area=""><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;@Localizer["Profile"]</a></li>
 
             <li>
                 <a asp-action="Index" asp-controller="Notifications" asp-area="">
-                    <i class="fa fa-bell-o"></i>&nbsp;&nbsp;Съобщения @if (notificationCount > 0)
+                    <i class="fa fa-bell-o"></i>&nbsp;&nbsp;@Localizer["Messages"] @if (notificationCount > 0)
                     {<span> (@notificationCount)</span>}
                 </a>
             </li>
 
-            <li><a asp-action="Logoff" asp-controller="Account" asp-area=""><i class="glyphicon glyphicon-log-out"></i>&nbsp;&nbsp;Изход</a></li>
+            @if (userContext.IsInRole(GlobalConstants.Roles.AdminForum))
+            {
+                <li><a asp-action="Index" asp-controller="Admin" asp-area="Forums"><i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;@Localizer["ForumAdmin"]</a></li>
+            }
+
+            <li><a asp-action="Logoff" asp-controller="Account" asp-area=""><i class="glyphicon glyphicon-log-out"></i>&nbsp;&nbsp;@Localizer["Logoff"]</a></li>
         </ul>
     </div>
 
 }
 else
 {
-    <a asp-action="Login" asp-controller="Account">
+    <a asp-area="" asp-action="Login" asp-controller="Account">
         <div class="button--users">
-            <img src="~/dist/assets/users.svg" alt="Икона потребители" />&nbsp;
-            <span>Потребителски вход</span>
+            <img src="~/dist/assets/users.svg" alt="user" />&nbsp;
+            <span>@Localizer["UserLogin"]</span>
         </div>
     </a>
 }

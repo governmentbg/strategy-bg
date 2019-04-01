@@ -127,7 +127,8 @@ namespace Domain.Areas.Admin.Controllers
 
         public JsonResult GetSubPageList(int contentId, string lang)
         {
-            var model = pageService.Select(GlobalConstants.PageTypes.Pages, lang, contentId);
+            int pageType = pageService.GetPageType(null, contentId);
+            var model = pageService.Select(pageType, lang, contentId);
             return Json(model.Select(x => new
             {
                 contentId = x.ContentId,

@@ -32,11 +32,18 @@
                     </div>
                 }
 
+                <div class="form-group">
+                    <label for="comment" class="control-label">Коментар</label>
+                    <textarea name="comment" id="comment" class="form-control summernote"></textarea>
+                    <span class="text-danger" data-valmsg-for="Comment"></span>
+                </div>
+                @if (Model.UserIdentityList.Count > 1)
+                {
                     <div class="form-group">
-                        <label for="comment" class="control-label">Коментар</label>
-                        <textarea name="comment" id="comment" class="form-control summernote"></textarea>
-                        <span class="text-danger" data-valmsg-for="Comment"></span>
+                        <label asp-for="@Model.UserIdentityId" class="control-label"></label>
+                        @Html.DropDownListFor(m => m.UserIdentityId, Model.UserIdentityList.SetSelected(Model.UserIdentityId), new { @class = "form-control" })
                     </div>
+                }
                 <div class="form-group">
                     <input type="submit" value="Запис" class="btn btn-success btn-flat" />
                 </div>
@@ -85,6 +92,9 @@
     document.addEventListener("DOMContentLoaded", function (event) {
         $('#newCommentBtn').on('click', function () {
             $('#newCommentContainer').toggleClass('hidden');
+            $('.note-toolbar-wrapper').removeAttr('style');
+            $('.note-toolbar').removeAttr('style');
+            
         });
 
         $('#commentForm').on('submit', function (ev) {

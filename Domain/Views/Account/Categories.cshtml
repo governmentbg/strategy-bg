@@ -1,56 +1,60 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
-    ViewData["Title"] = "Моите категории";
+﻿@model UserInCategoriesVM
+@{
+    Layout = "~/Views/Shared/_LayoutPublicMain.cshtml";
+    ViewData["Title"] = "Абонирай се";
 }
 
 <h3 style="margin-bottom:20px;">@ViewData["Title"]</h3>
-<a href="#" onclick="addCategory(); return false;" class="btn btn-success"><i class="fa fa-plus"></i> Добави категория</a>
-<table id="mainTable" class="table" cellspacing="0"></table>
-<a asp-action="Profile">Обратно</a>
-@section scripts{
-    <script>
-    var dt = {};
-    $(function () {
-         dt  = $('#mainTable').DataTable({
-             "ajax": {
-                 "url": '@Url.Action("Categories_LoadData")',
-                 "type": "POST"
-             },
-             fnDrawCallback: function (settings) {
-                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
-             },
-             "columns": [
-                 {
-                     data: "categoryName",
-                     title: 'Наименование'
-                 },
-                 {
-                     data: null,
-                     "render": function (item) {
 
-                         var btn = '<a href="#" onclick="removeCategory('+item.categoryId+',\''+item.categoryName+'\');" class="btn btn-sm btn-danger pull-right" title="Премахни"><i class="fa fa-remove"></i></a>';
-                         return btn;
-                     },
-                     sortable: false
-                 }
-             ],
-             filter: false,
-             paging: false,
-             "bInfo": false
+<form asp-action="Categories">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+    @for (var i = 0; i < Model.ParentCategories.Count(); i++)
+    {
+        <div id="divCategories" class="panel panel-default">
+            <div class="panel-heading">
+                @Model.ParentCategories[i].CategoryName
+            <span class="pull--right"><a rel="group_@Model.ParentCategories[i].Id" href="#select_all" val="1">Избери/Откажи всички</a></span>
+        </div>
+        <div class="panel-body">
+            <fieldset id="group_@Model.ParentCategories[i].Id">
+                @for (var j = 0; j < @Model.ParentCategories[i].Categories.Count(); j++)
+                {
+                    @Html.EditorFor(x => x.ParentCategories[i].Categories[j])
+                }
+            </fieldset>
+        </div>
+    </div>
+}
+
+    <div class="form-group">
+        <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+        <a asp-controller="Account" asp-action="Profile" class="btn btn-danger btn-flat">Отмени</a>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("A[href='#select_all']").click(function () {
+            if ($(this).attr('val') === "1") {
+                // Select all
+                $(this).attr('val', "0");
+                $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").prop('checked', true);
+            }
+            else {
+                // Select none
+                $(this).attr('val', "1");
+                $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").prop('checked', false);
+            }
+            return false;
         });
 
+        // Invert selection
+        $("A[href='#invert_selection']").click(function () {
+            $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").each(function () {
+                $(this).attr('checked', !$(this).attr('checked'));
+            });
+            return false;
+        });
     });
-    function addCategory() {
-         var url = '@Url.Action("Categories_Add","Account")';
-         ShowPlainDialogFromAction('Добави категория', url);
-    }
-        function removeCategory(catId,catName) {
-            if (!confirm('Потвърдете премахването на категория: ' + catName)) {
-                return false;
-            }
-            requestContent('@Url.Action("Categories_Remove", "Account")', { categoryId: catId }, function () { dt.ajax.reload();});
-    }
-    </script>
-
-}
+</script>

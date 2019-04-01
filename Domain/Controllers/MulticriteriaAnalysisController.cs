@@ -12,8 +12,8 @@ using Rotativa.AspNetCore;
 
 namespace Domain.Controllers
 {
-  public class MulticriteriaAnalysisController : Controller
-  {
+  public class MulticriteriaAnalysisController : BasePortalController
+    {
     private readonly IMulticriteriaAnalisysService MulticriteriaAnalisysService;
     private readonly IUserContext userContext;
     public MulticriteriaAnalysisController(IMulticriteriaAnalisysService _MulticriteriaAnalisysService, IUserContext _userContext)

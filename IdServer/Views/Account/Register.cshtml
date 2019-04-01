@@ -1,0 +1,50 @@
+﻿@model RegisterViewModel
+@inject IStringLocalizer<SharedResources> Localizer
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = Localizer["Title"];
+}
+<div class="register-box">
+    <div class="register-logo">
+        <a href="../../index2.html">@TempData.Peek("Client")</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="register-box-body">
+        <div class="pull-right">
+            @Html.Partial("_LangSelect")
+        </div>
+
+
+        <p class="login-box-msg">@(Localizer["RegisterTitle"])</p>
+        <form asp-action="Register">
+            @*<input type="hidden" asp-for="ReturnUrl" />*@
+            <textbox for="Email" label="@(Localizer["Email"].Value)"></textbox>
+            <textbox for="Password" label="@(Localizer["Password"].Value)" type="password"></textbox>
+            <textbox for="PasswordAgain" label="@(Localizer["PasswordAgain"].Value)" type="password"></textbox>
+
+            <textbox for="GivenName" label="@(Localizer["GivenName"].Value)"></textbox>
+            <textbox for="MiddleName" label="@(Localizer["MiddleName"].Value)"></textbox>
+            <textbox for="FamilyName" label="@(Localizer["FamilyName"].Value)"></textbox>
+
+
+            <div class="form-group">
+
+                <label>
+                    <input asp-for="IAgree" type="checkbox" />
+                    @Localizer["Iagree"]
+                </label>
+                <span asp-validation-for="IAgree" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <a asp-action="Index" asp-controller="Home">@Localizer["Cancel"]</a>
+                </div>
+                <div class="col-lg-6 pull-right">
+                    <button class="btn btn-success btn-block btn-flat" type="submit">@Localizer["Register"]</button>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

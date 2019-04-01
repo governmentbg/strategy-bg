@@ -12,37 +12,37 @@ namespace Models.Context.Legacy
         [Display(Name = "Id")]
         public int Id { get; set; }
 
-        [Display(Name = "ArticleCategoryId")]
+        [Display(Name = "Категория")]
         public int ArticleCategoryId { get; set; }
 
-        [Display(Name = "Title")]
+        [Display(Name = "Заглавие")]
         public string Title { get; set; }
 
-        [Display(Name = "Text")]
+        [Display(Name = "Съдържание")]
         public string Text { get; set; }
 
-        [Display(Name = "Date")]
+        [Display(Name = "Дата на събитие")]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Image")]
+        [Display(Name = "Изображение")]
         public string Image { get; set; }
 
-        [Display(Name = "PageTitle")]
+        [Display(Name = "Номер на страница")]
         public string PageTitle { get; set; }
 
-        [Display(Name = "IsMainTopic")]
+        [Display(Name = "Водеща новина")]
         public bool IsMainTopic { get; set; }
 
-        [Display(Name = "IsOnMainPage")]
+        [Display(Name = "Показване на начална страница")]
         public bool IsOnMainPage { get; set; }
 
-        [Display(Name = "IsDeleted")]
+        [Display(Name = "Записът е изтрит")]
         public bool IsDeleted { get; set; }
 
-        [Display(Name = "IsActive")]
+        [Display(Name = "Записът е активен")]
         public bool IsActive { get; set; }
 
-        [Display(Name = "IsApproved")]
+        [Display(Name = "Записът е одобрен")]
         public bool IsApproved { get; set; }
 
         [Display(Name = "Priority")]
@@ -51,16 +51,16 @@ namespace Models.Context.Legacy
         [Display(Name = "LanguageId")]
         public int LanguageId { get; set; }
 
-        [Display(Name = "CreatedByUserId")]
+        [Display(Name = "Създадена от")]
         public int CreatedByUserId { get; set; }
 
-        [Display(Name = "ModifiedByUserId")]
+        [Display(Name = "Ридактирана от")]
         public int ModifiedByUserId { get; set; }
 
-        [Display(Name = "DateCreated")]
+        [Display(Name = "Дата на създаване")]
         public DateTime DateCreated { get; set; }
 
-        [Display(Name = "DateModified")]
+        [Display(Name = "Дата на промяна")]
         public DateTime DateModified { get; set; }
 
         [Display(Name = "FileId")]

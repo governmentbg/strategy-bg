@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Подреди категории връзки";
+    int lang = ViewBag.lang;
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
@@ -20,6 +21,7 @@
                     "url": '@Url.Action("LoadDataLinksCategories")',
                     data: function (d) {
                         d.active = 1;
+                        d.lang = @ViewBag.lang;
                     },
                     "type": "POST"
                 },
@@ -36,7 +38,7 @@
                     {
                         data: "id",
                         "render": function (value) {
-                            var updateUrl = '@Url.Action("OrderLinksCategoriesUp", new { id = "666"})'.replace('666', value);
+                            var updateUrl = '@Url.Action("OrderLinksCategoriesUp", new { id = "666", lang = @ViewBag.lang })'.replace('666', value);
                             var updButton = '<a href="' + updateUrl + '" class="glyphicon glyphicon-arrow-up"></a>';
                             return updButton;
                         },
@@ -46,7 +48,7 @@
                     {
                         data: "id",
                         "render": function (value) {
-                            var updateUrl = '@Url.Action("OrderLinksCategoriesDown", new { id = "666"})'.replace('666', value);
+                            var updateUrl = '@Url.Action("OrderLinksCategoriesDown", new { id = "666", lang = @ViewBag.lang })'.replace('666', value);
                             var updButton = '<a href="' + updateUrl + '" class="glyphicon glyphicon-arrow-down"></a>';
                             return updButton;
                         },

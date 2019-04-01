@@ -1,0 +1,40 @@
+﻿
+
+According to #2089, it is only available in Windows Compatibility-Pack for .NET Core. I currently use Novell.Directory.Ldap.NETStandard.
+
+public bool ValidateUser(string domainName, string username, string password)
+{
+   string userDn = $"{username}@{domainName}";
+   try
+   {
+      using (var connection = new LdapConnection {SecureSocketLayer = false})
+      {
+         connection.Connect(domainName, LdapConnection.DEFAULT_PORT);
+         connection.Bind(userDn, password);
+         if (connection.Bound)
+            return true;
+      }
+   }
+   catch (LdapException ex)
+   {
+      // Log exception
+   }
+   return false;
+}
+
+For authentication and authorization, we can use Cookie Authentication Middleware with claims.
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+   ILoggerFactory loggerFactory)
+{
+   app.UseCookieAuthentication(new CookieAuthenticationOptions
+   {                
+      AuthenticationScheme = "AuthenticationScheme",
+      LoginPath = new PathString("/Account/Login"),
+      AccessDeniedPath = new PathString("/Common/AccessDenied"),
+      AutomaticAuthenticate = true,
+      AutomaticChallenge = true
+   });
+}
+
+It has few moving pieces, so I created a working sample project at GitHub. There are two main pieces - LdapAuthenticationService and SignInManager.

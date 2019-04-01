@@ -34,49 +34,81 @@
             display: block;
         }
 
+.header--main .nav {
+    padding-top: 10px;
+}
+
+.header--main .top-nav-links {
+    padding-top: 10px;
+}
+
 .user-notification {
     margin-left: -85px;
     float: left;
     display: inline-block;
 }
 
-.section p.type {
-    font-weight: bold;
-    font-size: 1.2em;
+
+.section {
+    vertical-align: top;
+    padding: 0 15px;
 }
 
-.section:last-child {
-    padding: 0 20px 0 20px;
-}
-
-.section a {
-    text-decoration: none;
-}
-
-    .section a:hover .description {
-        color: #000 !important;
+    .section p.type {
+        font-weight: bold;
+        font-size: 1.2em;
     }
 
-.section .description {
-    margin-bottom: 15px;
-}
+    .section:first-child {
+        padding: 0 15px 0 0;
+    }
 
-.article--news.image--left div.image {
-    margin-right: 10px;
-}
+    .section:last-child {
+        padding: 0 0 0 15px;
+    }
 
-.article--news.image--left .title {
-    float: none;
-}
 
-.article--news .title {
-    font-size: 16px;
-    line-height: 24px;
-}
 
-.article--news {
-    min-height: 300px;
-}
+    .section a {
+        text-decoration: none;
+    }
+
+        .section a:hover .description {
+            color: #000 !important;
+        }
+
+    .section .description {
+        margin-bottom: 15px;
+        padding:initial;
+        /*width:calc(100%-1px);*/
+        /*width:initial;*/
+    }
+    .section:last-child .description {
+        width: initial;
+    }
+
+    .article--news {
+        min-height: 240px;
+    }
+
+    .article--news.image--left div.image {
+        margin-right: 10px;
+    }
+
+    .article--news.image--left .title {
+        float: none;
+    }
+
+    .article--news .title {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: normal;
+    }
+
+
+    .article--news .type {
+        font-weight: 600;
+    }
 /*
  * Component: Timeline
  * -------------------
@@ -231,10 +263,14 @@ ul.list-links > li {
     z-index: 9999;
 }
 
-.table--documents td a:hover {
-    color: #337ab7;
-    text-decoration: solid;
+.table--documents td a {
+    font-size: 0.9em;
 }
+
+    .table--documents td a:hover {
+        color: #337ab7;
+        text-decoration: solid;
+    }
 
 .table--documents td {
     vertical-align: middle !important;
@@ -264,7 +300,7 @@ div.strat-container {
         height: 30px;
         width: 100%;
         color: #fff !important;
-        font-size:1.2em;
+        font-size: 1.2em;
         font-weight: bolder;
         line-height: 30px;
         background: #1b334e;
@@ -290,3 +326,161 @@ fieldset .national-plan {
         padding: 5px 10px;
         border: 1px solid #1b334e;
     }
+
+
+.header--main .nav .list li {
+    font-size: 14px;
+}
+
+.header--main .nav .list li {
+    margin: 0 10px 0 0;
+}
+
+.nav ul.list {
+    background-color: #1b334e;
+    color: #fff;
+    line-height: 40px;
+    border-radius: 5px;
+}
+
+    .nav ul.list li {
+        padding-left: 5px;
+        padding-right: 5px;
+        border-radius: 5px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+        .nav ul.list li:hover {
+            background-color: #506d8e;
+        }
+
+div.fixed-item {
+    position: relative;
+    height: 60px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+    div.fixed-item:after {
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: linear-gradient(to top,#fff,rgba(0,0,0,0));
+    }
+
+    div.fixed-item p.description {
+        line-height: 120%;
+    }
+
+a.search-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+    a.search-link:hover {
+        color: #3c6fa9;
+    }
+
+
+.myTooltip {
+    position: relative;
+}
+
+    .myTooltip .tooltiptext {
+        visibility: hidden;
+        width: 200px;
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #506d8e;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 80%;
+        left: 80%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+        .myTooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+    .myTooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
+/*home--button*/
+/*бутони начална страница*/
+
+a.home--button {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    border-radius: 5px;
+    height: 75px;
+    min-height: 75px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}
+
+    a.home--button:hover {
+        color: #fff;
+    }
+
+    a.home--button i {
+        font-size: 36pt;
+        min-width: 55px;
+        text-align: center;
+    }
+
+    a.home--button p {
+        margin: 0 0 0 5px;
+        font-size: 12pt;
+    }
+
+
+
+    a.home--button.default {
+        background-color: #1b334e;
+    }
+
+        a.home--button.default:hover {
+            background-color: #3b597a;
+        }
+
+    a.home--button.green {
+        background-color: #59b463;
+    }
+
+        a.home--button.green:hover {
+            background-color: #73ca7d;
+        }
+
+/*home--button*/
+/*бутони начална страница*/
+
+
+@media screen and (max-width: 800px) {
+    a.home--button i {
+        font-size: 24pt;
+    }
+
+    a.home--button p {
+        font-size: 10pt;
+    }
+}

@@ -1,0 +1,60 @@
+﻿@model UserEditVM
+@inject IStringLocalizer<SharedResources> Localizer
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+}
+<div class="register-box">
+    <div class="login-logo">
+        @Localizer["UserProfile"]
+    </div>
+    <div class="login-box-body">
+        <div class="row">
+            <div class="pull-right">
+                @Html.Partial("_LangSelect")
+            </div>
+            <br />
+            <br />
+        </div>
+        @*<p class="login-box-msg">Потребителски профил</p>*@
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Default box -->
+                <fieldset>
+                    <legend>@Localizer["Profile"]</legend>
+                    <form asp-action="@ViewBag.actionName" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <input asp-for="Email" type="hidden" />
+                        <display for="Email" label="@(Localizer["Email"].Value)"></display>
+                        <textbox for="GivenName" label="@(Localizer["GivenName"].Value)"></textbox>
+                        <textbox for="MiddleName" label="@(Localizer["MiddleName"].Value)"></textbox>
+                        <textbox for="FamilyName" label="@(Localizer["FamilyName"].Value)"></textbox>
+                        <div class="form-group">
+                            <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+            <div class="col-lg-6">
+                <fieldset>
+                    <legend>@Localizer["Security"]</legend>
+                    <a href="#" onclick="PassChangeToggle(); return false;" class="btn btn-info btn-flat">@Localizer["ChangePassword"]</a>
+                    <div id="divPassChange" style="display:none;margin-top:20px;">
+
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    
+</div>
+@section scripts{
+    <script>
+        function PassChangeToggle() {
+            $('#divPassChange').toggle();
+            $.get('@Url.Action("ChangePassword")', null, function (data) {
+                $('#divPassChange').html(data);
+            });
+        }
+    </script>
+}

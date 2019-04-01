@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+    string lang = (string)ViewBag.lang ?? GlobalConstants.DefaultLang;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -30,7 +34,7 @@
                 <a href="@Url.Action("Index","Home",new { area=""})">
                     <div class="logo">
                         <img src="~/dist/assets/logo.png" alt="Министерски съвет Портал за обществени консултации лого"
-                             srcSet="~/dist/assets/logo@2x.png 1000w" />
+                             srcSet="~/dist/assets/logo@2x_@(lang).png 1000w" />
                     </div>
                 </a>
                 <button class="menu">
@@ -41,20 +45,31 @@
                          class="open">
                 </button>
                 <div class="user">
-                    @Html.Partial("_LoginPartial")
+                    <partial name="_LoginPartial" />
+
                     @*<button class="button--users">
                             <img src="dist/assets/users.svg" alt="Икона потребители" />
                             <span>Потребителски вход</span>
                         </button>*@
                 </div>
-                <form class="search">
+
+                <form class="search" asp-area="" asp-action="Search" asp-controller="Home" method="get">
                     <button type="submit">
                         <img class="icon--default" src="~/dist/assets/magnifier.svg" alt="Икона търсене" />
                     </button>
-                    <input type="text"
-                           class="input--search"
-                           placeholder="Търсене" />
+                    <input name="searchPhrase" type="text" class="input--search" placeholder="Търсене" />
                 </form>
+
+                <div class="top-nav-links">
+                    <div style="display:inline-block"><partial name="_LangSelect" /></div>
+                    <partial name="_LayoutPublicTopLinks" />
+
+                    @if (ViewBag.RssLink != null)
+                    {
+                        <span>&nbsp;<a href="@ViewBag.RssLink" target="_blank" id="rssLink" title="RSS"><img src="@Url.Content("~/images/rss-icon.png")" /></a>&nbsp;</span>
+                    }
+                </div>
+
             </div>
             <nav class="nav">
                 <ul class="list">
@@ -69,22 +84,22 @@
                         </form>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index","PublicConsultation", new { area = "" })">ОБЩЕСТВЕНИ КОНСУЛТАЦИИ</a>
+                        <a href="@Url.Action("Index","PublicConsultation", new { area = "" })">@Localizer["MENU_PUBLIC_CONSULTATIONS"]</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index","StrategicDocument", new { area = "" })">СТРАТЕГИЧЕСКИ ДОКУМЕНТИ</a>
+                        <a href="@Url.Action("Index","StrategicDocument", new { area = "" })">@Localizer["MENU_STRATEGIC_DOCUMENTS"]</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index","Publication", new { area = "" })">ПУБЛИКАЦИИ</a>
+                        <a href="@Url.Action("Index","Publication", new { area = "" })">@Localizer["MENU_PUBLICATIONS"]</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index","News", new { area = "" })">НОВИНИ</a>
+                        <a href="@Url.Action("Index","News", new { area = "" })">@Localizer["MENU_NEWS"]</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index","Forums", new { area = "" })">ДНЕС ОБЩЕСТВОТО РЕШАВА</a>
+                        <a href="@Url.Action("Index","Forums", new { area = "" })">@Localizer["MENU_FORUM"]</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Plans","Ogp", new { area = "" })">ПАРТНЬОРСТВО ЗА ОТКРИТО УПРАВЛЕНИЕ</a>
+                        <a href="@Url.Action("Plans","Ogp", new { area = "" })">@Localizer["MENU_OGP"]</a>
                     </li>
                     @*<li>
                             <a href="@Url.Action("FillQuestionary", "Questionary", new { area = "" , questionaryHeaderId = 1})">АНКЕТА</a>
@@ -122,6 +137,7 @@
             </footer>*@
         <!-- END FOOTER -->
     </div>
+    @Html.Partial("ModalDialog")
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->

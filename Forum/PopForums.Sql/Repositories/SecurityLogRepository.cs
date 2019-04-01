@@ -54,10 +54,8 @@ namespace PopForums.Sql.Repositories
 		{
 			var list = new List<IPHistoryEvent>();
 			_sqlObjectFactory.GetConnection().Using(c =>
-				c.Command(_sqlObjectFactory, "SELECT SecurityLogID, ActivityDate, UserID, SecurityLogType, Message FROM pf_SecurityLog WHERE IP = @IP AND ActivityDate >= @Start AND ActivityDate <= @End ORDER BY ActivityDate")
+				c.Command(_sqlObjectFactory, "SELECT SecurityLogID, ActivityDate, UserID, SecurityLogType, Message FROM pf_SecurityLog WHERE IP = @IP ORDER BY ActivityDate")
 				.AddParameter(_sqlObjectFactory, "@IP", ip)
-				.AddParameter(_sqlObjectFactory, "@Start", start)
-				.AddParameter(_sqlObjectFactory, "@End", end)
 				.ExecuteReader()
 				.ReadAll(r => list.Add(new IPHistoryEvent
 				{

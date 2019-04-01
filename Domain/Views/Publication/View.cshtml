@@ -6,6 +6,7 @@
     <div class="breadcrumbs">
         / <a href="@Url.Action("Index","Home")">Начало</a>
         / <a href="@Url.Action("Index")">Публикации</a>
+        / <a href="@Url.Action("Index", new { category = Model.CategoryId})">@Model.CategoryName</a>
     </div>
 }
 
@@ -49,8 +50,9 @@
                 @Html.Raw(Model.Content)
             </p>
             @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.Publications, sourceId = Model.Id })
+
             <!-- TABLE DATES -->
-            <div class="row">
+            @*<div class="row">
                 <div class="col-md-5">
                     <table class="table table-bordered table--dates table--stripped">
                         <tbody>
@@ -62,10 +64,17 @@
                             <!-- END LOOP -->
                         </tbody>
                     </table>
-                </div>
-            </div>
-            <!-- END TABLE DATES -->
+                </div>*@
+            <table border="0" width="100%">
+                <tr>
+                    <td><p align="center"><a href="@Url.Action("View")?id=@Model.prev_Id"><b>< Предишна</b></a></p></td>
+                    <td><p align="center"><a href="@Url.Action("View")?id=@Model.next_Id"><b>Следваща ></b></a></p></td>
+                </tr>
+            </table>
         </div>
+        <!-- END TABLE DATES -->
+
     </div>
 </div>
+
 <!-- END COMMENTS -->

@@ -44,22 +44,9 @@
 
 <table class="table dataTable no-footer">
     <tbody>
-        @*@foreach (var forum in Model.UncategorizedForums)
-            {
-                <tr data-forumid="@forum.ForumID">
-                    <td class="newIndicator"><a asp-controller="Forum" asp-action="Index" asp-route-urlName="@forum.UrlName"><pf-forumReadIndicator forum="@forum" categorizedForumContainer="@Model" imagePath="/lib/PopForums/" /></a></td>
-                    <td>
-                        <a asp-controller="Forum" asp-action="Index" asp-route-urlName="@forum.UrlName">@forum.Title</a>
-                        <p>@forum.Description</p>
-                        <small class="pull-right forumDetails">
-                            @PopForums.Resources.Topics: <span class="topicCount">@forum.TopicCount.ToString("N0")</span> | @PopForums.Resources.Posts: <span class="postCount">@forum.PostCount.ToString("N0")</span> | @PopForums.Resources.Last: <span class="lastPostTime fTime" data-utc="@forum.LastPostTime.ToString("o")">@TimeFormattingService.GetFormattedTime(forum.LastPostTime, profile)</span> @PopForums.Resources.By <span class="lastPostName">@forum.LastPostName</span>
-                        </small>
-                    </td>
-                </tr>
-            }*@
         @foreach (var category in Model.CategoryDictionary)
         {
-            <tr class="bg-primary">
+            <tr class="breadcrumbs">
                 <td colspan="2">@category.Key.Title</td>
             </tr>
             foreach (var forum in category.Value)

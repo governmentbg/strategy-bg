@@ -224,12 +224,10 @@ SET ROWCOUNT 0";
 
 		public List<IPHistoryEvent> GetIPHistory(string ip, DateTime start, DateTime end)
 		{
-			var list = new List<IPHistoryEvent>();
+      var list = new List<IPHistoryEvent>();
 			_sqlObjectFactory.GetConnection().Using(c =>
-				c.Command(_sqlObjectFactory, "SELECT PostID, PostTime, UserID, Name, Title FROM pf_Post WHERE IP = @IP AND PostTime >= @Start AND PostTime <= @End")
+				c.Command(_sqlObjectFactory, "SELECT PostID, PostTime, UserID, Name, Title FROM pf_Post WHERE IP = @IP")
 				.AddParameter(_sqlObjectFactory, "@IP", ip)
-				.AddParameter(_sqlObjectFactory, "@Start", start)
-				.AddParameter(_sqlObjectFactory, "@End", end)
 				.ExecuteReader()
 				.ReadAll(r => list.Add(new IPHistoryEvent
 				                       	{

@@ -8,13 +8,15 @@ using WebCommon.Extensions;
 
 namespace Domain.Controllers
 {
-    public class NewsController : Controller
+    public class NewsController : BasePortalController
     {
         private readonly INewsService service;
+        private readonly IUrlHelper urlHelper;
 
-        public NewsController(INewsService _service)
+        public NewsController(INewsService _service, IUrlHelper _urlHelper)
         {
             service = _service;
+            urlHelper = _urlHelper;
         }
 
         public IActionResult Index(int category = -1)
@@ -24,6 +26,12 @@ namespace Domain.Controllers
             {
                 ViewBag.categoryName = service.NewsCategories_GetById(category)?.Name;
             }
+            ViewBag.categories = service.NewsCategories_SelectCombo(this.Lang).ToSelectList(category).AddAllItem();
+            ViewBag.RssLink = urlHelper.Action("GetNewsFeed", "Rss", new
+            {
+                type = RssFeedType.News
+            });
+
             return View();
         }
 
@@ -31,7 +39,8 @@ namespace Domain.Controllers
         public JsonResult LoadDataGrid([FromBody]GridRequestModel data)
         {
             int? category = (int)data.param.category;
-            var model = service.News_Select(category.EmptyToNull(), data.filter.EmptyToNull());
+            string searchTerm = (string)data.param.searchTerm;
+            var model = service.News_Select(category.EmptyToNull(), searchTerm.EmptyToNull(), this.Lang);
 
             return Json(new GridResponseModel<ArticleListVM>(data, model));
         }
@@ -44,6 +53,6 @@ namespace Domain.Controllers
             return View(model);
         }
 
-     
+
     }
 }

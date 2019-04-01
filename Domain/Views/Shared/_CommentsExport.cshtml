@@ -1,0 +1,55 @@
+﻿@model Models.ViewModels.Consultations.CommentsExportVM
+
+@{Layout = "~/Views/Shared/_ExportLayout.cshtml";}
+
+<div class="row">
+    <div class="col-md-5 col-lg-6 body">
+        <h2>
+            @Html.Raw(Model.ConsultationTitle)
+        </h2>
+
+        <h3>
+            @Html.Raw(Model.Summary)
+        </h3>
+
+        <div class="row  comments" id="commentsContainer">
+            @if (Model.Comments.Any())
+            {
+                <div class="col-md-12 comment">
+                    <div class="title">Коментари</div>
+                </div>
+                @foreach (var item in Model.Comments)
+                {
+                    <div class="col-md-12 comment">
+                        <div class="panel @(item.TookIntoConsideration ? "panel-success" : "")">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@item.Title</h3>
+                            </div>
+                            @if (!String.IsNullOrEmpty(item.PageTag))
+                            {
+                                <div class="panel-body">
+                                    <strong>Към</strong> @item.PageTag
+                                </div>
+                            }
+
+                            <div class="panel-body">@Html.Raw(item.Text)</div>
+                            @if (!String.IsNullOrEmpty(item.TookIntoConsiderationReason))
+                            {
+                                <div class="panel-body">
+                                    <div class="@(item.TookIntoConsideration ? "text-success" : "text-danger")">
+                                        Коментара @(item.TookIntoConsideration ? "е" : "не е") взет под внимание <i class="fa fa-arrow-circle-o-down"></i>
+                                    </div>
+                                    <div>@item.TookIntoConsiderationReason</div>
+                                </div>
+                            }
+                            <div class="panel-footer">
+                                <span class="name">@item.FullName</span> @item.Publish.ToString("dd.MM.yyyy HH:mm:ss")
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
+</div>

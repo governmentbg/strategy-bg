@@ -1,0 +1,19 @@
+﻿@model IdServer.ViewModels.AccountMessageViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewBag.Title = Model.Title;
+}
+@inject IStringLocalizer<SharedResources> sharedLocalizer
+
+<div class="login-box">
+    <div class="login-logo">
+        @Model.Title
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        @*<p class="login-box-msg">Забравена парола</p>*@
+        @Model.Message
+        <br/>
+        <a asp-action="Index" asp-controller="Home">@sharedLocalizer["GoBack"]</a>
+    </div>
+</div>

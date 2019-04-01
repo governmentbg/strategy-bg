@@ -6,7 +6,7 @@ namespace WebCommon.Extensions
 {
     public static class DataTablesExtension
     {
-        public static DataTablesResponse GetResponse<T>(this IDataTablesRequest request, IQueryable<T> data, IQueryable<T> filteredData = null) where T : class
+        public static DataTablesResponse GetResponse<T>(this IDataTablesRequest request, IQueryable<T> data, IQueryable<T> filteredData = null, int? recordCount = null) where T : class
         {
             if (filteredData == null)
             {
@@ -15,13 +15,20 @@ namespace WebCommon.Extensions
 
             var orderColums = request.Columns.Where(x => x.Sort != null);
             T[] dataPage = null;
-            if (filteredData.Count() > 0)
+            if (recordCount > 0)
             {
-                dataPage = filteredData.OrderBy(orderColums).Skip(request.Start).Take((request.Length > 0) ? request.Length : filteredData.Count()).ToArray();
+                dataPage = filteredData.ToArray();
             }
             else
             {
-                dataPage = filteredData.ToArray();
+                if (filteredData.Count() > 0)
+                {
+                    dataPage = filteredData.OrderBy(orderColums).Skip(request.Start).Take((request.Length > 0) ? request.Length : filteredData.Count()).ToArray();
+                }
+                else
+                {
+                    dataPage = filteredData.ToArray();
+                }
             }
             if (typeof(T).Implements(typeof(IDataTableRowNo)))
             {
@@ -35,7 +42,7 @@ namespace WebCommon.Extensions
                 }
             }
 
-            return DataTablesResponse.Create(request, data.Count(), filteredData.Count(), dataPage);
+            return DataTablesResponse.Create(request, recordCount ?? data.Count(), recordCount ?? filteredData.Count(), dataPage);
         }
     }
 

@@ -1,0 +1,42 @@
+﻿@using IdServer.Class
+
+<div id="messageContainer">
+    @if (TempData[MessageConstant.ErrorMessage] != null)
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-danger no-margin-bottom">
+                    <button data-dismiss="alert" class="close">×</button>
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    @TempData[MessageConstant.ErrorMessage]
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (TempData[MessageConstant.WarningMessage] != null)
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-warning no-margin-bottom">
+                    <button data-dismiss="alert" class="close">×</button>
+                    <i class="glyphicon glyphicon-warning-sign"></i>
+                    @TempData[MessageConstant.WarningMessage]
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (TempData[MessageConstant.SuccessMessage] != null)
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-success no-margin-bottom">
+                    <button data-dismiss="alert" class="close">×</button>
+                    <i class="glyphicon glyphicon-check"></i>
+                    @TempData[MessageConstant.SuccessMessage]
+                </div>
+            </div>
+        </div>
+    }
+</div>

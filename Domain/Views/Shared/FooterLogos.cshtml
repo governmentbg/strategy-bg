@@ -1,16 +1,22 @@
-﻿<div style="background-color:#fff;margin-top:50px;">
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+    string lang = (string)ViewBag.lang ?? GlobalConstants.DefaultLang;
+}
+<div style="background-color:#fff;margin-top:30px;">
     <div class="row">
-        <div class="col-lg-4" style="padding-top:10px;">
-            <img src="~/img/footer/esf_logo.png" />
-        </div>       
-        <div class="col-lg-4" style="text-align:center;padding-top:20px;">
+        <div class="col-md-3 col-lg-2 col-sm-6 col-xs-6" style="padding-top:10px;">
+            <img src="~/img/footer/esf_logo_small_@(lang).png" />
+        </div>
+        <div class="col-md-3 col-lg-2 col-sm-6  col-xs-6 hidden-lg hidden-md" style="text-align:right;padding-top:10px;padding-right:30px;">
+            <img src="~/img/footer/opdu_small_@(lang).png" />
+        </div>
+        <div class="col-md-6 col-lg-8 col-sm-12 col-xs-12" style="text-align:center;padding-top:20px;">
             <h4>
-                BG05SFOP001-2.001-0002-C01 „Администрация и гражданско общество – партньорство в управлението“, финансиран по Оперативна програма „Добро управление“
+                @Localizer["PROJECT_TITLE"]
             </h4>
         </div>
-        <div class="col-lg-4 pull-right" style="text-align:right;padding-top:10px;padding-right:30px;">
-            @*<img src="~/img/footer/git_logo.png" />*@
-            <img src="~/img/footer/opdu.png" />
+        <div class="col-md-3 col-lg-2 hidden-sm hidden-xs" style="text-align:right;padding-top:10px;padding-right:30px;">
+            <img src="~/img/footer/opdu_small_@(lang).png" />
         </div>
     </div>
 </div>

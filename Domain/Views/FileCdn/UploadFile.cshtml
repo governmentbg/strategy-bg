@@ -1,8 +1,13 @@
 ﻿@model FileCDN.Models.FileRequest
+@{
+    bool directUpload = (bool)ViewBag.directUpload;
+    var addControls = new[] { GlobalConstants.SourceTypes.StrategicDocuments }.Contains(Model.UsedFilesSourceType);
+}
 <form asp-action="UploadFile" asp-controller="FileCdn" method="POST" id="cdnUploadFile" enctype="multipart/form-data">
     <input asp-for="SourceType" type="hidden" />
-    <input asp-for="SourceID" type="hidden" />
     <input asp-for="JScallback" type="hidden" />
+    <input asp-for="UsedFilesSourceType" type="hidden" />
+
     <div class="row">
         <div class="col-lg-12">
             <div class="form-group">
@@ -10,33 +15,67 @@
                 <input type="file" id="files" name="files" />
             </div>
             <textbox for="FileTitle"></textbox>
+            <ddl for="SourceID" data="ViewBag.libraries"></ddl>
+            @if (addControls)
+            {
+                <checkbox for="IsReportVisible"></checkbox>
+                @Html.EditorFor(x => x.DateExparing, "DateYearWithEmpty")
+            }
             <div class="form-group">
                 <input type="submit" value="Добави" class="btn btn-success" id="cdnUploadButton" />
+                @if (directUpload)
+                {
+                    <div class="pull-right"><a href="#" onclick="chooseExistingFile(); return false;" class="text-primary">или избери съществуващ файл</a></div>
+                }
             </div>
         </div>
     </div>
 </form>
 <script>
+    $(function () {
+        AttachUIpluggins();
+    });
     $('form#cdnUploadFile').ajaxForm({
+        beforeSerialize: function ($form, options) {
+            $('.dateyear-with-empty').each(function (i, e) {
+                dateYearWithEmptySetValues(e);
+            });
+        },
         beforeSend: function () {
             $('#cdnUploadButton').hide();
         },
 
         complete: function (xhr) {
             $('#cdnUploadButton').show();
-            if (xhr.responseText === "ok") {
-                @if (!string.IsNullOrEmpty(Model.JScallback))
+            var response = JSON.parse(xhr.responseText);
+            debugger;
+            if (response.isOk == true) {
+                @if (directUpload)
                 {
-                    @Model.JScallback
+                    <text>@(Model.DirectUploadMethod)(response.fileId, response.title);</text>
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(Model.JScallback))
+                    {
+                        @Model.JScallback
+                    }
                 }
                 $('#cdnUploadButton').parents('div.modal:first').modal("hide");
-            } else {
-                if (xhr.responseText.length > 100) {
-                    // percent.html("Проблем при зареждане на файл.");
-                } else {
-                    // percent.html(xhr.responseText);
-                }
+            }
+            else
+            {
+                    if (xhr.responseText.length > 100) {
+                        // percent.html("Проблем при зареждане на файл.");
+                    } else {
+                        // percent.html(xhr.responseText);
+                    }
             }
         }
     });
+    function chooseExistingFile() {
+        HideModalDialog();
+        var url = '@Html.Raw(Url.Action("Select","Library",new { area="Admin", source_type = Model.SourceType}))';
+        ShowPlainDialogFromAction('Избери документ', url);
+    }
 </script>

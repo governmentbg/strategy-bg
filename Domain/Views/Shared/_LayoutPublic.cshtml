@@ -14,16 +14,13 @@
     <script src="~/lib/PopForums/signalr.min.js"></script>
     <script src="~/lib/PopForums/PopForums.js"></script>
     <link href="~/lib/PopForums/PopForums.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site-portal.css" />
+
     @RenderSection("HeaderContent", required: false)
 }
 
 @RenderSection("breadcrumbs", false)
-@*<div class="breadcrumbs">
-        / <a href="#">Начало</a>
-        / <a href="#">Обществени консултации</a>
-        / <a href="#">Национални</a>
-        / <a href="#">Бизнес среда</a>
-    </div>*@
+
 @RenderBody()
 @section scripts{
     @RenderSection("scripts", false)

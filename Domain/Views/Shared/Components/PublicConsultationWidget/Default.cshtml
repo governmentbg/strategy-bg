@@ -1,24 +1,46 @@
 ﻿@model IEnumerable<PublicConsultationVM>
 @using WebCommon.Extensions
-@if (Model.Count() > 0)
-{
-    <p class="type">ОБЩЕСТВЕНИ КОНСУЛТАЦИИ</p>
-    @foreach (var item in Model)
+@{
+    var sortType = (string)ViewBag.pcWidgetSortType;
+}
+<div id="pcwidgetContainer">
+    @if (Model.Count() > 0)
     {
-        item.CategoryImagePath = item.CategoryImagePath.EmptyToNull();
-        <div>
-            <a asp-action="View" asp-controller="PublicConsultation" asp-route-id="@item.Id">
-                <div class="image">
-                    <img src="~/img/categories/@(item.CategoryImagePath ?? "icon_default.png")" alt="@item.CategoryText">
-                </div>
-                <p class="description">
-                    @Html.Raw(item.Title)
-                </p>
-            </a>
+
+        @foreach (var item in Model)
+        {
+            <div class="fixed-item">
+                <a asp-action="View" asp-controller="PublicConsultation" asp-route-id="@item.Id">
+                    <div class="image">
+                        <img src="~/img/categories/@(item.CategoryImagePath)" alt="@item.CategoryText">
+                    </div>
+                    <p class="description">
+                        @Html.Raw(item.Title)
+                    </p>
+                </a>
+            </div>
+        }
+        <div id="pcwidgetContainerTools">
+            <a href="#" data-type="new">Най-нови</a>&nbsp;|&nbsp;<a href="#" data-type="comment">Най-коментирани</a>
         </div>
+
     }
-}
-else
-{
-    <span>Няма данни.</span>
-}
+    else
+    {
+        <span>Няма данни.</span>
+    }
+    <script>
+    $(function () {
+        $('#pcwidgetContainerTools a').each(function (i, e) {
+            $(e).click(function () {
+                if ($(e).data('type') == '@sortType') {
+                    $(e).addClass('active');
+                }
+                var container = $("#pcwidgetContainer");
+                $.get("@Url.Action("PublicConsultationWidget","Ajax")", { loadCount:@Model.Count(), type: $(this).data('type') }, function (data) { container.html(''); container.html(data); });
+            });
+        });
+    });
+    </script>
+
+</div>

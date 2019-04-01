@@ -7,11 +7,12 @@
 <table class="table">
 	@foreach (var entry in Model)
 	{
-		<tr>
-			<td>@TimeFormattingService.GetFormattedTime(entry.TimeStamp, profile)</td>
-			<td><a asp-controller="@AccountController.Name" asp-action="ViewProfile" asp-route-id="@entry.UserID" target="_blank">@entry.UserName</a></td>
-			<td>@entry.ModerationType</td>
-		</tr>
+    <tr>
+        <td>@TimeFormattingService.GetFormattedTime(entry.TimeStamp, profile)</td>
+        @*<td><a asp-controller="@AccountController.Name" asp-action="ViewProfile" asp-route-id="@entry.UserID" target="_blank">@entry.UserName</a></td>*@
+        <td><a asp-controller="Account" asp-action="Posts" asp-route-id="@entry.UserID">@(String.Format(PopForums.Resources.NamePosts, entry.UserName) )</a></td>
+<td></td>
+    </tr>
 		<tr>
 			<td colspan="3" style="border-bottom: solid 1px black;">
 				<p>@PopForums.Resources.Comment: @entry.Comment</p>

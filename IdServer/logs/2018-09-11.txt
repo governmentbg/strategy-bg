@@ -1,0 +1,6 @@
+2018-09-11 21:38:12,784 [7] WARN  App  
+ The Include operation for navigation '[x].UsersRoles.Role' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 
+2018-09-11 22:24:41,375 [8] WARN  App  
+ The Include operation for navigation '[x].UsersRoles.Role' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information. 
+ 

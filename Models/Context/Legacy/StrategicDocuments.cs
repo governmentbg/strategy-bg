@@ -17,7 +17,7 @@ namespace Models.Context.Legacy
     [Display(Name = "Кратко описание")]
     public string Summary { get; set; }
 
-    [Display(Name = "Категория")]
+    [Display(Name = "Главна категория")]
     public int CategoryId { get; set; }
 
     [Display(Name = "MainFileId")]
@@ -64,16 +64,7 @@ namespace Models.Context.Legacy
 
     [ForeignKey(nameof(CategoryId))]
     public Category Category { get; set; }
-    [NotMapped]
-    [Display(Name = "Тип")]
-    public int CategoryMasterId { get; set; }
     
-    [NotMapped]
-    [Display(Name = "Област")]
-    public int DistrictId { get; set; }
-    [NotMapped]
-    [Display(Name = "Категория")]
-    public int? MunicipalityId { get; set; }
   }
 }
 

@@ -37,15 +37,17 @@ namespace WebCommon.TagHelpers
                 //// Създаване на 'Span' елемента             
                 //TagBuilder SpanElement = ValidationSpan(For, ViewContext, new { @class = "text-danger field-validation-valid" });
 
-                // Създаване на Label елемента           
-                TagBuilder labelElement = MakeLabel(For, ViewContext, Label, new { @class = "control-label " + (TextClass ?? "") });
 
                 TagBuilder lblContainer = new TagBuilder("label");
+                TagBuilder spanText = new TagBuilder("span");
+                spanText.InnerHtml.Append(GetDisplayName(For, Label));
                 lblContainer.InnerHtml.AppendHtml(inputElement);
-                lblContainer.InnerHtml.AppendHtml(labelElement);
+                lblContainer.InnerHtml.AppendHtml(spanText);
+                lblContainer.AddCssClass("control-label");
+
 
                 TagBuilder divContainer = new TagBuilder("div");
-                divContainer.AddCssClass("checkbox");
+                divContainer.AddCssClass("checkbox " + (TextClass ?? ""));
                 divContainer.InnerHtml.AppendHtml(lblContainer);
 
                 output.TagName = "div";

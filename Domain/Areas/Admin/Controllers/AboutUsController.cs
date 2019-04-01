@@ -26,15 +26,16 @@ namespace Domain.Areas.Admin.Controllers
 		}
 
 		#region About Us
-		public IActionResult ListAboutUs()
+		public IActionResult ListAboutUs(int lang = GlobalConstants.LangBG)
 		{
-			return View();
+      ViewBag.lang = lang;
+      return View();
 		}
 
 		[HttpPost]
-		public IActionResult LoadDataAboutUs(IDataTablesRequest request, int active = -1)
-		{
-			IQueryable<AboutUsListViewModel> data = aboutUsService.GetAboutUsList(active);
+		public IActionResult LoadDataAboutUs(IDataTablesRequest request, int active = -1, int lang = GlobalConstants.LangBG)
+    {
+			IQueryable<AboutUsListViewModel> data = aboutUsService.GetAboutUsList(active, lang);
 
 			var response = request.GetResponse(data);
 
@@ -42,9 +43,16 @@ namespace Domain.Areas.Admin.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult AddAboutUs()
-		{
-			var model = new AboutUsViewModel();
+		public IActionResult AddAboutUs(int lang)
+    {
+      var model = new AboutUsViewModel()
+      {
+        LanguageId = lang,
+        IsActive = true,
+        IsApproved = true,
+        IsDeleted = false
+      };
+
 			model.IsActive = true;
 
 			return View("EditAboutUs", model);

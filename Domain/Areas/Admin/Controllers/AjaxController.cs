@@ -51,5 +51,31 @@ namespace Domain.Areas.Admin.Controllers
                 return Content("failed");
             }
         }
+        [HttpPost]
+        public ContentResult MoveUsedFile(int usedFileId, bool moveUp, int sourceType, int sourceId)
+        {
+            var result = commonService.FileCdn_MoveUsedFile(usedFileId, moveUp, sourceType, sourceId);
+            if (result)
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("failed");
+            }
+        }
+        [HttpPost]
+        public ContentResult RenameUsedFile(string fileId, string fileTitle)
+        {
+            var result = commonService.FileCdn_RenameUsedFile(fileId, fileTitle);
+            if (result)
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("failed");
+            }
+        }
     }
 }

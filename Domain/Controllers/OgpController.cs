@@ -8,7 +8,7 @@ using Models.Contracts;
 
 namespace Domain.Controllers
 {
-    public class OgpController : Controller
+    public class OgpController : BasePortalController
     {
 
         private readonly IOgpService ogpService;

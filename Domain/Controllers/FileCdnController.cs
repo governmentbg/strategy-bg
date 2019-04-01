@@ -15,6 +15,7 @@ using Models.Context;
 using Models.ViewModels;
 using WebCommon.Extensions;
 using Microsoft.Extensions.Logging;
+using Models.Contracts;
 
 namespace Domain.Controllers
 {
@@ -25,14 +26,17 @@ namespace Domain.Controllers
     {
         private readonly ICdnService<MainContext> cdnService;
         private readonly IImageService imgService;
+        private readonly ILibraryService libService;
         private readonly ILogger logger;
         public FileCdnController(
             ICdnService<MainContext> _cdnService,
             IImageService _imgService,
+             ILibraryService _libService,
             ILogger<FileCdnController> _logger)
         {
             this.cdnService = _cdnService;
             this.imgService = _imgService;
+            this.libService = _libService;
             logger = _logger;
         }
 
@@ -53,20 +57,24 @@ namespace Domain.Controllers
             return Json(new GridResponseModel<FileCDN.Models.FileInfo>(data, model));
         }
 
-        public IActionResult UploadFile(int sourceType, string sourceId, string callback = null)
+        public IActionResult UploadFile(int sourceType, string sourceId, string callback = null, string directUploadMethod = null, int stUsed = 0)
         {
             var model = new FileRequest()
             {
                 SourceType = sourceType,
                 SourceID = sourceId,
-                JScallback = callback
+                JScallback = callback,
+                DirectUploadMethod = directUploadMethod,
+                UsedFilesSourceType = stUsed
             };
+            ViewBag.libraries = libService.Select(sourceType, null, null).Where(x => x.IsActive)
+                .ToSelectList(x => x.Id, x => x.Title, sourceId);
+            ViewBag.directUpload = !string.IsNullOrEmpty(directUploadMethod);
             return PartialView(model);
         }
         [HttpPost]
-        public ContentResult UploadFile(FileRequest model, ICollection<IFormFile> files)
+        public JsonResult UploadFile(FileRequest model, ICollection<IFormFile> files)
         {
-            var result = "failed";
             foreach (var file in files)
             {
                 if (file.Length > 0)
@@ -84,11 +92,11 @@ namespace Domain.Controllers
                     var cdnresult = cdnService.Upload(model);
                     if (cdnresult.SavedOK)
                     {
-                        result = "ok";
+                        return Json(new { isOk = true, fileId = cdnresult.FileId, title = model.FileTitle ?? model.FileName });
                     }
                 }
             }
-            return Content(result);
+            return Json(new { isOk = false });
         }
 
         public FileResult DownloadFile(string id)

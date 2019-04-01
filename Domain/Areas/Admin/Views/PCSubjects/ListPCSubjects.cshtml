@@ -8,38 +8,39 @@
     </ul>
 }
 
-<section class="content">
-    <div class="pull-left">
-        <a asp-action="AddPCSubject" class="btn btn-success btn-flat">Добави лице</a>
-    </div>
+    <section class="content">
+        <div class="pull-left">
+            <a asp-action="AddPCSubject" class="btn btn-success btn-flat">Добави лице</a>
+        </div>
 
-    <div class="search-form">
-        <div class="row">
-            <div class="col-lg-12">
-                <div>
-                    <span>Вид лице</span>
-                    @Html.DropDownList("PCSubjectsTypeID", (IEnumerable<SelectListItem>)ViewBag.PCSubjectsTypeID_ddl, new { @class = "form-control" })
-                </div>
-                <div>
-                    <span>Име</span>
-                    @Html.TextBox("name", null, new { @class = "form-control" })
-                </div>
-                <div id="eik_div">
+        <div class="search-form">
+            <div class="row">
+                <div class="col-lg-12">
                     <div>
-                        <span>ЕИК</span>
-                        @Html.TextBox("eik", null, new { @class = "form-control" })
+                        <span>Вид лице</span>
+                        @Html.DropDownList("PCSubjectsTypeID", (IEnumerable<SelectListItem>)ViewBag.PCSubjectsTypeID_ddl, new { @class = "form-control" })
                     </div>
-                </div>
-                <div>
-                    <span>&nbsp;</span>
-                    <button type="button" class="btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+                    <div>
+                        <span>Име</span>
+                        @Html.TextBox("name", null, new { @class = "form-control" })
+                    </div>
+                    <div id="eik_div">
+                        <div>
+                            <span>ЕИК</span>
+                            @Html.TextBox("eik", null, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div>
+                        <span>&nbsp;</span>
+                        <button type="button" class="btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
-    <table id="mainTable" class="table" cellspacing="0"></table>
-</section>
+        <table id="mainTable" class="table" cellspacing="0"></table>
+    </section>
 @section scripts{
     <script>
     $(function () {
@@ -82,7 +83,7 @@
                  },
                  {
                      data: "datePayment",
-                     title: 'Дата на плащане',
+                     title: 'Дата на договор',
                      sortable: true,
                      searchable: false,
                      "render": function (value) {
@@ -90,17 +91,42 @@
                      }
                  },
                  {
-                     data: "paymentValue",
-                     title: 'Възнаграждение за извършените дейности',
+                     data: "contractingAuthority",
+                     title: 'Възложител',
                      sortable: true,
                      searchable: false
                  },
                  {
+                     data: "paymentValue",
+                     title: 'Възнаграждение за извършените услуги в лева',
+                     sortable: true,
+                     searchable: false
+                 },
+                 {
+                     data: "paymentValue",
+                     title: 'с ДДС',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value == "1" ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
                      data: "activityDescription",
-                     title: 'Извършени дейности',
+                     title: 'Описание на извършените услуги',
                      sortable: false,
                      searchable: false
                  },
+                 {
+                     data: "filesForDownload",
+                     title: 'Прикачени файлове',
+                     "render": function (value) {
+                         return value;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }, 
                  {
                      data: "id",
                      "render": function (value) {

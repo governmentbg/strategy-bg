@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Банери";
+    int lang = ViewBag.lang;
+}
+
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index", "Banners")">Банери</a>
+    </div>
+}
+
+<section class="content">
+    <partial name="LangSelect" model="@lang" />
+    <div class="pull-left">
+        <a asp-action="Add" asp-route-lang="@lang" class="btn btn-success btn-flat">Добави нов банер</a>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-1">
+                    <label>Активност</label>
+                </div>
+                <div class="col-lg-1">
+                    <select id="ddlActive">
+                        <option value="-1">Всички</option>
+                        <option value="1">Активни</option>
+                        <option value="0">Неактивни</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadData")',
+                 data: function (d) {
+                     d.active = $("#ddlActive").val();
+                     d.lang = @ViewBag.lang;
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "label",
+                     title: 'Име',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "bannerType",
+                     title: 'Вид',
+                     sortable: true,
+                     searchable: false
+                 },
+                 {
+                     data: "dateCreated",
+                     title: 'Дата на създаване',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "isActive",
+                     title: 'Активен',
+                     sortable: true,
+                     searchable: false,
+                     className: "text-center",
+                     "render": function (value) {
+                         return value ? 'ДА' : 'НЕ';
+                     }
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("Edit",new { id = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ]
+        });
+
+        $('#ddlActive').change(function () {
+            dt.ajax.reload();
+        });
+    });
+    </script>
+}
+

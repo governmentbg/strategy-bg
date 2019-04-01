@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models.Contracts;
-using Models.ViewModels.Portal;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Domain.ViewComponents
 {
-    public class StrategicDocumentsWidgetViewComponent : ViewComponent
+    public class StrategicDocumentsWidgetViewComponent : BaseLangViewComponent
     {
         private readonly IStrategicDocumentsService service;
 
@@ -20,7 +17,7 @@ namespace Domain.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int loadCount)
         {
-            var model = await service.Portal_List().Skip(0).Take(loadCount).ToListAsync();
+            var model = await service.Portal_List(this.Lang).Skip(0).Take(loadCount).ToListAsync();
 
             return View(model);
         }

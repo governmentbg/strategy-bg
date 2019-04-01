@@ -12,23 +12,28 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebCommon.Extensions;
 using Models.Context.Consultations;
+using Models.ViewModels.Consultations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Models.Services
 {
     public class CommentService : BaseService, ICommentService
     {
         private readonly ILogger logger;
+    private readonly IUrlHelper urlHelper;
 
-        private readonly IConsultationService consultationService;
+    private readonly IConsultationService consultationService;
 
         public CommentService(
             MainContext context,
             ILogger<CommentService> _logger,
-            IConsultationService _consultationService)
+            IConsultationService _consultationService,
+            IUrlHelper _urlHelper)
         {
             db = context;
             logger = _logger;
             consultationService = _consultationService;
+      urlHelper = _urlHelper;
         }
 
         public bool AddComment(PostCommentVM comment, int UserId)
@@ -39,7 +44,7 @@ namespace Models.Services
             {
                 ActualUserId = UserId,
                 CommentStateId = GlobalConstants.CommentStatus.Approved,
-                CreatedByUserId = UserId,
+                CreatedByUserId = comment.UserIdentityId != 0 ? comment.UserIdentityId : UserId,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
                 IsChangeAccepted = true,
@@ -67,6 +72,11 @@ namespace Models.Services
 
         public IEnumerable<CommentVM> GetComments(int sourceTypeId, int sourceId)
         {
+            if (sourceTypeId == GlobalConstants.SourceTypes.PublicConsultation)
+            {
+                return Portal_GetConsultationComments(sourceId);
+            }
+
             return db.Comments.Where(c => c.SourceType == sourceTypeId && c.SourceId == sourceId)
                 .Join(db.Users, c => c.CreatedByUserId, u => u.Id, (c, u) => new CommentVM()
                 {
@@ -141,7 +151,31 @@ namespace Models.Services
                 }).OrderByDescending(c => c.CreateDate);
         }
 
-        public bool SaveItem(CommentVM model, int userId)
+    public IQueryable<CommentsExportListVM> GetCommentsListForExport()
+    {
+      IQueryable<Comments> comments = null;
+      var _Url = urlHelper.Action("View", "PublicConsultation", new { area = "" });
+      comments = All<Comments>()
+            .Include(c => c.State); 
+      return comments
+          .Join(db.vSourceItems, c => new { c.SourceType, c.SourceId }, i => new { i.SourceType, i.SourceId }, (c, i) => new CommentsExportListVM()
+          {
+            commentId = c.Id,
+            //sourceItemURL = new Uri($"{Url}/{i.SourceId}").ToString(),
+            sourceItemURL = _Url.ToString() + "/" + i.SourceId.ToString(),
+            commentTitle = c.Title,
+            SourceItemId = i.SourceId,
+            sourceItemTitle = i.Title,
+            commentState = c.State.Name,
+            //commentText = c.Text,
+            createDate = c.DateCreated.ToString(),
+            Remark = c.ModeratorRemark,
+            TookIntoConsideration = (c.TookIntoConsideration==null)? "Неразгледан" : (c.TookIntoConsideration==true) ? "Взет предвид" : "Не взет предвид",
+            TookIntoConsiderationReason = c.TookIntoConsiderationReason
+          }).OrderByDescending(c => c.createDate);
+    }
+
+    public bool SaveItem(CommentVM model, int userId)
         {
             bool result = false;
 
@@ -213,6 +247,86 @@ namespace Models.Services
             }
 
             return result;
+        }
+
+        public CommentsExportVM GetCommentsForExport(int consultationId)
+        {
+            CommentsExportVM model = new CommentsExportVM();
+            var consultation = All<PublicConsultation>(c => c.Id == consultationId)
+                .FirstOrDefault();
+
+            if (consultation != null)
+            {
+                model.Comments = Portal_GetConsultationComments(consultationId);
+                model.ConsultationTitle = consultation.Title;
+                model.Summary = consultation.Summary;
+            }
+
+            return model;
+        }
+
+        public List<SelectListItem> GetUserDDL(int userId)
+        {
+            var groupUserIds = All<UsersInGroups>()
+                .Where(x => x.UserId == userId)
+                .Select(x => x.GroupUserId)
+                .ToArray();
+            
+            return All<Users>(u => u.Id == userId)
+                .Union(All<Users>(u => groupUserIds.Contains(u.Id)))
+                .Select(u => new SelectListItem()
+                {
+                    Text = u.FullName,
+                    Value = u.Id.ToString()
+                }).ToList();
+        }
+
+        private IEnumerable<CommentVM> Portal_GetConsultationComments(int consultationId)
+        {
+            var comments = (from pc in All<Comments>(x => x.SourceType == GlobalConstants.SourceTypes.PublicConsultation && x.SourceId == consultationId &&
+                     x.CommentStateId == GlobalConstants.CommentStatus.Approved)
+                            join us in All<Users>() on pc.CreatedByUserId equals us.Id
+                            select new CommentVM
+                            {
+                                CommentId = pc.Id,
+                                FullName = us.FullName,
+                                Publish = pc.DateModified,
+                                Text = pc.Text,
+                                Title = pc.Title,
+                                UserName = us.UserName,
+                                PageTag = String.Empty, //pc.SourceAddRef,
+                                TookIntoConsideration = pc.TookIntoConsideration ?? false,
+                                TookIntoConsiderationReason = pc.TookIntoConsiderationReason,
+                                StateId = pc.CommentStateId
+                            });
+
+            var documents = All<PublicConsultationDocument>(x => x.PublicConsultationId == consultationId);
+
+            var documentsComments = Internal_GetComments(documents);
+
+            return comments.Union(documentsComments)
+                .OrderByDescending(c => c.Publish);
+        }
+
+        private IQueryable<CommentVM> Internal_GetComments(IQueryable<PublicConsultationDocument> document)
+        {
+            return (from pcd in document
+                    join pc in All<Comments>(x => x.SourceType == GlobalConstants.SourceTypes.PublicConsultationDocuments &&
+                        x.CommentStateId == GlobalConstants.CommentStatus.Approved) on pcd.Id equals pc.SourceId
+                    join us in All<Users>() on pc.CreatedByUserId equals us.Id
+                    select new CommentVM
+                    {
+                        CommentId = pc.Id,
+                        FullName = us.FullName,
+                        Publish = pc.DateModified,
+                        Text = pc.Text,
+                        Title = pc.Title,
+                        UserName = us.UserName,
+                        PageTag = String.Empty, //pc.SourceAddRef,
+                        TookIntoConsideration = pc.TookIntoConsideration ?? false,
+                        TookIntoConsiderationReason = pc.TookIntoConsiderationReason,
+                        StateId = pc.CommentStateId
+                    }).AsQueryable().OrderByDescending(x => x.Publish);
         }
     }
 }

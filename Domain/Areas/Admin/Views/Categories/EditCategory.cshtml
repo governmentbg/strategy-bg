@@ -9,6 +9,9 @@
         <div class="col-lg-5">
             <form asp-action="EditCategory">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="LanguageId" type="hidden" />
+                <partial name="LangView" model="@Model.LanguageId" />
+
                 @Html.HiddenFor(m => m.Id)
                 @Html.HiddenFor(m => m.ImagePath)
 
@@ -52,7 +55,7 @@
 
                 @Html.EditorFor(m => m.CategoryName)
                 @Html.EditorFor(m => m.IsActive)
-                @Html.EditorFor(m => m.IsApproved)
+                @*@Html.EditorFor(m => m.IsApproved)*@
 
                 @if (Model.Id == 0)
                 {
@@ -64,7 +67,7 @@
                 }
                 <div class="form-group">
                     <input type="submit" value="Запис" class="btn btn-success btn-flat" />
-                    <a asp-action="ListCategories" class="btn btn-danger btn-flat">Назад</a>
+                    <a asp-action="ListCategories" asp-route-lang="@Model.LanguageId" class="btn btn-danger btn-flat">Назад</a>
                 </div>
             </form>
         </div>

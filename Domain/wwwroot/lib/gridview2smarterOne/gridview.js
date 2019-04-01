@@ -50,16 +50,34 @@ var gridViewLocals = {
     prev: '...',
     next: '...',
     last: 'Последна',
+    all: 'Всички',
     minSearchLength: 3
 };
+
+function gridViewLocalize(lang) {
+    switch (lang) {
+        case 'en':
+            gridViewLocals.loading = 'Loading...';
+            gridViewLocals.show = 'Show';
+            gridViewLocals.first = 'First';
+            gridViewLocals.last = 'Last';
+            gridViewLocals.all = 'All';
+            break;
+
+        default:
+    }
+}
 
 var gridViewState = function (options) {
     this.owner = options.owner;
     this.container = options.container;
     this.url = options.url;
     this.size = 12;
+    if (options.size) {
+        this.size = options.size;
+    }
     this.size_selector = true;
-    if (options.size_selector) {
+    if (options.size_selector !== undefined) {
         this.size_selector = options.size_selector;
     }
     this.method = 'POST';
@@ -70,6 +88,9 @@ var gridViewState = function (options) {
     this.filter_text = null;
     if (options.filter == false) {
         this.filter = false;
+    }
+    if (options.lang) {
+        gridViewLocalize(options.lang);
     }
     this.data = options.data;
     this.template = options.template;
@@ -102,7 +123,7 @@ function gridViewLoadData(page) {
         success: function (result) {
             if (result.data.length == 0 && state.empty_text) {
                 if (state.filter == true) {
-                    tmpl += gridViewLoadData_filter();
+                    tmpl += gridViewLoadData_filter(state.size_selector);
                 }
                 $(state.container).html(state.empty_text);
                 return;
@@ -197,8 +218,13 @@ function gridViewSetSize(newSize) {
     state.size = newSize;
     state.loadData(1);
 }
-function gridViewLoadData_filter() {
-    return '<div class="pull-left"><input type="text" class="gridView-filter"/></div>';
+function gridViewLoadData_filter(hasSizeSelector) {
+    
+    var filterTemplate = '<div class="pull-left"><input type="text" class="gridView-filter"/></div>';
+    if (!hasSizeSelector) {
+        filterTemplate = '<div class="clearfix" style="margin-bottom:5px;">' + filterTemplate + '</div>';
+    }
+    return filterTemplate;
 }
 function gridViewLoadData_templateSizeSelector(selectedSize) {
     var sizes = [];
@@ -214,7 +240,7 @@ function gridViewLoadData_templateSizeSelector(selectedSize) {
         }
         var allText = sizes[i].toString();
         if (i == sizes.length - 1) {
-            allText = "Всички";
+            allText = gridViewLocals.all;
         }
         result += '<a href="#" data-size="' + sizes[i] + '" ' + selected + '>' + allText + '</a>';
     }

@@ -7,12 +7,12 @@ using Models.Context.Account;
 using Models.Contracts;
 using Models.Extensions;
 using Models.ViewModels.Account;
+using Models.ViewModels.CategoriesModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Claims;
-using System.Text;
 using WebCommon.Extensions;
 using WebCommon.Models;
 using WebCommon.Services;
@@ -22,10 +22,13 @@ namespace Models.Services
     public class AccountService : BaseService, IAccountService
     {
         private readonly IUserContext userContext;
-        public AccountService(MainContext _db, IUserContext _userContext)
+        private readonly INomenclatureService nomService;
+
+        public AccountService(MainContext _db, IUserContext _userContext, INomenclatureService _nomService)
         {
             db = _db;
             userContext = _userContext;
+            nomService = _nomService;
         }
 
         public bool AreUserCredentialsValid(string username, string password)
@@ -147,6 +150,7 @@ namespace Models.Services
                 var saved = Find<Users>(model.Id);
                 saved.CategoryId = model.CategoryId;
                 saved.Organization = model.Organization;
+                saved.InstitutionTypeId = model.InstitutionTypeId;
                 saved.Address = model.Address;
                 saved.Phone = model.Phone;
                 saved.Email = model.Email;
@@ -164,6 +168,7 @@ namespace Models.Services
                     CategoryId = model.CategoryId,
                     FullName = model.Organization,
                     Organization = model.Organization,
+                    InstitutionTypeId = model.InstitutionTypeId,
                     Address = model.Address,
                     Email = model.Email,
                     Phone = model.Phone,
@@ -207,6 +212,7 @@ namespace Models.Services
                             CategoryName = (x.Category != null) ? x.Category.CategoryName : "",
                             CategoryParent = (x.Category != null) ? x.Category.ParentId : 0,
                             Organization = x.Organization,
+                            InstitutionTypeId = x.InstitutionTypeId,
                             Address = x.Address,
                             Phone = x.Phone,
                             Email = x.Email,
@@ -569,21 +575,91 @@ namespace Models.Services
                         UserId = x.UserId,
                         UserFullName = x.User.FullName,
                         CategoryId = x.CategoryId,
+                        CategoryMasterId = x.Category.ParentId,
                         CategoryName = x.Category.CategoryName
                     }).AsQueryable();
         }
 
+        public UserInCategoriesVM UserInCategoriesVM_Select(int userId)
+        {
+            var model = new UserInCategoriesVM();
+
+            var catMasters = nomService.ComboCategories(0).ToSelectList();
+
+            var userData = this.UserInCategories_Select(userContext.UserId, null);
+
+            foreach (var catMaster in catMasters)
+            {
+                ParentCategoryViewModel pcvm = new ParentCategoryViewModel();
+                pcvm.Id = Convert.ToInt32(catMaster.Value);
+                pcvm.CategoryName = catMaster.Text;
+
+                var allCategories = All<Category>()
+                    .Where(x => x.ParentId == pcvm.Id && x.IsActive && x.IsApproved && !x.IsDeleted && x.LanguageId == GlobalConstants.LangBG)
+                    .AsQueryable();
+
+                foreach (var item in allCategories)
+                {
+                    CheckBoxListItem t = new CheckBoxListItem
+                    {
+                        ID = item.Id,
+                        ParentCategoryID = pcvm.Id,
+                        IsChecked = userData.FirstOrDefault(x => x.CategoryId == item.Id) != null,
+                        Display = item.CategoryName
+                    };
+
+                    pcvm.Categories.Add(t);
+                }
+
+                model.ParentCategories.Add(pcvm);
+            }
+
+            return model;
+        }
+
+        public bool UserInCategories_SaveAll(int userId, UserInCategoriesVM userInCategories)
+        {
+            bool result = true;
+            foreach (var parentCategory in userInCategories.ParentCategories)
+            {
+                foreach (var category in parentCategory.Categories)
+                {
+                    if (category.IsChecked)
+                    {
+                        if (!this.UserInCategories_Add(userId, category.ID))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        this.UserInCategories_Remove(userId, category.ID);
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public bool UserInCategories_Add(int userId, int categoryId)
         {
-            All<UsersInCategories>().Add(new UsersInCategories() { UserId = userId, CategoryId = categoryId });
-            db.SaveChanges();
+            if (All<UsersInCategories>().FirstOrDefault(x => x.UserId == userId && x.CategoryId == categoryId) == null)
+            {
+                All<UsersInCategories>().Add(new UsersInCategories() { UserId = userId, CategoryId = categoryId });
+                db.SaveChanges();
+            }
+
             return true;
         }
 
         public bool UserInCategories_Remove(int userId, int categoryId)
         {
-            DeleteRange<UsersInCategories>(x => x.UserId == userId && x.CategoryId == categoryId);
-            db.SaveChanges();
+            if (All<UsersInCategories>().FirstOrDefault(x => x.UserId == userId && x.CategoryId == categoryId) != null)
+            {
+                DeleteRange<UsersInCategories>(x => x.UserId == userId && x.CategoryId == categoryId);
+                db.SaveChanges();
+            }
+
             return true;
         }
 

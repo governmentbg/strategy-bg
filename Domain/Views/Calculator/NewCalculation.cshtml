@@ -11,9 +11,12 @@
 </div>
 }
 
-<section class="content">
+<section class="container-fluid information">
     <div class="row">
-        <div class="col-lg-2 col-lg-offset-2">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+        </div>
+        <div class="col-lg-4">
             <form asp-action="NewCalculation">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @Html.EditorFor(m => m.AdministrativeBurdenName)

@@ -44,7 +44,7 @@
     </script>
 }
 <div>
-    <h1>@Model.Forum.Title</h1>
+    <h2>@Model.Forum.Title</h2>
     @if (Model.PermissionContext.UserCanPost)
     {
         <div id="NewTopic" style="display: none;"></div>
@@ -63,18 +63,26 @@
             <li>@Model.Forum.Title</li>
         </ul>*@
 </div>
-<h1>
-    @if (Model.PermissionContext.UserCanPost)
-    {<input type="button" value="@PopForums.Resources.PostNewTopic" id="NewTopicButton" class="btn btn-primary" />}
-</h1>
+<table>
+    <tr>
+        <td colspan="10">
+            @if (Model.PermissionContext.UserCanPost)
+            {<input type="button" value="@PopForums.Resources.PostNewTopic" id="NewTopicButton" class="btn btn-primary" />}
+        </td>
+        <td>
+            @if (user != null)
+            {
+            <form asp-action="MarkForumRead" asp-controller="Forum" asp-antiforgery="false" asp-route-id="@Model.Forum.ForumID">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="@PopForums.Resources.MarkForumRead" class="btn btn-primary" />
+            </form>
+            }
+        </td>
+    </tr>
+</table>
+
 <pf-pagerLinks controllerName="Forum" actionName="Index" pagerContext="@Model.PagerContext" class="pagination pagerLinks" moreTextClass="morePager" currentTextClass="currentPager" />
-@if (user != null)
-{
-    <form asp-action="MarkForumRead" asp-controller="Forum" asp-antiforgery="false" asp-route-id="@Model.Forum.ForumID">
-        <input type="submit" value="@PopForums.Resources.MarkForumRead" class="btn btn-primary" />
-    </form>
-}
-<table id="TopicList" class="table dataTable no-footer">-
+
+<table id="TopicList" class="table dataTable no-footer">
     @foreach (var topic in Model.Topics)
     {
         <tr @if (topic.IsDeleted) { <text> class="bg-danger" </text> } data-topicid="@topic.TopicID">
@@ -89,10 +97,10 @@
                 }
             </td>
             <td>
-                <a asp-controller="@ForumController.Name" asp-action="Topic" asp-route-id="@topic.UrlName" asp-route-page="">@topic.Title</a> <span class="topicPreviewButton glyphicon glyphicon-chevron-right twirl" title="@PopForums.Resources.PreviewTopic" data-topicid="@topic.TopicID"></span>
-                <div id="TopicPreview@(topic.TopicID)" class="topicPreview"></div>
+                <a asp-controller="@ForumController.Name" asp-action="Topic" asp-route-id="@topic.UrlName" asp-route-page="">@topic.Title</a> <span  title="@PopForums.Resources.PreviewTopic" data-topicid="@topic.TopicID"></span>
+                <div id="TopicPreview@(topic.TopicID)" class="topicPreview" ></div>
                 <small class="pull-right forumDetails">
-                    @PopForums.Resources.StartedBy: @topic.StartedByName | @PopForums.Resources.Views: @topic.ViewCount.ToString("N0") | @PopForums.Resources.Replies: @topic.ReplyCount.ToString("N0") | @PopForums.Resources.Last: <span class="lastPostTime fTime" data-utc="@topic.LastPostTime.ToString("o")">@TimeFormattingService.GetFormattedTime(topic.LastPostTime, profile)</span> @PopForums.Resources.By @topic.LastPostName
+                    @PopForums.Resources.StartedBy @topic.StartedByName | @PopForums.Resources.Views: @topic.ViewCount.ToString("N0") | @PopForums.Resources.Replies: @topic.ReplyCount.ToString("N0") | @PopForums.Resources.Last: <span class="lastPostTime fTime" data-utc="@topic.LastPostTime.ToString("o")">@TimeFormattingService.GetFormattedTime(topic.LastPostTime, profile)</span> @PopForums.Resources.By @topic.LastPostName
                 </small>
             </td>
         </tr>

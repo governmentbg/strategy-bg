@@ -11,75 +11,77 @@ using WebCommon.Services;
 
 namespace Models.Contracts
 {
-    public interface IAccountService : IBaseService
-    {
-        //Legacy
-        vOldUser ValidateUser_Old(string username, string password);
+  public interface IAccountService : IBaseService
+  {
+    //Legacy
+    vOldUser ValidateUser_Old(string username, string password);
 
-        #region Auth
+    #region Auth
 
-        void GeneratePasswordHash();
-        bool AreUserCredentialsValid(string username, string password);
-        ClaimsPrincipal GeneratePrincipalByUsername(string username);
-        ClaimsPrincipal Users_LoginRegisterExternalAuth(ClaimsPrincipal extPrincipal);
+    void GeneratePasswordHash();
+    bool AreUserCredentialsValid(string username, string password);
+    ClaimsPrincipal GeneratePrincipalByUsername(string username);
+    ClaimsPrincipal Users_LoginRegisterExternalAuth(ClaimsPrincipal extPrincipal);
 
-        #endregion
+    #endregion
 
-        #region Users
+    #region Users
 
-        IQueryable<UserVM> Users_Select(string fullName, string userName, int? userType, bool? isApproved);
-        Users Users_GetByUserName(string username);
-        UserEditVM Users_GetById(int id);
-        bool Users_Update(UserEditVM model);
-        bool Users_UpdateProfile(UserEditVM model);
-        bool Users_RegisterInternal(RegisterInternalUserVM model);
-        bool Users_RegisterPublic(RegisterPublicUserVM model, bool autoConfirmMain = false);
-        string Users_CheckRegistration(RegisterInternalUserVM model);
-        string Users_GenerateVerificationCode(string username);
-        Users Users_GetByVerificationCode(string code);
-        bool Users_ConfirmAndApproveMail(Users model);
+    IQueryable<UserVM> Users_Select(string fullName, string userName, int? userType, bool? isApproved);
+    Users Users_GetByUserName(string username);
+    UserEditVM Users_GetById(int id);
+    bool Users_Update(UserEditVM model);
+    bool Users_UpdateProfile(UserEditVM model);
+    bool Users_RegisterInternal(RegisterInternalUserVM model);
+    bool Users_RegisterPublic(RegisterPublicUserVM model, bool autoConfirmMain = false);
+    string Users_CheckRegistration(RegisterInternalUserVM model);
+    string Users_GenerateVerificationCode(string username);
+    Users Users_GetByVerificationCode(string code);
+    bool Users_ConfirmAndApproveMail(Users model);
 
-        bool Users_ChangePassword(ChangePasswordViewModel model);
+    bool Users_ChangePassword(ChangePasswordViewModel model);
 
-        IEnumerable<SelectListItem> Combo_UserTypes();
-        #endregion
+    IEnumerable<SelectListItem> Combo_UserTypes();
+    #endregion
 
-        #region Roles & Groups
+    #region Roles & Groups
 
-        IQueryable<Groups> Groups_Select();
-        bool Groups_SaveData(Groups model);
+    IQueryable<Groups> Groups_Select();
+    bool Groups_SaveData(Groups model);
 
-        IQueryable<GroupUserVM> GroupUsers_Select(int? id = null);
-        bool GroupUsers_SaveData(GroupUserVM model);
+    IQueryable<GroupUserVM> GroupUsers_Select(int? id = null);
+    bool GroupUsers_SaveData(GroupUserVM model);
 
-        UserRolesVM UserRoles_Select(int userId);
-        bool UserRoles_Save(UserRolesVM model);
+    UserRolesVM UserRoles_Select(int userId);
+    bool UserRoles_Save(UserRolesVM model);
 
-        IQueryable<UserInGroupVM> UserInGroup_Select(int? groupId, int? userId);
-        bool UserInGroup_Add(int groupId, int userId);
-        bool UserInGroup_Remove(int groupId, int userId);
+    IQueryable<UserInGroupVM> UserInGroup_Select(int? groupId, int? userId);
+    bool UserInGroup_Add(int groupId, int userId);
+    bool UserInGroup_Remove(int groupId, int userId);
 
-        #endregion
+    #endregion
 
-        #region Categories and Target Groups
+    #region Categories and Target Groups
 
-        IQueryable<UserInCategoryVM> UserInCategories_Select(int? userId, int? categoryId);
-        bool UserInCategories_Add(int userId, int categoryId);
-        bool UserInCategories_Remove(int userId, int categoryId);
+    IQueryable<UserInCategoryVM> UserInCategories_Select(int? userId, int? categoryId);
+    bool UserInCategories_Add(int userId, int categoryId);
+    bool UserInCategories_Remove(int userId, int categoryId);
 
-        IQueryable<UserInTargetGroupVM> UserInTargetGroups_Select(int? userId, int? targetGroupId);
-        bool UserInTargetGroups_Add(int userId, int targetGroupId);
-        bool UserInTargetGroups_Remove(int userId, int targetGroupId);
+    IQueryable<UserInTargetGroupVM> UserInTargetGroups_Select(int? userId, int? targetGroupId);
+    bool UserInTargetGroups_Add(int userId, int targetGroupId);
+    bool UserInTargetGroups_Remove(int userId, int targetGroupId);
+
+    UserInCategoriesVM UserInCategoriesVM_Select(int userId);
+
+    bool UserInCategories_SaveAll(int userId, UserInCategoriesVM userInCategories);
+
+    #endregion
 
 
+    #region Common
 
-        #endregion
+    IQueryable<UserToNotificateVM> Users_SelectForNotification(int? userId, int? categoryId, int? targetGroupId, int? groupUserId);
 
-
-        #region Common
-
-        IQueryable<UserToNotificateVM> Users_SelectForNotification(int? userId, int? categoryId, int? targetGroupId, int? groupUserId);
-
-        #endregion
-    }
+    #endregion
+  }
 }

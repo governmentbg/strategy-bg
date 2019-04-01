@@ -31,8 +31,10 @@
         $(function () {
             $('#gridview').gridView({
                 url: '@(Url.Action("LoadDataGrid"))',
-                data: {category:@(ViewBag.category)},
+                data: { category:@(ViewBag.category)},
+                size_selector: false,
                 filter: true,
+                lang:'@ViewBag.lang',
                 template: '#articleTemplate',
                 empty_text: 'Няма намерени елементи.'
             });
@@ -44,7 +46,7 @@
                 <a {{#if isRss}} href="{{rssPostLink}}" target="_blank" {{else}} href="@Url.Action("View")?id={{id}}" {{/if}}>
                     {{#if mainImageFileId}}
                     <div class="image">
-                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs})+"&sourceId")={{mainImageFileId}}">
+                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs,max=75})+"&sourceId")={{mainImageFileId}}">
                     </div>
                     {{/if}}
                     <h4 class="title">

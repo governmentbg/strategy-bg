@@ -1,9 +1,10 @@
 ﻿@model Models.ViewModels.Questionary.QuestionaryResultsListViewModel
 @section breadcrumbs{
-    <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="#">Анкета</a>
-    </div>
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="@Url.Action("Index","Questionary")">Анкети</a>
+    / <a href="#">Резултати от анкета</a>
+</div>
 }
 
 <partial name="_QuestionaryResults" model="@Model" />

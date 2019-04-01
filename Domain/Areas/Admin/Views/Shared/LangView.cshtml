@@ -1,0 +1,19 @@
+﻿@using Models
+@model int
+@{
+    int lang = Model;
+}
+<span class="lang-name">
+    @ViewBag.LanguageName
+
+
+    @foreach (var item in GlobalConstants.SelectLangs())
+    {
+
+        if (item.LangId == lang)
+        {
+            <text> Съдържанието е на @item.Title </text>
+        }
+    }
+
+</span>

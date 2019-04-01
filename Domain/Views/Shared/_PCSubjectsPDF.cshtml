@@ -11,28 +11,32 @@
             <th>Име</th>
             <th>Вид лице</th>
             <th>ЕИК</th>
-            <th>Дата на плащане</th>
-            <th>Възнаграждение за извършените дейности</th>
-            <th>Извършени дейности</th>
+            <th>Дата на договор</th>
+            <th>Възложител</th>
+            <th>Възнаграждение за извършените услуги в лева</th>
+            <th>с ДДС</th>
+            <th>Описание на извършените услуги</th>
         </tr>
 
         @foreach (var item in Model)
         {
-        @Html.Raw("<tr>")
-        @Html.Raw("<td>" + @item.Name + "</td>")
-        if(@item.IsUL == 1)
-        {
-        @Html.Raw("<td>ЮЛ</td>")
-        }
-        else
-        {
-        @Html.Raw("<td>ФЛ</td>")
-        }
-        @Html.Raw("<td>" + @item.EIK + "</td>")
-        @Html.Raw("<td>" + @item.DatePayment + "</td>")
-        @Html.Raw("<td align='right'>" + @item.PaymentValue + "</td>")
-        @Html.Raw("<td>" + @item.ActivityDescription + "</td>")
-        @Html.Raw("</tr>")
+            @Html.Raw("<tr>")
+            @Html.Raw("<td>" + @item.Name + "</td>")
+            if (@item.IsUL == 1)
+            {
+                @Html.Raw("<td>ЮЛ</td>")
+            }
+            else
+            {
+                @Html.Raw("<td>ФЛ</td>")
+            }
+            @Html.Raw("<td>" + @item.EIK + "</td>")
+            @Html.Raw("<td>" + @item.DatePayment + "</td>")
+            @Html.Raw("<td>" + @item.ContractingAuthority + "</td>")
+            @Html.Raw("<td>" + ((@item.PaymentVaPaymentIncludeVAT == true) ? "ДА" : "НЕ") + "</td>")
+            @Html.Raw("<td align='right'>" + @item.PaymentValue + "</td>")
+            @Html.Raw("<td>" + @item.ActivityDescription + "</td>")
+            @Html.Raw("</tr>")
         }
 
     </table>

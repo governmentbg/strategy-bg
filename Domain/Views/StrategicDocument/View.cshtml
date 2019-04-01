@@ -1,13 +1,17 @@
 ﻿@model Models.Context.Legacy.StrategicDocuments
 @using Domain.Extensions
+@using Models.Extensions
 @{
     ViewData["SectionTitle"] = "Стратегически документи";
     var documents = (IQueryable<DocumentLinkVM>)ViewBag.documents;
+    List<BreadcrumbVM> breadcrumb = ViewBag.Breadcrumb != null ? (List<BreadcrumbVM>)ViewBag.Breadcrumb : new List<BreadcrumbVM>();
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="@Url.Action("Index")">Стратегически документи</a>
+        @foreach (var item in breadcrumb)
+        {
+            <a href="@item.Url">/ @item.Title </a>
+        }
     </div>
 }
 
@@ -30,7 +34,7 @@
                             <!-- LOOP -->
                             <tr>
                                 <td>Документът е валиден до края :</td>
-                                <td>@Model.ValidTo.ToString(GlobalConstants.DateFormat)</td>
+                                <td>@Model.ValidTo.ValidToText()</td>
                             </tr>
                             <!-- END LOOP -->
 
@@ -44,4 +48,14 @@
         </div>
     </div>
 </div>
+
+<div class="breadcrumbs">
+    <button onclick="goBack()">< Назад</button>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 <!-- END COMMENTS -->

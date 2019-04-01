@@ -123,7 +123,7 @@ namespace PopForums.Mvc.Areas.Forums.Controllers
 		[HttpPost]
 		public RedirectToActionResult AddCategory(string newCategoryTitle)
 		{
-			_categoryService.Create(newCategoryTitle);
+      if (newCategoryTitle != null) { _categoryService.Create(newCategoryTitle); }
 			return RedirectToAction("Categories");
 		}
 
@@ -491,14 +491,14 @@ namespace PopForums.Mvc.Areas.Forums.Controllers
 		[HttpPost]
 		public RedirectToActionResult BanEmail(string email)
 		{
-			_banService.BanEmail(email);
+      if (email != null) { _banService.BanEmail(email); }
 			return RedirectToAction("Ban");
 		}
 
 		[HttpPost]
 		public RedirectToActionResult RemoveEmailBan(string email)
 		{
-			_banService.RemoveEmailBan(email);
+      if (email!=null) { _banService.RemoveEmailBan(email); }
 			return RedirectToAction("Ban");
 		}
 
@@ -535,9 +535,12 @@ namespace PopForums.Mvc.Areas.Forums.Controllers
 		[HttpPost]
 		public ViewResult IPHistory(string ip, DateTime start, DateTime end)
 		{
-			var list = _ipHistoryService.GetHistory(ip, start, end);
-			return View(list);
-		}
+      if (ip!=null) {
+        var list = _ipHistoryService.GetHistory(ip, start, end);
+        return View(list);
+      }
+      return View();
+    }
 
 		public ViewResult UserImageApprove()
 		{

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Models.Context.Legacy;
+using Models.Context.LinksModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +12,6 @@ namespace Models.Context.Consultations
         [Key]
         public int Id { get; set; }
         public int CategoryId { get; set; }
-        public int TargetGroupId { get; set; }
         public string Title { get; set; }
         public string Summary { get; set; }
         public DateTime OpenningDate { get; set; }
@@ -28,14 +29,41 @@ namespace Models.Context.Consultations
 
         public string ShortTermReason { get; set; }
 
+        public int? LinksCategoryId { get; set; }
+
+        public int? InstututionTypeId { get; set; }
+
+        public bool ShouldAlertSubscribers { get; set; }
+
+        public string ResponsiblePerson { get; set; }
+
+        public string Address { get; set; }
+
+        public string Telephone { get; set; }
+
+        public string Email { get; set; }
+
+        [ForeignKey(nameof(InstututionTypeId))]
+        public InstitutionTypes InstitutionType { get; set; }
+
+        [ForeignKey(nameof(LinksCategoryId))]
+        public LinksCategories LinksCategory { get; set; }
+
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
-
-        [ForeignKey(nameof(TargetGroupId))]
-        public TargetGroups TargetGroup { get; set; }
 
         public ICollection<PublicConsultationComment> Comments { get; set; }
 
         public ICollection<PublicConsultationDocument> Documents { get; set; }
+
+        public ICollection<PublicConsultationResponsiblePerson> ResponsiblePeople { get; set; }
+
+        public PublicConsultation()
+        {
+            IsApproved = true;
+            Comments = new List<PublicConsultationComment>();
+            Documents = new List<PublicConsultationDocument>();
+            ResponsiblePeople = new List<PublicConsultationResponsiblePerson>();
+        }
     }
 }

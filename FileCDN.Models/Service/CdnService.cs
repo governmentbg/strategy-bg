@@ -132,7 +132,7 @@ namespace FileCDN.Models.Service
                         SourceID = result.FileId.ToString(),
                         FileName = model.FileName,
                         UserUploaded = model.UserUploaded,
-                        ContentType = model.ContentType,
+                        ContentType = model.ContentType,                        
                         FileContent = imgService.Resize(model.FileContent, model.ThumbMaxSize, model.ContentType)
                     };
 
@@ -164,6 +164,8 @@ namespace FileCDN.Models.Service
                     DateUploaded = DateTime.Now,
                     UserUploaded = model.UserUploaded,
                     ContentType = model.ContentType,
+                    DateExparing = model.DateExparing,
+                    IsReportVisible = model.IsReportVisible,
                     IsActive = true
                 };
 
@@ -203,8 +205,8 @@ namespace FileCDN.Models.Service
                     //***Indexing in Elastic******************************************************************
                     try
                     {
-                        elasticContent _document = new elasticContent(cdnFile.Id, 
-                                                                      Convert.ToBase64String(model.FileContent), 
+                        elasticContent _document = new elasticContent(cdnFile.Id,
+                                                                      Convert.ToBase64String(model.FileContent),
                                                                       dataIndexerService.PathCreator(SystemPaths.CDN, cdnFile.Id));
                         dataIndexerService.indexDocument(_document);
                     }
@@ -212,9 +214,9 @@ namespace FileCDN.Models.Service
                     { }
                     //***************************************************************************************
 
-        }
+                }
 
-        result.SavedOK = true;
+                result.SavedOK = true;
             }
             catch (Exception ex)
             {

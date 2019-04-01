@@ -1,18 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Публикации";
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+    ViewData["Title"] = Localizer["MENU_PUBLICATIONS"];
     ViewData["SectionTitle"] = ViewData["Title"];
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a>
         / <a href="@Url.Action("Index")">Публикации</a>
-        @if (ViewBag.category > 0)
-        {
-            <text> / @Html.Raw(ViewBag.categoryName)</text>
-        }
     </div>
 }
 <div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-12 body cat-combos">
+            <div class="form-group col-lg-4 col-md-4 col-sm-6">
+                <label>Категория</label>
+                @Html.DropDownList("categoryId", (IEnumerable<SelectListItem>)ViewBag.categories, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group col-lg-2 col-md-4 col-sm-6">
+                <label>Заглавие</label>
+                @Html.TextBox("searchTerm", "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
     <section>
         <div id="gridview"></div>
     </section>
@@ -22,23 +32,56 @@
 @section scripts{
     <script>
         $(function () {
+            $('.cat-combos select').change(function () {
+                setBreadcrumb();
+                LoadData();
+            });
+            $('.cat-combos input').keyup(function () {
+                setBreadcrumb();
+                LoadData();
+            }).trigger('keyup');
+        });
+        function LoadData() {
             $('#gridview').gridView({
                 url: '@(Url.Action("LoadDataGrid"))',
-                data: {category:@(ViewBag.category)},
-                filter: true,
+                data: {
+                    category: $('#categoryId').val(),
+                    searchTerm: $('#searchTerm').val()
+                },
+                filter: false,
+                size: 8,
+                size_selector:false,
+                lang:'@ViewBag.lang',
                 template: '#publicationTemplate',
                 empty_text: 'Няма намерени елементи.'
             });
+        }
 
-        });
+        function setBreadcrumb() {
+            var category = $('#categoryId').val();
+            var initialBreadcrumb = '/ <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a> / <a href="@Url.Action("Index")">Публикации</a>';
+
+            if (category > 0) {
+                var categoryName = $('#categoryId  option:selected').text();
+                var breadcrumb = initialBreadcrumb + ' / <a href="@Url.Action("Index")?category=' + category + '">' + categoryName + '</a>';
+
+                $('.breadcrumbs').html(breadcrumb);
+            } else {
+                $('.breadcrumbs').html(initialBreadcrumb);
+            }
+        }
     </script>
     <script type="text/x-handlebars-template" id="publicationTemplate">
-        <div class="col-md-3 col-sm-4">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <article class="article--news image--left">
                 <a href="@Url.Action("View")?id={{id}}">
                     {{#if mainImageFileId}}
                     <div class="image">
-                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs})+"&sourceId")={{mainImageFileId}}">
+                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs,max=75})+"&sourceId")={{mainImageFileId}}">
+                    </div>
+                    {{else}}
+                    <div class="image">
+                        <img src="@Url.Content("~/img/defaults/publication.jpg")">
                     </div>
                     {{/if}}
                     <h4 class="title">

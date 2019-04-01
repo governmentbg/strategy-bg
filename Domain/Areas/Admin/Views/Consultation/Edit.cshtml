@@ -1,5 +1,4 @@
 ﻿@model Models.ViewModels.Consultations.ConsultationViewModel
-
 @{
     ViewData["Title"] = "Обществена консултация";
 }
@@ -10,8 +9,9 @@
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @Html.HiddenFor(m => m.Id)
-                @Html.EditorFor(m => m.CategoryId, "Categories")
-                @Html.EditorFor(m => m.TargetGroupId, "GenericDropDown")
+                @*@Html.EditorFor(m => m.CategoryId, "Categories")*@
+                @Html.EditorFor(m => m.CategoryId, "GenericDropDown")
+                @Html.EditorFor(m => m.LinksCategoryId, "GenericDropDown")
                 @Html.EditorFor(m => m.Title)
                 @Html.EditorFor(m => m.Summary)
                 @Html.EditorFor(m => m.OpenningDate)
@@ -19,15 +19,21 @@
                 <div id="shortTermContainer" class="">
                     @Html.EditorFor(m => m.ShortTermReason)
                 </div>
+                @Html.EditorFor(m => m.InstututionTypeId, "GenericDropDown")
+                @Html.EditorFor(m => m.ResponsiblePerson)
+                @Html.EditorFor(m => m.Address)
+                @Html.EditorFor(m => m.Email, "String")
+                @Html.EditorFor(m => m.Telephone)
+                @Html.EditorFor(m => m.ShouldAlertSubscribers)
                 @Html.EditorFor(m => m.IsActive)
-                @Html.EditorFor(m => m.IsApproved)
                 @Html.EditorFor(m => m.IsDeleted)
                 <div class="form-group">
                     <input type="submit" value="Запис" class="btn btn-success btn-flat" />
                     <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
                     @if (Model.Id > 0)
                     {
-                        <a asp-action="Add" asp-controller="Questionary" asp-route-sourceTypeID="@GlobalConstants.SourceTypes.PublicConsultation" asp-route-sourceId="@Model.Id" class="btn btn-info btn-flat">Анкета към инициативата</a>
+                        <a asp-action="Add" asp-controller="Questionary" asp-route-sourceTypeID="@GlobalConstants.SourceTypes.PublicConsultation" asp-route-sourceId="@Model.Id" class="btn btn-primary btn-flat">Анкета към инициативата</a>
+                        <a asp-action="ExportConsultationComments" asp-controller="Comments" asp-route-consultationId="@Model.Id" class="btn btn-info btn-flat">Експорт на коментари</a>
                     }
                 </div>
             </form>
@@ -47,7 +53,8 @@
 
 @section scripts{
     <script>
-    $(function () {
+        $(function () {
+            checkPeriod();
         var dt = $('#documentsTable').DataTable({
              "ajax": {
                  "url": '@Url.Action("DocumentIndex")',
@@ -74,7 +81,7 @@
                      sortable: true,
                      searchable: true
                  },
-                 
+
                  {
                      data: "id",
                      "render": function (value) {
@@ -88,13 +95,32 @@
              ]
         });
 
-        $('#@nameof(Model.OpenningDate)').on('change', checkPeriod());
-        $('#@nameof(Model.ClosingDate)').on('change', checkPeriod());
+        $('#@nameof(Model.OpenningDate)').on('change', checkPeriod);
+        $('#@nameof(Model.ClosingDate)').on('change', checkPeriod);
 
         function checkPeriod() {
-            debugger;
-            var start = $('#@nameof(Model.OpenningDate)').val();
-            var end = $('#@nameof(Model.ClosingDate)').val();
+            var start = moment($('#@nameof(Model.OpenningDate)').val(), 'DD.MM.YYYY');
+            var end = moment($('#@nameof(Model.ClosingDate)').val(), 'DD.MM.YYYY');
+
+            if (@Model.Id == 0 && start.isBefore(moment())) {
+                $('#@nameof(Model.OpenningDate)').parent().next('span').text('Не може да създадете консултация със задна дата');
+            } else if (@Model.Id == 0) {
+                $('#@nameof(Model.OpenningDate)').parent().next('span').text('');
+            }
+
+            if (end.isBefore(start)) {
+                $('#@nameof(Model.ClosingDate)').parent().next('span').text('Не може датата на приключване да е преди датата на откриване');
+            } else {
+                $('#@nameof(Model.ClosingDate)').parent().next('span').text('');
+                var diff = end.diff(start, 'days');
+
+                if (diff < 14) {
+                    $('#shortTermContainer').show();
+                } else {
+                    $('#shortTermContainer').hide();
+                    $('#@nameof(Model.ShortTermReason)').val('');
+                }
+            }
         }
 
         $('#Summary').summernote();

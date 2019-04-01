@@ -1,0 +1,36 @@
+﻿@model Models.ViewModels.PublicationCategoriesVM
+
+@{
+    ViewData["Title"] = "Категории публикации";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="LanguageId" type="hidden" />
+                <partial name="LangView" model="@Model.LanguageId" />
+
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.LanguageId)
+                @Html.EditorFor(m => m.Label)
+                @Html.EditorFor(m => m.IsActive)
+                @if (Model.Id == 0)
+                {
+                    @Html.HiddenFor(m => m.IsDeleted)
+                }
+                else
+                {
+                    @Html.EditorFor(m => m.IsDeleted)
+                }
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" asp-route-lang="@Model.LanguageId" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
