@@ -3,21 +3,88 @@
 }
 
 <section class="content">
-    <div class="toolbar pull-left">
+    <div>
         <a asp-action="Add" class="btn btn-success btn-flat">Добави нова обществена консултация</a>
+    </div>
+    <div class="search-form">
+        <div class="row">
+            <div class="col-md-12 cat-combos">
+                <div>
+                    <label>Група</label>
+                    @Html.DropDownList("CategoryMasterId", (IEnumerable<SelectListItem>)ViewBag.catMasters, new { @class = "form-control" })
+                </div>
+                <div id="natCat">
+                    <label>Категория</label>
+                    @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.catNational, new { @class = "form-control" })
+                </div>
+                <div id="districtCat">
+                    <div id="districtCat">
+                        <label>Област</label>
+                        @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.catDistrict, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Община</label>
+                        @Html.DropDownList("MunicipalityId", GlobalConstants.EmptyComboList, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Покажи</label>
+                    @Html.DropDownList("validState", (IEnumerable<SelectListItem>)ViewBag.validStates, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Вид на консултирания акт</label>
+                    @Html.DropDownList("docType", (IEnumerable<SelectListItem>)ViewBag.docType, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
     </div>
     <table id="mainTable" class="table" cellspacing="0"></table>
 </section>
 @section scripts{
     <script>
     $(function () {
+        $('#CategoryMasterId').change(function () {
+            if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+                $('#natCat').show();
+                $('#districtCat').hide();
+            } else {
+                $('#natCat').hide();
+                $('#districtCat').show();
+            }
+        }).trigger('change');
+        $('#DistrictId').change(function () {
+            if ($(this).val() === '-1') {
+                $('#MunicipalityId').html('');
+                return false;
+            }
+            requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val() });
+        }).trigger('change');
+
+    });
+    </script>
+    <script>
+        $(function () {
+            $('.cat-combos select').each(function (i, e) {
+                $(e).change(function () {
+                    setTimeout(function () {
+                        // updateRss();
+                        dt.ajax.reload();
+                    }, 100);
+                });
+            });
          var dt  = $('#mainTable').DataTable({
              "ajax": {
                  "url": '@Url.Action("LoadData")',
-                 data: function (d) { },
-                 //    d.active = $('#cboxActive').is(':checked');
-                 //    d.confirmed = $('#cboxConfirmed').is(':checked');
-                 //},
+                 data: function (d) {
+                     d.categoryMasterId = $('#CategoryMasterId').val();
+                     d.categoryId = $('#CategoryId').val();
+                     if ($('#districtCat').is(':visible')) {
+                         d.categoryId = $('#DistrictId').val();
+                         d.municipalityId = $('#MunicipalityId').val();
+                     }
+                     d.validState = $('#validState').val();
+                     d.docType = $('#docType').val();
+                 },
                  "type": "POST"
              },
              fnDrawCallback: function (settings) {
@@ -25,6 +92,7 @@
              },
              "dom": '<"toolbar">frtip',
              "order": [[1, "desc"]],
+             filter: false,
              "columns": [
                  {
                      data: "title",
@@ -50,16 +118,16 @@
                          return JsonBGdate(value);
                      }
                  },
-                 {
-                     data: "isApproved",
-                     title: 'Одобрена',
-                     sortable: true,
-                     searchable: false,
-                     className: "text-center",
-                     "render": function (value) {
-                         return value ? 'ДА' : 'НЕ';
-                     }
-                 },
+                 //{
+                 //    data: "isApproved",
+                 //    title: 'Одобрена',
+                 //    sortable: true,
+                 //    searchable: false,
+                 //    className: "text-center",
+                 //    "render": function (value) {
+                 //        return value ? 'ДА' : 'НЕ';
+                 //    }
+                 //},
                  {
                      data: "id",
                      "render": function (value) {

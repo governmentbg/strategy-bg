@@ -8,6 +8,13 @@ using System;
 using Models.ViewModels;
 using Models.ViewModels.Portal;
 using Models.Context.Legacy;
+using System.Linq;
+using DataTables.AspNet.Core;
+using DataTables.AspNet.AspNetCore;
+using Models.Context;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using WebCommon.Models;
 
 namespace Domain.Areas.Admin.Controllers
 {
@@ -20,26 +27,38 @@ namespace Domain.Areas.Admin.Controllers
         {
             service = _service;
         }
-        public IActionResult Index()
+        public IActionResult Index(int lang = GlobalConstants.LangBG)
         {
-            return View();
+            ViewBag.lang = lang;
+      ViewBag.categories = service.PublicationCategories_SelectCombo().ToSelectList(-1).AddAllItem();
+      IEnumerable<TextValueVM> ddlData = new List<TextValueVM>() { new TextValueVM() { Value="1",Text="Активни"}, new TextValueVM() { Value = "0", Text = "Неактивни" } };
+      ViewBag.active = ddlData.ToSelectList(-1).AddAllItem();
+      return View();
         }
         [HttpPost]
-        public JsonResult LoadDataGrid([FromBody]GridRequestModel data)
-        {
-            DateTime? dateFrom = ((string)data.param.dateFrom).ParseDateTime();
-            DateTime? dateTo = ((string)data.param.dateTo).ParseDateTime();
-            string term = (string)data.param.term;
+        public IActionResult LoadData(IDataTablesRequest request, DateTime? dateFrom, DateTime? dateTo, int category, int active,string term, int lang)
 
-            var model = service.Publication_AdminSelect(dateFrom, dateTo, null, term.EmptyToNull());
+    {
+      
+    
 
-            return Json(new GridResponseModel<ArticleListAdminVM>(data, model));
+      var data = service.Publication_AdminSelect(dateFrom, dateTo, null, term.EmptyToNull(), active).Where(x => x.LanguageId == lang);
+
+   
+      if (category > 0)
+      { data = service.Publication_AdminSelect(dateFrom, dateTo, category, term.EmptyToNull(),active).Where(x => x.LanguageId == lang); }
+           var filtered = data;
+            var response = request.GetResponse(data, filtered);
+
+            return new DataTablesJsonResult(response, true);
         }
+       
 
-        public IActionResult Add()
+        public IActionResult Add(int lang)
         {
             var model = new Publications()
             {
+                LanguageId = lang,
                 IsActive = true,
                 IsApproved = true,
                 Date = DateTime.Now

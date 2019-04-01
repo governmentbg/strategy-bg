@@ -16,5 +16,7 @@ namespace Models.ViewModels.LinksModels
 
 		[JsonProperty("isActive")]
 		public bool IsActive { get; set; }
-	}
+
+		public int ViewOrder { get; set; }
+  }
 }

@@ -1,0 +1,29 @@
+﻿@using Models
+@model int
+@{
+    int lang = Model;
+}
+<div>
+    @using (Html.BeginForm())
+    {
+        <input type="hidden" name="lang" />
+        @foreach (var item in GlobalConstants.SelectLangs())
+        {
+            var btnClass = "btn-default";
+            if (item.LangId == lang)
+            {
+                btnClass = "btn-primary";
+            }
+            <a href="#" class="submit btn @btnClass" data-lang="@item.LangId" title="Покажи данните на @item.Title">@item.Lang.ToUpper()</a>
+        }
+    }
+    <br />
+</div>
+<script>
+    $(function () {
+        $('a.submit').click(function () {
+            var lang = $(this).data('lang');
+            $(this).parents('form:first').find('input[type="hidden"]').val(lang);
+        });
+    });
+</script>

@@ -756,7 +756,7 @@
     <value>Comments (optional)</value>
   </data>
   <data name="CreateJunkWordButton" xml:space="preserve">
-    <value>Create New Junk Word</value>
+    <value>Създайте нова нежелана дума</value>
   </data>
   <data name="CreateNewReply" xml:space="preserve">
     <value>Create your reply</value>
@@ -771,7 +771,7 @@
     <value>Delete all errors</value>
   </data>
   <data name="DeleteJunkWordButton" xml:space="preserve">
-    <value>Delete Selected Junk Word</value>
+    <value>Изтрийте избраната нежелана дума</value>
   </data>
   <data name="DeleteSelectedRole" xml:space="preserve">
     <value>Delete Selected Role</value>
@@ -825,7 +825,7 @@
     <value>Is Running</value>
   </data>
   <data name="JunkWords" xml:space="preserve">
-    <value>Junk Words</value>
+    <value>Нежелани думи</value>
   </data>
   <data name="MarkForumRead" xml:space="preserve">
     <value>Mark forum read</value>

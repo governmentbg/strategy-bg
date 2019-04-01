@@ -1,0 +1,225 @@
+﻿@model Models.ViewModels.StandartForms.StandartForm_2VM
+@{
+    ViewData["Title"] = "Приложение № 2";
+}
+
+
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","StandartForms")">Електронни формуляри</a>
+        / Приложение № 2
+    </div>
+}
+
+<section class="container-fluid information">
+    <div class="row">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+        </div>
+        <div class="col-lg-9">
+            <div style="padding: 10px">
+                <form asp-action="ExportSF2ToPDF" id="form1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <table width="100%" border="0">
+                        <tr>
+                            <td colspan="3" align="center" bgcolor="#EEEEEE"><h2>Резюме на цялостната предварителна оценка на въздействието</h2></td>
+                        </tr>
+                        <tr>
+                            <td width="49%">Наименование на акта: @Html.EditorFor(m => m.NaimenovanieNaAkta)</td>
+                            <td width="2%"></td>
+                            <td width="49%">Период на извършване на оценката: @Html.TextBoxFor(m => m.Period, new { style = "width:200px;" })</td>
+                        </tr>
+                        <tr>
+                            <td width="49%">Водеща институция: @Html.EditorFor(m => m.VodestaInstitucia)<p align="center"><i>Посочете институцията, отговорна за извършването на оценката</i></p></td>
+                            <td width="2%"></td>
+                            <td width="49%">От какво ниво възниква необходимостта от предприемане на действието? @Html.TextBoxFor(m => m.NivoNaNeobhodimost, new { style = "width:90%;" })<p align="center"><i>национално, европейско, международно</i></p></td>
+                        </tr>
+                        <tr>
+                            <td width="49%">Други организации, участвали в извършването на оценката: @Html.EditorFor(m => m.DrugiOrganizacii)<p align="center"><i>Посочете организациите, които са участвали и/или са съдействали за извършването на оценката</i></p></td>
+                            <td width="2%"></td>
+                            <td width="49%">Информация за контакт: @Html.EditorFor(m => m.InformaciaZaKontact)<p align="center"><i>име, телефон, е-поща</i></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left" bgcolor="#EEEEEE"><h2>1. РЕЗЮМЕ И ВАРИАНТИ НА ДЕЙСТВИЕ</h2></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left"><h3>&nbsp;&nbsp;&nbsp;Какъв е проблемът, който трябва да се реши? Защо е необходимо действие от страна на правителството/държавата?</h3> @Html.EditorFor(m => m.ProblemZaReshavane)<p align="center"><i>Опишете проблема или въпросите, които обосновават действие от страна на държавата.</i></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left"><h3>&nbsp;&nbsp;&nbsp;Какви са целите на предлаганото решение?</h3> @Html.EditorFor(m => m.CeliNaReshenieto)<p align="center"><i>Посочете какво цели да постигне новото предложение или предлаганата нова  уредба. Какъв ефект би имала тя и спрямо кого?</i></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left">
+                                <h3>&nbsp;&nbsp;&nbsp;Какви варианти за решаване на проблема са били изследвани, включително алтернативи на въвеждането на нова правна уредба?</h3>
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;1. Вариант 0 Без действие</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;2. Вариант 1 @Html.EditorFor(m => m.Variant1)</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;3. Вариант 2 @Html.EditorFor(m => m.Variant2)</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;4. Вариант 3 @Html.EditorFor(m => m.Variant3)</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;5. @Html.EditorFor(m => m.VariantDrugi)</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="left"><h3>&nbsp;&nbsp;&nbsp;Препоръчваме вариант № @Html.TextBoxFor(m => m.PreporachanVariant, new { style = "width:40px;" }), тъй като с него се постигат описаните по-горе цели и желани ефекти @Html.EditorFor(m => m.JelaniEfecti) </h3></p></td>
+                                    </tr>
+                                </table>
+                                <p align="center"><i>Посочете изследваните варианти, включително алтернативи на предприемането на нормативна промяна. Опишете накратко потенциалните рискове, свързани с вариантите, каква е вероятността те да настъпят и техния ефект, ако настъпят. Обосновете препоръчания вариант на действие. Повече информация добавете в резюмето на препоръчания вариант с данни.</i></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left" bgcolor="#EEEEEE"><h2>2. РЕЗЮМЕ НА ПРЕПОРЪЧАНИЯ ВАРИАНТ С ДОКАЗАТЕЛСТВА И ДАННИ</h2></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left">
+                                <table width="100%" border="1">
+                                    <tr>
+                                        <td width="30%"><h3>&nbsp;&nbsp;&nbsp;Вариант на действие</h3></td>
+                                        <td width="70%">
+                                            <table width="100%" border="1">
+                                                <tr>
+                                                    <td><h3>&nbsp;&nbsp;&nbsp;Общи годишни разходи</h3></td>
+                                                    <td><h3>&nbsp;&nbsp;&nbsp;Общи годишни ползи</h3></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><h3>@Html.EditorFor(m => m.VariantNaDeistvie)</h3><p align="center"><i>Опишете качествено и количествено всички значителни разходи и ползи на годишна база. Използвайте приблизителни цифри и диапазони, когато е по-приложимо. Обърнете особено внимание на икономическите и социалните разходи и на разходите за околната среда. Задължително включете паричен израз на разходите и ползите (в лева).</i></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;Вариант 0</td>
+                                        <td>@Html.EditorFor(m => m.Variant0NaDeistvie)</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;Вариант 1</td>
+                                        <td>@Html.EditorFor(m => m.Variant1NaDeistvie)</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;Вариант 2</td>
+                                        <td>@Html.EditorFor(m => m.Variant2NaDeistvie)</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h3>&nbsp;&nbsp;&nbsp;Вариант 3</td>
+                                        <td>@Html.EditorFor(m => m.Variant3NaDeistvie)</h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><h3>&nbsp;&nbsp;&nbsp;@Html.EditorFor(m => m.VariantiDrugiNaDeistvie)</h3></td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left"><h3>&nbsp;&nbsp;&nbsp;Описание и обхват на основните разходи </h3> @Html.EditorFor(m => m.ObhvatIOsnovniRazhodi)<p align="center"><i>Опишете накратко най-важните парични и непарични изрази на разходите. Опишете разходите за всички основни групи.</i></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table width="100%" border="1">
+                                    <tr>
+                                        <td width="50%" aligh="center"><h3>&nbsp;&nbsp;&nbsp;Какво е разпределението на годишните разходи според категорията на предприятията?</h3></td>
+                                        <td>
+                                            <table width="100%" border="0">
+                                                <tr>
+                                                    <td><p align="center"><i>Микро-(в лв.)</i><br>@Html.TextBoxFor(m => m.Micro, new { style = "width:80%;" })</p></td>
+                                                    <td><p align="center"><i>Малки (в лв.)</i><br>@Html.TextBoxFor(m => m.Malki, new { style = "width:80%;" })</p></td>
+                                                    <td><p align="center"><i>Средни (в лв.)</i><br>@Html.TextBoxFor(m => m.Sredni, new { style = "width:80%;" })</p></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30%" aligh="center"><h3>&nbsp;&nbsp;&nbsp;Има ли предприятия, които са освободени от спазване на новите правила, въведени с предложението?</h3></td>
+                                        <td>&nbsp;&nbsp;&nbsp;<i>Моля посочете.</i><h3>@Html.EditorFor(m => m.OsvobodeniPredpriatia)</h3></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left"><h3>&nbsp;&nbsp;&nbsp;Описание и обхват на основните ползи</h3> @Html.EditorFor(m => m.OpisanieIObhvatNaOsnovniPolzi)<p align="center"><i>Опишете накратко най-важните парични и непарични изрази на ползите.Опишете ползите за всички основни групи.</i></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left"><h3>&nbsp;&nbsp;&nbsp;Ключови рискове </h3> @Html.EditorFor(m => m.KliuchoviRiskove)<p align="center"><i>Има ли рискове от реализиране на предложението? Може ли да бъде изразен количествено, колко и какви юридически и физически лица ще бъдат засегнати и как?</i></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left" bgcolor="#EEEEEE"><h2>3. ПРОВЕДЕНИ КОНСУЛТАЦИИ</h2></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left"><h3>&nbsp;&nbsp;&nbsp;Консултации </h3> @Html.EditorFor(m => m.Konsultacii)<p align="center"><i>Посочете основните заинтересовани страни извън държавната администрация, с които са проведени консултации. Направете кратък анализ на броя и характера на отговорите, получени от консултацията</i></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left" bgcolor="#EEEEEE"><h2>4. ПРИВЕЖДАНЕ В ДЕЙСТВИЕ И ИЗПЪЛНЕНИЕ</h2></td>
+                        </tr>
+                        <tr>
+                            <td width="49%">От коя дата предложението ще започне да действа?</td>
+                            <td width="2%"></td>
+                            <td width="49%">@Html.EditorFor(m => m.DataNaDeistvie)<p align="center"><i>ден/месец/година</i></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="left"><h3>&nbsp;&nbsp;&nbsp;Коя институция/организация ще отговаря за осъществяване на предложението и за контрола?  </h3> @Html.EditorFor(m => m.InstituciaZaKontrol)<p align="center"><i>Опишете отговорната институция за осъществяването на предложението. Предложението предвижда ли разходи за дадена институция или организация?</i></p></td>
+                        </tr>
+                        <tr>
+                            <td width="49%" td colspan="3"><h3>Дата: @Html.TextBoxFor(m => m.Date, new { style = "width:60%;" })</h3></td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/StandartForms/ExportSF2ToPDF">
+                        <a asp-action="Index_StandartForm_2" class="btn btn-danger btn-flat">Изчисти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnPDF").click(function () {
+                $("#form1").submit(function () {
+                    setTimeout('$("#form2").submit();', 10);
+                    return false;
+                });
+            });
+        });
+
+        $(function () {
+            $('.calculatorActivityId :input').attr("disabled", true);
+        });
+
+        $('#NaimenovanieNaAkta').summernote();
+        $('#ProblemZaReshavane').summernote();
+        $('#VodestaInstitucia').summernote();
+        $('#DrugiOrganizacii').summernote();
+        $('#InformaciaZaKontact').summernote();
+        $('#CeliNaReshenieto').summernote();
+        $('#Variant0').summernote();
+        $('#Variant1').summernote();
+        $('#Variant2').summernote();
+        $('#Variant3').summernote();
+        $('#VariantDrugi').summernote();
+        $('#JelaniEfecti').summernote();
+        $('#VariantNaDeistvie').summernote();
+        $('#Variant1NaDeistvie').summernote();
+        $('#Variant0NaDeistvie').summernote();
+        $('#Variant2NaDeistvie').summernote();
+        $('#Variant3NaDeistvie').summernote();
+        $('#VariantiDrugiNaDeistvie').summernote();
+        $('#ObhvatIOsnovniRazhodi').summernote();
+        $('#OsvobodeniPredpriatia').summernote();
+        $('#OpisanieIObhvatNaOsnovniPolzi').summernote();
+        $('#KliuchoviRiskove').summernote();
+        $('#Konsultacii').summernote();
+        $('#InstituciaZaKontrol').summernote();
+    </script>
+}

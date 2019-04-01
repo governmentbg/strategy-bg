@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Models.ViewModels;
+using Models.ViewModels.Consultations;
 using Models.ViewModels.Portal;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,10 @@ namespace Models.Contracts
 
         List<SelectListItem> GetStateDDL();
         DocumentExportViewModel GetDocumentForExport(int documentId);
+        CommentsExportVM GetCommentsForExport(int consultationId);
+
+        List<SelectListItem> GetUserDDL(int userId);
+
+        IQueryable<CommentsExportListVM> GetCommentsListForExport();
     }
 }

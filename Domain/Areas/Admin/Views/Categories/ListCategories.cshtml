@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Категории";
+    int lang = ViewBag.lang;
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
@@ -8,55 +9,56 @@
     </div>
 }
 
-<section class="content">
-    <div class="pull-left">
-        <a asp-action="AddCategory" class="btn btn-success btn-flat">Добави категория</a>
-    </div>
+    <section class="content">
+        <partial name="LangSelect" model="@lang" />
+        <div class="pull-left">
+            <a asp-action="AddCategory" asp-route-lang="@lang" class="btn btn-success btn-flat">Добави категория</a>
+        </div>
 
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-lg-1">
-                    <label>Главна категория</label>
-                </div>
-                <div class="col-lg-3">
-                    @Html.DropDownList("ParentId", (IEnumerable<SelectListItem>)ViewBag.ParentCategoryID_ddl, new { @class = "form-control" })
-                </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <label>Главна категория</label>
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.DropDownList("ParentId", (IEnumerable<SelectListItem>)ViewBag.ParentCategoryID_ddl, new { @class = "form-control" })
+                    </div>
 
-                @if (ViewBag.SectionCategoryID_ddl.Count > 0)
-                {
-                    <div id="hide" style="display:none">0</div>
-                }
-                else
-                {
-                    <div id="hide" style="display:none">1</div>
-                }
-                
-                <div id="hideThis">
-                <div class="col-lg-1" id="div_SectionId">
-                    <label>Област</label>
-                </div>
-                <div class="col-lg-4">
-                    @Html.DropDownList("SectionId", (IEnumerable<SelectListItem>)ViewBag.SectionCategoryID_ddl, new { @class = "form-control" })
-                </div>
-                </div>
+                    @if (ViewBag.SectionCategoryID_ddl.Count > 0)
+                    {
+                        <div id="hide" style="display:none">0</div>
+                    }
+                    else
+                    {
+                        <div id="hide" style="display:none">1</div>
+                    }
 
-                <div class="col-lg-1">
-                    <label>Активност</label>
-                </div>
-                <div class="col-lg-1">
-                    <select id="ddlActive">
-                        <option value="-1">Всички</option>
-                        <option value="1" selected="selected">Активни</option>
-                        <option value="0">Неактивни</option>
-                    </select>
+                    <div id="hideThis">
+                        <div class="col-lg-1" id="div_SectionId">
+                            <label>Област</label>
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.DropDownList("SectionId", (IEnumerable<SelectListItem>)ViewBag.SectionCategoryID_ddl, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1">
+                        <label>Активност</label>
+                    </div>
+                    <div class="col-lg-1">
+                        <select id="ddlActive">
+                            <option value="-1">Всички</option>
+                            <option value="1" selected="selected">Активни</option>
+                            <option value="0">Неактивни</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <table id="mainTable" class="table" cellspacing="0"></table>
-</section>
+        <table id="mainTable" class="table" cellspacing="0"></table>
+    </section>
 @section scripts{
     <script>
         $(function () {
@@ -74,6 +76,7 @@
                      d.active = $("#ddlActive").val();
                      d.parentId = $("#ParentId").val();
                      d.sectionId = $("#SectionId").val();
+                     d.lang = @ViewBag.lang;
                  },
                  "type": "POST"
              },
@@ -82,7 +85,7 @@
              },
              "columns": [
                  {
-                     data: "name",
+                     data: "categoryName",
                      title: 'Име',
                      sortable: true,
                      searchable: true

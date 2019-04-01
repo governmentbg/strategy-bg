@@ -10,14 +10,14 @@
             <form asp-action="@ViewBag.actionName">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input asp-for="Id" type="hidden" />
+                <partial name="LangView" model="@Model.LanguageId" />
                 <textbox for="Title" type="textarea"></textbox>
                 <ddl for="PublicationCategoryId" data="@ViewBag.categories"></ddl>
                 <date-picker for="Date"></date-picker>
                 <textbox for="Text" type="textarea" edit-class="summernote"></textbox>
                 <checkbox for="IsMainTopic"></checkbox>
-                <checkbox for="IsOnMainPage"></checkbox>
                 <checkbox for="IsActive" text-class="label label-primary"></checkbox>
-                <checkbox for="IsApproved" text-class="label label-warning"></checkbox>
+                @*<checkbox for="IsApproved" text-class="label label-warning"></checkbox>*@
                 <checkbox for="IsDeleted" text-class="label label-danger"></checkbox>
                 <div class="form-group">
                     <input type="submit" value="Запис" class="btn btn-success btn-flat" />

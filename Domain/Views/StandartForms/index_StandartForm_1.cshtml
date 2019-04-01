@@ -1,0 +1,154 @@
+﻿@model Models.ViewModels.StandartForms.StandartForm_1VM
+@{
+    ViewData["Title"] = "Приложение № 1";
+}
+
+
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","StandartForms")">Електронни формуляри</a>
+        / Приложение № 1
+    </div>
+}
+
+<section class="container-fluid information">
+    <div class="row">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+        </div>
+        <div class="col-lg-9">
+            <div style="padding: 10px">
+                <form asp-action="ExportSF1ToPDF" id="form1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h2>
+                        <div align="center">
+                            Приложение № 1
+                        </div>
+                    </h2>
+                    <h3>
+                        </br>
+                        <div align="center">
+                            към чл. 16 от Наредбата за обхвата и методологията за извършване на оценка на въздействието
+                        </div>
+                    </h3>
+                    </br></br>
+                    <table width="100%" border="0" cellpadding="5" cellspacing="5">
+                        <tr>
+                            <td width="49%">@Html.EditorFor(m => m.Institution)</td>
+                            <td width="2%">&nbsp;</td>
+                            <td width="49%">@Html.EditorFor(m => m.Enactment)</td>
+                        </tr>
+                        <tr>
+                            <td width="49%">@Html.EditorFor(m => m.Period)</td>
+                            <td width="2%">&nbsp;</td>
+                            <td width="49%"> @Html.EditorFor(m => m.DateFirst)</td>
+                        </tr>
+                        <tr>
+                            <td width="49%">@Html.EditorFor(m => m.Contact)</td>
+                            <td width="2%">&nbsp;</td>
+                            <td width="49%"> @Html.EditorFor(m => m.Phone)</td>
+                        </tr>
+                    </table>
+                    <h3>1. Дефиниране на проблема:</h3>
+                    @Html.EditorFor(m => m.p1_1)
+                    @Html.EditorFor(m => m.p1_2)
+                    @Html.EditorFor(m => m.p1_3)
+                    <h3>2. Цели:</h3>
+                    @Html.EditorFor(m => m.p2)
+                    <h3>3. Идентифициране на заинтересованите страни:</h3>
+                    @Html.EditorFor(m => m.p3)
+                    <h3>4. Варианти на действие:</h3>
+                    @Html.EditorFor(m => m.p4)
+                    <h3>5. Негативни въздействия:</h3>
+                    @Html.EditorFor(m => m.p5)
+                    <h3>6. Положителни въздействия:</h3>
+                    @Html.EditorFor(m => m.p6)
+                    <h3>7. Потенциални рискове:</h3>
+                    @Html.EditorFor(m => m.p7)
+                    <h3>8. Административна тежест:</h3>
+                    <div>
+                        <b>8.1 Административната тежест за физическите и юридическите лица:</b><br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p8_1" value="1" checked />&nbsp;&nbsp;&nbsp;Ще се повиши<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p8_1" value="2" />&nbsp;&nbsp;&nbsp;Ще се намали<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p8_1" value="3" />&nbsp;&nbsp;&nbsp;Няма ефект<br><br>
+                    </div>
+                    @Html.EditorFor(m => m.p8_2)
+                    <h3>9. Създават ли се нови регистри?</h3>
+                    <br>
+                    <i>Когато отговорът е „да“, посочете колко и кои са те</i>
+                    @Html.EditorFor(m => m.p9)
+                    <h3>10. Как въздейства актът върху микро-, малките и средните предприятия (МСП)?</h3>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p10" value="1" checked />&nbsp;&nbsp;&nbsp;Актът засяга пряко МСП<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p10" value="2" />&nbsp;&nbsp;&nbsp;Актът не засяга МСП<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p10" value="3" />&nbsp;&nbsp;&nbsp;Няма ефект<br><br>
+                    </div>
+                    <h3>11.  Проектът на нормативен акт изисква ли цялостна оценка на въздействието?</h3>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p11" value="1" checked />&nbsp;&nbsp;&nbsp;Да<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p11" value="2" />&nbsp;&nbsp;&nbsp;Не<br><br>
+                    </div>
+                    <h3>12. Обществени консултации: </h3>
+                    @Html.EditorFor(m => m.p12)
+                    <h3>13. Приемането на нормативния акт произтича ли от правото на Европейския съюз?</h3>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p13_1" value="1" checked />&nbsp;&nbsp;&nbsp;Да<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="p13_1" value="2" />&nbsp;&nbsp;&nbsp;Не<br><br>
+                    </div>
+                    @Html.EditorFor(m => m.p13_2)
+                    <h3>14. Име, длъжност, дата и подпис на директора на дирекцията, отговорна за изработването на нормативния акт:</h3>
+                    <table width="100%" border="0" cellpadding="5" cellspacing="5">
+                        <tr>
+                            <td width="49%">@Html.EditorFor(m => m.NameRole)</td>
+                            <td width="2%">&nbsp;</td>
+                            <td width="49%">@Html.EditorFor(m => m.DateEnd)</td>
+                        </tr>
+                    </table>
+                    
+                    
+                    <div class="form-group">
+                        <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/StandartForms/ExportSF1ToPDF">
+                        <a asp-action="Index_StandartForm_1" class="btn btn-danger btn-flat">Изчисти</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnPDF").click(function () {
+                $("#form1").submit(function () {
+                    setTimeout('$("#form2").submit();', 10);
+                    return false;
+                });
+            });
+        });
+
+        $(function () {
+            $('.calculatorActivityId :input').attr("disabled", true);
+        });
+
+        $('#p1_1').summernote();
+        $('#p1_2').summernote();
+        $('#p1_3').summernote();
+        $('#p2').summernote();
+        $('#p3').summernote();
+        $('#p4').summernote();
+        $('#p5').summernote();
+        $('#p6').summernote();
+        $('#p7').summernote();
+        $('#p8_2').summernote();
+        $('#p9').summernote();
+        $('#p11').summernote();
+        $('#p12').summernote();
+        $('#p13_2').summernote();
+    </script>
+}

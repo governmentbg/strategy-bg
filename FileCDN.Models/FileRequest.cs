@@ -17,6 +17,7 @@ namespace FileCDN.Models
         {
             get; set;
         }
+        [Display(Name = "Документна библиотека")]
         public string SourceID
         {
             get; set;
@@ -26,7 +27,7 @@ namespace FileCDN.Models
             get; set;
         }
         [Display(Name = "Заглавие")]
-        [Required(ErrorMessage ="Въведете '{0}'.")]
+        [Required(ErrorMessage = "Въведете '{0}'.")]
         public string FileTitle
         {
             get; set;
@@ -45,8 +46,16 @@ namespace FileCDN.Models
         {
             get; set;
         }
+        [Display(Name = "В сила до")]
+        public DateTime? DateExparing { get; set; }
+
+        [Display(Name = "Покажи в справката")]
+        public bool? IsReportVisible { get; set; }
+
+        public int UsedFilesSourceType { get; set; }
 
         public string JScallback { get; set; }
+        public string DirectUploadMethod { get; set; }
 
     }
 }

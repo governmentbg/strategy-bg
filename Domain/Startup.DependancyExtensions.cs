@@ -41,6 +41,12 @@ namespace Domain
 			services.AddTransient<IDocumentTypeService, DocumentTypeService>();
       services.AddTransient<IMulticriteriaAnalisysService, MulticriteriaAnalisysService>();
 			services.AddTransient<IAboutUsService, AboutUsService>();
+			services.AddTransient<IInstitutionTypeService, InstitutionTypeService>();
+			services.AddTransient<IPublicationCategoriesService, PublicationCategoriesService>();
+			services.AddTransient<INewsCategoriesService, NewsCategoriesService>();
+			services.AddTransient<IDocumentKindService, DocumentKindService>();
+			services.AddTransient<IBannersService, BannersService>();
+			services.AddTransient<IUsersInfoService, UsersInfoService>();
 
 			//services.AddTransient<IApplicationService, ApplicationService>();
 			//services.AddTransient<INomService, NomService>();

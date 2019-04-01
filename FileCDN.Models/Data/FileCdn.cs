@@ -54,6 +54,9 @@ namespace FileCDN.Models.Data
         [Column("user_uploaded")]
         public string UserUploaded { get; set; }
 
+        public DateTime? DateExparing { get; set; }
+        public bool? IsReportVisible { get; set; }
+
         [Required]
         [Column("is_active")]
         public bool IsActive { get; set; }

@@ -12,6 +12,12 @@
 	  <FileVersion>14.1.0</FileVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <RuntimeFrameworkVersion>2.1.6</RuntimeFrameworkVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Resources\*.resx" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>

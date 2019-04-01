@@ -25,10 +25,13 @@
         <div class="credential panel">
             <a href="@Url.Action("Index","Home")">
                 <div class="panel-heading">
-                    <img src="~/dist/assets/logo.png" alt="">
+                    <img src="~/dist/assets/logo@2x_@((string)ViewBag.lang).png" alt="">
                 </div>
             </a>
             <div class="panel-body">
+                <div class="pull-right">
+                    @Html.Partial("_LangSelect")
+                </div>
                 @RenderBody()
             </div>
         </div>

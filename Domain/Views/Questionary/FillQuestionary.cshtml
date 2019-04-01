@@ -9,14 +9,15 @@
     SourceItemVM sourceItem = (SourceItemVM)ViewBag.sourceItem;
 }
 @section breadcrumbs{
-    <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        @if (sourceItem != null)
-        {
-            <span>/</span> <a href="@sourceItem.BackUrl">@sourceItem.SourceTypeName</a>
-        }
-        / <a href="#">Анкета</a>
-    </div>
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="@Url.Action("Index","Questionary")">Анкети</a>
+    @if (sourceItem != null)
+    {
+        <span>/</span> <a href="@sourceItem.BackUrl">@sourceItem.SourceTypeName</a>
+    }
+    / <a href="#">Попълване на анкета</a>
+</div>
 }
 
 

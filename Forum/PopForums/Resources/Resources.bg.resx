@@ -369,7 +369,7 @@
     <value>E-mail потребител</value>
   </data>
   <data name="ForcePlainTextBox" xml:space="preserve">
-    <value>Force plain text boxes</value>
+    <value>Принуди ползване на обикновен текст</value>
   </data>
   <data name="ForgotInstructions" xml:space="preserve">
     <value>Въведете e-mail адреса асоцииран с акаунта за да получите инструкции за подновяване на паролата:</value>
@@ -384,14 +384,14 @@
     <value>Забравена парола?</value>
   </data>
   <data name="HideVanity" xml:space="preserve">
-    <value>Hide vanity</value>
+    <value>Скрий</value>
   </data>
   <data name="In" xml:space="preserve">
     <value>в</value>
     <comment>context: started by Jeff in General Forum</comment>
   </data>
   <data name="Joined" xml:space="preserve">
-    <value>Обединено</value>
+    <value>Създаден</value>
   </data>
   <data name="Location" xml:space="preserve">
     <value>Локация</value>
@@ -490,7 +490,7 @@
     <value>Качи нов</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
-    <value>Потребителя не е намерен</value>
+    <value>Потребителят не е намерен</value>
   </data>
   <data name="Views" xml:space="preserve">
     <value>Прегледи</value>
@@ -531,7 +531,7 @@
     <value>Линкът, който следвате е невалиден.</value>
   </data>
   <data name="UnsubscribeNote" xml:space="preserve">
-    <value>Вашагта заявка за отписване е обработена. Можете да се абонирате наново през вашата профилна страница.</value>
+    <value>Вашата заявка за отписване е обработена. Можете да се абонирате наново през вашата профилна страница.</value>
   </data>
   <data name="AddForum" xml:space="preserve">
     <value>Добави форум</value>
@@ -609,76 +609,76 @@
     <value>E-mail потребители</value>
   </data>
   <data name="ErrorLog" xml:space="preserve">
-    <value>ErrorLog</value>
+    <value>Журнал с грешки</value>
   </data>
   <data name="Forum" xml:space="preserve">
     <value>Форум</value>
   </data>
   <data name="ForumAdapter" xml:space="preserve">
-    <value>Forum Adapter (optional, use "Namespace.Type, AssemblyName")</value>
+    <value>Форумен адаптер ( use "Namespace.Type, AssemblyName")</value>
   </data>
   <data name="ForumHome" xml:space="preserve">
-    <value>Forum Home</value>
+    <value>Към форума</value>
   </data>
   <data name="ForumPermisions" xml:space="preserve">
-    <value>Forum Permissions</value>
+    <value>Права</value>
   </data>
   <data name="ForumSettings" xml:space="preserve">
-    <value>Forum Settings</value>
+    <value>Настройки на форума</value>
   </data>
   <data name="ForumsUncat" xml:space="preserve">
-    <value>Uncategorized Forums</value>
+    <value>Некатегоризирани</value>
   </data>
   <data name="GeneralSettings" xml:space="preserve">
-    <value>General Settings</value>
+    <value>Общи настройки</value>
   </data>
   <data name="IpBan" xml:space="preserve">
     <value>IP Ban</value>
   </data>
   <data name="IpHistory" xml:space="preserve">
-    <value>IP History</value>
+    <value>IP История</value>
   </data>
   <data name="IsApproved" xml:space="preserve">
-    <value>Is approved</value>
+    <value>Одобрен</value>
   </data>
   <data name="IsSubscribed" xml:space="preserve">
-    <value>Is subscribed</value>
+    <value>Абониран</value>
   </data>
   <data name="LogErrors" xml:space="preserve">
-    <value>Log errors</value>
+    <value>Грешки в журнала</value>
   </data>
   <data name="Logging" xml:space="preserve">
-    <value>Logging</value>
+    <value>Записване на журнал</value>
   </data>
   <data name="LogMod" xml:space="preserve">
-    <value>Log moderation</value>
+    <value>Журнал на модераторите</value>
   </data>
   <data name="LogSecurity" xml:space="preserve">
-    <value>Log security actions</value>
+    <value>Дейсвия по сигурността</value>
   </data>
   <data name="MinimumTimeBetweenPosts" xml:space="preserve">
-    <value>Minimum time between posts (seconds)</value>
+    <value>Минимално време между постовете (секунди)</value>
   </data>
   <data name="ModerationLog" xml:space="preserve">
-    <value>Moderation Log</value>
+    <value>Журнал на промените</value>
   </data>
   <data name="Move" xml:space="preserve">
     <value>Премести</value>
   </data>
   <data name="NewUserApprovedWithoutVerification" xml:space="preserve">
-    <value>New user is approved without verification</value>
+    <value>Новите потребители се потвърждават без проверка</value>
   </data>
   <data name="NewUserImageApprovedWithoutMod" xml:space="preserve">
-    <value>New user image approved without moderation</value>
+    <value>Новите изображения се потвърждават без проверка</value>
   </data>
   <data name="Parsing" xml:space="preserve">
-    <value>Parsing</value>
+    <value>Обработка</value>
   </data>
   <data name="PasswordNewOptional" xml:space="preserve">
     <value>Нова парола (опционално)</value>
   </data>
   <data name="PopForumsAdmin" xml:space="preserve">
-    <value>POP Forums Administration</value>
+    <value>Администриране на форума</value>
   </data>
   <data name="PostsPerPage" xml:space="preserve">
     <value>Публикации за страница</value>
@@ -711,25 +711,25 @@
     <value>Темата и Съдържанието не могат да са празни</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Title</value>
+    <value>Заглавие</value>
   </data>
   <data name="TopicsPerPage" xml:space="preserve">
     <value>Теми за страница</value>
   </data>
-  <data name="Нагоре" xml:space="preserve">
-    <value>Up</value>
+  <data name="Up" xml:space="preserve">
+    <value>Нагоре</value>
   </data>
   <data name="UserAvatarMaxDim" xml:space="preserve">
-    <value>User avatar max dimensions</value>
+    <value>Използвай максимални размери на аватара</value>
   </data>
   <data name="UserDeleteWarning" xml:space="preserve">
-    <value>WARNNG! Deleting an account is permanent</value>
+    <value>ВНИМАНИЕ! Изтриването на акаунта е перманентно!</value>
   </data>
   <data name="UserImageApproval" xml:space="preserve">
-    <value>User Image Approval</value>
+    <value>Одобряване на изображения</value>
   </data>
   <data name="UserImageMaxDim" xml:space="preserve">
-    <value>User image max dimensions</value>
+    <value>Максимален размер на изображение</value>
   </data>
   <data name="UserRoles" xml:space="preserve">
     <value>Потребителски роли</value>
@@ -756,7 +756,7 @@
     <value>Коментар (опционален)</value>
   </data>
   <data name="CreateJunkWordButton" xml:space="preserve">
-    <value>Create New Junk Word</value>
+    <value>Създайте нова нежелана дума</value>
   </data>
   <data name="CreateNewReply" xml:space="preserve">
     <value>Напишете Вашият отговор</value>
@@ -771,7 +771,7 @@
     <value>Изтрий всички грешки</value>
   </data>
   <data name="DeleteJunkWordButton" xml:space="preserve">
-    <value>Delete Selected Junk Word</value>
+    <value>Изтрийте избраната нежелана дума</value>
   </data>
   <data name="DeleteSelectedRole" xml:space="preserve">
     <value>Изтрий избраната роля</value>
@@ -801,10 +801,10 @@
     <value>Любими теми</value>
   </data>
   <data name="ForumMoveError" xml:space="preserve">
-    <value>There was an unknown error while attempting to move forum</value>
+    <value>Възникна неочаквана грешка при преместването на форума</value>
   </data>
   <data name="ForumPermissionInstructions" xml:space="preserve">
-    <value>To remove posting or viewing restrictions, remove all roles from the appropriate box.</value>
+    <value>За да премахнете постинга, премахнете всичката свързана с него информация</value>
   </data>
   <data name="FromEmailAddress" xml:space="preserve">
     <value>От e-mail адрес</value>
@@ -816,7 +816,7 @@
     <value>Включи подпис</value>
   </data>
   <data name="IndexingInterval" xml:space="preserve">
-    <value>Indexing Interval</value>
+    <value>Интервал на индексиране</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -825,7 +825,7 @@
     <value>работи</value>
   </data>
   <data name="JunkWords" xml:space="preserve">
-    <value>Junk Words</value>
+    <value>Нежелани думи</value>
   </data>
   <data name="MarkForumRead" xml:space="preserve">
     <value>Отбележи форума като прочетен</value>
@@ -844,13 +844,13 @@
     <value>(опционаленl)</value>
   </data>
   <data name="PermRoles" xml:space="preserve">
-    <value>Admin and Moderator are permanent roles, and can't be deleted.</value>
+    <value>Admin и Moderator са постоянни роли и не могат да бъдат изтрити.</value>
   </data>
   <data name="PostID" xml:space="preserve">
     <value>PostID</value>
   </data>
   <data name="PostingRoles" xml:space="preserve">
-    <value>Posting Roles</value>
+    <value>Роли за публикуване</value>
   </data>
   <data name="PostNewTopic" xml:space="preserve">
     <value>Публикувай нова тема</value>
@@ -869,16 +869,16 @@
     <value>Интервал за изпращане</value>
   </data>
   <data name="SmtpPassword" xml:space="preserve">
-    <value>SMTP Password</value>
+    <value>SMTP Парола</value>
   </data>
   <data name="SmtpPort" xml:space="preserve">
-    <value>Port (default is 25)</value>
+    <value>Port (по подразбиране 25)</value>
   </data>
   <data name="SmtpServer" xml:space="preserve">
-    <value>SMTP Server</value>
+    <value>SMTP Сървър</value>
   </data>
   <data name="SmtpUser" xml:space="preserve">
-    <value>SMTP User</value>
+    <value>SMTP Потребител</value>
   </data>
   <data name="StartDate" xml:space="preserve">
     <value>Начална дата</value>
@@ -896,22 +896,22 @@
     <value>Тип</value>
   </data>
   <data name="UseEsmtpCred" xml:space="preserve">
-    <value>Use ESMTP for credentials</value>
+    <value>Използвай ESMTP за логване</value>
   </data>
   <data name="UserID" xml:space="preserve">
     <value>UserID</value>
   </data>
   <data name="UserIDTarget" xml:space="preserve">
-    <value>Target UserID</value>
+    <value>UserID</value>
   </data>
   <data name="UserImageApprovalNotReq" xml:space="preserve">
-    <value>User uploaded images currently do not require approval</value>
+    <value>Качените изображения не се нуждаят от одобрение</value>
   </data>
   <data name="UseSsl" xml:space="preserve">
-    <value>Use SSL</value>
+    <value>Използвай SSL</value>
   </data>
   <data name="ViewingRoles" xml:space="preserve">
-    <value>Viewing Roles</value>
+    <value>Роли за преглед</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Затвори</value>
@@ -943,7 +943,7 @@
     <value>Отвори</value>
   </data>
   <data name="Pin" xml:space="preserve">
-    <value>ПИН</value>
+    <value>Закачи</value>
   </data>
   <data name="PostReply" xml:space="preserve">
     <value>Отговори</value>
@@ -979,7 +979,7 @@
     <value>Архивирай</value>
   </data>
   <data name="NewPM" xml:space="preserve">
-    <value>New Private Message</value>
+    <value>Ново лично съобщение</value>
   </data>
   <data name="NoResults" xml:space="preserve">
     <value>Няма намерени резултати</value>
@@ -1000,7 +1000,7 @@
     <value>Грешка</value>
   </data>
   <data name="ErrorSettingUpDb" xml:space="preserve">
-    <value>There was an error setting up your database</value>
+    <value>Възникна грешка при връзката с базата данни</value>
   </data>
   <data name="ForumReady" xml:space="preserve">
     <value>Форумът е готов.</value>
@@ -1009,7 +1009,7 @@
     <value>Заглавие на форума</value>
   </data>
   <data name="GoAdmin" xml:space="preserve">
-    <value>Go to the admin section to finish setting up your Forum.</value>
+    <value>Отидете в Администраторския панел за донастройки</value>
   </data>
   <data name="InvalidLink" xml:space="preserve">
     <value>Този линк вече не е валиден.</value>
@@ -1018,19 +1018,19 @@
     <value>Няма връзка с базата данни</value>
   </data>
   <data name="PopForumsSetup" xml:space="preserve">
-    <value>POP Forums Setup</value>
+    <value>Настройка  на форума</value>
   </data>
   <data name="SetupCantConnect" xml:space="preserve">
-    <value>The setup can't connect to the data store. Please check your connection string and configuration.</value>
+    <value>Инсталацията не може да се свърже с базата данни</value>
   </data>
   <data name="SetupConnSuccess" xml:space="preserve">
-    <value>A database connection has been successful. Please fill out the following values to get started</value>
+    <value>Връзката е успешна. Моля попълнете следните данни</value>
   </data>
   <data name="SetupDatabase" xml:space="preserve">
-    <value>Setup the database</value>
+    <value>Настройка н абазата данни</value>
   </data>
   <data name="SetupFirstUser" xml:space="preserve">
-    <value>Setup your first user (will be granted admin and moderator rights)</value>
+    <value>Настройк ана първия потребител</value>
   </data>
   <data name="SubscribedTopics" xml:space="preserve">
     <value>Теми с абонамент</value>
@@ -1097,7 +1097,7 @@
     <value>Нови публикации, затворена тема</value>
   </data>
   <data name="NewPostsClosedPinned" xml:space="preserve">
-    <value>New posts, closed &amp; pinned topic</value>
+    <value>Нови постове, затворена и закаченатема</value>
   </data>
   <data name="NewPostsPinned" xml:space="preserve">
     <value>Нови публикации, закачена тема</value>
@@ -1118,7 +1118,7 @@
     <value>Закачена тема</value>
   </data>
   <data name="PMCreateWarnings" xml:space="preserve">
-    <value>Must include subject, message and at least one user</value>
+    <value>Трябва да включва тема, съобщение и поне един потребител</value>
   </data>
   <data name="PostEmpty" xml:space="preserve">
     <value>Не можете да правите празни публикации</value>
@@ -1139,14 +1139,14 @@
     <comment>{0}=name of forum, {1}=forum link, {2}=new line</comment>
   </data>
   <data name="RegisterEmailThankYouVerify" xml:space="preserve">
-    <value>Thank you for registering with {0}. Please follow this link to confirm your registration:{5}{5}{1} {5}{5}If you can't follow this link, please visit the following page, and cut and paste the confirmation code:{5}{5}Link: {2} {5}Code: {3} {5}{5}{4}</value>
+    <value>Благодаря за регистрацията в {0}. Моля последвайте линка за да потвърдите регистрацията си:{5}{5}{1} {5}{5}</value>
     <comment>{0}=name of forum, {1}=auth link, {2}=verify link, {3}=auth code, {4}=sig, {5}new line</comment>
   </data>
   <data name="SettingsSaved" xml:space="preserve">
     <value>Настройките са запазени</value>
   </data>
   <data name="SubscribedEmailBody" xml:space="preserve">
-    <value>One or more responses have been posted to the following thread on {0}:{5}{5}{1}{5}{2}{5}{5}To stop receiving notifications visit this link:{5}{3}{5}{5}{4}</value>
+    <value>Един или повече отговори са публикувани в  {0}:{5}{5}{1}{5}{2}{5}{5} За да спрете да получавате тези съобщения, посетете:{5}{3}{5}{5}{4}</value>
     <comment>{0}=name of forum, {1}=topic title, {2}=link, {3}=unsubscribe link, {4}=signature, {5}=new line</comment>
   </data>
   <data name="SubscribedEmailSubject" xml:space="preserve">
@@ -1175,19 +1175,19 @@
     <comment>{0} is uri to user, {1} is user name, {2} is uri to post, {3} is topic name</comment>
   </data>
   <data name="ScoringGame" xml:space="preserve">
-    <value>Scoring game</value>
+    <value>Игра</value>
   </data>
   <data name="Awards" xml:space="preserve">
     <value>Awards</value>
   </data>
   <data name="EventDefinitions" xml:space="preserve">
-    <value>Event Definitions</value>
+    <value>Дефиниция на събитието</value>
   </data>
   <data name="AwardDefinitions" xml:space="preserve">
     <value>Award Definitions</value>
   </data>
   <data name="ManualEvent" xml:space="preserve">
-    <value>Manual Event</value>
+    <value>Ръчни събития</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Никой</value>
@@ -1196,27 +1196,27 @@
     <value>Activity Feed</value>
   </data>
   <data name="NewReplyPublishMessage" xml:space="preserve">
-    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; made a post in the topic: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
+    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; направи пост в тема: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
     <comment>{0} is uri to user, {1} is user name, {2} is uri to post, {3} is topic name</comment>
   </data>
   <data name="NewPostPublishMessage" xml:space="preserve">
-    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; started a new topic: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
+    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; започна нова тема: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
     <comment>{0} is uri to user, {1} is user name, {2} is uri to topic{3} is topic name</comment>
   </data>
   <data name="ExternalLogins" xml:space="preserve">
-    <value>External Logins</value>
+    <value>Външен вход</value>
   </data>
   <data name="UseExistingForumAccount" xml:space="preserve">
-    <value>Use existing forum account</value>
+    <value>Използвай съществуващ акаунт</value>
   </data>
   <data name="ExpiredLogin" xml:space="preserve">
     <value>That login has expired or is not valid</value>
   </data>
   <data name="ExternalLoginsDisabled" xml:space="preserve">
-    <value>External logins are disabled</value>
+    <value>Външният вход е забранен</value>
   </data>
   <data name="NoExternalLoginsRegistered" xml:space="preserve">
-    <value>You have no external logins registered</value>
+    <value>Няма регистрирани външни</value>
   </data>
   <data name="DeletePermanently" xml:space="preserve">
     <value>Изтрий завинаги</value>
@@ -1231,7 +1231,7 @@
     <value>Отговори</value>
   </data>
   <data name="QuestionAnswered" xml:space="preserve">
-    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; chose an answer for the question: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
+    <value>&lt;a href="{0}"&gt;{1}&lt;/a&gt; изберете отговор на въпроса: &lt;a href="{2}"&gt;{3}&lt;/a&gt;</value>
     <comment>{0} is uri to user, {1} is user name, {2} is uri to post, {3} is topic name</comment>
   </data>
   <data name="ChooseAnswer" xml:space="preserve">

@@ -1,0 +1,15 @@
+﻿@using Models
+@model string
+@{
+    string lang = Model;
+}
+<span class="lang-name">
+    @foreach (var item in GlobalConstants.SelectLangs())
+    {
+
+        if (item.Lang == lang)
+        {
+            <text> Съдържанието е на @item.Title </text>
+        }
+    }
+</span>

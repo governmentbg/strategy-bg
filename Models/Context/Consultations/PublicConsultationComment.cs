@@ -31,7 +31,7 @@ namespace Models.Context.Consultations
         public DateTime DateModified { get; set; }
         [Display(Name = "SendNotification")]
         public bool SendNotification { get; set; }
-        public int DocumentId { get; set; }
+        public int? DocumentId { get; set; }
 
         [ForeignKey(nameof(ConsultationId))]
         public PublicConsultation Consultation { get; set; }

@@ -10,7 +10,7 @@ using WebCommon.Extensions;
 
 namespace Domain.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleController : BasePortalController
     {
         private readonly IArticleService service;
 

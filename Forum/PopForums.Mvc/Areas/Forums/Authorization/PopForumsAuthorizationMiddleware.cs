@@ -31,8 +31,16 @@ namespace PopForums.Mvc.Areas.Forums.Authorization
 			if (identity != null)
 			{
         IEnumerable<Claim> CaimsList = identity.Claims;
-        int _userID = Convert.ToInt32(CaimsList.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid").Value.ToString()) ;
-        var user = userService.GetUser(_userID);
+
+        int _userID =-1;
+
+        try
+        {
+          _userID = Convert.ToInt32(CaimsList.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid").Value.ToString());
+        }
+        catch { }
+
+        var user = userService.GetUser(_userID); 
 				if (user != null)
 				{
 					foreach (var role in user.Roles)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -46,5 +47,12 @@ namespace Models.Context.LinksModels
 
 		[Display(Name = "ColumnsCount")]
 		public int ColumnsCount { get; set; }
-	}
+
+        public List<Links> Links { get; set; }
+
+        public LinksCategories()
+        {
+            Links = new List<Links>();
+        }
+    }
 }

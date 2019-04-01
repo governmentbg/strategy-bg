@@ -21,9 +21,15 @@ namespace Models.ViewModels.Portal
 
         public string UpdateCommentsCallback { get; set; }
 
+        public List<SelectListItem> UserIdentityList { get; set; }
+
+        [Display(Name = "От името на")]
+        public int UserIdentityId { get; set; }
+
         public CommentsRequestModel()
         {
             SectionList = new List<SelectListItem>() { new SelectListItem()  };
+            UserIdentityList = new List<SelectListItem>() { new SelectListItem()  };
         }
     }
 }

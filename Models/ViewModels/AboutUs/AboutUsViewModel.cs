@@ -85,6 +85,8 @@ namespace Models.ViewModels.AboutUs
 			entity.ModifiedByUserId = this.ModifiedByUserId;
 			entity.DateModified = this.DateModified;
 
+      entity.LanguageId = this.LanguageId;
+
 			return entity;
 		}
 
@@ -107,6 +109,8 @@ namespace Models.ViewModels.AboutUs
 			CreatedByUserId = entity.CreatedByUserId;
 			ModifiedByUserId = entity.ModifiedByUserId;
 			DateModified = entity.DateModified;
+
+      LanguageId = entity.LanguageId;
 		}
 	}
 

@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Категории връзки";
+    int lang = ViewBag.lang;
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
@@ -8,27 +9,28 @@
     </div>
 }
 
-<section class="content">
-    <div class="pull-left">
-        <a asp-action="AddLinksCategory" class="btn btn-success btn-flat">Добави категория връзки</a>
-        &nbsp;&nbsp;
-        <a asp-action="OrderLinksCategories" class="btn btn-success btn-flat">Подреди категории връзки</a>
-    </div>
+    <section class="content">
+        <partial name="LangSelect" model="@lang" />
+        <div class="pull-left">
+            <a asp-action="AddLinksCategory" asp-route-lang="@lang" class="btn btn-success btn-flat">Добави категория връзки</a>
+            &nbsp;&nbsp;
+            <a asp-action="OrderLinksCategories" asp-route-lang="@lang" class="btn btn-success btn-flat">Подреди категории връзки</a>
+        </div>
 
-    <div>
-        &nbsp;&nbsp;
-        <label>
-            Активност
-        </label>
-        <select id="ddlActive">
-            <option value="-1">Всички</option>
-            <option value="1">Активни</option>
-            <option value="0">Неактивни</option>
-        </select>
-    </div>
+        <div>
+            &nbsp;&nbsp;
+            <label>
+                Активност
+            </label>
+            <select id="ddlActive">
+                <option value="-1">Всички</option>
+                <option value="1">Активни</option>
+                <option value="0">Неактивни</option>
+            </select>
+        </div>
 
-    <table id="mainTable" class="table" cellspacing="0"></table>
-</section>
+        <table id="mainTable" class="table" cellspacing="0"></table>
+    </section>
 @section scripts{
     <script>
     $(function () {
@@ -38,6 +40,7 @@
                  "url": '@Url.Action("LoadDataLinksCategories")',
                  data: function (d) {
                      d.active = $("#ddlActive").val();
+                     d.lang = @ViewBag.lang;
                  },
                  "type": "POST"
              },
@@ -73,7 +76,7 @@
                  {
                      data: "id",
                      "render": function (value) {
-                         var updateUrl = '@Url.Action("EditLinksCategories",new { id = "666"})'.replace('666', value);
+                         var updateUrl = '@Url.Action("EditLinksCategories", new { id = "666"})'.replace('666', value);
                          var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
                          return updButton;
                      },
@@ -83,7 +86,7 @@
                  {
                      data: "id",
                      "render": function (value) {
-                         var updateUrl = '@Url.Action("ListLinks",new { linksCategoryId = "666", active = 1})'.replace('666', value);
+                         var updateUrl = '@Url.Action("ListLinks", new { linksCategoryId = "777", active = 1, lang = @ViewBag.lang })'.replace('777', value);
                          var updButton = '<a href="' + updateUrl + '" class="btn btn-info">Връзки</a>';
                          return updButton;
                      },

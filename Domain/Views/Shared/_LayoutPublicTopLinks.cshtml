@@ -1,0 +1,7 @@
+﻿@inject IStringLocalizer<CommonResources> Localizer
+ | <a href="@Url.Action("PreviewByUrl","Page",new { area="",pageType=GlobalConstants.PageTypes.StaticPages,url="contacts"})">@Localizer["TOP_LINK_CONTACTS"]</a> |
+<a href="@Url.Action("PreviewByUrl","Page",new { area="",pageType=GlobalConstants.PageTypes.StaticPages,url="terms-of-use"})">@Localizer["TOP_LINK_TERMS_OF_USE"]</a> |
+<a href="@Url.Action("PreviewByUrl","Page",new { area="",pageType=GlobalConstants.PageTypes.StaticPages,url="site-map"})">@Localizer["TOP_LINK_SITE_MAP"]</a> |
+<a href="@Url.Action("Categories","Account",new { area=""})">@Localizer["TOP_LINK_SUBSCRIBE"]</a> |
+<a href="https://www.facebook.com/392182447643790/" title="Facebook" target="_blank"><img src="@Url.Content("~/images/facebook_icon.png")" /></a>&nbsp;
+<a href="https://twitter.com/strategy__bg" title="Twitter" target="_blank"><img src="@Url.Content("~/images/twitter_icon.png")" /></a>

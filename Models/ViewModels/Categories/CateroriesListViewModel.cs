@@ -8,7 +8,7 @@ namespace Models.ViewModels.CategoriesModels
 		[JsonProperty("id")]
 		public int Id { get; set; }
 
-		[JsonProperty("name")]
+		[JsonProperty("categoryName")]
 		public string CategoryName { get; set; }
 
 		[JsonProperty("dateCreated")]

@@ -1,30 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using DataTables.AspNet.AspNetCore;
-using DataTables.AspNet.Core;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using Models.Context.Account;
 using Models.Contracts;
 using Models.ViewModels.Account;
 using PopForums.Models;
 using PopForums.Services;
-using WebCommmon.Controllers;
-using WebCommon.Extensions;
 using WebCommon.Services;
-using static WebCommon.CommonConstants;
 
 namespace Domain.Controllers
 {
 
-    public partial class AccountController : BaseController
+    public partial class AccountController : BasePortalController
     {
         private readonly IAccountService accountService;
         private readonly IEmailSender emailSender;
@@ -115,6 +105,7 @@ namespace Domain.Controllers
                 return View(model);
             }
 
+      //// e te tuka se pravi usera za momenta, ama triabva da e po dolu   aangelov
               SignupData signupData = new SignupData();
               signupData.Email = model.Email;
               signupData.IsDaylightSaving = true;
@@ -132,11 +123,15 @@ namespace Domain.Controllers
                 ControllerContext.ActionDescriptor.ControllerName,
                 new { code },
                 HttpContext.Request.Scheme);
-
-            emailSender.SendMail(
+      //Remove Later
+     // url.Replace("192.168.200.91", "77.71.113.82");
+      //Remove Later
+      emailSender.SendMail(
                 model.Email,
                 MessageConstants.RegisterMail_Subject,
                 String.Format(MessageConstants.RegisterMail_Body, model.FullName, MessageConstants.SystemTitle, url));
+
+
 
             SetMessageDialog(false, string.Format("{0}, <br/> Вашата регистрация протече успешно. На електронната Ви поща {1} беше изпратено писмо за да потвърждение.", model.FullName, model.Email), "Регистрация");
 
@@ -167,6 +162,7 @@ namespace Domain.Controllers
                 {
 
 
+          ////// e te tuka se pravi usera, ama za sega e na Register   aangelov
           //SignupData signupData = new SignupData();
           //signupData.Email = user.Email;
           //signupData.IsDaylightSaving = true;

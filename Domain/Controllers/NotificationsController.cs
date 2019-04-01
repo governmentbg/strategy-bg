@@ -10,7 +10,7 @@ using WebCommon.Extensions;
 
 namespace Domain.Controllers
 {
-  public class NotificationsController : Controller
+  public class NotificationsController : BasePortalController
   {
     private readonly INotificationService service;
     private readonly INomenclatureService nomService;

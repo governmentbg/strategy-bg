@@ -13,30 +13,38 @@
         }
 
         a {
-            text-decoration: none;
-            color: #4a4a4a;
+            text-decoration: none;           
         }
-        .catTitle{
-            font-size:1.2em;
-            font-style:italic;
+
+        .catTitle {
+            font-size: 1.2em;
+            font-style: italic;
         }
+
         table {
             border: none;
             padding: 5px;
+            width:100%;
         }
 
             table .col1 {
                 width: 5%;
-                padding-right:10px;
+                padding-right: 10px;
                 text-align: right;
             }
 
             table .col2 {
                 width: 70%;
             }
+            table .col2.file {
+                padding-left:20px;
+            }
 
             table .col3 {
                 width: 25%;
+            }
+            table tr.link {
+                color:#548aad
             }
     </style>
 </head>
@@ -48,11 +56,22 @@
         <table>
             @foreach (var doc in cat.LinkRows)
             {
-                <tr>
+                <tr class="link">
                     <td class="col1">@doc.OrderNumber</td>
                     <td class="col2"><a href="@Url.Action("View","StrategicDocument",new { area="",id=doc.Id})"> @doc.Title</a></td>
-                    <td class="col3">валиден до : @(doc.ValidTo.Year > 2100 ? "Не е указан срок" : doc.ValidTo.ToString("yyyy г."))</td>
+                    <td class="col3">валиден до : @(doc.ValidTo.Year >= 2100 ? "Не е указан срок" : doc.ValidTo.ToString("yyyy г."))</td>
                 </tr>
+                if (doc.Files != null)
+                {
+                    foreach (var docFile in doc.Files)
+                    {
+                        <tr >
+                            <td class="col1">@(Int32.Parse(doc.OrderNumber)+1)</td>
+                            <td class="col2">@docFile.Title </td>
+                            <td class="col3">валиден до : @(docFile.ValidTo.Year >= 2100 ? "Не е указан срок" : docFile.ValidTo.ToString("yyyy г."))</td>
+                        </tr>
+                    }
+                }
             }
         </table>
     }

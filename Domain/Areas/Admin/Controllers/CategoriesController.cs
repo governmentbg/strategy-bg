@@ -26,16 +26,17 @@ namespace Domain.Areas.Admin.Controllers
 		}
 
 		#region Categories
-		public IActionResult ListCategories()
+		public IActionResult ListCategories(int lang = GlobalConstants.LangBG)
 		{
-			SetComboViewBags();
+      ViewBag.lang = lang;
+      SetComboViewBags();
 			return View();
 		}
 
 		[HttpPost]
-		public IActionResult LoadDataCategories(IDataTablesRequest request, int active = -1, int parentId = 0, int sectionId = 0)
+		public IActionResult LoadDataCategories(IDataTablesRequest request, int active = -1, int parentId = 0, int sectionId = 0, int lang = GlobalConstants.LangBG)
 		{
-			IQueryable<CateroriesListViewModel> data = categoriesService.GetCategories(active, parentId, sectionId);
+			IQueryable<CateroriesListViewModel> data = categoriesService.GetCategories(active, parentId, sectionId, lang);
 
 			var response = request.GetResponse(data);
 
@@ -43,10 +44,16 @@ namespace Domain.Areas.Admin.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult AddCategory()
+		public IActionResult AddCategory(int lang)
 		{
-			var model = new CategoryViewModel();
-			model.IsActive = true;
+			var model = new CategoryViewModel()
+      {
+        LanguageId = lang,
+        IsActive = true,
+        IsDeleted = false,
+        IsApproved = true
+      };
+
 			SetComboViewBags();
 
 			return View("EditCategory", model);

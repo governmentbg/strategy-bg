@@ -10,7 +10,6 @@
 
 namespace PopForums {
     using System;
-    using System.Reflection;
     
     
     /// <summary>
@@ -20,7 +19,7 @@ namespace PopForums {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -40,7 +39,7 @@ namespace PopForums {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PopForums.Resources.Resources", typeof(Resources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PopForums.Resources.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -530,7 +529,7 @@ namespace PopForums {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create New Junk Word.
+        ///   Looks up a localized string similar to Създайте нова нежелана дума.
         /// </summary>
         public static string CreateJunkWordButton {
             get {
@@ -602,7 +601,7 @@ namespace PopForums {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Selected Junk Word.
+        ///   Looks up a localized string similar to Изтрийте избраната нежелана дума.
         /// </summary>
         public static string DeleteJunkWordButton {
             get {
@@ -1421,7 +1420,7 @@ namespace PopForums {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Junk Words.
+        ///   Looks up a localized string similar to Нежелани думи.
         /// </summary>
         public static string JunkWords {
             get {

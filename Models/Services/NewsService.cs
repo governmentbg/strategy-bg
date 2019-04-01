@@ -35,10 +35,10 @@ namespace Models.Services
             return Find<NewsCategories>(id);
         }
 
-        public IEnumerable<TextValueVM> NewsCategories_SelectCombo()
+        public IEnumerable<TextValueVM> NewsCategories_SelectCombo(int lang = GlobalConstants.LangBG)
         {
             return All<NewsCategories>()
-                    .Where(x => x.IsActive && !x.IsDeleted && x.IsApproved && x.LanguageId == GlobalConstants.LangBG)
+                    .Where(x => x.IsActive && !x.IsDeleted && x.IsApproved && x.LanguageId == lang)
                     .OrderBy(x => x.Name)
                      .Select(x => new TextValueVM
                      {
@@ -74,7 +74,8 @@ namespace Models.Services
                      MainImageFileId = (x != null) ? x.cdn_file_id : null,
                      IsActive = n.IsActive,
                      IsDeleted = n.IsDeleted,
-                     IsApproved = n.IsApproved
+                     IsApproved = n.IsApproved,
+                     LanguageId = n.LanguageId
                  }).AsQueryable();
 
 
@@ -114,6 +115,7 @@ namespace Models.Services
                 if (model.Id > 0)
                 {
                     var saved = Find<News>(model.Id);
+                    //saved.LanguageId = model.LanguageId;
                     saved.NewsCategoryId = model.NewsCategoryId;
                     saved.Title = model.Title;
                     saved.Text = model.Text;
@@ -133,7 +135,7 @@ namespace Models.Services
                 }
                 else
                 {
-                    model.LanguageId = GlobalConstants.LangBG;
+                    //model.LanguageId = GlobalConstants.LangBG;
                     model.CreatedByUserId = userContext.UserId;
                     model.DateCreated = DateTime.Now;
 
@@ -152,13 +154,14 @@ namespace Models.Services
             }
         }
 
-        public IQueryable<ArticleListVM> News_Select(int? category, string term)
+        public IQueryable<ArticleListVM> News_Select(int? category, string term, int lang = GlobalConstants.LangBG)
         {
             return
                 (from n in
                 db.News
                 .Include(x => x.NewsCategory)
                 .Where(x => x.NewsCategoryId == (category ?? x.NewsCategoryId) && x.Title.Contains(term ?? x.Title))
+                .Where(x => x.LanguageId == lang)
                 .OrderByDescending(x => x.Date)
 
                  join f in db.FilesCDNUsed.Where(fu => fu.source_type == GlobalConstants.SourceTypes.NewsImage)
@@ -168,6 +171,7 @@ namespace Models.Services
                  select new ArticleListVM
                  {
                      Id = n.Id,
+                     LanguageId = n.LanguageId,
                      Title = n.Title,
                      CategoryId = n.NewsCategoryId,
                      CategoryName = n.NewsCategory.Name,
@@ -178,6 +182,6 @@ namespace Models.Services
                      MainImageFileId = (x != null) ? x.cdn_file_id : null
                  }).AsQueryable();
         }
-      
+
     }
 }

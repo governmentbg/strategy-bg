@@ -1,9 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Новини";
+    int lang = ViewBag.lang;
 }
 <section class="content">
+    @*смяна на езика на съдържанието*@
+    <partial name="LangSelect" model="@lang" />
+    @*смяна на езика на съдържанието*@
 
-    <a asp-action="Add" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Добави новина</a>
+    <a asp-action="Add" asp-route-lang="@lang" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Добави новина</a>
 
     <div class="search-form">
         <div class="row">
@@ -28,46 +32,60 @@
         </div>
     </div>
 
-    <div id="gridview" class="news-list"></div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
 </section>
 @section scripts{
     <script>
         $(function () {
-            $('button.dt-reload').click(function () {
-                LoadData();
-                return false;
-            }).trigger('click');
+             var dt = $('#mainTable').DataTable({
+            "ajax": {
+                "url": '@Url.Action("LoadData")',
+                data: function (d) {
+                    d.dateFrom = $('#dateFrom').val();
+                    d.dateTo = $('#dateTo').val();
+                    d.term = $('#term').val();
+                    d.lang=@((int)ViewBag.lang);
+                },
+                "type": "POST"
+                 },
+                 filter: false,
+                 fnDrawCallback: function (settings) {
+                     $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                 },
+                 "columns": [
+                     {
+                         data: "lang",
+                         title: 'Език'
+                     },
+                {
+                    data: "title",
+                    title: 'Наименование'
+                },
+                {
+                    data: "categoryName",
+                    title: 'Категория'
+                },
+                {
+                    data: "eventDateTXT",
+                    title: 'Дата'
+                },
+                {
+                    data: null,
+                    "render": function (item) {
+                        var updateUrl = '@Url.Action("Edit", new { id = "666"})'.replace('666', item.id);
+                        var updButton = '&nbsp;&nbsp;<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                        return updButton;
+                    },
+                    sortable: false
+                }
+            ]
         });
-        function LoadData() {
-             $('#gridview').gridView({
-                url: '@(Url.Action("LoadDataGrid"))',
-                 data: { dateFrom: $('#dateFrom').val(), dateTo: $('#dateTo').val(), term: $('#term').val()},
-                filter: false,
-                template: '#listTemplate',
-                empty_text: 'Няма намерени елементи.'
-            });
-        }
-    </script>
-    <script type="text/x-handlebars-template" id="listTemplate">
-        <div class="col-md-4 col-sm-6">
-            <article class="article--news image--left">
-                <a href="@Url.Action("Edit")?id={{id}}" title="Редакция">
-                    {{#if mainImageFileId}}
 
-                    <div class="image">
-                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs, max=75}))&sourceId={{mainImageFileId}}">
-                    </div>
-                    {{/if}}
-                    <h4 class="title">
-                        {{{title}}}
-                    </h4>
-                    <p class="type">
-                        {{{categoryName}}}
-                    </p>
-                    <p class="date">{{eventDateTXT}}</p>
-                    <p class="date">{{eventDateTXT}}</p>
-                </a>
-            </article>
-        </div>
+
+            $('button.dt-reload').click(function () {
+                dt.ajax.reload();
+            });
+        });
     </script>
+
 }

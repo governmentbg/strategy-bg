@@ -1,0 +1,64 @@
+﻿
+@model Models.ViewModels.StandartForms.StandartForm_3VM
+
+@{
+  Layout = "~/Views/Shared/_LayoutStandartForms.cshtml";
+}
+
+<h2>Приложение № 3</h2></br>
+<h3>към чл. 26 от Наредбата за обхвата и методологията за извършване на оценка на въздействието</h3>
+</br></br></br>
+
+<section class="content">
+    <table width="100%" border="1">
+        <tr>
+            <td colspan="2" align="center" bgcolor="#EEEEEE"><h2>КОНСУЛТАЦИОНЕН ДОКУМЕНТ </h2></td">
+        </tr>
+        <tr>
+            <td colspan="2" align="left"><h3>&nbsp;&nbsp;&nbsp;1. ОСНОВНА ИНФОРМАЦИЯ ЗА КОНСУЛТАЦИЯТА</h3></td>
+        </tr>
+        <tr>
+            <td width="10%">1.1</td>
+            <td>Въведение:</br>@Html.Raw(@Model.Introduction)</td>
+        </tr>
+        <tr>
+            <td width="10%">1.2</td>
+            <td>Цели на консултацията:</br>@Html.Raw(@Model.Introduction)</td>
+        </tr>
+        <tr>
+            <td width="10%">1.3</td>
+            <td>Консултационен процес:</br>@Html.Raw(@Model.Introduction)</td>
+        </tr>
+        <tr>
+            <td width="10%">1.4</td>
+            <td>Релевантни документи и нормативни актове:</br>@Html.Raw(@Model.Introduction)</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left"><h3>&nbsp;&nbsp;&nbsp;2. ОПИСАНИЕ НА ПРЕДЛОЖЕНИЕТО</h3></br>@Html.Raw(@Model.Description)</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left"><h3>&nbsp;&nbsp;&nbsp;3. ВЪПРОСИ ЗА ОБСЪЖДАНЕ</h3></br>@Html.Raw(@Model.Questions)</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left"><h3>&nbsp;&nbsp;&nbsp;4. ДОКУМЕНТИ, СЪПЪТСТВАЩИ КОНСУЛТАЦИЯТА</h3></br>@Html.Raw(@Model.Documents)</td>
+        </tr>
+    </table>
+</section>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnPDF").click(function () {
+                $("#form1").submit(function () {
+                    setTimeout('$("#form2").submit();', 10);
+                    return false;
+                });
+            });
+        });
+
+        $(function () {
+            $('.calculatorActivityId :input').attr("disabled", true);
+        });
+    </script>
+}

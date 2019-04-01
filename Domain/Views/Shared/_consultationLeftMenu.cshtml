@@ -1,12 +1,11 @@
-﻿<div class="aside row">
-    <div class="title">
-        <a href="@Url.Action("NewCalculation", "Calculator", new { area = "" })" target="_blank">
-            Калкулатор
-        </a>
-    </div>
-    <div class="title">
-        <a href="@Url.Action("Index", "MulticriteriaAnalysis", new { area = "" })" target="_blank">
-            Мултикритериен калкулатор
-        </a>
-    </div>
+﻿@model List<MenuLinkViewModel>
+<div class="aside row">
+    @foreach (var item in Model)
+    {
+        <div class="title">
+            <a href="@item.Url" target="_blank">
+                @item.Title
+            </a>
+        </div>
+    }
 </div>

@@ -12,176 +12,195 @@ using WebCommon.Services;
 
 namespace Domain.Areas.Admin.Controllers
 {
-	[Area(nameof(Admin))]
-	[Authorize(Roles = GlobalConstants.Roles.Admin)]
-	public class LinksController : BaseController
-	{
-		private readonly ILinksService linksService;
-		private readonly IUserContext userContext;
+  [Area(nameof(Admin))]
+  [Authorize(Roles = GlobalConstants.Roles.Admin)]
+  public class LinksController : BaseController
+  {
+    private readonly ILinksService linksService;
+    private readonly IUserContext userContext;
 
-		public LinksController(ILinksService _linksService, IUserContext _userContext)
-		{
-			linksService = _linksService;
-			userContext = _userContext;
-		}
+    public LinksController(ILinksService _linksService, IUserContext _userContext)
+    {
+      linksService = _linksService;
+      userContext = _userContext;
+    }
 
-		#region Links - Categories
-		public IActionResult ListLinksCategories()
-		{
-			return View();
-		}
+    #region Links - Categories
+    public IActionResult ListLinksCategories(int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.lang = lang;
+      return View();
+    }
 
-		[HttpPost]
-		public IActionResult LoadDataLinksCategories(IDataTablesRequest request, int active = -1)
-		{
-			IQueryable<LinksCateroriesListViewModel> data = linksService.GetLinksCategories(active);
+    [HttpPost]
+    public IActionResult LoadDataLinksCategories(IDataTablesRequest request, int active = -1, int lang = GlobalConstants.LangBG)
+    {
+      IQueryable<LinksCateroriesListViewModel> data = linksService.GetLinksCategories(active, lang);
 
-			var response = request.GetResponse(data);
+      var response = request.GetResponse(data);
 
-			return new DataTablesJsonResult(response, true);
-		}
+      return new DataTablesJsonResult(response, true);
+    }
 
-		[HttpGet]
-		public IActionResult AddLinksCategory()
-		{
-			var model = new LinksCategoriesViewModel();
-			model.IsActive = true;
+    [HttpGet]
+    public IActionResult AddLinksCategory(int lang)
+    {
+			var model = new LinksCategoriesViewModel()
+      {
+        LanguageId = lang,
+        IsActive = true,
+        IsApproved = true,
+        IsDeleted = false
+      };
 
-			return View("EditLinksCategories", model);
-		}
+      return View("EditLinksCategories", model);
+    }
 
-		[HttpGet]
-		public IActionResult EditLinksCategories(int id)
-		{
-			var model = linksService.GetLinksCategory(id);
+    [HttpGet]
+    public IActionResult EditLinksCategories(int id)
+    {
+      var model = linksService.GetLinksCategory(id);
 
-			return View("EditLinksCategories", model);
-		}
+      return View("EditLinksCategories", model);
+    }
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult EditLinksCategories(LinksCategoriesViewModel model)
-		{
-			SetSavedMessage = false;
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult EditLinksCategories(LinksCategoriesViewModel model)
+    {
+      SetSavedMessage = false;
 
-			if (!ModelState.IsValid)
-			{
-				return View("EditLinksCategories", model);
-			}
+      if (!ModelState.IsValid)
+      {
+        return View("EditLinksCategories", model);
+      }
 
-			SetSavedMessage = linksService.SaveLinksCategories(model);
+      SetSavedMessage = linksService.SaveLinksCategories(model);
 
-			if (SetSavedMessage)
-			{
-				return RedirectToAction(nameof(EditLinksCategories), new { id = model.Id });
-			}
+      if (SetSavedMessage)
+      {
+        return RedirectToAction(nameof(EditLinksCategories), new { id = model.Id });
+      }
 
-			return View("EditLinksCategories", model);
-		}
-		#endregion
+      return View("EditLinksCategories", model);
+    }
+    #endregion
 
-		#region Links
-		public IActionResult ListLinks(int linksCategoryId, int active = 1)
-		{
-			SetComboViewBags();
+    #region Links
+    public IActionResult ListLinks(int linksCategoryId, int active = 1, int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.lang = lang;
+      SetComboViewBags(lang);
 
-			return View();
-		}
+      return View();
+    }
 
-		[HttpPost]
-		public IActionResult LoadDataLinks(IDataTablesRequest request, int linksCategoryId, int active = 1)
-		{
-			IQueryable<LinksListViewModel> data = linksService.GetLinksList(active, linksCategoryId);
+    [HttpPost]
+    public IActionResult LoadDataLinks(IDataTablesRequest request, int linksCategoryId, int active = 1, int lang = GlobalConstants.LangBG)
+    {
+      IQueryable<LinksListViewModel> data = linksService.GetLinksList(active, linksCategoryId, lang);
 
-			var response = request.GetResponse(data);
+      var response = request.GetResponse(data);
 
-			return new DataTablesJsonResult(response, true);
-		}
+      return new DataTablesJsonResult(response, true);
+    }
 
-		[HttpGet]
-		public IActionResult AddLinks()
-		{
-			var model = new LinksViewModel();
-			model.IsActive = true;
-			SetComboViewBags();
-			
-			return View("EditLinks", model);
-		}
+    [HttpGet]
+    public IActionResult AddLinks(int lang = GlobalConstants.LangBG)
+    {
+      var model = new LinksViewModel()
+      {
+        IsActive = true,
+        IsDeleted = false,
+        IsApproved = true,
+        LanguageId = lang
+      };
 
-		[HttpGet]
-		public IActionResult EditLinks(int id)
-		{
-			var model = linksService.GetLinks(id);
-			SetComboViewBags();
+      SetComboViewBags();
 
-			return View("EditLinks", model);
-		}
+      return View("EditLinks", model);
+    }
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult EditLinks(LinksViewModel model)
-		{
-			SetSavedMessage = false;
-			SetComboViewBags();
+    [HttpGet]
+    public IActionResult EditLinks(int id)
+    {
+      var model = linksService.GetLinks(id);
+      SetComboViewBags();
 
-			if (!ModelState.IsValid)
-			{
-				return View("EditLinks", model);
-			}
+      return View("EditLinks", model);
+    }
 
-			SetSavedMessage = linksService.SaveLinks(model);
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult EditLinks(LinksViewModel model)
+    {
+      SetSavedMessage = false;
+      SetComboViewBags();
 
-			if (SetSavedMessage)
-			{
-				return RedirectToAction(nameof(EditLinks), new { id = model.Id });
-			}
+      if (!ModelState.IsValid)
+      {
+        return View("EditLinks", model);
+      }
 
-			return View("EditLinks", model);
-		}
+      SetSavedMessage = linksService.SaveLinks(model);
 
-		private void SetComboViewBags()
-		{
-			ViewBag.LinksCategoryID_ddl = linksService.GetLinksCategoriesDDL();
-		}
-		#endregion
+      if (SetSavedMessage)
+      {
+        return RedirectToAction(nameof(EditLinks), new { id = model.Id });
+      }
 
-		#region Links - Order
-		public IActionResult OrderLinksCategories()
-		{
-			return View("OrderLinksCategories");
-		}
+      return View("EditLinks", model);
+    }
 
-		public IActionResult OrderLinksCategoriesUp(int id)
-		{
-			linksService.OrderLinksCategories(id, true);
-			return View("OrderLinksCategories");
-		}
+    private void SetComboViewBags(int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.LinksCategoryID_ddl = linksService.GetLinksCategoriesDDL(lang);
+    }
+    #endregion
 
-		public IActionResult OrderLinksCategoriesDown(int id)
-		{
-			linksService.OrderLinksCategories(id, false);
-			return View("OrderLinksCategories");
-		}
+    #region Links - Order
+    public IActionResult OrderLinksCategories(int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.lang = lang;
+      return View("OrderLinksCategories");
+    }
 
-		public IActionResult OrderLinks()
-		{
-			SetComboViewBags();
-			return View("OrderLinks");
-		}
+    public IActionResult OrderLinksCategoriesUp(int id, int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.lang = lang;
+      linksService.OrderLinksCategories(id, true, lang);
+      return View("OrderLinksCategories");
+    }
 
-		public IActionResult OrderLinksUp(int id)
-		{
-			SetComboViewBags();
-			linksService.OrderLinks(id, true);
-			return View("OrderLinks");
-		}
+    public IActionResult OrderLinksCategoriesDown(int id, int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.lang = lang;
+      linksService.OrderLinksCategories(id, false, lang);
+      return View("OrderLinksCategories");
+    }
 
-		public IActionResult OrderLinksDown(int id)
-		{
-			SetComboViewBags();
-			linksService.OrderLinks(id, false);
-			return View("OrderLinks");
-		}
-		#endregion
-	}
+    public IActionResult OrderLinks(int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.lang = lang;
+      SetComboViewBags();
+      return View("OrderLinks");
+    }
+
+    public IActionResult OrderLinksUp(int id, int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.lang = lang;
+      SetComboViewBags();
+      linksService.OrderLinks(id, true, lang);
+      return View("OrderLinks");
+    }
+
+    public IActionResult OrderLinksDown(int id, int lang = GlobalConstants.LangBG)
+    {
+      ViewBag.lang = lang;
+      SetComboViewBags();
+      linksService.OrderLinks(id, false, lang);
+      return View("OrderLinks");
+    }
+    #endregion
+  }
 }

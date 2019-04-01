@@ -399,7 +399,8 @@ namespace Models.Services
 
         public bool SavePageLinkFromSelectedPage(int pageId, int contentId, string lang)
         {
-            var subPages = Select(GlobalConstants.PageTypes.Pages, lang, contentId).ToList();
+            var pageTypeId = GetPageType(pageId, null);
+            var subPages = Select(pageTypeId, lang, contentId).ToList();
             if (subPages.Any())
             {
                 foreach (var item in subPages)
@@ -419,6 +420,20 @@ namespace Models.Services
 
             }
             return true;
+        }
+
+        public int GetPageType(int? pageId, int? contentId)
+        {
+            return db.Pages.Where(x => x.Id == (pageId ?? x.Id) && x.ContentId == (contentId ?? x.ContentId))
+                .FirstOrDefault()
+                ?.PageTypeId ?? GlobalConstants.PageTypes.OV;
+        }
+
+        public int GetContentIdByUrl(int pageType, string url)
+        {
+            return db.Pages.Where(x => x.PageTypeId == pageType && x.Url == url)
+                            .FirstOrDefault()
+                            ?.ContentId ?? 0;
         }
     }
 }

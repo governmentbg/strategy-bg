@@ -2,14 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Models.Contracts;
 using Models.ViewModels.Portal;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Domain.ViewComponents
 {
-    public class ArticleWidgetViewComponent : ViewComponent
+    public class ArticleWidgetViewComponent : BaseLangViewComponent
     {
         private readonly INewsService newsService;
         private readonly IPublicationService publicationService;
@@ -20,17 +19,17 @@ namespace Domain.ViewComponents
             publicationService = _publicationService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(string view,
+        public  async Task<IViewComponentResult> InvokeAsync(string view,
         int loadCount)
         {
             IEnumerable<ArticleListVM> model = null;
             switch (view.ToLower())
             {
                 case "news":
-                    model = await newsService.News_Select(null, null).Skip(0).Take(loadCount).ToListAsync();
+                    model = await newsService.News_Select(null, null).Where(x => x.LanguageId == this.Lang).Skip(0).Take(loadCount).ToListAsync();
                     break;
                 case "publication":
-                    model = await publicationService.Publication_Select(null, null).Skip(0).Take(loadCount).ToListAsync();
+                    model = await publicationService.Publication_Select(null, null).Where(x => x.LanguageId == this.Lang).Skip(0).Take(loadCount).ToListAsync();
                     break;
             }
 

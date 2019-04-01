@@ -14,7 +14,8 @@ namespace Models.Contracts
         bool SaveConsultation(ConsultationViewModel model, int userId);
         ConsultationViewModel GetConsultation(int id);
 
-        IQueryable<PublicConsultationVM> Portal_List();
+        //CBorisoff
+        IQueryable<PublicConsultationVM> Portal_List(int langId = GlobalConstants.LangBG, int? validMode = null, int? docType = null);
         IEnumerable<TimelineDocumentViewModel> Portal_GetDocumentsList(int id);
         IQueryable<CommentVM> Portal_GetComments(int id);
 
@@ -32,5 +33,10 @@ namespace Models.Contracts
         List<SelectListItem> GetSections(string content);
         List<SelectListItem> GetDocumentTypesDDL();
         //IEnumerable<ConsultationVersionVM> GetVersionsByVersionId(int versionId);
+
+        int GetInstitutionTypeId(int userId);
+
+        int GetConsultationCommentsCount(int consultationId);
+    IQueryable<ConsultationsExportListVM> GetConsultationsListForExport();
     }
 }

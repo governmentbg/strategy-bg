@@ -36,6 +36,14 @@ namespace Domain.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+
+
+            List<UserToNotificateVM> listToNotificate = new List<UserToNotificateVM>() {
+        new UserToNotificateVM() {UserId=1,Email="t@g.com"},
+      };
+
+
+            //bool Not = notificationsService.InsertNotificationMessages("MessageTitle", "MessageBody", 1, 1, true, true, listToNotificate);
             notificationsService.SendingInsertedNotifications();
             return View();
         }
@@ -94,7 +102,7 @@ namespace Domain.Areas.Admin.Controllers
                 model.UserGroupId.EmptyToNull()).ToList();
 
             this.SetSavedMessage = notificationsService.InsertNotificationMessages(model.Title, model.Body,
-                 1, GlobalConstants.SourceTypes.BlancSource, 
+                 1, GlobalConstants.SourceTypes.BlancSource,
                  model.SystemNotification, model.EmailNotification,
                  listToNotificate);
 

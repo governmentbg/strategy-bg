@@ -12,5 +12,32 @@ namespace Models.ViewModels.Portal
         public string FileName { get; set; }
         public string FileTitle { get; set; }
         public int SourceType { get; set; }
+        public DateTime? DateExparing { get; set; }
+        public bool? IsReportVisible { get; set; }
+
+        public string AddInfo
+        {
+            get
+            {
+                string result = "";
+                if (IsReportVisible == true)
+                {
+                    result += "Покажи в справката";
+                }
+
+                if (DateExparing.HasValue)
+                    if (DateExparing.Value.Year > 2000 && DateExparing.Value.Year < 2100)
+                    {
+                        result += "| В сила до: " + DateExparing.Value.ToString("dd.MM.yyyy");
+                    }
+                    else
+                    {
+                        result += "| без указан срок";
+                    }
+
+                return result;
+            }
+        }
+
     }
 }

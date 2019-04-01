@@ -1,25 +1,21 @@
 ﻿using DataTables.AspNet.AspNetCore;
 using DataTables.AspNet.Core;
 using Domain.Extensions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models;
 using Models.Contracts;
 using Models.ViewModels.PCSubjectsModels;
 using Rotativa.AspNetCore;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using WebCommmon.Controllers;
 using WebCommon.Services;
 
 namespace Domain.Controllers
 {
-	/// <summary>
-	/// Public Consultation Subjects
-	/// </summary>
-	public class PCSubjectsController : BaseController
-	{
+    /// <summary>
+    /// Public Consultation Subjects
+    /// </summary>
+    public class PCSubjectsController : BasePortalController
+    {
 		private readonly IPCSubjectsService PCSubjectsService;
 		private readonly IUserContext userContext;
 

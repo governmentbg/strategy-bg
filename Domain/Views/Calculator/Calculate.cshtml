@@ -13,7 +13,10 @@
 
 <section class="content">
     <div class="row">
-        <div class="col-lg-9 col-lg-offset-2">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+        </div>
+        <div class="col-lg-9">
             <p>
                 При оценката на въздействието задължително се изчислява административният товар. (виж <a href="#">Формулярите</a>).
                 Административният товар са разходите, наложени върху бизнеса, когато се спазват информационните задължения, произлизащи от правителствена разпоредба.

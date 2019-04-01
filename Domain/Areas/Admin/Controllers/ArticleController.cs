@@ -44,13 +44,15 @@ namespace Domain.Areas.Admin.Controllers
                 IsApproved = true,
                 Date = DateTime.Now
             };
-            SetViewBag(model);
+
+          SetViewBag(model);
             return View(nameof(Edit), model);
         }
         [HttpPost]
         public IActionResult Add(Articles model)
         {
-            SetViewBag(model);
+      model.IsApproved = true;
+      SetViewBag(model);
             if (!ModelState.IsValid)
             {
                 return View(nameof(Edit), model);
@@ -69,6 +71,7 @@ namespace Domain.Areas.Admin.Controllers
             var model = articleService.Find<Articles>(id);
             model.Title = model.Title.DecodeIfNeeded();
             model.Text = model.Text.DecodeIfNeeded();
+      model.IsApproved = true;
             SetViewBag(model);
             return View(model);
         }
@@ -76,6 +79,7 @@ namespace Domain.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Articles model)
         {
+      model.IsApproved = true;
             SetViewBag(model);
             if (!ModelState.IsValid)
             {

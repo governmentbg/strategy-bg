@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewData["Title"]</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/prod/css/head.min.css" />
+    <link rel="stylesheet" href="~/prod/css/head.plugins.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script src="~/prod/js/head.min.js"></script>
+</head>
+<body class="hold-transition login-page">
+    @Html.Partial("TempDataMessages")
+    @RenderBody()
+    <script src="~/prod/js/footer.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    @*<script>
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' /* optional */
+                });
+            });
+        </script>*@
+</body>
+</html>

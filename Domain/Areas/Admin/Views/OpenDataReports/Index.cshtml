@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "CSV Справки за нуждите";
+}
+<section class="content">
+
+
+    <a asp-action="CommentsCSVExport" asp-controller="OpenDataReports" class="btn btn-primary btn-flat">Eкспорт на всички коментари</a>
+    <a asp-action="StrategicDocumentsCSVExport" asp-controller="OpenDataReports" class="btn btn-primary btn-flat">Eкспорт на всички стратегически документи</a>
+    <a asp-action="PCSubjectsCSVExport" asp-controller="OpenDataReports" class="btn btn-primary btn-flat">Eкспорт на всички лицат по ЗНА</a>
+    <a asp-action="ConsultationsCSVExport" asp-controller="OpenDataReports" class="btn btn-primary btn-flat">Eкспорт на всички консултации</a>
+    <br><br>
+    Справките се изваждат в *.csv формат с разделител [табулация]
+
+</section>
+

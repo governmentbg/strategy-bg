@@ -1,0 +1,28 @@
+﻿@model Models.ViewModels.Portal.StrategicDocumentExportChoiceVM
+@{
+    Layout = null;
+}
+<div class="container-fluid information">
+    <form asp-action="ExportChoice" asp-controller="StrategicDocument" method="post" target="_blank">
+        <div class="col-md-12 body">
+            <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                <ddl for="CategoryMasterId" data="@ViewBag.catMasters"></ddl>
+            </div>
+            <div class="form-group col-lg-2 col-md-4 col-sm-6">
+                <date-picker for="FromDate"></date-picker>
+            </div>
+            <div class="form-group col-lg-2 col-md-4 col-sm-6">
+                <date-picker for="ToDate"></date-picker>
+            </div>
+            <div class="form-group col-lg-2 col-md-4 col-sm-6  ">
+                <label class="control-label"> </label>
+                <button type="submit" class="form-control btn btn-info"><i class="fa fa-file-pdf-o"></i> Експорт</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(function () {
+        AttachUIpluggins();
+    });
+</script>

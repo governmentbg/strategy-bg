@@ -10,10 +10,31 @@ namespace Models
     /// </summary>
     public class GlobalConstants
     {
-        public const string DefaultLang = "bg";
+
+
+        public const string OpenDataStrategicDocumentsEntryPoint = "/opendataexport/StrategicDocumentsCSVFileExport";
+        public const string OpenDataPCSubjectsEntryPoint = "/opendataexport/PCSubjectsCSVFileExport";
+        public const string OpenDataCommentsEntryPoint = "/opendataexport/CommentsCSVFileExport";
+        public const string OpenDataConsultationsEntryPoint = "/opendataexport/ConsultationsCSVFileExport";
+        public const int OpenDataExportsGenerationPeriod = 8; //in hours
+
+
+    public const string DefaultLang = "bg";
+        public const string TextLangEN = "en";
         public const string DateFormat = "dd.MM.yyyy";
         public const int BulgariaCountryId = 155;
         public const int LangBG = 1;
+        public const int LangEN = 2;
+        public static int GetLanguageId(string lang)
+        {
+            switch ((lang ?? DefaultLang).ToLower())
+            {
+                case TextLangEN:
+                    return LangEN;
+                default:
+                    return LangBG;
+            }
+        }
         public static IEnumerable<SelectListItem> EmptyComboList
         {
             get
@@ -27,8 +48,8 @@ namespace Models
         /// </summary>
         public class PageTypes
         {
-            public const int Pages = 1;
-            public const int Ovos = 2;
+            public const int OV = 1;
+            public const int StaticPages = 2;
         }
 
         /// <summary>
@@ -86,6 +107,8 @@ namespace Models
 
             public const int Legacy_Unassigned = 200;
 
+            public const int PublicConsultationSubjects = 300;
+
             /// <summary>
             /// //Когато няма наличен изходен обект            
             /// </summary>
@@ -119,8 +142,8 @@ namespace Models
         public static IQueryable<LangVM> SelectLangs()
         {
             List<LangVM> result = new List<LangVM>() {
-                                new LangVM() { Lang = "bg", Title = "Български" },
-                                new LangVM() { Lang = "en", Title = "English" }
+                                new LangVM() { Lang = "bg",LangId=LangBG, Title = "Български" },
+                                new LangVM() { Lang = "en",LangId=LangEN, Title = "English" }
                         };
             return result.AsQueryable();
         }
@@ -202,7 +225,9 @@ namespace Models
             public const string AdminGroup = "adm_grp";
             public const string AdminAndAdminGroup = "adm,adm_grp";
             public const string ConsultationsModerator = "consultation_mod";
-        }
+            public const string AdminOGP = "adm_ogp";
+            public const string AdminForum = "adm_forum";
+    }
 
         public class Language
         {
@@ -287,6 +312,19 @@ namespace Models
             /// Доклад от независим оценител
             /// </summary>
             public const int ExternalEstimation = 2;
+        }
+
+        public class ValidStates
+        {
+            /// <summary>
+            /// Активни
+            /// </summary>
+            public const int Active = 1;
+
+            /// <summary>
+            /// Приключили
+            /// </summary>
+            public const int Completed = 2;
         }
     }
 

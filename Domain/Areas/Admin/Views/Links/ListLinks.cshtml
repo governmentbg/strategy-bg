@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Списък връзки";
+    int lang = ViewBag.lang;
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
@@ -8,39 +9,40 @@
     </div>
 }
 
-    <section class="content">
-        <div class="pull-left">
-            <a asp-action="AddLinks" class="btn btn-success btn-flat">Добави връзка</a>
-            &nbsp;&nbsp;
-            <a asp-action="OrderLinks" class="btn btn-success btn-flat">Подреди връзки</a>
-        </div>
+<section class="content">
+    <div class="pull-left">
+        <partial name="LangSelect" model="@lang" />
+        <a asp-action="AddLinks" asp-route-lang="@lang" class="btn btn-success btn-flat">Добави връзка</a>
+        &nbsp;&nbsp;
+        <a asp-action="OrderLinks" asp-route-lang="@lang" class="btn btn-success btn-flat">Подреди връзки</a>
+    </div>
 
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-1">
-                        <label>Категория връзки</label>
-                    </div>
-                    <div class="col-lg-3">
-                        @Html.DropDownList("LinksCategoryID", (IEnumerable<SelectListItem>)ViewBag.LinksCategoryID_ddl, new { @class = "form-control" })
-                    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-1">
+                    <label>Категория връзки</label>
+                </div>
+                <div class="col-lg-3">
+                    @Html.DropDownList("LinksCategoryID", (IEnumerable<SelectListItem>)ViewBag.LinksCategoryID_ddl, new { @class = "form-control" })
+                </div>
 
-                    <div class="col-lg-1">
-                        <label>Активност</label>
-                    </div>
-                    <div class="col-lg-1">
-                        <select id="ddlActive">
-                            <option value="-1">Всички</option>
-                            <option value="1">Активни</option>
-                            <option value="0">Неактивни</option>
-                        </select>
-                    </div>
+                <div class="col-lg-1">
+                    <label>Активност</label>
+                </div>
+                <div class="col-lg-1">
+                    <select id="ddlActive">
+                        <option value="-1">Всички</option>
+                        <option value="1">Активни</option>
+                        <option value="0">Неактивни</option>
+                    </select>
                 </div>
             </div>
         </div>
+    </div>
 
-        <table id="mainTable" class="table" cellspacing="0"></table>
-    </section>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
 @section scripts{
     <script>
     $(function () {
@@ -51,6 +53,7 @@
                  data: function (d) {
                      d.linksCategoryId = $("#LinksCategoryID").val();
                      d.active = $("#ddlActive").val();
+                     d.lang = @ViewBag.lang;
                  },
                  "type": "POST"
              },

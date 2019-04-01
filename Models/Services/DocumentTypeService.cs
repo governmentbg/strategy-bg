@@ -3,13 +3,11 @@ using Models.Context;
 using Models.Contracts;
 using Models.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Models.Services
 {
-    public class DocumentTypeService : BaseService, IDocumentTypeService
+  public class DocumentTypeService : BaseService, IDocumentTypeService
     {
         private readonly ILogger logger;
 

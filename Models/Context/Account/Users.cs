@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Context.Legacy;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -78,11 +79,17 @@ namespace Models.Context.Account
         [Display(Name = "ModifiedByUserId")]
         public int ModifiedByUserId { get; set; }
 
+        [Display(Name = "Институция")]
+        public int? InstitutionTypeId { get; set; }
+
         [ForeignKey(nameof(UserTypeId))]
         public virtual UsersTypes UsersType { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; }
+
+        [ForeignKey(nameof(InstitutionTypeId))]
+        public virtual InstitutionTypes InstitutionType { get; set; }
         public virtual ICollection<UsersInRoles> UsersInRoles { get; set; }
         public virtual ICollection<UsersInGroups> UsersInGroups { get; set; }
         public virtual ICollection<UsersInCategories> UsersInCategories { get; set; }

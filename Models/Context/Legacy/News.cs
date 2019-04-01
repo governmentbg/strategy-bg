@@ -49,7 +49,7 @@ namespace Models.Context.Legacy
         [Display(Name = "Приоритет")]
         public int Priority { get; set; }
 
-        [Display(Name = "LanguageId")]
+        [Display(Name = "Език")]
         public int LanguageId { get; set; }
 
         [Display(Name = "CreatedByUserId")]

@@ -8,9 +8,10 @@
 @if (ViewData[fieldName] != null)
 {
     var ddl = (List<SelectListItem>)ViewData[fieldName];
-    <div class="form-group">
-        <label asp-for="@Model" class="control-label"></label>
-        @Html.DropDownListFor(model => model, ddl.SetSelected(Model), new { @class = "form-control" })
-        <span asp-validation-for="@Model" class="text-danger"></span>
-    </div>
+<div class="form-group">
+    <label asp-for="@Model" class="control-label"></label>
+    <select asp-for="@Model" asp-items="ddl" class="form-control select2"></select>
+    @*@Html.DropDownListFor(model => model, ddl.SetSelected(Model), new { @class = "form-control" })*@
+    <span asp-validation-for="@Model" class="text-danger"></span>
+</div>
 }

@@ -16,8 +16,8 @@ using WebCommon.Services;
 
 namespace Domain.Controllers
 {
-	public class ChangeProposalsController : BaseController
-	{
+	public class ChangeProposalsController : BasePortalController
+    {
 		private readonly IChangeProposalsService changeProposalsService;
 		private readonly IUserContext userContext;
 		private readonly INomenclatureService nomService;

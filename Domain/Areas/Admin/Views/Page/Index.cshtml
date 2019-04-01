@@ -1,29 +1,17 @@
 ﻿@{
 
-    var lang = ViewBag.lang;
+    string lang = ViewBag.lang;
     var pageType = (PageType)ViewBag.pageType;
 
     ViewData["Title"] = pageType.Title;
 }
 <section class="content">
-    @using (Html.BeginForm())
-    {
-        <input type="hidden" name="lang" />
-        @foreach (var item in GlobalConstants.SelectLangs())
-        {
-            var btnClass = "btn-default";
-            if (item.Lang == lang)
-            {
-                btnClass = "btn-primary";
-            }
-            <a href="#" class="submit btn @btnClass" data-lang="@item.Lang">@item.Lang.ToUpper()</a>
-        }
+    @*смяна на езика на съдържанието*@
+    <partial name="LangSelectString" model="@lang" />
+    @*смяна на езика на съдържанието*@
 
-    }
-    <br />
     <div class="box box-success">
         <div class="box-header with-border">
-            @*<h3 class="box-title">Библиотеки "@sourceType.ListName"</h3>*@
             <div id="tree"></div>
         </div>
     </div>
@@ -82,12 +70,7 @@
                 }
                 // data.rslt.o is a list of objects that were moved
                 // Inspect data using your fav dev tools to see what the properties are
-            });
-
-        $('a.submit').click(function () {
-            var lang = $(this).data('lang');
-            $(this).parents('form:first').find('input[type="hidden"]').val(lang);
-        });
+            });       
     });
     function customMenu(node)
     {

@@ -12,7 +12,7 @@
     <a asp-action="Add" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Добави стратегически документ</a>
     <div class="search-form">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 cat-combos">
                 <div>
                     <label>Група</label>
                     @Html.DropDownList("CategoryMasterId", (IEnumerable<SelectListItem>)ViewBag.catMasters, new { @class = "form-control" })
@@ -31,10 +31,14 @@
                         @Html.DropDownList("MunicipalityId", GlobalConstants.EmptyComboList, new { @class = "form-control" })
                     </div>
                 </div>
-                <div class="form-group col-lg-1 col-md-2 col-sm-3">
+                <div class="form-group">
+                    <label>Покажи</label>
+                    @Html.DropDownList("validState", (IEnumerable<SelectListItem>)ViewBag.validStates, new { @class = "form-control" })
+                </div>
+                @*<div class="form-group col-lg-1 col-md-2 col-sm-3">
                     <label>&nbsp; </label>
                     <button type="submit" class="form-control btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
-                </div>
+                </div>*@
 
             </div>
         </div>
@@ -60,17 +64,30 @@
             }
             requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val() });
         }).trigger('change');
+
     });
 </script>
 <script>
     $(function () {
+        $('.cat-combos select').each(function (i, e) {
+            $(e).change(function () {
+                setTimeout(function () {
+                   // updateRss();
+                    dt.ajax.reload();
+                }, 100);
+            });
+        });
          var dt  = $('#mainTable').DataTable({
              "ajax": {
                  "url": '@Url.Action("LoadData")',
                  data: function (d) {
                      d.categoryMasterId = $('#CategoryMasterId').val();
                      d.categoryId = $('#CategoryId').val();
-                     d.municipalityId = $('#MunicipalityId').val();
+                     if ($('#districtCat').is(':visible')) {
+                         d.categoryId = $('#DistrictId').val();
+                         d.municipalityId = $('#MunicipalityId').val();
+                     }
+                     d.validState = $('#validState').val();
                  },
                  "type": "POST"
              },
@@ -87,21 +104,18 @@
                      data: "categoryText",
                      title: 'Категория'
                  },
+                 //{
+                 //    data: "createDate",
+                 //    title: 'Дата на публикуване',
+                 //    orderDataType: 'date',
+                 //    "render": function (value) {
+                 //        return JsonBGdate(value);
+                 //    }
+                 //}
+                 //,
                  {
-                     data: "createDate",
-                     title: 'Дата на публикуване',
-                     orderDataType: 'date',
-                     "render": function (value) {
-                         return JsonBGdate(value);
-                     }
-                 }
-                 ,
-                 {
-                     data: "validTo",
-                     title: 'Валиден до',
-                     "render": function (value) {
-                         return JsonBGdate(value);
-                     }
+                     data: "validToText",
+                     title: 'Валиден до'
                  }
                  ,
                  {
@@ -116,7 +130,7 @@
              ]
 
         });
-        dt.order([2, 'desc']).draw();
+        //dt.order([2, 'desc']).draw();
         $('.dt-reload').click(function () {
             dt.ajax.reload();
         });

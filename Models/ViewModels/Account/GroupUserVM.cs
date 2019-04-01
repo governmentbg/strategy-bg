@@ -14,6 +14,9 @@ namespace Models.ViewModels.Account
         public string CategoryName { get; set; }
         public int CategoryParent { get; set; }
 
+        [Display(Name = "Институция")]
+        public int? InstitutionTypeId { get; set; }
+
         [Display(Name = "Наименование")]
         [Required(ErrorMessage = "Въведете '{0}'")]
         public string Organization { get; set; }

@@ -55,20 +55,20 @@
 
                     @if (userContext.IsInRole("content-admin") || true)
                     {
-                        <li class="treeview">
+                        <li class="treeview menu-open active">
                             <a href="#">
                                 <i class="fa fa-cubes"></i> <span>Съдържание</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu" style="display:none;">
-                                <li><a asp-controller="News" asp-action="Index"><i class="fa fa-info"></i> Новини</a></li>
-                                <li><a asp-controller="Publication" asp-action="Index"><i class="fa fa-newspaper-o"></i> Публикации</a></li>
-                                <li><a asp-controller="StrategicDocument" asp-action="Index"><i class="fa fa-info"></i> Стратегически документи</a></li>
+                            <ul class="treeview-menu ">
+                                @*<li><a asp-controller="News" asp-action="Index"><i class="fa fa-info"></i> Новини</a></li>*@
+
                                 <li class="devider"><a href="#"></a></li>
                                 <li><a asp-controller="GenericContent" asp-action="Index"><i class="fa fa-list-ol"></i> Статично съдържание</a></li>
-                                <li><a asp-controller="Page" asp-action="Index" asp-route-pageType="@GlobalConstants.PageTypes.Pages"><i class="fa fa-file"></i> Оценка на въздействието</a></li>
+                                <li><a asp-controller="Page" asp-action="Index" asp-route-pageType="@GlobalConstants.PageTypes.OV"><i class="fa fa-file"></i> Оценка на въздействието</a></li>
+                                <li><a asp-controller="Page" asp-action="Index" asp-route-pageType="@GlobalConstants.PageTypes.StaticPages"><i class="fa fa-pagelines"></i> Статични страници</a></li>
                                 <li><a asp-controller="MulticriteriaAnalysis" asp-action="Criteria"><i class="fa fa-list-ul"></i> Мултикритериен анализ</a></li>
                                 <li class="devider"><a href="#"></a></li>
                                 <li class="devider"><a href="#"></a></li>
@@ -76,45 +76,98 @@
                                 <li><a asp-controller="Library" asp-action="Index" asp-route-source_type="@GlobalConstants.SourceTypes.Library_Images"><i class="fa fa-image"></i> Изображения</a></li>
                             </ul>
                         </li>
-                    }
+                        <li><a href="@Url.Action("Index", "Questionary")"><i class="fa fa-check-square-o"></i> <span>Анкети</span></a></li>
+                        <li><a href="@Url.Action("GetUsersInfoData", "UsersInfo", new { userId = 2642})"><i class="fa fa-check-square-o"></i> <span>Потребителски дейности</span></a></li>
 
+                    }
+                    @if (userContext.IsInRole("content-admin") || true)
+                    {
+                        <li class="treeview menu-open active">
+                            <a href="#">
+                                <i class="fa fa-cubes"></i> <span>Новини</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a asp-controller="News" asp-action="Index"><i class="fa fa-info"></i> Новини</a></li>
+                                <li><a asp-controller="NewsCategories" asp-action="Index"><i class="fa fa-arrow-up"></i> Категории новини</a></li>
+
+                            </ul>
+                        </li>
+
+                    }
+                    @if (userContext.IsInRole("content-admin") || true)
+                    {
+                        <li class="treeview menu-open active">
+                            <a href="#">
+                                <i class="fa fa-cubes"></i> <span>Публикации</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a asp-controller="Publication" asp-action="Index"><i class="fa fa-newspaper-o"></i> Публикации</a></li>
+                                <li><a asp-controller="PublicationCategories" asp-action="Index"><i class="fa fa-arrow-up"></i> Категории публикации</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview menu-open active">
+                            <a href="#">
+                                <i class="fa fa-info"></i> <span>Стратегически документи</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Index", "StrategicDocument")"><i class="fa fa-info"></i> <span>Стратегически документи</span></a></li>
+                                <li><a href="@Url.Action("Index", "InstitutionType")"><i class="fa fa-info-circle"></i> <span>Институции</span></a></li>
+                            </ul>
+                        </li>
+                    }
                     @if (userContext.IsInRole(GlobalConstants.Roles.Admin))
                     {
-                        <li class="treeview">
+                        <li class="treeview menu-open active">
                             <a href="#">
                                 <i class="fa fa-bullhorn"></i> <span>Обществени консултации</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu" style="display:none;">
+                            <ul class="treeview-menu">
                                 <li><a href="@Url.Action("Index", "Consultation")"><i class="fa fa-bullhorn"></i> <span>Консултации</span></a></li>
                                 <li><a href="@Url.Action("Index", "Comments")"><i class="fa fa-comments-o"></i> <span>Коментари</span></a></li>
-                                <li><a href="@Url.Action("Index", "Questionary")"><i class="fa fa-check-square-o"></i> <span>Анкети</span></a></li>
+                                <li><a asp-controller="DocumentType" asp-action="Index"><i class="fa fa-file-o"></i> Типове документи</a></li>
+
                             </ul>
                         </li>
-                        <li class="treeview">
+                    }
+                    @if (userContext.IsInRole(GlobalConstants.Roles.AdminOGP))
+                    {
+                        <li class="treeview menu-open active">
                             <a href="#">
                                 <i class="fa fa-hand-o-up"></i> <span>Партньорство за ОУ</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu" style="display:none;">
+                            <ul class="treeview-menu">
                                 <li><a asp-controller="Ogp" asp-action="PlanElements"><i class="fa fa-calendar-check-o"></i> Планове и оценки</a></li>
                                 <li><a asp-controller="Article" asp-action="Index"><i class="fa fa-info"></i> Новини и събития</a></li>
 
                             </ul>
                         </li>
-
-                        <li class="treeview">
+                    }
+                    @if (userContext.IsInRole(GlobalConstants.Roles.Admin))
+                    {
+                        <li class="treeview menu-open active">
                             <a href="#">
                                 <i class="fa fa-link"></i> <span>Връзки</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu" style="display:none;">
+                            <ul class="treeview-menu">
                                 <li><a asp-controller="Links" asp-action="ListLinksCategories"><i class="fa fa-external-link"></i> Категории връзки</a></li>
                                 <li><a asp-controller="Links" asp-action="ListLinks"><i class="fa fa-list-ul"></i> Списък връзки</a></li>
                                 <li><a asp-controller="Links" asp-action="OrderLinks"><i class="fa fa-sort"></i> Подредба връзки</a></li>
@@ -166,9 +219,11 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu" style="display:none;">
-                                <li><a asp-controller="DocumentType" asp-action="Index"><i class="fa fa-file-o"></i> Типове документи</a></li>
                                 <li><a asp-controller="Categories" asp-action="ListCategories"><i class="fa fa-external-link"></i> Списък с категории</a></li>
                                 <li><a asp-controller="TargetGroups" asp-action="ListTargetGroups"><i class="fa fa-arrow-up"></i> Списък с целеви групи</a></li>
+                                <li><a asp-controller="NewsCategories" asp-action="Index"><i class="fa fa-arrow-up"></i> Категории новини</a></li>
+                                <li><a asp-controller="DocumentKind" asp-action="Index"><i class="fa fa-arrow-up"></i> Документи</a></li>
+                                <li><a asp-controller="Banners" asp-action="Index"><i class="fa fa-arrow-up"></i> Банери</a></li>
                             </ul>
                         </li>
                     }
@@ -191,6 +246,22 @@
                             </ul>
                         </li>
                     }
+                    @if (userContext.IsInRole(GlobalConstants.Roles.Admin))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-table"></i> <span>Справки</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu" style="display:none;">
+                                <li><a asp-controller="StrategicDocument" asp-action="Report"><i class="fa fa-info"></i> Стратегически документи</a></li>
+                                <li><a asp-controller="Consultation" asp-action="Report"><i class="fa fa-bullhorn"></i> Консултации</a></li>
+                                <li><a asp-controller="OpenDataReports" asp-action="Index"><i class="fa fa-file-text-o"></i> CSV Справки</a></li>
+                            </ul>
+                        </li>
+                    }
 
                 </ul>
             </section>
@@ -210,6 +281,7 @@
         </div>
     </div>
     @Html.Partial("ModalDialog")
+
     <script type="text/javascript">
         var rootPath = '@Url.Action("Index","Home",new { area= ""})';
     </script>

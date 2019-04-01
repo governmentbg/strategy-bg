@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Анкети";
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="#">Анкети</a>
+    </div>
+}
+<section class="content">
+    <div class="pull-left">
+        @Html.DropDownList("StatusID", (IEnumerable<SelectListItem>)ViewBag.StatusID_ddl, new { @class = "form-control" })
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadData")',
+                 data: function (d) {
+                    d.status = $('#StatusID').val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "title",
+                     title: 'Заглавие',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "description",
+                     title: 'Описание',
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "openningDate",
+                     title: 'Начало',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "closingDate",
+                     title: 'Край',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdate(value);
+                     }
+                 },
+                 {
+                     data: "activeId",
+                     title: 'Активна',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         if (value === 0) {
+                             return "НЕ";
+                         }
+                         else {
+                             return "ДА"
+                         }
+                     }
+                 },
+                 {
+                     data: "activeId",
+                     "render": function (value) {
+                         if (value === 0) {
+                             return "&nbsp";
+                         }
+                         else {
+                             var updateUrl = '@Url.Action("FillQuestionary", new { questionaryHeaderId = "666"})'.replace('666', value);
+                             var updButton = '<a href="' + updateUrl + '" class="btn btn-success">Попълни</a>';
+                             return updButton;
+                         }
+                     },
+                     sortable: false,
+                     searchable: false
+                 },
+                 {
+                     data: "id",
+                     "render": function (value) {
+                         var updateUrl = '@Url.Action("QuestionaryResults",new { questionaryHeaderId = "666"})'.replace('666', value);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-danger">Резултати</a>';
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ]
+        });
+
+        $("#StatusID").change(function () {
+            dt.ajax.reload();
+        });
+    });
+
+    </script>
+
+}
+

@@ -29,6 +29,13 @@ using PopForums.Data.Sql;
 using System.Globalization;
 using WebCommon.ModelBinders;
 using Models;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Domain
 {
@@ -57,6 +64,14 @@ namespace Domain
                                     });
             });
 
+            // Url Helper configured for injection 
+            services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddScoped(x =>
+            {
+                var actionContext = x.GetRequiredService<IActionContextAccessor>().ActionContext;
+                var factory = x.GetRequiredService<IUrlHelperFactory>();
+                return factory.GetUrlHelper(actionContext);
+            });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                  .AddCookie(options =>
@@ -67,13 +82,13 @@ namespace Domain
                  .AddFacebook(options =>
                  {
                      options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                     options.AppId = "APP_ID";
-                     options.AppSecret = "APP_SECRET";
+                     options.AppId = "2215268255375355";
+                     options.AppSecret = "95a9dfccd6906c75c4ee0326e40b11f2";
                  }).AddTwitter(options =>
                  {
                      options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                     options.ConsumerKey = "APP_ID";
-                     options.ConsumerSecret = "APP_SECRET";
+                     options.ConsumerKey = "eigGkni9mGQbsiRl8bZulertd";
+                     options.ConsumerSecret = "v12Oxk1KfMTkvMo8Rk8dWis7SW7CrZnuxVjqYmQipTc3ctZ1yx";
                      options.RetrieveUserDetails = true;
                  });
 
@@ -85,7 +100,7 @@ namespace Domain
                 // sets claims policies for admin and moderator functions in POP Forums
                 options.AddPopForumsPolicies();
             });
-
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc(options =>
             {
                 // identifies users on POP Forums actions
@@ -93,16 +108,46 @@ namespace Domain
 
                 options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider(GlobalConstants.DateFormat));
                 options.ModelBinderProviders.Insert(1, new DecimalModelBinderProvider());
+            })
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
+            // .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new CultureInfo[]
+                {
+                    new CultureInfo("bg"),
+                    new CultureInfo("en")
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("bg");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
             });
 
 
-            services.Configure<elasticSettings>(Configuration.GetSection("elasticSettings"));
 
             //services.AddAuthorization(options =>
             //{
             //    options.AddPolicy("MustBeAdmin", p => p.RequireAuthenticatedUser().RequireRole("admin"));
             //});
 
+
+            // Add Recaptcha
+            services.Configure<RecaptchaSettings>(Configuration.GetSection("RecaptchaSettings"));
+            services.AddTransient<IRecaptchaService, RecaptchaService>();
+
+            services.ConfigureDI();
+            services.RegisterDataTables();
+
+
+            services.Configure<elasticSettings>(Configuration.GetSection("elasticSettings"));
             services.AddSignalR();
 
             // sets up the dependencies for the base, SQL and web libraries in POP Forums
@@ -120,12 +165,8 @@ namespace Domain
             // creates an instance of the background services for POP Forums... call this last in forum setup
             services.AddPopForumsBackgroundServices();
 
-            // Add Recaptcha
-            services.Configure<RecaptchaSettings>(Configuration.GetSection("RecaptchaSettings"));
-            services.AddTransient<IRecaptchaService, RecaptchaService>();
-
-            services.ConfigureDI();
-            services.RegisterDataTables();
+      services.Configure<OpenDataExportSettings>(Configuration.GetSection("OpenDataExportSettings"));
+      services.AddHostedService<BackgroundOpenDataExportService>();
 
             services.Configure<IISOptions>(options =>
             {
@@ -138,6 +179,9 @@ namespace Domain
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger)
         {
+
+            app.UseForwardedHeaders();
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -148,7 +192,7 @@ namespace Domain
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseRequestLocalization();
             app.UseStaticFiles();
 
             app.UseAuthentication();
@@ -168,8 +212,22 @@ namespace Domain
                 routes.AddPopForumsRoutes(app);
 
                 routes.MapRoute(
+                                  name: "page by id",
+                                  template: "page/view/{id?}/{url?}",
+                                  defaults: new { controller = "Page", action = "Preview", area = "" }
+                                  );
+
+                routes.MapRoute(
+                                  name: "page by url",
+                                  template: "page/{pageType}/{url}",
+                                  defaults: new { controller = "Page", action = "PreviewByUrl", area = "" }
+                                  );
+
+                routes.MapRoute(
                                     name: "areaRoute",
                                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+
 
                 routes.MapRoute(
                                     name: "default",
@@ -180,16 +238,16 @@ namespace Domain
 
             RotativaConfiguration.Setup(env, @"lib\rotativa");
 
-            // TODO: abstract this
-            var supportedCultures = new List<CultureInfo> { new CultureInfo("en"), new CultureInfo("bg"), new CultureInfo("de"), new CultureInfo("es"), new CultureInfo("nl"), new CultureInfo("uk"), new CultureInfo("zh-TW") };
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("bg", "bg"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("bg");
-            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("bg");
+            //// TODO: abstract this
+            //var supportedCultures = new List<CultureInfo> { new CultureInfo("en"), new CultureInfo("bg"), new CultureInfo("de"), new CultureInfo("es"), new CultureInfo("nl"), new CultureInfo("uk"), new CultureInfo("zh-TW") };
+            //app.UseRequestLocalization(new RequestLocalizationOptions
+            //{
+            //    DefaultRequestCulture = new RequestCulture("bg", "bg"),
+            //    SupportedCultures = supportedCultures,
+            //    SupportedUICultures = supportedCultures
+            //});
+            //CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("bg");
+            //CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("bg");
         }
     }
 }

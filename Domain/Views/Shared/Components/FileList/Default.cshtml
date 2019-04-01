@@ -17,9 +17,10 @@
                                 </div>
                             </td>
                             <td>
-                                @Html.Raw(file.FileTitle)
+                                <a href="@Url.Action("DownloadFile", "FileCDN", new { id = file.FileId })">
+                                    @Html.Raw(file.FileTitle)
+                                </a>
                             </td>
-                            <td style="width:250px;" class="text--center align-middle"><a href="@Url.Action("DownloadFile", "FileCDN", new { id = file.FileId })"><i class="fa fa-save"></i> изтегляне</a></td>
                         </tr>
                     }
 

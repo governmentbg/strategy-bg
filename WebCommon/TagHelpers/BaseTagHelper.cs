@@ -96,6 +96,17 @@ namespace WebCommon.TagHelpers
             return labelElement;
         }
 
+        protected string GetDisplayName(ModelExpression _model, string _labelText)
+        {
+            string LabelText = string.Empty;
+            if (string.IsNullOrEmpty(_labelText))
+                LabelText = _model.Metadata.DisplayName;
+            else
+                LabelText = _labelText;
+
+            return LabelText;            
+        }
+
 
 
         /// <summary>

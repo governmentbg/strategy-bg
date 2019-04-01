@@ -19,6 +19,8 @@ namespace Models.Contracts
         Page GetByID(int id);
         Page GetForTranslate(int id);
         Page GetByContentID(string lang, int content_id);
+        int GetContentIdByUrl(int pageType, string url);
+        int GetPageType(int? pageId, int? contentId);
 
         bool AddPage(Page model);
         bool UpdatePage(Page model);
@@ -33,7 +35,7 @@ namespace Models.Contracts
 
         IQueryable<PageLink> SelectPageLink(int pageId);
         bool SavePageLink(PageLink model);
-        bool SavePageLinkFromSelectedPage(int pageId,int contentId,string lang);
+        bool SavePageLinkFromSelectedPage(int pageId, int contentId, string lang);
         bool DeletePageLink(int id);
 
     }

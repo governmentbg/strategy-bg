@@ -1,75 +1,190 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Models.ViewModels
+@using Models.ViewModels.Account
+@using Models.Context.Account
+@using WebCommon.TagHelpers
+@using Models
+@using Models.Context
 
-<html>
+@inject WebCommon.Services.IUserContext userContext
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>@PopForums.Resources.PopForumsAdmin - @ViewBag.PageTitle</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="~/lib/PopForums/PopForums.js" type="text/javascript"></script>
-	<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="~/lib/PopForums/Admin.css" rel="stylesheet" type="text/css" />
-	@RenderSection("HeaderContent", required: false)
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/dist/swiper.min.css">
+    <link rel="stylesheet" href="~/dist/styles.min.css">
+    <link rel="stylesheet" href="~/dist/min/head.min.css" />
+    <link rel="stylesheet" href="~/css/site-portal.css" />
+    <link rel="stylesheet" href="~/prod/css/head.plugins.min.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/PopForums/PopForums.js" type="text/javascript"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/PopForums/Admin.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="~/dist/min/head.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("head", false)
 </head>
-	<body>
-		<div class="container">
-			<div class="row">
-				<h1>@PopForums.Resources.PopForumsAdmin</h1>
-			</div>
-			<div class="row">
-				<div class="col-sm-3">
-					<nav class="navbar navbar-default" role="navigation">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#MainNav">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div id="MainNav" class="collapse navbar-collapse">
-							<ul class="nav navbar-collapse">
-								<li><a asp-action="Index" asp-controller="Home">@PopForums.Resources.ForumHome</a></li>
-								<li class="divider"></li>
-								<li><a asp-action="Index">@PopForums.Resources.GeneralSettings</a></li>
-								<li><a asp-action="Categories">@PopForums.Resources.Categories</a></li>
-								<li><a asp-action="Forums">@PopForums.Resources.Forums</a></li>
-								<li><a asp-action="ForumPermissions">@PopForums.Resources.ForumPermisions</a></li>
-								<li><a asp-action="Email">@PopForums.Resources.Email</a></li>
-								<li><a asp-action="Search">@PopForums.Resources.Search</a></li>
-								<li><a asp-action="ExternalLogins">@PopForums.Resources.ExternalLogins</a></li>
-								<li class="divider"></li>
-								<li><a asp-action="EditUserSearch">@PopForums.Resources.EditUser</a></li>
-								<li><a asp-action="UserRoles">@PopForums.Resources.UserRoles</a></li>
-								<li><a asp-action="UserImageApprove">@PopForums.Resources.UserImageApproval</a></li>
-								<li><a asp-action="Ban">@PopForums.Resources.EmailIpBan</a></li>
-								<li><a asp-action="EmailUsers">@PopForums.Resources.EmailUsers</a></li>
-								<li class="divider"></li>
-								<li><a asp-action="ScoringGame">@PopForums.Resources.ScoringGame</a></li>
-								<li><a asp-action="EventDefinitions">@PopForums.Resources.EventDefinitions</a></li>
-								<li><a asp-action="AwardDefinitions">@PopForums.Resources.AwardDefinitions</a></li>
-								<li><a asp-action="ManualEvent">@PopForums.Resources.ManualEvent</a></li>
-								<li class="divider"></li>
-								<li><a asp-action="IPHistory">@PopForums.Resources.IpHistory</a></li>
-								<li><a asp-action="SecurityLog">@PopForums.Resources.SecurityLog</a></li>
-								<li><a asp-action="ModerationLog">@PopForums.Resources.ModerationLog</a></li>
-								<li><a asp-action="ErrorLog">@PopForums.Resources.ErrorLog</a></li>
-								<li><a asp-action="Services">@PopForums.Resources.Services</a></li>
-							</ul>
-						</div>
-					</nav>
-				</div>
-				<div class="col-sm-9">
-					@if (ViewData["PostResult"] != null)
+<body>
+
+    @RenderSection("HeaderContent", false)  @RenderSection("HeaderContent", false)
+    <div class="wrapper">
+        <header class="header--main">
+            <div class="titles">
+                <a href="@Url.Action("Index","Home",new { area=""})">
+                    <div class="logo">
+                        <img src="~/dist/assets/logo.png" alt="Министерски съвет Портал за обществени консултации лого"
+                             srcSet="~/dist/assets/logo@2x_bg.png 1000w" />
+                    </div>
+                </a>
+                <button class="menu">
+                    <img src="~/dist/assets/icon-menu-close.png" alt="Икона затвори меню"
+                         class="close__img">
+                    <span>Меню</span>
+                    <img src="~/dist/assets/icon-hamburger.png" alt="Икона меню"
+                         class="open">
+                </button>
+                <div class="user">
+                    <partial name="_LoginPartial" />
+                </div>
+
+                <form class="search" asp-area="" asp-action="Search" asp-controller="Home" method="get">
+                    <button type="submit">
+                        <img class="icon--default" src="~/dist/assets/magnifier.svg" alt="Икона търсене" />
+                    </button>
+                    <input name="searchPhrase" type="text" class="input--search" placeholder="Търсене" />
+                </form>
+
+                <div class="top-nav-links">
+                                        <partial name="_LayoutPublicTopLinks" />
+
+                    @if (ViewBag.RssLink != null)
+                    {
+                    <span>&nbsp;<a href="@ViewBag.RssLink" target="_blank" id="rssLink" title="RSS"><img src="@Url.Content("~/images/rss-icon.png")" /></a>&nbsp;</span>
+                    }
+                </div>
+
+            </div>
+            <nav class="nav">
+                <ul class="list">
+                    <li>
+                        <a href="@Url.Action("Index","PublicConsultation", new { area = "" })">ОБЩЕСТВЕНИ КОНСУЛТАЦИИ </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","StrategicDocument", new { area = "" })">СТРАТЕГИЧЕСКИ ДОКУМЕНТИ </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Publication", new { area = "" })">ПУБЛИКАЦИИ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","News", new { area = "" })">НОВИНИ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Forums", new { area = "" })">ДНЕС ОБЩЕСТВОТО РЕШАВА</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Plans","Ogp", new { area = "" })">ПАРТНЬОРСТВО ЗА ОТКРИТО УПРАВЛЕНИЕ</a>
+                    </li>
+                    <li class="to_activate users">
+                        <button class="button--users">
+                            <img src="~/dist/assets/users.svg" alt="Икона потребители" />
+                            <span>Потребителски вход</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="body">
+
+            <header class="header--category">
+                <div class="title">
+                    Днес обществото решава - Административен панел
+                </div>
+                <div class="image__wrapper">
+                    <img src="~/dist/assets/header_gallery.png" alt="">
+                </div>
+            </header>
+            <div class="col-sm-3">
+                @if (userContext.IsInRole(GlobalConstants.Roles.AdminForum))
+                 {
+                <br>
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#MainNav">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div id="MainNav" class="collapse navbar-collapse">
+                        <ul class="nav navbar-collapse">
+                            <li><a asp-action="Index" asp-controller="Home">@PopForums.Resources.ForumHome</a></li>
+                            <li class="divider"></li>
+                            <li><a asp-action="Index">@PopForums.Resources.GeneralSettings</a></li>
+                            <li><a asp-action="Categories">@PopForums.Resources.Categories</a></li>
+                            <li><a asp-action="Forums">@PopForums.Resources.Forums</a></li>
+                            <li><a asp-action="ForumPermissions">@PopForums.Resources.ForumPermisions</a></li>
+                            <li><a asp-action="Search">@PopForums.Resources.Search</a></li>
+                            <li class="divider"></li>
+                            <li><a asp-action="EditUserSearch">@PopForums.Resources.EditUser</a></li>
+                            <li><a asp-action="Ban">@PopForums.Resources.EmailIpBan</a></li>
+                            <li class="divider"></li>
+                        </ul>
+                    </div>
+                </nav>
+                }
+            </div>
+            <div class="col-sm-9">
+                @if (ViewData["PostResult"] != null)
 					{
-						<p id="PostResult" class="bg-warning callout">@ViewData["PostResult"]</p>
+                <p id="PostResult" class="bg-warning callout">@ViewData["PostResult"]</p>
 					}
-					@RenderBody()
-				</div>
-			</div>
-			<div class="row">
-				<p id="Copyright" class="small">&copy;@DateTime.Now.Year, POP World Media, LLC</p>
-			</div>
-		</div>
-	</body>
+                @RenderBody()
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <partial name="FooterLogos" />
+        @*<footer class="footer">
+                <div class="eu">
+                    <img src="~/dist/assets/EU.png" alt="Лого еу">
+                </div>
+                <div class="operative_program">
+                    <img src="~/dist/assets/operativna_programa.png" alt="Лого оперативна програма">
+                </div>
+            </footer>*@
+        <!-- END FOOTER -->
+    </div>
+    @Html.Partial("ModalDialog")
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript" src="~/dist/swiper.min.js"></script>
+    <script type="text/javascript" src="~/dist/bundle.js"></script>
+    <script type="text/javascript">
+        var rootPath = '@Url.Action("Index","Home",new { area= ""})';
+    </script>
+    <script type="text/javascript" src="~/dist/min/footer.min.js"></script>
+    @RenderSection("scripts", false)
+</body>
 </html>

@@ -11,290 +11,345 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Models.Services
 {
-	public class LinksService : BaseService, ILinksService
-	{
-		private readonly ILogger logger;
-		private readonly IUserContext userContext;
+  public class LinksService : BaseService, ILinksService
+  {
+    private readonly ILogger logger;
+    private readonly IUserContext userContext;
 
-		public LinksService(MainContext context, ILogger<QuestionaryService> _logger, IUserContext _userContext)
-		{
-			this.db = context;
-			logger = _logger;
-			userContext = _userContext;
-		}
+    public LinksService(MainContext context, ILogger<QuestionaryService> _logger, IUserContext _userContext)
+    {
+      this.db = context;
+      logger = _logger;
+      userContext = _userContext;
+    }
 
-		#region Links Caterories
-		public IQueryable<LinksCateroriesListViewModel> GetLinksCategories(int active)
-		{
-			return this.All<LinksCategories>()
-				.Where(x => x.LanguageId == GlobalConstants.LangBG && !x.IsDeleted && x.IsActive == (active == -1 ? x.IsActive : (active == 1 ? true : false)))
-				.OrderBy(x => x.ViewOrder)
-				.Select(c => new LinksCateroriesListViewModel()
-				{
-					Id = c.Id,
-					Name = c.Name,
-					IsActive = c.IsActive,
-					DateCreated = c.DateCreated
-				});
-		}
+    #region Links Caterories
+    /// <summary>
+    /// Връща списък с категории връзки
+    /// </summary>
+    /// <param name="active">-1 - всички, 1-активни, 0-неактивни</param>
+    /// <returns></returns>
+    public IQueryable<LinksCateroriesListViewModel> GetLinksCategories(int active, int lang = GlobalConstants.LangBG)
+    {
+      return this.All<LinksCategories>()
+        .Where(x => x.LanguageId == lang && (x.IsActive == ((active == -1) ? x.IsActive : (active == 1 ? true : false))) && x.IsApproved && !x.IsDeleted)
+        .OrderBy(x => x.ViewOrder)
+        .Select(c => new LinksCateroriesListViewModel()
+        {
+          Id = c.Id,
+          Name = c.Name,
+          IsActive = c.IsActive,
+          DateCreated = c.DateCreated
+        });
+    }
 
-		public LinksCategoriesViewModel GetLinksCategory(int id)
-		{
-			var entity = this.All<LinksCategories>().Find(id);
-			var model = new LinksCategoriesViewModel();
-			model.FromEntity(entity);
+    public LinksCategoriesViewModel GetLinksCategory(int id)
+    {
+      var entity = this.All<LinksCategories>().Find(id);
+      var model = new LinksCategoriesViewModel();
+      model.FromEntity(entity);
 
-			return model;
-		}
+      return model;
+    }
 
-		public bool SaveLinksCategories(LinksCategoriesViewModel model)
-		{
-			var result = false;
-			LinksCategories entity = null;
+    public bool SaveLinksCategories(LinksCategoriesViewModel model)
+    {
+      var result = false;
+      LinksCategories entity = null;
 
-			try
-			{
-				if (model.Id > 0)
-				{
-					entity = All<LinksCategories>().Find(model.Id);
+      try
+      {
+        if (model.Id > 0)
+        {
+          entity = All<LinksCategories>().Find(model.Id);
 
-					if (entity != null)
-					{
-						entity = model.ToEntity(entity);
-						entity.DateModified = DateTime.Now;
-						entity.ModifiedByUserId = userContext.UserId;
-					}
-				}
-				else
-				{
-					entity = model.ToEntity();
-					entity.IsDeleted = false;
-					entity.DateCreated = DateTime.Now;
-					entity.ModifiedByUserId = userContext.UserId;
-					entity.CreatedByUserId = userContext.UserId;
-					entity.DateModified = DateTime.Now;
+          if (entity != null)
+          {
+            entity = model.ToEntity(entity);
+            entity.DateModified = DateTime.Now;
+            entity.ModifiedByUserId = userContext.UserId;
+          }
+        }
+        else
+        {
+          entity = model.ToEntity();
+          entity.IsDeleted = false;
+          entity.DateCreated = DateTime.Now;
+          entity.ModifiedByUserId = userContext.UserId;
+          entity.CreatedByUserId = userContext.UserId;
+          entity.DateModified = DateTime.Now;
 
-					All<LinksCategories>().Add(entity);
-				}
+          All<LinksCategories>().Add(entity);
+        }
 
-				db.SaveChanges();
-				model.Id = entity.Id;
+        db.SaveChanges();
+        model.Id = entity.Id;
 
-				result = true;
-			}
-			catch (Exception ex)
-			{
-				logger.LogError(ex, "SaveLinksCategories failed.");
-			}
+        result = true;
+      }
+      catch (Exception ex)
+      {
+        logger.LogError(ex, "SaveLinksCategories failed.");
+      }
 
-			return result;
-		}
-		#endregion
+      return result;
+    }
+    #endregion
 
-		#region Links
-		public IQueryable<LinksListViewModel> GetLinksList(int active, int linksCategoryId)
-		{
-			return this.All<Links>()
-				.Where(x => x.LanguageId == GlobalConstants.LangBG && !x.IsDeleted && x.IsActive == (active == -1 ? x.IsActive : (active == 1 ? true : false)) && x.LinksCategoryID == linksCategoryId)
-				.OrderBy(x => x.Priority)
-				.Select(c => new LinksListViewModel()
-				{
-					Id = c.Id,
-					Title = c.Title,
-					Url = c.Url,
-					Text = c.Text,
-					CategoryText = c.LinksCategory.Name,
-					IsActive = c.IsActive,
-					DateCreated = c.DateCreated
-				});
-		}
+    #region Links
+    /// <summary>
+    /// Връща списък с връзки
+    /// </summary>
+    /// <param name="active">-1 - всички, 1-активни, 0-неактивни</param>
+    /// <param name="linksCategoryId">категория ID</param>
+    /// <returns></returns>
+    public IQueryable<LinksListViewModel> GetLinksList(int active, int linksCategoryId, int lang = GlobalConstants.LangBG)
+    {
+      return this.All<Links>()
+        .Where(x => x.LanguageId == lang 
+          && !x.IsDeleted 
+          && x.IsActive == (active == -1 ? x.IsActive : (active == 1 ? true : false))
+          && x.LinksCategoryID == linksCategoryId)
+        .OrderBy(x => x.Priority)
+        .Select(c => new LinksListViewModel()
+        {
+          Id = c.Id,
+          Title = c.Title,
+          Url = c.Url,
+          Text = c.Text,
+          CategoryText = c.LinksCategory.Name,
+          IsActive = c.IsActive,
+          DateCreated = c.DateCreated
+        });
+    }
 
-		public LinksViewModel GetLinks(int id)
-		{
-			var entity = this.All<Links>().Find(id);
-			var model = new LinksViewModel();
-			model.FromEntity(entity);
+    public LinksViewModel GetLinks(int id)
+    {
+      var entity = this.All<Links>().Find(id);
+      var model = new LinksViewModel();
+      model.FromEntity(entity);
 
-			return model;
-		}
+      return model;
+    }
 
-		public bool SaveLinks(LinksViewModel model)
-		{
-			var result = false;
-			Links entity = null;
+    public bool SaveLinks(LinksViewModel model)
+    {
+      var result = false;
+      Links entity = null;
 
-			try
-			{
-				if (model.Id > 0)
-				{
-					entity = All<Links>().Find(model.Id);
+      try
+      {
+        if (model.Id > 0)
+        {
+          entity = All<Links>().Find(model.Id);
 
-					if (entity != null)
-					{
-						entity = model.ToEntity(entity);
-						entity.DateModified = DateTime.Now;
-						entity.ModifiedByUserId = userContext.UserId;
-					}
-				}
-				else
-				{
-					entity = model.ToEntity();
-					entity.Id = model.Id;
-					entity.IsActive = model.IsActive;
-					entity.DateCreated = DateTime.Now;
-					entity.ModifiedByUserId = userContext.UserId;
+          if (entity != null)
+          {
+            entity = model.ToEntity(entity);
+            entity.DateModified = DateTime.Now;
+            entity.ModifiedByUserId = userContext.UserId;
+          }
+        }
+        else
+        {
+          entity = model.ToEntity();
+          entity.Id = model.Id;
+          entity.IsActive = model.IsActive;
+          entity.DateCreated = DateTime.Now;
+          entity.ModifiedByUserId = userContext.UserId;
 
-					entity.CreatedByUserId = userContext.UserId;
-					entity.DateModified = DateTime.Now;
+          entity.CreatedByUserId = userContext.UserId;
+          entity.DateModified = DateTime.Now;
 
-					All<Links>().Add(entity);
-				}
+          All<Links>().Add(entity);
+        }
 
-				db.SaveChanges();
-				model.Id = entity.Id;
+        db.SaveChanges();
+        model.Id = entity.Id;
 
-				result = true;
-			}
-			catch (Exception ex)
-			{
-				logger.LogError(ex, "Save Links failed.");
-			}
+        result = true;
+      }
+      catch (Exception ex)
+      {
+        logger.LogError(ex, "Save Links failed.");
+      }
 
-			return result;
-		}
+      return result;
+    }
 
-		public IEnumerable<SelectListItem> GetLinksCategoriesDDL()
-		{
-			return this.All<LinksCategories>()
-					.Where(g => g.IsActive)
-					.Where(g => g.IsApproved)
-					.Where(g => !g.IsDeleted)
-					.Where(g => g.LanguageId == GlobalConstants.LangBG)
-					.OrderBy(g => g.Name)
-					.Select(g => new SelectListItem()
-					{
-						Text = g.Name,
-						Value = g.Id.ToString()
-					})
-					.ToList();
-			//.Prepend(new SelectListItem()
-			//{
-			//	Text = "Изберете",
-			//	Value = "-1"
-			//})
-			//.ToList();
+    public IEnumerable<SelectListItem> GetLinksCategoriesDDL(int lang = GlobalConstants.LangBG)
+    {
+      return this.All<LinksCategories>()
+          .Where(g => g.IsActive)
+          .Where(g => g.IsApproved)
+          .Where(g => !g.IsDeleted)
+          .Where(g => g.LanguageId == lang)
+          .OrderBy(g => g.Name)
+          .Select(g => new SelectListItem()
+          {
+            Text = g.Name,
+            Value = g.Id.ToString()
+          })
+          .ToList();
+      //.Prepend(new SelectListItem()
+      //{
+      //	Text = "Изберете",
+      //	Value = "-1"
+      //})
+      //.ToList();
 
-		}
-		#endregion
+    }
+    #endregion
 
-		#region Links - Order
-		public void OrderLinksCategories(int id, bool moveUp = true)
-		{
-			try
-			{
-				LinksCategories linksCategoryCurrent = this.All<LinksCategories>().Find(id);
-				LinksCategories linksCategorySwap = new LinksCategories();
+    #region Links - Order
+    public void OrderLinksCategories(int id, bool moveUp = true, int lang = GlobalConstants.LangBG)
+    {
+      try
+      {
+        LinksCategories linksCategoryCurrent = this.All<LinksCategories>().Find(id);
+        LinksCategories linksCategorySwap = new LinksCategories();
 
-				int maxOrderNum = this.All<LinksCategories>().Max(x => x.ViewOrder);
-				int minOrderNum = this.All<LinksCategories>().Min(x => x.ViewOrder);
-				int j = 0;
-				int swap = 0;
+        int maxOrderNum = this.All<LinksCategories>()
+          .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+          .Max(x => x.ViewOrder);
 
-				List<LinksCategories> linksCategoriesList = this.All<LinksCategories>().OrderBy(x => x.ViewOrder).ToList();
+        int minOrderNum = this.All<LinksCategories>()
+          .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+          .Min(x => x.ViewOrder);
 
-				if ((moveUp && linksCategoryCurrent.ViewOrder == minOrderNum) || (moveUp == false && linksCategoryCurrent.ViewOrder == maxOrderNum))
-				{
-					return;
-				}
+        int j = 0;
+        int swap = 0;
 
-				for (int i = 0; i < linksCategoriesList.Count; i++)
-				{
-					if (linksCategoriesList[i].ViewOrder == linksCategoryCurrent.ViewOrder)
-					{
-						j = i;
-						break;
-					}
-				}
+        List<LinksCategories> linksCategoriesList = this.All<LinksCategories>()
+          .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+          .OrderBy(x => x.ViewOrder)
+          .ToList();
 
-				if (moveUp)
-				{
-					swap = linksCategoriesList[j - 1].ViewOrder;
-					linksCategorySwap = this.All<LinksCategories>().Find(linksCategoriesList[j - 1].Id);
+        if (minOrderNum == maxOrderNum)
+        {
+          if (moveUp)
+          {
+            linksCategoryCurrent.ViewOrder -= 1;
+          }
+          else
+          {
+            linksCategoryCurrent.ViewOrder += 1;
+          }
 
-					linksCategorySwap.ViewOrder = linksCategoryCurrent.ViewOrder;
-					linksCategoryCurrent.ViewOrder = swap;
-				}
-				else
-				{
-					// move down
-					swap = linksCategoriesList[j + 1].ViewOrder;
-					linksCategorySwap = this.All<LinksCategories>().Find(linksCategoriesList[j + 1].Id);
+          db.SaveChanges();
+          return;
+        }
 
-					linksCategorySwap.ViewOrder = linksCategoryCurrent.ViewOrder;
-					linksCategoryCurrent.ViewOrder = swap;
-				}
+        if ((moveUp && linksCategoryCurrent.ViewOrder == minOrderNum) || (moveUp == false && linksCategoryCurrent.ViewOrder == maxOrderNum))
+        {
+          return;
+        }
 
-				db.SaveChanges();
-			}
-			catch (Exception ex)
-			{
-				logger.LogError(ex, "OrderLinksCategories failed.");
-			}
-		}
+        for (int i = 0; i < linksCategoriesList.Count; i++)
+        {
+          if (linksCategoriesList[i].ViewOrder == linksCategoryCurrent.ViewOrder)
+          {
+            j = i;
+            break;
+          }
+        }
 
-		public void OrderLinks(int id, bool moveUp = true)
-		{
-			try
-			{
-				Links linksCurrent = this.All<Links>().Find(id);
-				Links linksSwap = new Links();
+        if (moveUp)
+        {
+          swap = linksCategoriesList[j - 1].ViewOrder;
+          linksCategorySwap = this.All<LinksCategories>()
+            .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+            .FirstOrDefault(x => x.Id == linksCategoriesList[j - 1].Id);
 
-				int maxOrderNum = this.All<Links>().Max(x => x.Priority);
-				int minOrderNum = this.All<Links>().Min(x => x.Priority);
-				int j = 0;
-				int swap = 0;
+          linksCategorySwap.ViewOrder = linksCategoryCurrent.ViewOrder;
+          linksCategoryCurrent.ViewOrder = swap;
+        }
+        else
+        {
+          // move down
+          swap = linksCategoriesList[j + 1].ViewOrder;
+          linksCategorySwap = this.All<LinksCategories>()
+            .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+            .FirstOrDefault(x => x.Id == linksCategoriesList[j + 1].Id);
 
-				List<Links> linksList = this.All<Links>().Where(x => x.LinksCategoryID == linksCurrent.LinksCategoryID).OrderBy(x => x.Priority).ToList();
+          linksCategorySwap.ViewOrder = linksCategoryCurrent.ViewOrder;
+          linksCategoryCurrent.ViewOrder = swap;
+        }
 
-				if ((moveUp && linksCurrent.Priority == minOrderNum) || (moveUp == false && linksCurrent.Priority == maxOrderNum))
-				{
-					return;
-				}
+        db.SaveChanges();
+      }
+      catch (Exception ex)
+      {
+        logger.LogError(ex, "OrderLinksCategories failed.");
+      }
+    }
 
-				for (int i = 0; i < linksList.Count; i++)
-				{
-					if (linksList[i].Priority == linksCurrent.Priority)
-					{
-						j = i;
-						break;
-					}
-				}
+    public void OrderLinks(int id, bool moveUp = true, int lang = GlobalConstants.LangBG)
+    {
+      try
+      {
+        Links linksCurrent = this.All<Links>().Find(id);
+        Links linksSwap = new Links();
 
-				if (moveUp)
-				{
-					swap = linksList[j - 1].Priority;
-					linksSwap = this.All<Links>().Find(linksList[j - 1].Id);
+        int maxOrderNum = this.All<Links>()
+          .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+          .Max(x => x.Priority);
 
-					linksSwap.Priority = linksCurrent.Priority;
-					linksCurrent.Priority = swap;
-				}
-				else
-				{
-					// move down
-					swap = linksList[j + 1].Priority;
-					linksSwap = this.All<Links>().Find(linksList[j + 1].Id);
+        int minOrderNum = this.All<Links>()
+          .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+          .Min(x => x.Priority);
 
-					linksSwap.Priority = linksCurrent.Priority;
-					linksCurrent.Priority = swap;
-				}
+        int j = 0;
+        int swap = 0;
 
-				db.SaveChanges();
-			}
-			catch (Exception ex)
-			{
-				logger.LogError(ex, "OrderLinks failed.");
-			}
-		}
-		#endregion
-	}
+        List<Links> linksList = this.All<Links>()
+          .Where(x => x.LinksCategoryID == linksCurrent.LinksCategoryID && x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+          .OrderBy(x => x.Priority)
+          .ToList();
+
+        if ((moveUp && linksCurrent.Priority == minOrderNum) || (moveUp == false && linksCurrent.Priority == maxOrderNum))
+        {
+          return;
+        }
+
+        for (int i = 0; i < linksList.Count; i++)
+        {
+          if (linksList[i].Priority == linksCurrent.Priority)
+          {
+            j = i;
+            break;
+          }
+        }
+
+        if (moveUp)
+        {
+          swap = linksList[j - 1].Priority;
+          linksSwap = this.All<Links>()
+            .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+            .FirstOrDefault(x => x.Id == linksList[j - 1].Id);
+
+          linksSwap.Priority = linksCurrent.Priority;
+          linksCurrent.Priority = swap;
+        }
+        else
+        {
+          // move down
+          swap = linksList[j + 1].Priority;
+          linksSwap = this.All<Links>()
+            .Where(x => x.LanguageId == lang && x.IsActive && x.IsApproved && !x.IsDeleted)
+            .FirstOrDefault(x => x.Id == linksList[j + 1].Id);
+
+          linksSwap.Priority = linksCurrent.Priority;
+          linksCurrent.Priority = swap;
+        }
+
+        db.SaveChanges();
+      }
+      catch (Exception ex)
+      {
+        logger.LogError(ex, "OrderLinks failed.");
+      }
+    }
+    #endregion
+  }
 }

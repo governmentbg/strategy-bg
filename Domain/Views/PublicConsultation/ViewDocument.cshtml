@@ -4,6 +4,7 @@
     ViewData["SectionTitle"] = "Обществени консултации";
     var timeline = (IEnumerable<TimelineDocumentViewModel>)ViewBag.TimeLine;
     List<SelectListItem> tagDdl = ViewBag.SectionList != null ? (List<SelectListItem>)ViewBag.SectionList : new List<SelectListItem>();
+    List<SelectListItem> userIdentityDdl = ViewBag.UserIdentityList != null ? (List<SelectListItem>)ViewBag.UserIdentityList : new List<SelectListItem>();
 }
 @section breadcrumbs{
 <div class="breadcrumbs">
@@ -56,14 +57,15 @@
             }
 
             @{await Html.RenderPartialAsync("_Comments",
-                  new CommentsRequestModel
-                  {
-                      SourceTypeId = GlobalConstants.SourceTypes.PublicConsultationDocuments,
-                      SourceId = Model.DocumentId,
-                      SectionList = tagDdl,
-                      CanComment = Model.IsLastRevision && Model.CanComment,
-                      UpdateCommentsCallback = "updateCommentsCount"
-                  });
+                    new CommentsRequestModel
+                    {
+                        SourceTypeId = GlobalConstants.SourceTypes.PublicConsultationDocuments,
+                        SourceId = Model.DocumentId,
+                        SectionList = tagDdl,
+                        CanComment = Model.IsLastRevision && Model.CanComment,
+                        UpdateCommentsCallback = "updateCommentsCount",
+                        UserIdentityList = userIdentityDdl
+                    });
             }
         </div>
         <div class="col-md-4 col-lg-3">

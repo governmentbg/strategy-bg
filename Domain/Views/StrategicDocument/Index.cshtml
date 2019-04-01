@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Стратегически документи";
     ViewData["SectionTitle"] = ViewData["Title"];
+    int munincipalityId = (int)(ViewBag.MunicipalityId ?? -1);
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
@@ -10,8 +11,8 @@
 }
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-12 body">
-            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+        <div class="col-md-12 body cat-combos">
+            <div class="form-group col-lg-2 col-md-4 col-sm-6">
                 <label>Група</label>
                 @Html.DropDownList("CategoryMasterId", (IEnumerable<SelectListItem>)ViewBag.catMasters, new { @class = "form-control" })
             </div>
@@ -20,97 +21,129 @@
                 @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.catNational, new { @class = "form-control" })
             </div>
             <div id="districtCat">
-                <div id="districtCat" class="form-group col-lg-3 col-md-4 col-sm-6">
+                <div id="districtCat" class="form-group col-lg-2 col-md-4 col-sm-6">
                     <label>Област</label>
                     @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.catDistrict, new { @class = "form-control" })
                 </div>
-                <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <div class="form-group col-lg-2 col-md-4 col-sm-6">
                     <label>Община</label>
                     @Html.DropDownList("MunicipalityId", GlobalConstants.EmptyComboList, new { @class = "form-control" })
                 </div>
             </div>
-            <div class="form-group col-lg-1 col-md-2 col-sm-3">
-                <label>&nbsp; </label>
-                <button type="submit" class="form-control btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+            <div class="form-group col-lg-2 col-md-4 col-sm-6">
+                <label>Покажи</label>
+                @Html.DropDownList("validState", (IEnumerable<SelectListItem>)ViewBag.validStates, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-lg-2 col-md-4 col-sm-6">
+                <label>Наименование</label>
+                @Html.TextBox("searchTerm", "", new { @class = "form-control" })
             </div>
             <div class="form-group col-lg-1 col-md-2 col-sm-3">
                 <label>&nbsp; </label>
-                <button type="button" class="form-control btn btn-info" onclick="ExportPDF();"><i class="fa fa-file-pdf-o"></i> Експорт</button>
+                <button type="button" class="form-control btn btn-info" onclick="exp();"><i class="fa fa-file-pdf-o"></i> Експорт</button>
             </div>
         </div>
     </div>
     <table id="mainTable" class="table" cellspacing="0"></table>
 </div>
-
+<div id="popupDiv"></div>
 
 
 @section scripts{
     <script>
-    $(function () {
-        $('#CategoryMasterId').change(function () {
-            if ($(this).val() === '@GlobalConstants.Category.Type_National') {
-                $('#natCat').show();
-                $('#districtCat').hide();
-            } else {
-                $('#natCat').hide();
-                $('#districtCat').show();
-            }
-        }).trigger('change');
-        $('#DistrictId').change(function () {
-            if ($(this).val() === '-1') {
-                $('#MunicipalityId').html('');
-                return false;
-            }
-            requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val() });
-        }).trigger('change');
+        $(function () {
+            $('#CategoryMasterId').change(function () {
+                if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+                    $('#natCat').show();
+                    $('#districtCat').hide();
+                } else {
+                    $('#natCat').hide();
+                    $('#districtCat').show();
+                }
+            }).trigger('change');
+            $('#DistrictId').change(function () {
+                if ($(this).val() === '-1') {
+                    $('#MunicipalityId').html('');
+                    return false;
+                }
+                requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val(), municipalityId: @munincipalityId  });
+            }).trigger('change');
 
-        });
-        function ExportPDF() {
-            window.open('@Url.Action("PdfExport")?cat=' + $('#CategoryMasterId').val(), '_blank');
-        }
-    </script>
-    <script>
-    $(function () {
-         var dt  = $('#mainTable').DataTable({
-             "ajax": {
-                 "url": '@Url.Action("LoadData")',
-                 data: function (d) {
-                     d.categoryMasterId = $('#CategoryMasterId').val();
-                     d.categoryId = $('#CategoryId').val();
-                     d.municipalityId = $('#MunicipalityId').val();
-                 },
-                 "type": "POST"
-             },
-             fnDrawCallback: function (settings) {
-                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
-             },
-             filter: false,
-             "columns": [
-                 {
-                     data: "title",
-                     title: 'Наименование'
-                 },
-                 {
-                     data: "categoryText",
-                     title: 'Категория'
-                 },
-                 {
-                     data: "createDate",
-                     title: 'Дата на публикуване',
-                     orderDataType: 'date',
-                     "render": function (value) {
-                         return JsonBGdate(value);
-                     }
-                 }
-                 ,
-                 {
-                     data: "validTo",
-                     title: 'Валиден до',
-                     "render": function (value) {
-                         return JsonBGdate(value);
-                     }
-                 }
-                 ,
+            $('.cat-combos select').each(function (i, e) {
+                $(e).change(function () {
+                    setTimeout(function () {
+                        updateRss();
+                        setBreadcrumb();
+                        dt.ajax.reload();
+                    }, 100);
+                });
+            });
+            $('.cat-combos #searchTerm').keyup(function () {
+                if ($(this).val().length >= 3)
+                    setTimeout(function () {
+                        updateRss();
+                        dt.ajax.reload();
+                    }, 100);
+
+            });
+
+
+            var dt;
+            setTimeout(function () {
+                setBreadcrumb();
+                dt = $('#mainTable').DataTable({
+                    "ajax": {
+                        "url": '@Url.Action("LoadData")',
+                        data: function (d) {
+                            d.categoryMasterId = $('#CategoryMasterId').val();
+                            d.categoryId = $('#CategoryId').val();
+                            if ($('#districtCat').is(':visible')) {
+                                d.categoryId = $('#DistrictId').val();
+                                d.municipalityId = $('#MunicipalityId').val();
+                            }
+                            d.validState = $('#validState').val();
+                            d.searchTerm = $('#searchTerm').val();
+                        },
+                        "type": "POST"
+                    },
+                    fnDrawCallback: function (settings) {
+                        $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                    },
+                    filter: false,
+                    "columns": [
+                        {
+                            data: "title",
+                            title: 'Наименование',
+                            render: function (data, type, item, meta) {
+                                var url = '@Url.Action("View",new { id = "666"})'.replace('666', item.id);
+                                var btn = '<a href="' + url + '">' + item.title + '</a>';
+                                return btn;
+                            }
+                        },
+
+                        @*{
+                            data: "categoryText",
+                            title: 'Категория',
+                            render: function (data, type, item, meta) {
+                                var imgSrc = '@Url.Content("~/img/categories/1.png")'.replace('1.png', item.categoryImagePath);
+                                var img = '<img src="' + imgSrc + '">&nbsp;' + item.categoryText;
+                                return img;
+                            }
+                        },*@
+                        //{
+                        //    data: "createDate",
+                        //    title: 'Дата на публикуване',
+                        //    orderDataType: 'date',
+                        //    "render": function (value) {
+                        //        return JsonBGdate(value);
+                        //    }
+                        //}
+                        //,
+                        {
+                            data: "validToText",
+                            title: 'Валиден до'
+                        }
+                 @*,
                  {
                      data: null,
                      "render": function (item) {
@@ -119,16 +152,93 @@
                          return btn;
                      },
                      sortable: false
-                 }
-             ]
+                 }*@
+                    ]
 
-        });
-        dt.order([2, 'desc']).draw();
-        $('.dt-reload').click(function () {
-            dt.ajax.reload();
-        });
+                });
+            }, 200);
+
+        function updateRss() {
+                var el = $('#rssLink');
+                var categoryMasterId = $('#CategoryMasterId').val();
+            var categoryId = $('#CategoryId').val();
+            var municipalityId = $('#MunicipalityId').val();
+                if ($('#districtCat').is(':visible')) {
+                    categoryId = $('#DistrictId').val();
+                    //municipalityId = $('#MunicipalityId').val();
+                }
+
+                validState = $('#validState').val();
+
+                var url = '@Url.Action("GetDocumentFeed", "Rss")' +
+                    '?type=' + '@RssFeedType.StrategicDocuments' +
+                    '&categoryMasterId=' + categoryMasterId +
+                    '&categoryId=' + categoryId +
+                    '&municipalityId=' + municipalityId +
+                    '&validState=' + validState;
+
+                el.attr('href', url);
+        }
+
+        function setBreadcrumb() {
+                var categoryMasterId = $('#CategoryMasterId').val();
+                var categoryMasterText = $('#CategoryMasterId  option:selected').text();
+                var categoryId = $('#CategoryId').val();
+                var categoryText = $('#CategoryId  option:selected').text();
+                var municipalityId = $('#MunicipalityId').val();
+                var munincipalityText = $('#MunicipalityId  option:selected').text();
+                var districtId = $('#DistrictId').val();
+                var districtText = $('#DistrictId  option:selected').text();
+
+            var initialBreadcrumb = '/ <a href="@Url.Action("Index","Home")">Начало</a> / <a href="@Url.Action("index")">Стратегически документи</a>';
+                var breadcrumb = initialBreadcrumb + generateBreadcrumbLink(categoryMasterText, categoryMasterId);
+
+                if ($('#natCat').is(':visible')) {
+                    if (categoryId > 0) {
+                        breadcrumb += generateBreadcrumbLink(categoryText, categoryMasterId, categoryId);
+                    }
+                } else {
+                    if (districtId > 0) {
+                        breadcrumb += generateBreadcrumbLink(districtText, categoryMasterId, categoryId, districtId);
+                        if (municipalityId != districtId) {
+                            breadcrumb += generateBreadcrumbLink(munincipalityText, categoryMasterId, categoryId, districtId, municipalityId);
+                        }
+                    }
+                }
+
+                $('.breadcrumbs').html(breadcrumb);
+            }
+
+            function generateBreadcrumbLink(text, categoryMasterId, categoryId, districtId, municipalityId) {
+                var queryString = (categoryMasterId ? ('categoryMasterId=' + categoryMasterId) : '') +
+                    (categoryId ? ('&categoryId=' + categoryId) : '') +
+                        (districtId ? ('&districtId=' + districtId) : '') +
+                            (municipalityId ? ('&municipalityId=' + municipalityId) : '');
+
+
+                return ' / <a href="@Url.Action("Index")?' + queryString + '">' + text + '</a>'
+            }
+
+        //dt.order([2, 'desc']).draw();
+        //$('.dt-reload').click(function () {
+        //    dt.ajax.reload();
+        //});
     });
 
+
+
+        function exp() {
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("ExportChoice","StrategicDocument")',
+                success: function (data) {
+                        ShowDialog('Експорт', data);
+                    }
+                });
+        }
+
     </script>
+
 
 }

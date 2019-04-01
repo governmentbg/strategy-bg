@@ -37,7 +37,7 @@ namespace Domain.Areas.Admin.Controllers
 		[HttpPost]
 		public IActionResult LoadData(IDataTablesRequest request)
 		{
-			IQueryable<QuestionaryListViewModel> data = questionaryService.GetQuestionaries();
+			IQueryable<QuestionaryListViewModel> data = questionaryService.GetQuestionaries(null);
 
 			var response = request.GetResponse(data);
 

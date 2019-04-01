@@ -1,0 +1,91 @@
+﻿@model Models.ViewModels.StandartForms.StandartForm_3VM
+@{
+    ViewData["Title"] = "Приложение № 3";
+}
+
+
+@section breadcrumbs{
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="@Url.Action("Index","StandartForms")">Електронни формуляри</a>
+    / Приложение № 3
+</div>
+}
+
+<section class="container-fluid information">
+        <div class="row">
+            <div class="col-lg-3">
+                @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu",title="Оценка на въздействието" })
+            </div>
+            <div class="col-lg-9">
+                <div style="padding: 10px">
+                <form asp-action="ExportSF3ToPDF" id="form1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <h2>
+                        <div align="center">
+                            Приложение № 3
+                        </div>
+                    </h2>
+                    <h3>
+                        </br>
+                        <div align="center">
+                            към чл. 26 от Наредбата за обхвата и методологията за извършване на оценка на въздействието
+                        </div>
+                    </h3>
+                    </br></br>
+                    <h3>
+                        1.	ОСНОВНА ИНФОРМАЦИЯ ЗА КОНСУЛТАЦИЯТА
+                    </h3>
+                    @Html.EditorFor(m => m.Introduction)
+                    @Html.EditorFor(m => m.Goals)
+                    @Html.EditorFor(m => m.Process)
+                    @Html.EditorFor(m => m.LinkedDocuments)
+                    <h3>
+                        2.	ОПИСАНИЕ НА ПРЕДЛОЖЕНИЕТО
+                    </h3>
+                    @Html.EditorFor(m => m.Description)
+                    <h3>
+                        3.	ВЪПРОСИ ЗА ОБСЪЖДАНЕ
+                    </h3>
+                    @Html.EditorFor(m => m.Questions)
+                    <h3>
+                        4.	ДОКУМЕНТИ, СЪПЪТСТВАЩИ КОНСУЛТАЦИЯТА
+                    </h3>
+                    @Html.EditorFor(m => m.Documents)
+                    <div class="form-group">
+                        <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/StandartForms/ExportSF3ToPDF">
+                        <a asp-action="Index_StandartForm_3" class="btn btn-danger btn-flat">Изчисти</a>
+                    </div>
+                </form>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnPDF").click(function () {
+                $("#form1").submit(function () {
+                    setTimeout('$("#form2").submit();', 10);
+                    return false;
+                });
+            });
+        });
+
+        $(function () {
+            $('.calculatorActivityId :input').attr("disabled", true);
+        });
+
+        $('#Introduction').summernote();
+        $('#Goals').summernote();
+        $('#Process').summernote();
+        $('#LinkedDocuments').summernote();
+        $('#Description').summernote();
+        $('#Questions').summernote();
+        $('#Documents').summernote();
+    </script>
+}

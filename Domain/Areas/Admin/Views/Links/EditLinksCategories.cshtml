@@ -9,10 +9,13 @@
         <div class="col-lg-6">
             <form asp-action="EditLinksCategories">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="LanguageId" type="hidden" />
+                <partial name="LangView" model="@Model.LanguageId" />
+
                 @Html.HiddenFor(m => m.Id)
                 @Html.HiddenFor(m => m.Priority)
                 @Html.HiddenFor(m => m.DateCreated)
-                @Html.HiddenFor(m => m.IsApproved)
+                @*@Html.HiddenFor(m => m.IsApproved)*@
                 @Html.HiddenFor(m => m.LanguageId)
                 @Html.HiddenFor(m => m.CreatedByUserId)
                 @Html.HiddenFor(m => m.ModifiedByUserId)
@@ -24,17 +27,17 @@
                 @Html.EditorFor(m => m.ColumnsCount)
                 @Html.EditorFor(m => m.IsActive)
 
-                @if(Model.Id == 0)
+                @if (Model.Id == 0)
                 {
-                @Html.HiddenFor(m => m.IsDeleted)
+                    @Html.HiddenFor(m => m.IsDeleted)
                 }
                 else
                 {
-                @Html.EditorFor(m => m.IsDeleted)
+                    @Html.EditorFor(m => m.IsDeleted)
                 }
                 <div class="form-group">
                     <input type="submit" value="Запис" class="btn btn-success btn-flat" />
-                    <a asp-action="ListLinksCategories" class="btn btn-danger btn-flat">Назад</a>
+                    <a asp-action="ListLinksCategories" asp-route-lang="@Model.LanguageId" class="btn btn-danger btn-flat">Назад</a>
                 </div>
             </form>
         </div>

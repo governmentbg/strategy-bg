@@ -10,35 +10,25 @@
             <form asp-action="@ViewBag.actionName">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <div class="tab-pane fade active in" id="category">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-8 col-sm-12">
-                            <br />
-                            <ddl for="CategoryMasterId" data="@ViewBag.catMasters"></ddl>
-                            <div id="natCat">
-                                <ddl for="CategoryId" data="@ViewBag.catNational"></ddl>
-                            </div>
-                            <div id="districtCat">
-                                <ddl for="DistrictId" data="@ViewBag.catDistrict"></ddl>
-                                <ddl for="MunicipalityId" data="@GlobalConstants.EmptyComboList"></ddl>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <input asp-for="Id" type="hidden" />
-                <ddl for="DocumentTypeId" data="@ViewBag.documentType"></ddl>
-                <textbox for="DocumentNumber" type="textarea"></textbox>
+                @*@Html.EditorFor(m => m.CategoryId, "Categories")*@
+                @Html.EditorFor(m => m.CategoryId, "GenericDropDown")
+                <table border="0">
+                    <tr><td width="85%"><ddl for="DocumentTypeId" data="@ViewBag.documentTypes"></ddl></td><td><a asp-controller="DocumentKind" asp-action="Index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Видове документи</a></td></tr>
+                </table>
+
+
+                <textbox for="DocumentNumber"></textbox>
+                <ddl for="InstitutionTypeId" data="@ViewBag.institutions"></ddl>
                 <date-picker for="DocumentDate"></date-picker>
 
                 <textbox for="Title" type="textarea"></textbox>
                 <textbox for="Summary" type="textarea" edit-class="summernote"></textbox>
-                <ddl for="CategoryId" data="@ViewBag.categories"></ddl>
 
-                <date-picker for="ValidTo"></date-picker>
+                @Html.EditorFor(x => x.ValidTo, "DateTimeWithEmpty")
 
 
                 <checkbox for="IsActive" text-class="label label-primary"></checkbox>
-                <checkbox for="IsApproved" text-class="label label-warning"></checkbox>
                 <checkbox for="IsDeleted" text-class="label label-danger"></checkbox>
 
                 <div class="form-group">
@@ -52,7 +42,7 @@
     @if (Model.Id > 0)
     {
         <div class="row">
-  
+
             <div class="col-lg-6">
                 <h4>Прикачени документи</h4>
                 <partial name="UsedDocuments" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.StrategicDocuments, SourceID = Model.Id.ToString() })" />

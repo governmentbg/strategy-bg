@@ -10,6 +10,10 @@
             <form asp-action="@ViewBag.actionName">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input asp-for="Id" type="hidden" />
+                <input asp-for="LanguageId" type="hidden" />
+                <partial name="LangView" model="@Model.LanguageId" />
+                
+
                 <textbox for="Title" type="textarea"></textbox>
                 <ddl for="NewsCategoryId" data="@ViewBag.categories"></ddl>
                 <date-picker for="Date"></date-picker>
@@ -19,12 +23,12 @@
                 <checkbox for="IsMainTopic"></checkbox>
                 <checkbox for="IsOnMainPage"></checkbox>
                 <checkbox for="IsActive" text-class="label label-primary"></checkbox>
-                <checkbox for="IsApproved" text-class="label label-warning"></checkbox>
+                @*<checkbox for="IsApproved" text-class="label label-warning"></checkbox>*@
                 <checkbox for="IsDeleted" text-class="label label-danger"></checkbox>
                 <checkbox for="IsArchive" text-class="label label-default"></checkbox>
                 <div class="form-group">
                     <input type="submit" value="Запис" class="btn btn-success btn-flat" />
-                    <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                    <a asp-action="Index" asp-route-lang="@Model.LanguageId" class="btn btn-danger btn-flat">Назад</a>
                 </div>
             </form>
         </div>

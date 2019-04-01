@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutPublicMain.cshtml";
 }
+@inject IStringLocalizer<CommonResources> Localizer
 @section head{
     <style>
         .section .image img {
@@ -9,128 +10,82 @@
         }
     </style>
 }
-<!-- IMAGES  -->
-<div class="image__wrapper--swiper">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <!-- LOOP -->
-            <div class="head__image swiper-slide">
-                <div class="image__wrapper"
-                     style="background-image:url(dist/assets/123.png)">
-                </div>
-                <div class="title__wrapper">
-                    <div class="logo">
-                        <img src="dist/assets/Coat_of_arms_of_Bulgaria.svg" alt="Герб" />
-                    </div>
-                    <div class="title">
-                        <h3>ПАРТНЬОРСТВО В УПРАВЛЕНИЕТО</h3>
-                    </div>
-                </div>
-            </div>
-            <!-- END LOOP -->
-            <div class="head__image swiper-slide">
-                <div class="image__wrapper"
-                     style="background-image:url(dist/assets/123.png)">
-                </div>
-                <div class="title__wrapper">
-                    <div class="logo">
-                        <img src="dist/assets/Coat_of_arms_of_Bulgaria.svg" alt="Герб" />
-                    </div>
-                    <div class="title">
-                        <h3>СТРАТЕГИЧЕСКИ ДОКУМЕНТИ</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next swiper-button-white"></div>
-        <div class="swiper-button-prev swiper-button-white"></div>
-    </div>
-</div>
-<!-- END IMAGES  -->
-
 
 <section class="section__wrapper">
     <div class="row">
         <div class="section col-lg-3 col-md-6 col-sm-12">
-            @await Component.InvokeAsync("PublicConsultationWidget", new { loadCount = 5 })
+            <a href="@Url.Action("Index","StrategicDocument",new { area=""})" class="home--button default btn-block">
+                <i class="fa fa-paperclip"></i>
+                <p>@Localizer["MENU_STRATEGIC_DOCUMENTS"]</p>
+            </a>
+            <a href="@Url.Action("Index","MulticriteriaAnalysis",new { area=""})" class="home--button default btn-block">
+                <i class="fa fa-list-alt"></i>
+                <p>@Localizer["SECTION_ASSESSMENT"]</p>
+            </a>
+            <a href="@Url.Action("ListPCSubjects", "PCSubjects",new { area=""})" class="home--button default btn-block">
+                <i class="fa fa-users"></i>
+                <p>@Localizer["SECTION_LINK_ZNA_PEOPLE"]</p>
+            </a>
+            <a href="@Url.Action("ListChangeProposals", "ChangeProposals",new { area=""})" class="home--button default btn-block">
+                <i class="fa fa-plus-circle"></i>
+                <p>@Localizer["SECTION_LINK_LAW_PROPOSALS"]</p>
+            </a>
+            @*<a href="@Url.Action("Index", "Questionary",new { area=""})" class="home--button default btn-block">
+                    <i class="fa fa-users"></i>
+                    <p>@Localizer["SECTION_LINK_QUESTIONARY"]</p>
+                </a>*@
+            @*<p class="type">@Localizer["SECTION_ASSESSMENT"]</p>
+                @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV })
+                <p class="type">@Localizer["SECTION_OTHER_RESOURCES"]</p>
+                <div>
+                    <a href="@Url.Action("ListPCSubjects", "PCSubjects", new { area = "" })">@Localizer["SECTION_LINK_ZNA_PEOPLE"]</a>
+                </div>
+                <div>
+                    <a href="@Url.Action("ListChangeProposals", "ChangeProposals", new { area = "" })">@Localizer["SECTION_LINK_LAW_PROPOSALS"]</a>
+                </div>*@
         </div>
         <div class="section col-lg-3 col-md-6 col-sm-12">
+            <p class="type">@Localizer["MENU_PUBLIC_CONSULTATIONS"]</p>
+            @await Component.InvokeAsync("PublicConsultationWidget", new { loadCount = 5,type="new" })
+        </div>
+        <div class="section col-lg-3 col-md-6 col-sm-12">
+            <p class="type">@Localizer["MENU_STRATEGIC_DOCUMENTS"]</p>
             @await Component.InvokeAsync("StrategicDocumentsWidget", new { loadCount = 5 })
         </div>
-        <div class="section col-lg-3 col-md-6 col-sm-12">
-            @await Component.InvokeAsync("ArticleWidget", new { view = "Publication", loadCount = 5 })
-        </div>
-        <div class="section col-lg-3 col-md-6 col-sm-12">
-            @await Component.InvokeAsync("ArticleWidget", new { view = "News", loadCount = 5 })
+        <div class="section col-lg-3 col-md-6 col-sm-12" style="vertical-align:top;">
+            <ul class="nav nav-tabs" style="margin-top: -10px;">
+                <li class="active"><a href="#tabNews" role="tab" data-toggle="tab"><p class="type">@(Localizer["MENU_NEWS"])</p></a></li>
+                <li><a href="#tabPublications" role="tab" data-toggle="tab"><p class="type">@(Localizer["MENU_PUBLICATIONS"])</p></a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="tabNews" class="tab-pane active">
+                    @await Component.InvokeAsync("ArticleWidget", new { view = "News", loadCount = 5 })
+                </div>
+                <div id="tabPublications" class="tab-pane">
+                    @await Component.InvokeAsync("ArticleWidget", new { view = "Publication", loadCount = 5 })
+                </div>
+            </div>
         </div>
     </div>
 </section>
-<section class="section__wrapper" style="width:100%">
+
+<section class="section__wrapper" style="width:100%;">
     <div class="row">
-        <div class="section col-lg-3 col-md-6 col-sm-12">
-            <p class="type">ОЦЕНКА НА ВЪЗДЕЙСТВИЕТО</p>
-            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.Pages })
+        <div class="section col-lg-9 col-md-12 col-sm-12  col-xs-12">
+            <div class="row">
+                @await Component.InvokeAsync("BannerWidget", new { bannerType = "home1" })
+            </div>
         </div>
-        <div class="section col-lg-3 col-md-6 col-sm-12">
-            @*<a href="@Url.Action("NewCalculation", "Calculator", new { area = "" })">КАЛКУЛАТОР</a>*@
-        </div>
-        <div class="section col-lg-3 col-md-6 col-sm-12">
-            <a href="@Url.Action("ListPCSubjects", "PCSubjects", new { area = "" })">СПИСЪК НА ЛИЦАТА ПО ЗНА</a>
-        </div>
-        <div class="section col-lg-3 col-md-6 col-sm-12">
-            <a href="@Url.Action("ListChangeProposals", "ChangeProposals", new { area = "" })">ЗАКОНОДАТЕЛНИ ИНИЦИАТИВИ</a>
+        <div class="section col-lg-3 col-md-12 col-sm-12 col-xs-12" style="vertical-align:top;">
+            @await Component.InvokeAsync("QuestionaryWidget")
+            <hr />
+            <a href="@Url.Action("Index", "Questionary",new { area=""})" class="text-primary">
+                Преглед на всички анкети
+                @*@Localizer["SECTION_LINK_QUESTIONARY"]*@
+            </a>
         </div>
 
     </div>
 </section>
 
-@*<section class="section__wrapper">
-        <div class="section">
-            <div>
-                <div class="image">
-                    <img src="dist/assets/Bitmap.png" alt="Картинка">
-                </div>
-                <p class="description">
-                    Not so many years ago businesses used to
-                    grunt at using illustrations in their marketing
-                    materials. But today, the use.. and influence of
-                    illustrations is growing right along.
-                </p>
-            </div>
 
-            <div>
-                <div class="image">
-                    <img src="dist/assets/Bitmap.png" alt="Картинка">
-                </div>
-                <p class="description">
-                    Not so many years ago businesses used to
-                    grunt at using illustrations in their marketing
-                    materials. But today, the use.. and influence of
-                    illustrations is growing right along.
-                </p>
-            </div>
-        </div>
-        <div class="section">
-            <div class="image">
-                <img src="dist/assets/Bitmap.png" alt="Картинка">
-            </div>
-            <p class="description">
-                Not so many years ago businesses used to
-                grunt at using illustrations in their marketing
-                materials. But today, the use.. and influence of
-                illustrations is growing right along.
-            </p>
-        </div>
-        <form action="#" class="section section--subscribe">
-            <div class="inner">
-                <label for="subscribe_me" class="subscribe">АБОНИРАЙ СЕ ЗА УВЕДОМЯВАНЕ</label>
-                <input type="text" id="subscribe_me"
-                       placeholder="Въведете валиден e-mail адрес">
-                <button type="submit">АБОНИРАЙ СЕ</button>
-            </div>
-        </form>
-    </section>*@
-
-<div class="spacer"></div>
-<!-- END ARTICLES & NEWS -->

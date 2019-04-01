@@ -88,7 +88,10 @@ namespace Models.Context
 		public virtual DbSet<PublicConsultation> PublicConsultations { get; set; }
 		public virtual DbSet<PublicConsultationComment> PublicConsultationComments { get; set; }
 		public virtual DbSet<PublicConsultationDocument> PublicConsultationDocuments { get; set; }
-		public virtual DbSet<Comments> Comments { get; set; }
+        public virtual DbSet<PublicConsultationResponsiblePerson> PublicConsultationResponciblePeople{ get; set; }
+
+
+        public virtual DbSet<Comments> Comments { get; set; }
 
 		public virtual DbSet<CommentState> CommentStates { get; set; }
 		public virtual DbSet<DocumentType> DocumentTypes { get; set; }
@@ -113,8 +116,12 @@ namespace Models.Context
 		public virtual DbSet<Criteria> Criteria { get; set; }
 		public virtual DbSet<CriteriaValue> CriteriaValue { get; set; }
 
+		public virtual DbSet<Banners> Banners { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public virtual DbSet<v_Comments_PublicConsultations> v_Comments_PublicConsultations { get; set; }
+        
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<UsersInRoles>()
 								.HasKey(ur => new { ur.UserId, ur.RoleId });

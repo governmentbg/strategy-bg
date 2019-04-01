@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Contracts;
 using Models.ViewModels;
+using Models.ViewModels.Consultations;
 using Models.ViewModels.Portal;
 using Rotativa.AspNetCore;
 using WebCommmon.Controllers;
@@ -75,6 +76,14 @@ namespace Domain.Areas.Admin.Controllers
             DocumentExportViewModel model = commentService.GetDocumentForExport(documentId);
 
             return new ViewAsPdf("_DocumentExport", model);
+        }
+
+        [HttpGet]
+        public IActionResult ExportConsultationComments(int consultationId)
+        {
+            CommentsExportVM model = commentService.GetCommentsForExport(consultationId);
+
+            return new ViewAsPdf("_CommentsExport", model);
         }
 
         private void SetSelectLists()

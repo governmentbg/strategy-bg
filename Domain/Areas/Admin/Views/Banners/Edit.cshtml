@@ -1,0 +1,51 @@
+﻿@model Models.ViewModels.BannersVM
+
+@{
+    ViewData["Title"] = "Банери";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="LanguageId" type="hidden" />
+                <partial name="LangView" model="@Model.LanguageId" />
+
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.LanguageId)
+                @Html.HiddenFor(m => m.IsApproved)
+                @Html.EditorFor(m => m.Label)
+                @Html.EditorFor(m => m.BannerType)
+                @Html.EditorFor(m => m.Link)
+
+                @if (Model.Id > 0)
+                {
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h4>Изображение</h4>
+                            <partial name="UsedImages" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.BannerImage, SourceID = Model.Id.ToString(), SingleFile=true })" />
+                        </div>
+                    </div>
+                }
+
+                @Html.EditorFor(m => m.IsActive)
+                @if (Model.Id == 0)
+                {
+                    @Html.HiddenFor(m => m.IsDeleted)
+                }
+                else
+                {
+                    @Html.EditorFor(m => m.IsDeleted)
+                }
+
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" asp-route-lang="@Model.LanguageId" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+

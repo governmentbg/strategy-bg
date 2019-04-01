@@ -2,15 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.Contracts;
-using Models.ViewModels.Portal;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Domain.ViewComponents
 {
-    public class MasterPageViewComponent : ViewComponent
+    public class MasterPageViewComponent : BaseLangViewComponent
     {
         private readonly IPageService service;
 
@@ -19,12 +16,20 @@ namespace Domain.ViewComponents
             service = _service;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int pageTypeId)
+        public async Task<IViewComponentResult> InvokeAsync(int pageTypeId, string display = "list", string title = "")
         {
-            var model = await service.Select(pageTypeId, GlobalConstants.DefaultLang, -1, true)
+            var model = await service.Select(pageTypeId, this.GetCurrentLang, -1, true)
                 .Where(x => x.ShowInMenu == true && x.StateID == GlobalConstants.PageStates.Published).ToListAsync();
 
-            return View(model);
+            switch (display)
+            {
+                case "menu":
+                    ViewBag.menuTitle = title; 
+                    return View("Menu", model);
+                default:
+                    return View(model);
+            }
+
         }
     }
 }

@@ -1,0 +1,18 @@
+﻿@model DateTime
+@{
+    var hasValue = (Model.Year > 1900) && (Model.Year < 2100);
+}
+<div class="form-group datetime-with-empty">
+    <label asp-for="@Model" class="control-label "></label>
+
+    <div class="input-group date">
+        <input type="hidden" asp-for="@Model" />
+        <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+        </div>
+        <input class="form-control date-picker" type="text" autocomplete="off" value="@(hasValue ? Model.ToString("dd.MM.yyyy") : String.Empty)" />
+    </div>
+    &nbsp;&nbsp;
+    <label><input type="checkbox" data-val="@Model.ToString("dd.MM.yyyy")" @if (!hasValue) { <text>checked</text>}/>&nbsp;Без указан срок</label>
+    <span asp-validation-for="@Model" class="text-danger"></span>
+</div>

@@ -1,0 +1,11 @@
+﻿@using Models.ViewModels.Questionary
+@model QuestionaryListViewModel
+
+@if (Model != null)
+{
+    <p class="type">Анкета</p>
+    <a href="@Url.Action("FillQuestionary","Questionary",new { area="",questionaryHeaderId=Model.Id,userId=0})">
+        <h4>@Model.Title</h4>
+        <p>@Html.Raw(Model.Description)</p>
+    </a>
+}

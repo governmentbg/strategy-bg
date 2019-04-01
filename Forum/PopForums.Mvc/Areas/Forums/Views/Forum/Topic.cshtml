@@ -32,15 +32,14 @@
 	});
     </script>
 }
-<div>
+<div> 
    <h2> @Model.Topic.Title</h2>
 </div>
 @if (user != null)
 {
     <p id="AsyncResponse"></p>
     <div id="TopicTools">
-        @*<input type="button" value="@(Model.IsSubscribed ? PopForums.Resources.Unsubscribe : PopForums.Resources.Subscribe)" id="SubscribeButton" class="btn btn-primary" />
-        <input type="button" value="@(Model.IsFavorite ? PopForums.Resources.FavoriteRemove : PopForums.Resources.FavoriteMake)" id="FavoriteButton" class="btn btn-primary" />  aangelov - temporary suppressed to level the functionality to old forum *@
+       
         @if (user.IsInRole(PermanentRoles.Moderator))
         {
             <input id="TopicModLogButton" class="btn btn-primary" type="button" value="@PopForums.Resources.ModerationLog" />

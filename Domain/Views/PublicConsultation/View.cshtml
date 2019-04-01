@@ -5,7 +5,9 @@
 @{
     ViewData["SectionTitle"] = "Обществени консултации";
     var documents = (IEnumerable<TimelineDocumentViewModel>)ViewBag.documents;
-    var mainDocuments = (IEnumerable<IGrouping<string, TimelineDocumentViewModel>>)ViewBag.mainDocuments; ;
+    var mainDocuments = (IEnumerable<IGrouping<string, TimelineDocumentViewModel>>)ViewBag.mainDocuments;
+    List<SelectListItem> tagDdl = ViewBag.SectionList != null ? (List<SelectListItem>)ViewBag.SectionList : new List<SelectListItem>();
+    List<SelectListItem> userIdentityDdl = ViewBag.UserIdentityList != null ? (List<SelectListItem>)ViewBag.UserIdentityList : new List<SelectListItem>();
 
     string GetDocumentTypeIcon(int typeId)
     {
@@ -29,11 +31,15 @@
 
         return icon;
     };
+
+    List<BreadcrumbVM> breadcrumb = ViewBag.Breadcrumb != null ? (List<BreadcrumbVM>)ViewBag.Breadcrumb : new List<BreadcrumbVM>();
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="@Url.Action("Index")">Обществени консултации</a>
+        @foreach (var item in breadcrumb)
+        {
+            <a href="@item.Url">/ @item.Title </a>
+        }
     </div>
 }
 
@@ -43,18 +49,18 @@
         <div class="col-md-3">
             @if ((bool)ViewBag.hasQuestionary)
             {
-                <div class="aside row">
+                @*<div class="aside row">
                     <div class="title">
                         <a asp-action="FillQuestionaryBySourceType" asp-controller="Questionary" asp-area="" asp-route-sourceTypeID="@GlobalConstants.SourceTypes.PublicConsultation" asp-route-sourceId="@Model.Id">Анкета</a>
                     </div>
-                </div>
+                </div>*@
             }
-            @(await Html.PartialAsync("_consultationLeftMenu", Model))
+            @(await Html.PartialAsync("_consultationLeftMenu", Model.MenuLinks))
         </div>
         <div class="col-md-5 col-lg-6 body">
-            <h2>
+            <h3>
                 @Html.Raw(Model.Title)
-            </h2>
+            </h3>
             <p class="title">
                 @Html.Raw(Model.Summary)
             </p>
@@ -71,11 +77,14 @@
                             <!-- END LOOP -->
                             <tr>
                                 <td>Дата на приключване:</td>
-                                <td>@Model.ClosingDate.ToString(GlobalConstants.DateFormat)</td>
-                            </tr>
-                            <tr>
-                                <td>Сфера на действие:</td>
-                                <td>@Html.Raw(Model.CategoryName)</td>
+                                <td>
+                                    @Model.ClosingDate.ToString(GlobalConstants.DateFormat)
+
+                                    @if (Model.ActiveDays > 0)
+                                    {
+                                        <span> (Активна - остават @Model.ActiveDays @(Model.ActiveDays == 1 ? "ден" : "дни"))</span>
+                                    }
+                                </td>
                             </tr>
                             @if (!String.IsNullOrEmpty(Model.ShortTermReason))
                             {
@@ -83,7 +92,50 @@
                                     <td colspan="2">@Model.ShortTermReason</td>
                                 </tr>
                             }
+                            <tr>
+                                <td>
 
+
+
+                                    @if (Model.ParentCategoryId == GlobalConstants.Category.Type_District)
+                                    {
+                                        <span>Област: </span>
+                                    }
+                                    else if (Model.ParentCategoryId == GlobalConstants.Category.Type_Municipal)
+                                    {
+                                        <span>Община: </span>
+                                    }
+                                    else
+                                    {
+                                        <span>Сфера на действие: </span>
+                                    }
+                                </td>
+                                <td>
+
+
+                                    @Html.Raw(Model.CategoryName)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Oтговорно звено:</td>
+                                <td>@Model.InstitutionName</td>
+                            </tr>
+                            <tr>
+                                <td>Отговорно лице:</td>
+                                <td>@Model.ResponsiblePerson</td>
+                            </tr>
+                            <tr>
+                                <td>Адрес:</td>
+                                <td>@Model.Address</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>@Model.Email</td>
+                            </tr>
+                            <tr>
+                                <td>Телефон:</td>
+                                <td>@Model.Telephone</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -105,24 +157,24 @@
                                             <tbody>
                                                 <tr>
                                                     @*<td style="width:100px">Версия @item.RevisionNumber</td>*@
-                                                    <td colspan="2">
+                                                    <td colspan="3">
                                                         <a href="@Url.Action("ViewDocument", new { id = doc.DocumentId })">@doc.DocumentTitle</a>
                                                     </td>
-                                                    <td style="width:200px;" class="text--center align-middle"><a href="@Url.Action("ViewDocument", new { id = doc.DocumentId })"><i class="fa fa-file-o"></i> преглед</a></td>
+                                                    @*<td style="width:200px;" class="text--center align-middle"><a href="@Url.Action("ViewDocument", new { id = doc.DocumentId })"><i class="fa fa-file-o"></i> преглед</a></td>*@
                                                 </tr>
 
                                                 @foreach (var file in doc.AttachedFiles)
                                                 {
                                                     <tr>
-                                                        <td>
+                                                        <td style="width:80px;">
                                                             <div class="icon">
                                                                 <img src="@file.FileName.GetFileExtensionImage()" alt="">
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            @Html.Raw(file.FileTitle)
+                                                        <td colspan="2">
+                                                            <a href="@Url.Action("DownloadFile", "FileCDN", new { id = file.FileId })">@Html.Raw(file.FileTitle)</a>
                                                         </td>
-                                                        <td style="width:200px;" class="text--center align-middle"><a href="@Url.Action("DownloadFile", "FileCDN", new { id = file.FileId })"><i class="fa fa-save"></i> изтегляне</a></td>
+                                                        @*<td style="width:200px;" class="text--center align-middle"><a href="@Url.Action("DownloadFile", "FileCDN", new { id = file.FileId })"><i class="fa fa-save"></i> изтегляне</a></td>*@
                                                     </tr>
                                                 }
                                             </tbody>
@@ -134,6 +186,18 @@
                         </div>
                     </div>
                 }
+            }
+
+            @{await Html.RenderPartialAsync("_Comments",
+                      new CommentsRequestModel
+                      {
+                          SourceTypeId = GlobalConstants.SourceTypes.PublicConsultation,
+                          SourceId = Model.Id,
+                          SectionList = tagDdl,
+                          CanComment = Model.CanComment,
+                          UpdateCommentsCallback = "updateCommentsCount",
+                          UserIdentityList = userIdentityDdl
+                      });
             }
         </div>
         <div class="col-md-4 col-lg-3">

@@ -1,0 +1,78 @@
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+    ViewData["Title"] = Localizer["SEARCH"];
+    ViewData["SectionTitle"] = ViewData["Title"];
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a>
+        / <a href="@Url.Action("Index")">@ViewData["Title"]</a>
+        @if (ViewBag.category > 0)
+        {
+            <text> / @ViewBag.categoryName</text>
+        }
+    </div>
+}
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-12 body">
+            <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                <label>@Localizer["SEARCH_PHRASE"]</label>
+                @Html.TextBox("searchPhrase", (string)ViewBag.searchPhrase, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group col-lg-1 col-md-2 col-sm-3">
+                <label>&nbsp; </label>
+                <button type="submit" class="form-control btn btn-primary dt-reload"><i class="fa fa-search"></i> @ViewData["Title"]</button>
+            </div>
+        </div>
+    </div>
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</div>
+
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("Search_LoadData")',
+                 data: function (d) {
+                     d.searchPhrase = $('#searchPhrase').val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             //"pageLength": 10,
+             filter: false,
+             "columns": [
+
+                 {
+                     data: null,
+                     render: function (item) {
+                         return TemplateToHtml('#templateFile', item);
+                     },
+                     sortable: false
+                 }
+                 //, {
+                 //   data:'docId'
+                 //}
+             ]
+
+        });
+        $('.dt-reload').click(function () {
+            dt.ajax.reload();
+        });
+
+    });
+
+    </script>
+    <script type="text/x-handlebars-template" id="templateFile">
+        <a class="search-link" href="@Url.Action("DownloadFile","FileCdn")?id={{docId}}">
+            <b>{{path}}</b>
+            <br />
+            {{attachment.author}}
+        </a>        
+    </script>
+}

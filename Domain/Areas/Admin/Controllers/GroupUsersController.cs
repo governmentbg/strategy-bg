@@ -17,9 +17,11 @@ namespace Domain.Areas.Admin.Controllers
     public class GroupUsersController : BaseAdminController
     {
         private readonly IAccountService accountService;
-        public GroupUsersController(IAccountService _accountService)
+        private readonly INomenclatureService nomService;
+        public GroupUsersController(IAccountService _accountService, INomenclatureService _nomService)
         {
             accountService = _accountService;
+            nomService = _nomService;
         }
         public IActionResult Index()
         {
@@ -46,11 +48,13 @@ namespace Domain.Areas.Admin.Controllers
             {
                 IsActive = true
             };
+            SetViewBag(model);
             return View(nameof(Edit), model);
         }
         [HttpPost]
         public IActionResult Add(GroupUserVM model)
         {
+            SetViewBag(model);
             if (!ModelState.IsValid)
             {
                 return View(nameof(Edit), model);
@@ -67,12 +71,14 @@ namespace Domain.Areas.Admin.Controllers
         public IActionResult Edit(int id)
         {
             var model = accountService.GroupUsers_Select(id).FirstOrDefault();
+            SetViewBag(model);
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Edit(GroupUserVM model)
         {
+            SetViewBag(model);
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -117,6 +123,11 @@ namespace Domain.Areas.Admin.Controllers
                 SetSavedMessage = false;
             }
             return Content(SetSavedMessage.ToString());
+        }
+
+        private void SetViewBag(GroupUserVM model)
+        {
+            ViewBag.institutions = nomService.GetInstitutionTypesDDL().ToSelectList(x => x.Value, x => x.Text, model.InstitutionTypeId);
         }
     }
 }

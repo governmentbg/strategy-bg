@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Потребители";
+}
+
+<div>
+    <label>
+        <input type="checkbox" id="cboxActive" checked="checked" />
+        &nbsp;
+        Само активни потребители
+    </label>
+    &nbsp;
+    &nbsp;
+    <label>
+        <input type="checkbox" id="cboxConfirmed" checked="checked" />
+        &nbsp;
+        Само потвърдени потребители
+    </label>
+    &nbsp;
+    <label>
+        <input type="checkbox" id="cboxInternal" checked="checked" />
+        &nbsp;
+        Само вътрешни потребители
+    </label>
+</div>
+<table id="mainTable" class="table" cellspacing="0"></table>
+
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("Users_LoadData")',
+                 data: function (d) {
+                     d.active = $('#cboxActive').is(':checked');
+                     d.confirmed = $('#cboxConfirmed').is(':checked');
+                     d.internalUser = $('#cboxInternal').is(':checked');
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "fullName",
+                     title: 'Имена'
+                 },
+                 {
+                     data: "username",
+                     title: 'Потребителско име'
+                 },
+                 {
+                     data: "isInternal",
+                     title: 'Вътрешен потребител',
+                     render: function (item) {
+                         return boolToIconCheck(item);
+                     }
+                 },
+                 {
+                     data: "isConfirmed",
+                     title: 'Потвърден',
+                     render: function (item) {
+                         return boolToIconCheck(item);
+                     }
+                 }
+                 ,
+                 {
+                     data: null,
+                     render: function (item) {
+                         var updateUrl = '@Url.Action("Users_Edit",new { id = "666"})'.replace('666', item.userId);
+                         var updButton = '<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+                         return updButton;
+                     },
+                     sortable: false
+                 }
+             ],
+             rowCallback: function (row, data) {
+                 if (data["isActive"] == false) {
+                     $(row).addClass("disabled");
+                 }
+                 if (data["isConfirmed"] == false) {
+                     $(row).addClass("unconfirmed");
+                 }
+             }
+        });
+        $('#cboxActive, #cboxConfirmed, #cboxInternal').change(function () {
+            dt.ajax.reload();
+        });
+        });
+
+        function boolToIconCheck(value) {
+            if (value == true) {
+                return '<i class="fa fa-check"></i>';
+            } else {
+                return '';
+            }
+        }
+
+    </script>
+
+}

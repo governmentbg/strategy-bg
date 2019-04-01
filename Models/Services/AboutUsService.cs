@@ -22,10 +22,10 @@ namespace Models.Services
 		}
 
 		#region About Us
-		public IQueryable<AboutUsListViewModel> GetAboutUsList(int active)
+		public IQueryable<AboutUsListViewModel> GetAboutUsList(int active, int lang = GlobalConstants.LangBG)
 		{
 			return this.All<AboutUs>()
-			.Where(x => !x.IsDeleted && x.IsApproved && x.IsActive == (active == -1 ? x.IsActive : (active == 1 ? true : false)) && x.LanguageId == GlobalConstants.LangBG)
+			.Where(x => !x.IsDeleted && x.IsApproved && x.IsActive == (active == -1 ? x.IsActive : (active == 1 ? true : false)) && x.LanguageId == lang)
 			.OrderBy(x => x.Rank)
 			.Select(c => new AboutUsListViewModel()
 			{
@@ -75,8 +75,9 @@ namespace Models.Services
 
 					entity.CreatedByUserId = userContext.UserId;
 					entity.DateModified = DateTime.Now;
+          entity.LanguageId = model.LanguageId;
 
-					All<AboutUs>().Add(entity);
+          All<AboutUs>().Add(entity);
 				}
 
 				db.SaveChanges();
