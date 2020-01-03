@@ -137,7 +137,7 @@ WriteAttributeValue("", 423, Url.Action("Index", "Questionary"), 423, 35, false)
             WriteLiteral("\r\n<section class=\"content\">\r\n    <div class=\"pull-left\">\r\n        ");
             EndContext();
             BeginContext(560, 135, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "77178e6933c541f7875ec7523d27274d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4951dfca45424739a150a8320d400289", async() => {
                 BeginContext(674, 17, true);
                 WriteLiteral("Добави нов въпрос");
                 EndContext();
@@ -248,7 +248,7 @@ WriteAttributeValue("", 423, Url.Action("Index", "Questionary"), 423, 35, false)
             WriteLiteral("\r\n<section class=\"content\">\r\n    <div class=\"pull-left\">\r\n        <div class=\"form-group\">\r\n            ");
             EndContext();
             BeginContext(2413, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1235c7f0b3dc469ba5ded889c67d6fcc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5fbf171293ad4510abafd73564d69dfc", async() => {
                 BeginContext(2467, 5, true);
                 WriteLiteral("Назад");
                 EndContext();

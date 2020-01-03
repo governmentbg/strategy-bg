@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using Models.Context;
 using Models.Contracts;
 
@@ -19,6 +20,13 @@ namespace Domain.Controllers
         }
         public IActionResult Plans()
         {
+            var actualPlan = ogpService.SelectPlansForOgpMenu().Where(x => x.StateId == GlobalConstants.OgpElementStates.Actual).FirstOrDefault();
+            if(actualPlan != null)
+            {
+                return RedirectToAction(nameof(Element), new { id = actualPlan.Id });
+            }
+
+
             var planList = ogpService.Element_Select(null)
                                 .Where(x => x.IsActive)
                                 .OrderBy(x => x.StateId)

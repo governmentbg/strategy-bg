@@ -28,14 +28,14 @@
 @model Models.ViewModels.MulticriteriaAnalysis.MulticriteriaAnalysisVM
 
 @{
-    ViewData["Title"] = "Мултикритериен анализ на Административната тежест";
+    ViewData["Title"] = "Оценка на въздействието ";
     ViewData["SectionTitle"] = ViewData["Title"];
 }
 
 @section breadcrumbs{
     <div class="breadcrumbs">
         / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="#">Мултикритериен анализ на Административната тежест</a>
+        / <a href="#">Мултикритериен анализ</a>
     </div>
 }
 
@@ -43,7 +43,7 @@
 <section class="container-fluid information">
     <div class="row">
         <div class="col-lg-3">
-            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu",title="Оценка на въздействието" })
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
         </div>
         <div class="col-lg-9">
             <form asp-action="mcaCalculate" id="form1">
@@ -58,15 +58,16 @@
                 </span>
 
                 <div class="form-group">
-                    <input type="submit" value="Изчисли" class="btn btn-success btn-flat" />
-                    <a asp-action="Index" class="btn btn-danger btn-flat">Назад</a>
+                    <input type="submit" value="Изчисли" class="btn btn-primary btn-flat" />
+                    <a asp-action="Index" class="btn btn-inactive btn-flat">Назад</a>
                     @*@if (Model.TotalAssessmentValue > 0)
-                        {
-                            <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/MulticriteriaAnalysis/ExportCalculationToPDF">
-                        }*@
+                    {
+                        <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/MulticriteriaAnalysis/ExportCalculationToPDF">
+                    }*@
                 </div>
             </form>
         </div>
+
     </div>
 </section>
 

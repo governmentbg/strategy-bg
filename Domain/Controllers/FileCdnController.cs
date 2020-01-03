@@ -57,47 +57,47 @@ namespace Domain.Controllers
             return Json(new GridResponseModel<FileCDN.Models.FileInfo>(data, model));
         }
 
-        public IActionResult UploadFile(int sourceType, string sourceId, string callback = null, string directUploadMethod = null, int stUsed = 0)
-        {
-            var model = new FileRequest()
-            {
-                SourceType = sourceType,
-                SourceID = sourceId,
-                JScallback = callback,
-                DirectUploadMethod = directUploadMethod,
-                UsedFilesSourceType = stUsed
-            };
-            ViewBag.libraries = libService.Select(sourceType, null, null).Where(x => x.IsActive)
-                .ToSelectList(x => x.Id, x => x.Title, sourceId);
-            ViewBag.directUpload = !string.IsNullOrEmpty(directUploadMethod);
-            return PartialView(model);
-        }
-        [HttpPost]
-        public JsonResult UploadFile(FileRequest model, ICollection<IFormFile> files)
-        {
-            foreach (var file in files)
-            {
-                if (file.Length > 0)
-                {
-                    model.FileName = file.FileName;
-                    model.ContentType = file.ContentType;
-                    model.UserUploaded = this.UserId.ToString();
-                    if (model.SourceType == GlobalConstants.SourceTypes.Library_Images)
-                    {
-                        model.ThumbMaxSize = 150;
-                        model.ThumbSourceType = GlobalConstants.SourceTypes.Library_ImagesThumbs;
-                    }
-                    BinaryReader br = new BinaryReader(file.OpenReadStream());
-                    model.FileContent = br.ReadBytes((int)file.Length);
-                    var cdnresult = cdnService.Upload(model);
-                    if (cdnresult.SavedOK)
-                    {
-                        return Json(new { isOk = true, fileId = cdnresult.FileId, title = model.FileTitle ?? model.FileName });
-                    }
-                }
-            }
-            return Json(new { isOk = false });
-        }
+        //public IActionResult UploadFile(int sourceType, string sourceId, string callback = null, string directUploadMethod = null, int stUsed = 0)
+        //{
+        //    var model = new FileRequest()
+        //    {
+        //        SourceType = sourceType,
+        //        SourceID = sourceId,
+        //        JScallback = callback,
+        //        DirectUploadMethod = directUploadMethod,
+        //        UsedFilesSourceType = stUsed
+        //    };
+        //    ViewBag.libraries = libService.Select(sourceType, null, null).Where(x => x.IsActive)
+        //        .ToSelectList(x => x.Id, x => x.Title, sourceId);
+        //    ViewBag.directUpload = !string.IsNullOrEmpty(directUploadMethod);
+        //    return PartialView(model);
+        //}
+        //[HttpPost]
+        //public JsonResult UploadFile(FileRequest model, ICollection<IFormFile> files)
+        //{
+        //    foreach (var file in files)
+        //    {
+        //        if (file.Length > 0)
+        //        {
+        //            model.FileName = file.FileName;
+        //            model.ContentType = file.ContentType;
+        //            model.UserUploaded = this.UserId.ToString();
+        //            if (model.SourceType == GlobalConstants.SourceTypes.Library_Images)
+        //            {
+        //                model.ThumbMaxSize = 150;
+        //                model.ThumbSourceType = GlobalConstants.SourceTypes.Library_ImagesThumbs;
+        //            }
+        //            BinaryReader br = new BinaryReader(file.OpenReadStream());
+        //            model.FileContent = br.ReadBytes((int)file.Length);
+        //            var cdnresult = cdnService.Upload(model);
+        //            if (cdnresult.SavedOK)
+        //            {
+        //                return Json(new { isOk = true, fileId = cdnresult.FileId, title = model.FileTitle ?? model.FileName });
+        //            }
+        //        }
+        //    }
+        //    return Json(new { isOk = false });
+        //}
 
         public FileResult DownloadFile(string id)
         {
@@ -109,20 +109,20 @@ namespace Domain.Controllers
             return File(cdnresult.FileContent, "application/octet-stream", cdnresult.FileName);
         }
 
-        [HttpPost]
-        public ContentResult DisableFile(string id)
-        {
-            string result = "failed";
-            if (cdnService.Disable(new FileSelect()
-            {
-                FileId = id
-            }))
-            {
-                result = "ok";
-            }
+        //[HttpPost]
+        //public ContentResult DisableFile(string id)
+        //{
+        //    string result = "failed";
+        //    if (cdnService.Disable(new FileSelect()
+        //    {
+        //        FileId = id
+        //    }))
+        //    {
+        //        result = "ok";
+        //    }
 
-            return Content(result);
-        }
+        //    return Content(result);
+        //}
 
         [HttpGet]
         public IActionResult ViewImage(string id, int? sourceType = null, string sourceId = null, int max = 0)
@@ -159,22 +159,22 @@ namespace Domain.Controllers
             }
         }
 
-        public IActionResult SelectImageForInsert(string id, string callback)
-        {
-            var model = new ImageSelectVM()
-            {
-                FileId = id,
-                Max = 0,
-                Margin = 0,
-                JScallback = callback
-            };
-            ViewBag.positions = new List<SelectListItem>() {
-                new SelectListItem(){ Text="Ляво подравняване", Value=GlobalConstants.ImagePositions.FloatLeft.ToString(),Selected=true },
-                new SelectListItem(){ Text="Дясно подравняване", Value=GlobalConstants.ImagePositions.FloatRight.ToString() },
-                new SelectListItem(){ Text="Вмъкване в текста", Value=GlobalConstants.ImagePositions.Inline.ToString() }
-            };
-            return PartialView(model);
-        }
+        //public IActionResult SelectImageForInsert(string id, string callback)
+        //{
+        //    var model = new ImageSelectVM()
+        //    {
+        //        FileId = id,
+        //        Max = 0,
+        //        Margin = 0,
+        //        JScallback = callback
+        //    };
+        //    ViewBag.positions = new List<SelectListItem>() {
+        //        new SelectListItem(){ Text="Ляво подравняване", Value=GlobalConstants.ImagePositions.FloatLeft.ToString(),Selected=true },
+        //        new SelectListItem(){ Text="Дясно подравняване", Value=GlobalConstants.ImagePositions.FloatRight.ToString() },
+        //        new SelectListItem(){ Text="Вмъкване в текста", Value=GlobalConstants.ImagePositions.Inline.ToString() }
+        //    };
+        //    return PartialView(model);
+        //}
     }
 
 }

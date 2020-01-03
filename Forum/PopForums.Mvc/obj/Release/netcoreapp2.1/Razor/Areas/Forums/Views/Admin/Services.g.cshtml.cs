@@ -168,7 +168,7 @@ Write(PopForums.Resources.Services);
             WriteLiteral("</table>\n\n");
             EndContext();
             BeginContext(512, 158, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "302e4546976d434f81dd1af8bcb7bd4a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b37ce9672404aff9591171877b21ba4", async() => {
                 BeginContext(574, 22, true);
                 WriteLiteral("\n\t<input type=\"submit\"");
                 EndContext();

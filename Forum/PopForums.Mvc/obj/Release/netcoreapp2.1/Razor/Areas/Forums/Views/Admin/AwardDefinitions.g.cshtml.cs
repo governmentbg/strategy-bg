@@ -130,7 +130,7 @@ Write(PopForums.Resources.AwardDefinitions);
             WriteLiteral("\t\t<tr>\n\t\t\t<td>");
             EndContext();
             BeginContext(469, 88, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a094286a934d4869885bf83590b8298a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78c5341501dd4f5abe0b32a0e5b4c8c7", async() => {
                 BeginContext(531, 22, false);
 #line 21 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Admin\AwardDefinitions.cshtml"
                                                                         Write(item.AwardDefinitionID);
@@ -205,7 +205,7 @@ Write(PopForums.Resources.AwardDefinitions);
             WriteLiteral("/></td>\n\t\t\t<td>\n\t\t\t\t");
             EndContext();
             BeginContext(748, 150, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4870f1c2e7c3450aa18fd657f8271545", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2ad8cd449374799bba3f46a17c385fe", async() => {
                 BeginContext(818, 73, true);
                 WriteLiteral("\n\t\t\t\t\t<input type=\"submit\" value=\"Delete\" class=\"btn btn-primary\" />\n\t\t\t\t");
                 EndContext();

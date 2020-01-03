@@ -13,7 +13,7 @@ using WebCommon.Services;
 
 namespace Domain.Controllers
 {
-
+    [Authorize]
     public partial class AccountController : BasePortalController
     {
         private readonly IAccountService accountService;
@@ -23,14 +23,14 @@ namespace Domain.Controllers
         private readonly IConsultationService consulationService;
         private readonly IUserService pf_userService;
         private readonly IProfileService pf_profileService;
-    public AccountController(
-            IAccountService _accountService,
-            IEmailSender _emailSender,
-            IUserContext _userContext,
-            INomenclatureService _nomService,
-            IConsultationService _consulationService,
-            IUserService _pf_userService,
-            IProfileService _pf_profileService)
+        public AccountController(
+                IAccountService _accountService,
+                IEmailSender _emailSender,
+                IUserContext _userContext,
+                INomenclatureService _nomService,
+                IConsultationService _consulationService,
+                IUserService _pf_userService,
+                IProfileService _pf_profileService)
 
         {
             accountService = _accountService;
@@ -42,7 +42,7 @@ namespace Domain.Controllers
             pf_profileService = _pf_profileService;
         }
 
-
+        [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
         {
             LoginInputModel model = new LoginInputModel()
@@ -79,10 +79,12 @@ namespace Domain.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View(new RegisterPublicUserVM());
         }
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterPublicUserVM model)
@@ -105,31 +107,31 @@ namespace Domain.Controllers
                 return View(model);
             }
 
-      //// e te tuka se pravi usera za momenta, ama triabva da e po dolu   aangelov
-              SignupData signupData = new SignupData();
-              signupData.Email = model.Email;
-              signupData.IsDaylightSaving = true;
-              signupData.TimeZone = 2;
-              signupData.IsSubscribed = true;
-              signupData.IsTos = true;
-              signupData.Name = model.FullName;
-              var pf_user = pf_userService.CreateUserByID(model.Id, model.FullName, model.Email, model.Password, true, "127.0.0.1");
-              pf_profileService.Create(pf_user, signupData);
-      //////
-      ///
-      var code = accountService.Users_GenerateVerificationCode(model.UserName);
+            //// e te tuka se pravi usera za momenta, ama triabva da e po dolu   aangelov
+            SignupData signupData = new SignupData();
+            signupData.Email = model.Email;
+            signupData.IsDaylightSaving = true;
+            signupData.TimeZone = 2;
+            signupData.IsSubscribed = true;
+            signupData.IsTos = true;
+            signupData.Name = model.FullName;
+            var pf_user = pf_userService.CreateUserByID(model.Id, model.FullName, model.Email, model.Password, true, "127.0.0.1");
+            pf_profileService.Create(pf_user, signupData);
+            //////
+            ///
+            var code = accountService.Users_GenerateVerificationCode(model.UserName);
             var url = Url.Action(
                 nameof(ConfirmMail),
                 ControllerContext.ActionDescriptor.ControllerName,
                 new { code },
                 HttpContext.Request.Scheme);
-      //Remove Later
-     // url.Replace("192.168.200.91", "77.71.113.82");
-      //Remove Later
-      emailSender.SendMail(
-                model.Email,
-                MessageConstants.RegisterMail_Subject,
-                String.Format(MessageConstants.RegisterMail_Body, model.FullName, MessageConstants.SystemTitle, url));
+            //Remove Later
+            // url.Replace("192.168.200.91", "77.71.113.82");
+            //Remove Later
+            emailSender.SendMail(
+                      model.Email,
+                      MessageConstants.RegisterMail_Subject,
+                      String.Format(MessageConstants.RegisterMail_Body, model.FullName, MessageConstants.SystemTitle, url));
 
 
 
@@ -146,6 +148,7 @@ namespace Domain.Controllers
         //    return Content(user.FullName);
         //}
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult ConfirmMail(string code)
         {
@@ -162,17 +165,17 @@ namespace Domain.Controllers
                 {
 
 
-          ////// e te tuka se pravi usera, ama za sega e na Register   aangelov
-          //SignupData signupData = new SignupData();
-          //signupData.Email = user.Email;
-          //signupData.IsDaylightSaving = true;
-          //signupData.IsSubscribed = false;
-          //signupData.IsTos = true;
-          //signupData.Name = user.FullName;
-          //var pf_user = pf_userService.CreateUserByID(user.Id, user.FullName, user.Email, user.Password, true ,"127.0.0.1");
-          //pf_profileService.Create(pf_user, signupData);
+                    ////// e te tuka se pravi usera, ama za sega e na Register   aangelov
+                    //SignupData signupData = new SignupData();
+                    //signupData.Email = user.Email;
+                    //signupData.IsDaylightSaving = true;
+                    //signupData.IsSubscribed = false;
+                    //signupData.IsTos = true;
+                    //signupData.Name = user.FullName;
+                    //var pf_user = pf_userService.CreateUserByID(user.Id, user.FullName, user.Email, user.Password, true ,"127.0.0.1");
+                    //pf_profileService.Create(pf_user, signupData);
 
-          SetMessageDialog(false, MessageConstants.RegisterOK_Message, MessageConstants.RegisterOK_Title);
+                    SetMessageDialog(false, MessageConstants.RegisterOK_Message, MessageConstants.RegisterOK_Title);
                 }
                 else
                 {
@@ -185,6 +188,7 @@ namespace Domain.Controllers
         /// <summary>
         /// initiate roundtrip to external authentication provider
         /// </summary>
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult ExternalLogin(string provider, string returnUrl)
         {
@@ -207,6 +211,7 @@ namespace Domain.Controllers
         /// <summary>
         /// Post processing of external authentication
         /// </summary>
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = "")
         {
@@ -231,13 +236,13 @@ namespace Domain.Controllers
         }
 
 
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult ForgottenPassword()
         {
             return View();
         }
-
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ForgottenPassword(ForgottenPasswordViewModel model)
@@ -278,32 +283,49 @@ namespace Domain.Controllers
             return GotoMessages();
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        public IActionResult ChangePassword(string code, string returnUrl = null)
+        public IActionResult ChangePassword(string code = null, string returnUrl = null)
         {
-            bool result = false;
-            var model = new ChangePasswordViewModel()
-            {
-                Code = code,
-                ReturnUrl = returnUrl
-            };
-
-            try
+            bool codeCheck = true;
+            if (!string.IsNullOrEmpty(code))
             {
                 var user = accountService.Users_GetByVerificationCode(code);
+                if (user == null)
+                {
+                    codeCheck = false;
+                }
             }
-            catch (Exception ex)
+            else
+            {
+                var userProfile = accountService.Users_GetById(userContext.UserId);
+                if (userProfile != null)
+                {
+                    code = accountService.Users_GenerateVerificationCode(userProfile.UserName);
+                }
+                else
+                {
+                    codeCheck = false;
+                }
+            }
+
+            if (!codeCheck)
             {
                 SetMessageDialog(true, "Невалиден код за смяна на парола", "Смяна на парола");
 
                 return GotoMessages();
             }
 
-            ViewBag.Valid = result;
+            var model = new ChangePasswordViewModel()
+            {
+                Code = code,
+                ReturnUrl = returnUrl
+            };
 
             return View(model);
         }
-
+        [AllowAnonymous]
+        [HttpPost]
         public IActionResult ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)

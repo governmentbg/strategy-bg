@@ -152,7 +152,7 @@ WriteAttributeValue("", 452, Url.Action("PlanElements_Edit",new { id=parent.Id})
             WriteLiteral("<section class=\"content\">\r\n    <div class=\"pull-left\">\r\n        ");
             EndContext();
             BeginContext(652, 142, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5d928dba30514b42a2518f44af559826", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8196047718204aaeaef5fe72af6f428c", async() => {
                 BeginContext(757, 33, true);
                 WriteLiteral("<i class=\"fa fa-plus\"></i> Добави");
                 EndContext();

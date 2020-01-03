@@ -1,0 +1,97 @@
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+  int programType = (int)(ViewBag.programType);
+  switch (programType)
+  {
+      case GlobalConstants.MSProgramTypes.Zakonodatelna:
+          ViewData["ProgramTitle"] = Localizer["MS_PROGRAM_LAW"];
+          break;
+      case GlobalConstants.MSProgramTypes.Operativna:
+          ViewData["ProgramTitle"] = Localizer["MS_PROGRAM_OP"];
+          break;
+  }
+
+  ViewData["Title"] = "Оценка на въздействието";
+  ViewData["SectionTitle"] = ViewData["Title"];
+
+
+}
+@section breadcrumbs{
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a>
+    / <a href="@Url.Action("LawPrograms","MSProgram")">@ViewData["Title"]</a>
+    / <a href="#">@ViewData["ProgramTitle"]</a>
+</div>
+}
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+        </div>
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-12 body cat-combos search-form-container">
+                    <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                        <label>@Localizer["FILTER_BY_NAME"]</label>
+                        @Html.TextBox("searchTerm", "", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <table id="mainTable" class="table" cellspacing="0"></table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+
+
+         $('.cat-combos #searchTerm').keyup(function () {
+                if ($(this).val().length >= 3 || $(this).val() === '')
+                    setTimeout(function () {
+                    dt.ajax.reload();
+                }, 100);
+
+            });
+
+            var dt;
+            setTimeout(function () {
+                //setBreadcrumb();
+                dt  = $('#mainTable').DataTable({
+                    "ajax": {
+                        "url": '@Url.Action("LoadData_Programs")',
+                 data: function (d) {
+                            d.programType = @(programType);
+                            d.searchTerm = $('#searchTerm').val();
+                        },
+                 "type": "POST"
+                       },
+
+             fnDrawCallback: function (settings) {
+                 $('.dataTables_paginate').toggle(settings.fnRecordsDisplay() > 0);
+                    },
+                    filter: false,
+                    //"order": [[3, "desc"]],
+                    //responsive: true,
+             "columns": [
+                 {
+                     data: "title",
+                     name: 'Title',
+                     title: 'Наименование',
+                     "width":"50%",
+                     render: function (data, type, item, meta) {
+                         var url = '@Url.Action("Projects",new { id = "666"})'.replace('666', item.id);
+                         var content = '<a href="' + url + '">' + item.title + '</a>';
+                         return content;
+                     },
+                     sortable: true
+                 }
+             ]
+            }, 200);
+    });
+        });
+    </script>
+
+}

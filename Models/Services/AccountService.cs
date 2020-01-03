@@ -16,6 +16,7 @@ using System.Security.Claims;
 using WebCommon.Extensions;
 using WebCommon.Models;
 using WebCommon.Services;
+using static WebCommon.CommonConstants;
 
 namespace Models.Services
 {
@@ -74,6 +75,7 @@ namespace Models.Services
             claims.Add(new Claim(ClaimTypes.Sid, user.Id.ToString()));
             claims.Add(new Claim(ClaimTypes.Name, (user.FullName ?? user.UserName)));
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            claims.Add(new Claim(CustomClaims.UserType, user.UserTypeId.ToString()));
             foreach (var userRole in user.UsersInRoles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, userRole.Role.Alias));
@@ -145,12 +147,15 @@ namespace Models.Services
 
         public bool GroupUsers_SaveData(GroupUserVM model)
         {
+
+            model.LinksCategoryId = model.LinksCategoryId.EmptyToNull();
             if (model.Id > 0)
             {
                 var saved = Find<Users>(model.Id);
                 saved.CategoryId = model.CategoryId;
                 saved.Organization = model.Organization;
                 saved.InstitutionTypeId = model.InstitutionTypeId;
+                saved.LinksCategoryId = model.LinksCategoryId;
                 saved.Address = model.Address;
                 saved.Phone = model.Phone;
                 saved.Email = model.Email;
@@ -169,6 +174,7 @@ namespace Models.Services
                     FullName = model.Organization,
                     Organization = model.Organization,
                     InstitutionTypeId = model.InstitutionTypeId,
+                    LinksCategoryId = model.LinksCategoryId,
                     Address = model.Address,
                     Email = model.Email,
                     Phone = model.Phone,
@@ -213,6 +219,7 @@ namespace Models.Services
                             CategoryParent = (x.Category != null) ? x.Category.ParentId : 0,
                             Organization = x.Organization,
                             InstitutionTypeId = x.InstitutionTypeId,
+                            LinksCategoryId = x.LinksCategoryId,
                             Address = x.Address,
                             Phone = x.Phone,
                             Email = x.Email,
@@ -292,11 +299,12 @@ namespace Models.Services
                 });
             }
 
-            if (hasChecked)
+            if (hasChecked || forDelete.Count() > 0)
             {
                 db.SaveChanges();
+                
             }
-            return hasChecked;
+            return true;
         }
 
         public UserRolesVM UserRoles_Select(int userId)
@@ -358,10 +366,17 @@ namespace Models.Services
 
         public Users Users_GetByVerificationCode(string code)
         {
-            var passphrase = code.Substring(0, 10);
-            var username = code.Substring(10).Decrypt(passphrase);
+            try
+            {
+                var passphrase = code.Substring(0, 10);
+                var username = code.Substring(10).Decrypt(passphrase);
 
-            return Users_GetByUserName(username);
+                return Users_GetByUserName(username);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public string Users_GenerateVerificationCode(string username)
@@ -761,6 +776,33 @@ namespace Models.Services
                  })
                  .Distinct()
                  .AsQueryable();
+        }
+
+        public bool User_DeactivateUser(string username)
+        {
+            bool result = false;
+            string USERDATA_REPLACE = "*********";
+            try
+            {
+                var user = Users_GetByUserName(username);
+                user.FirstName = USERDATA_REPLACE;
+                user.LastName = USERDATA_REPLACE;
+                user.FullName = USERDATA_REPLACE;
+                user.Organization = USERDATA_REPLACE;
+                user.Address = USERDATA_REPLACE;
+                user.Phone = USERDATA_REPLACE;
+                user.Comment = USERDATA_REPLACE;
+                user.UserName += USERDATA_REPLACE;
+                user.Email += USERDATA_REPLACE;
+                user.IsActive = false;
+                All<Users>().Update(user);
+                db.SaveChanges();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
         }
     }
 }

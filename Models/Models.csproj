@@ -6,15 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Context\Application\Address.cs" />
-    <Compile Remove="Context\Application\Counter.cs" />
-    <Compile Remove="Context\Application\Country.cs" />
-    <Compile Remove="Context\Application\CountryType.cs" />
-    <Compile Remove="Context\Application\DocumentType.cs" />
-    <Compile Remove="Context\Application\Ekkate.cs" />
-    <Compile Remove="Context\Application\IdentifierType.cs" />
-    <Compile Remove="Context\Application\Person.cs" />
-    <Compile Remove="Context\Application\UserData.cs" />
+    <Compile Remove="Context\Application\**" />
+    <EmbeddedResource Remove="Context\Application\**" />
+    <None Remove="Context\Application\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Contracts\INomService.cs" />
     <Compile Remove="Services\NomService.cs" />
     <Compile Remove="Services\ReportService.cs" />
@@ -35,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Context\Application\" />
     <Folder Include="Contracts\Portal\" />
     <Folder Include="Services\Portal\" />
     <Folder Include="ViewModels\Article\" />

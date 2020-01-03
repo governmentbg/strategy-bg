@@ -2,6 +2,13 @@
 @{
     string lang = (string)ViewBag.lang ?? GlobalConstants.DefaultLang;
 }
+<div class="footer--links">
+        <partial name="_LayoutPublicTopLinks" />
+        @*@if (ViewBag.RssLink != null)
+        {
+            <span>&nbsp;<a href="@ViewBag.RssLink" target="_blank" id="rssLink" title="RSS"><img src="@Url.Content("~/images/rss-icon.png")" /></a>&nbsp;</span>
+        }*@
+</div>
 <div style="background-color:#fff;margin-top:30px;">
     <div class="row">
         <div class="col-md-3 col-lg-2 col-sm-6 col-xs-6" style="padding-top:10px;">
@@ -10,10 +17,10 @@
         <div class="col-md-3 col-lg-2 col-sm-6  col-xs-6 hidden-lg hidden-md" style="text-align:right;padding-top:10px;padding-right:30px;">
             <img src="~/img/footer/opdu_small_@(lang).png" />
         </div>
-        <div class="col-md-6 col-lg-8 col-sm-12 col-xs-12" style="text-align:center;padding-top:20px;">
-            <h4>
+        <div class="col-md-6 col-lg-8 col-sm-12 col-xs-12" style="text-align:center;padding-top:5px;">
+            <h5>
                 @Localizer["PROJECT_TITLE"]
-            </h4>
+            </h5>
         </div>
         <div class="col-md-3 col-lg-2 hidden-sm hidden-xs" style="text-align:right;padding-top:10px;padding-right:30px;">
             <img src="~/img/footer/opdu_small_@(lang).png" />

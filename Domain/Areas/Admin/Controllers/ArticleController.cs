@@ -8,12 +8,12 @@ using System;
 using Models.ViewModels;
 using Models.ViewModels.Portal;
 using Models.Context.Legacy;
+using static Models.GlobalConstants;
 
 namespace Domain.Areas.Admin.Controllers
 {
     [Area(nameof(Areas.Admin))]
-    [Authorize(Roles = GlobalConstants.Roles.Admin)]
-    public class ArticleController : BaseController
+    public class ArticleController : BaseAdminController
     {
         private readonly IArticleService articleService;
         public ArticleController(IArticleService _articleService)
@@ -61,7 +61,8 @@ namespace Domain.Areas.Admin.Controllers
             SetSavedMessage = articleService.Article_SaveData(model);
             if (SetSavedMessage)
             {
-                return RedirectToAction(nameof(Edit), new { id = model.Id });
+        SaveSiteLog(SiteLogTableNames.Articles, SiteLogAction.Add, model.Id, model.IsApproved, model.Title);
+        return RedirectToAction(nameof(Edit), new { id = model.Id });
             }
             return View(nameof(Edit), model);
         }
@@ -87,7 +88,11 @@ namespace Domain.Areas.Admin.Controllers
             }
 
             this.SetSavedMessage = articleService.Article_SaveData(model);
-            return View(model);
+      if (SetSavedMessage)
+      {
+        SaveSiteLog(SiteLogTableNames.Articles, SiteLogAction.Edit, model.Id, model.IsApproved, model.Title);
+      }
+      return View(model);
         }
 
         private void SetViewBag(Articles model)

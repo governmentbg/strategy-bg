@@ -58,7 +58,24 @@ namespace Domain.Controllers
 			return new DataTablesJsonResult(response, true);
 		}
 
-		private void SetComboViewBags(bool addAll = true)
+    [HttpGet]
+    public IActionResult View(int id)
+    {
+      var model = PCSubjectsService.GetPCSubjects(id);
+      SetViewComboViewBags(false);
+
+      return View("View", model);
+    }
+
+    private void SetViewComboViewBags(bool addAll = true)
+    {
+      ViewBag.PCSubjectsTypeID_ddl = PCSubjectsService.GetPCSubjectTypesDDL(addAll);
+
+      ViewBag.catMasters = PCSubjectsService.GetCategoriesDDL(0, null);
+      ViewBag.catNational = PCSubjectsService.GetCategoriesDDL(Models.GlobalConstants.Categories.Type_National, null);
+      ViewBag.catDistrict = PCSubjectsService.GetCategoriesDDL(Models.GlobalConstants.Categories.Type_District, null);
+    }
+    private void SetComboViewBags(bool addAll = true)
 		{
 			ViewBag.PCSubjectsTypeID_ddl = PCSubjectsService.GetPCSubjectTypesDDL(addAll);
 		}

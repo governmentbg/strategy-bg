@@ -16,3 +16,12 @@ C:\Projects\Strategy\newPortal\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProce
 C:\Projects\Strategy\newPortal\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.dll
 C:\Projects\Strategy\newPortal\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.pdb
 C:\Projects\Strategy\newPortal\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.csprojAssemblyReference.cache
+C:\Projects\Strategy\newSingleSite\ImageProcessor\bin\Debug\netcoreapp2.1\ImageProcessor.deps.json
+C:\Projects\Strategy\newSingleSite\ImageProcessor\bin\Debug\netcoreapp2.1\ImageProcessor.dll
+C:\Projects\Strategy\newSingleSite\ImageProcessor\bin\Debug\netcoreapp2.1\ImageProcessor.pdb
+C:\Projects\Strategy\newSingleSite\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.csprojAssemblyReference.cache
+C:\Projects\Strategy\newSingleSite\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.csproj.CoreCompileInputs.cache
+C:\Projects\Strategy\newSingleSite\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.AssemblyInfoInputs.cache
+C:\Projects\Strategy\newSingleSite\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.AssemblyInfo.cs
+C:\Projects\Strategy\newSingleSite\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.dll
+C:\Projects\Strategy\newSingleSite\ImageProcessor\obj\Debug\netcoreapp2.1\ImageProcessor.pdb

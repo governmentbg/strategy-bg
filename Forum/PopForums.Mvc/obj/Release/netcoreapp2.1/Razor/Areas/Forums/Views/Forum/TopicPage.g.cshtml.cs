@@ -110,7 +110,7 @@ Write(await Html.PartialAsync("~/Areas/Forums/Views/Forum/PostItem.cshtml", new 
 #line default
 #line hidden
             BeginContext(613, 257, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pagerLinks", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "689b932a265049bbaba03f9aa88d4aed", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pagerLinks", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "37593ba526934c7f9c61a41d94e6210b", async() => {
             }
             );
             __PopForums_Mvc_Areas_Forums_TagHelpers_PagerLinksTagHelper = CreateTagHelper<global::PopForums.Mvc.Areas.Forums.TagHelpers.PagerLinksTagHelper>();

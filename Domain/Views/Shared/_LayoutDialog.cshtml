@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/dist/swiper.min.css">
+    @*<link rel="stylesheet" href="~/dist/swiper.min.css">*@
     <link rel="stylesheet" href="~/dist/styles.min.css">
     <link rel="stylesheet" href="~/css/site-portal.css" />
     <link rel="stylesheet" href="~/prod/css/head.min.css" />
@@ -23,16 +23,18 @@
 <body>
     <div class="wrapper wrapper--credentials">
         <div class="credential panel">
-            <a href="@Url.Action("Index","Home")">
-                <div class="panel-heading">
-                    <img src="~/dist/assets/logo@2x_@((string)ViewBag.lang).png" alt="">
+            <div class="dialog-container">
+                <a href="@Url.Action("Index","Home")">
+                    <div class="panel-heading">
+                        <img src="~/dist/assets/logo@2x_@((string)ViewBag.lang).png" alt="">
+                    </div>
+                </a>
+                <div class="panel-body">
+                    <div class="pull-right">
+                        @Html.Partial("_LangSelect")
+                    </div>
+                    @RenderBody()
                 </div>
-            </a>
-            <div class="panel-body">
-                <div class="pull-right">
-                    @Html.Partial("_LangSelect")
-                </div>
-                @RenderBody()
             </div>
         </div>
     </div>
@@ -46,7 +48,7 @@
             crossorigin="anonymous">
     </script>
 
-    <script type="text/javascript" src="~/dist/swiper.min.js"></script>
+    @*<script type="text/javascript" src="~/dist/swiper.min.js"></script>*@
     <script type="text/javascript" src="~/dist/bundle.js"></script>
     <script type="text/javascript">
         var rootPath = '@Url.Action("Index","Home",new { area= ""})';

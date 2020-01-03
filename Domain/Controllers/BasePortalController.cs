@@ -77,7 +77,7 @@ namespace Domain.Controllers
             base.OnActionExecuting(filterContext);
 
             ViewBag.lang = GetCurrentLang ?? GlobalConstants.DefaultLang;
-
+            ViewBag.controllerName = filterContext.RouteData.Values["controller"];
         }
     }
 }

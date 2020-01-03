@@ -113,7 +113,7 @@ Write(PopForums.Resources.EditUser);
             WriteLiteral("</h2>\n\n");
             EndContext();
             BeginContext(248, 586, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cdb1c4fee28541bab659393cb9f2d0a5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dfd1b04ff12740dca68efb44427362a9", async() => {
                 BeginContext(316, 84, true);
                 WriteLiteral("\n\t<input type=\"text\" name=\"SearchText\" class=\"form-control\" />\n\t<input type=\"submit\"");
                 EndContext();
@@ -221,7 +221,7 @@ Write(Html.RadioButton("SearchType", "Role", new {id = "Role"}));
             WriteLiteral("\t\t\t");
             EndContext();
             BeginContext(901, 67, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "27bbb8011366426b8014f28062b52e48", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "48b7430e8dcc4a17987a5d402e8d4216", async() => {
                 BeginContext(955, 9, false);
 #line 23 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Admin\EditUserSearch.cshtml"
                                                             Write(user.Name);

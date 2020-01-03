@@ -13,7 +13,7 @@ namespace Domain.Areas.Admin.Controllers
 {
   [Area(nameof(Admin))]
   [Authorize(Roles = GlobalConstants.Roles.Admin)]
-  public class UsersInfoController : BaseController
+  public class UsersInfoController : BaseAdminController
   {
     private readonly IUsersInfoService usersInfoService;
     private readonly IUserContext userContext;

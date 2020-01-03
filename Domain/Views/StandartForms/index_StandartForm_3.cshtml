@@ -1,24 +1,26 @@
 ﻿@model Models.ViewModels.StandartForms.StandartForm_3VM
 @{
     ViewData["Title"] = "Приложение № 3";
+    ViewData["SectionTitle"] = "Оценка на въздействието ";
+}
 }
 
 
 @section breadcrumbs{
-<div class="breadcrumbs">
-    / <a href="@Url.Action("Index","Home")">Начало</a>
-    / <a href="@Url.Action("Index","StandartForms")">Електронни формуляри</a>
-    / Приложение № 3
-</div>
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","StandartForms")">Електронни формуляри</a>
+        / Приложение № 3
+    </div>
 }
 
 <section class="container-fluid information">
-        <div class="row">
-            <div class="col-lg-3">
-                @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu",title="Оценка на въздействието" })
-            </div>
-            <div class="col-lg-9">
-                <div style="padding: 10px">
+    <div class="row">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+        </div>
+        <div class="col-lg-9">
+            <div style="padding: 10px">
                 <form asp-action="ExportSF3ToPDF" id="form1">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <h2>
@@ -57,10 +59,11 @@
                         <a asp-action="Index_StandartForm_3" class="btn btn-danger btn-flat">Изчисти</a>
                     </div>
                 </form>
-                    </div>
             </div>
         </div>
-    </section>
+
+    </div>
+</section>
 
 
 

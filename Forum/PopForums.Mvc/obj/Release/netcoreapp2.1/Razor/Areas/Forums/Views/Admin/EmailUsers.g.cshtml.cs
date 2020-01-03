@@ -123,7 +123,7 @@ Write(PopForums.Resources.EmailUsers);
             WriteLiteral("\n");
             EndContext();
             BeginContext(244, 595, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dd38d96f646b4576addda9dc17798f77", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d81b1fe359947a88252a3a3a7061550", async() => {
                 BeginContext(264, 57, true);
                 WriteLiteral("\n\t<div role=\"form\">\n\t\t<div class=\"form-group\">\n\t\t\t<label>");
                 EndContext();

@@ -139,12 +139,12 @@ WriteAttributeValue("", 323, Url.Action("Index", "Questionary"), 323, 35, false)
             WriteLiteral("\r\n    </div>\r\n</div>\r\n\r\n<section class=\"content\">\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-12\">\r\n            ");
             EndContext();
             BeginContext(634, 382, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "96772235a0e946c7844551c966ef9a84", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f5e1f556b21a458cabd023e414b5dc19", async() => {
                 BeginContext(669, 18, true);
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(687, 66, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "10fdeeb35ed445b09607f8bd4d923ee8", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "22299352ef994c1493f0c83187fe6a6b", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper>();
@@ -168,7 +168,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                 WriteLiteral("\r\n\r\n                ");
                 EndContext();
                 BeginContext(773, 50, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "35ca367f6ada409d937fcfa4327afaa3", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "74185858de0341e788a682e55d3aa6ea", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -193,7 +193,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper.Model = Model;
                 WriteLiteral("\r\n\r\n                <input type=\"submit\" value=\"Предай\" class=\"btn btn-success btn-flat\" />\r\n                ");
                 EndContext();
                 BeginContext(932, 63, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5467808862b2483a977794f90423e2bf", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1966aec590164aa9afe8e29d67c2cb85", async() => {
                     BeginContext(986, 5, true);
                     WriteLiteral("Отказ");
                     EndContext();

@@ -9,29 +9,49 @@
     SourceItemVM sourceItem = (SourceItemVM)ViewBag.sourceItem;
 }
 @section breadcrumbs{
-<div class="breadcrumbs">
-    / <a href="@Url.Action("Index","Home")">Начало</a>
-    / <a href="@Url.Action("Index","Questionary")">Анкети</a>
-    @if (sourceItem != null)
-    {
-        <span>/</span> <a href="@sourceItem.BackUrl">@sourceItem.SourceTypeName</a>
-    }
-    / <a href="#">Попълване на анкета</a>
-</div>
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","Questionary")">Анкети</a>
+        @if (sourceItem != null)
+        {
+            <span>/</span> <a href="@sourceItem.BackUrl">@sourceItem.SourceTypeName</a>
+        }
+        / <a href="#">Попълване на анкета</a>
+    </div>
 }
 
 
-<section class="content">
+<div class="container-fluid information">
     <div class="row">
-        <div class="col-lg-10 col-lg-offset-2">
-            <h2> @Model.QuestionaryTitle</h2>
+        @if (Model.SourceType == GlobalConstants.SourceTypes.PublicConsultation)
+        {
+            <div class="col-lg-3">
+                <div class="aside row">
+                    <ul class="list--default">
+                        <li>
+                            <a href="@Url.Action("View","PublicConsultation",new { id=Model.SourceId})">
+                                @Model.SourceTitle
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("QuestionaryResults","Questionary",new { questionaryHeaderId=Model.QuestionaryHeaderId})">
+                                Резултати от анкета
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+        <div class="col-lg-9">
+            <h3>@Model.QuestionaryTitle</h3>
+            <h5>@Html.Raw(@Model.QuestionaryDescription)</h5>
             <form asp-action="FillQuestionary">
-
                 <partial name="_FillQuestionary" model="@Model" />
                 @Html.Recaptcha(RecaptchaSettings.Value)
-
-                <input type="submit" value="Предай" class="btn btn-success btn-flat" />
+                <div class="form-group">
+                    <input type="submit" value="Предай" class="btn btn-success btn-flat" />
+                </div>
             </form>
         </div>
     </div>
-</section>
+</div>

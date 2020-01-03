@@ -91,7 +91,7 @@ using Models.Context;
             WriteLiteral("\r\n<section class=\"content\">\r\n    <div class=\"toolbar pull-left\">\r\n        ");
             EndContext();
             BeginContext(126, 76, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "773c1462eb2749ffb1973a4190c0fcd5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3ba23eacd405486a8247e395656893a0", async() => {
                 BeginContext(179, 19, true);
                 WriteLiteral("Добави тип документ");
                 EndContext();

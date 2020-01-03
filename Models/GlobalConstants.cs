@@ -19,7 +19,7 @@ namespace Models
         public const int OpenDataExportsGenerationPeriod = 8; //in hours
 
 
-    public const string DefaultLang = "bg";
+        public const string DefaultLang = "bg";
         public const string TextLangEN = "en";
         public const string DateFormat = "dd.MM.yyyy";
         public const int BulgariaCountryId = 155;
@@ -35,6 +35,10 @@ namespace Models
                     return LangBG;
             }
         }
+
+
+
+
         public static IEnumerable<SelectListItem> EmptyComboList
         {
             get
@@ -108,6 +112,8 @@ namespace Models
             public const int Legacy_Unassigned = 200;
 
             public const int PublicConsultationSubjects = 300;
+            public const int MSPRogram = 310;
+            public const int MSPRogramProject = 311;
 
             /// <summary>
             /// //Когато няма наличен изходен обект            
@@ -227,7 +233,8 @@ namespace Models
             public const string ConsultationsModerator = "consultation_mod";
             public const string AdminOGP = "adm_ogp";
             public const string AdminForum = "adm_forum";
-    }
+            public const string RolesForConsultations = "adm,consultation_mod";
+        }
 
         public class Language
         {
@@ -252,7 +259,7 @@ namespace Models
             public const string WithoutOpinion = "Без мнение";
         }
 
-        public class Category
+        public class Categories
         {
             public const int Type_National = 1;
             public const int Type_District = 2;
@@ -326,9 +333,61 @@ namespace Models
             /// </summary>
             public const int Completed = 2;
         }
+
+
+        public class MSProgramTypes
+        {
+            public const int Zakonodatelna = 1;
+            public const int Operativna = 2;
+        }
+
+        public class SiteLogTableNames
+        {
+            public const string Files = "Files";
+            public const string Categories = "Categories";
+            public const string News = "News";
+            public const string NewsCategories = "NewsCategories";
+            public const string FileFolders = "FileFolders";
+            public const string DocumentTypes = "DocumentTypes";
+            public const string AboutUs = "AboutUs";
+            public const string ReportAbuse = "ReportAbuse";
+            public const string Publications = "Publications";
+            public const string ArticleCategories = "ArticleCategories";
+            public const string PublicationCategories = "PublicationCategories";
+            public const string InstitutionTypes = "InstitutionTypes";
+            public const string UsersAnswers = "UsersAnswers";
+            public const string ForumGroups = "ForumGroups";
+            public const string ForumTopics = "ForumTopics";
+            public const string SiteSettings = "SiteSettings";
+            public const string Links = "Links";
+            public const string LinksCategories = "LinksCategories";
+            public const string PublicConsultations = "PublicConsultations";
+            public const string PublicConsultationComments = "PublicConsultationComments";
+            public const string NewsletterSubscription = "NewsletterSubscription";
+            public const string Banners = "Banners";
+            public const string Articles = "Articles";
+            public const string TargetGroups = "TargetGroups";
+            public const string Forums = "Forums";
+            public const string StrategicDocumentReports = "StrategicDocumentReports";
+            public const string ForumMessages = "ForumMessages";
+            public const string Used_Files = "Used_Files";
+            public const string Questionary = "Questionary";
+            public const string StrategicDocuments = "StrategicDocuments";
+            public const string MSProgram = "MSProgram";
+            public const string OGP = "OGP";
+            public const string PCSubjects = "PCSubjects";
+
+
+
     }
 
+        public class SiteLogAction
+        {
+            public const int Add = 1;
+            public const int Edit = 2;
+            public const int Delete = 3;
+        }
 
-
+    }
 }
 

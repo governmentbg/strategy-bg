@@ -231,10 +231,10 @@
           "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll": {}
         }
       },
-      "Microsoft.NETCore.App/2.1.6": {
+      "Microsoft.NETCore.App/2.1.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.DotNetHostPolicy": "2.1.6",
+          "Microsoft.NETCore.DotNetHostPolicy": "2.1.8",
           "Microsoft.NETCore.Platforms": "2.1.2",
           "Microsoft.NETCore.Targets": "2.0.0",
           "NETStandard.Library": "2.0.3"
@@ -389,19 +389,19 @@
           "build/netcoreapp2.1/Microsoft.NETCore.App.targets": {}
         }
       },
-      "Microsoft.NETCore.DotNetAppHost/2.1.6": {
+      "Microsoft.NETCore.DotNetAppHost/2.1.8": {
         "type": "package"
       },
-      "Microsoft.NETCore.DotNetHostPolicy/2.1.6": {
+      "Microsoft.NETCore.DotNetHostPolicy/2.1.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.DotNetHostResolver": "2.1.6"
+          "Microsoft.NETCore.DotNetHostResolver": "2.1.8"
         }
       },
-      "Microsoft.NETCore.DotNetHostResolver/2.1.6": {
+      "Microsoft.NETCore.DotNetHostResolver/2.1.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.DotNetAppHost": "2.1.6"
+          "Microsoft.NETCore.DotNetAppHost": "2.1.8"
         }
       },
       "Microsoft.NETCore.Platforms/2.1.2": {
@@ -1981,10 +1981,10 @@
         "microsoft.extensions.primitives.nuspec"
       ]
     },
-    "Microsoft.NETCore.App/2.1.6": {
-      "sha512": "DkTHgaljeftNkTpXnljwhZ5O/GsT+L4roRQVEqBEzRLwkE2hppIe9NrcojzgvX7vhTajORzY0h1MdiVJW4ZgqA==",
+    "Microsoft.NETCore.App/2.1.8": {
+      "sha512": "XJEIXuTNsqtxol8ik/O+Fxk7waM6WR9XEEotCEr5CBv4qQpqADqGEUhrOYT9tqqbtXnM/caVt0uEAz1PjJzWUQ==",
       "type": "package",
-      "path": "microsoft.netcore.app/2.1.6",
+      "path": "microsoft.netcore.app/2.1.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1994,7 +1994,7 @@
         "build/netcoreapp2.1/Microsoft.NETCore.App.PlatformManifest.txt",
         "build/netcoreapp2.1/Microsoft.NETCore.App.props",
         "build/netcoreapp2.1/Microsoft.NETCore.App.targets",
-        "microsoft.netcore.app.2.1.6.nupkg.sha512",
+        "microsoft.netcore.app.2.1.8.nupkg.sha512",
         "microsoft.netcore.app.nuspec",
         "ref/netcoreapp/_._",
         "ref/netcoreapp2.1/Microsoft.CSharp.dll",
@@ -2247,44 +2247,44 @@
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.DotNetAppHost/2.1.6": {
-      "sha512": "7YPHo4JnLAY9U45syVJDjZgEUwPz0Z7KEj6vJUGM2OWTW3ZU8ZHBCUbVv9UP7qicpRT0gsjB8qGAqO5vavbwHw==",
+    "Microsoft.NETCore.DotNetAppHost/2.1.8": {
+      "sha512": "uldsDqAPsLIerLzxenxhsXCQTAQaCx4zfkIuXqNalIhKCjjIzXZwcE7xSmgFf7jXLCXaeWf5Y5HSaHPG15lAvw==",
       "type": "package",
-      "path": "microsoft.netcore.dotnetapphost/2.1.6",
+      "path": "microsoft.netcore.dotnetapphost/2.1.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "microsoft.netcore.dotnetapphost.2.1.6.nupkg.sha512",
+        "microsoft.netcore.dotnetapphost.2.1.8.nupkg.sha512",
         "microsoft.netcore.dotnetapphost.nuspec",
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.DotNetHostPolicy/2.1.6": {
-      "sha512": "QGmuNcTXFV/xAiigdKjJH6IJ0q2TrAAxaVbz6JGn0+for3YmgvQB6BS5eeFRN2/kRH/M7OiYrTxV+5vVn8wLtg==",
+    "Microsoft.NETCore.DotNetHostPolicy/2.1.8": {
+      "sha512": "IuG1eRKAys5iywQSmP0TRJ5OYW4hV5WaBeVAe88B/Vz8TPSuD9tBEV8R8DmHJIV3AAF7YF5qulvkl1aQ41bp0w==",
       "type": "package",
-      "path": "microsoft.netcore.dotnethostpolicy/2.1.6",
+      "path": "microsoft.netcore.dotnethostpolicy/2.1.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "microsoft.netcore.dotnethostpolicy.2.1.6.nupkg.sha512",
+        "microsoft.netcore.dotnethostpolicy.2.1.8.nupkg.sha512",
         "microsoft.netcore.dotnethostpolicy.nuspec",
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.DotNetHostResolver/2.1.6": {
-      "sha512": "/+W+fP1f9PdL+P/Uw9HWGOGTLa2CLCLJjrIbwOv0W3bjYxukiYlPa+LFkzcbXvrMHf+izWnORNlXOTwoedM3Iw==",
+    "Microsoft.NETCore.DotNetHostResolver/2.1.8": {
+      "sha512": "wJbQi1By94idhJu3bt6rV8QtsEYLFhrEZvU2LLgFmtImc9evC4vxJAU0MYU9h3MPurvkMTCN37nEIHr/f9bqEA==",
       "type": "package",
-      "path": "microsoft.netcore.dotnethostresolver/2.1.6",
+      "path": "microsoft.netcore.dotnethostresolver/2.1.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "microsoft.netcore.dotnethostresolver.2.1.6.nupkg.sha512",
+        "microsoft.netcore.dotnethostresolver.2.1.8.nupkg.sha512",
         "microsoft.netcore.dotnethostresolver.nuspec",
         "runtime.json"
       ]
@@ -3759,7 +3759,7 @@
       ]
     },
     "System.Net.Http/4.3.0": {
-      "sha512": "Z1UfSF6dlpCdZdxh6LeoGlYH+q6ptG/iiIWgUUeKhE3DbQACmZkU7Sz2nOX0qdHjz72MOdYRbkSJ5Qwl6sZgvg==",
+      "sha512": "6BBc6BUa7pWFL7KUI/c8wb18IobTZHTtcQKksxJI5F9DRDShdtOvBEJzg5jJbFdTll7gRE+5yXUlq72ciLE+QQ==",
       "type": "package",
       "path": "system.net.http/4.3.0",
       "files": [
@@ -5650,7 +5650,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.Extensions.Caching.Memory >= 2.1.2",
-      "Microsoft.NETCore.App >= 2.1.6",
+      "Microsoft.NETCore.App >= 2.1.8",
       "Newtonsoft.Json >= 11.0.2",
       "PopForums >= 14.1.0",
       "System.Data.Common >= 4.3.0",
@@ -5709,7 +5709,7 @@
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.1.6, )",
+            "version": "[2.1.8, )",
             "autoReferenced": true
           },
           "Newtonsoft.Json": {

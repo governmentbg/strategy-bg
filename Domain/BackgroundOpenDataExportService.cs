@@ -43,10 +43,11 @@ namespace Domain
     {
       System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
       System.Net.Http.HttpResponseMessage msg;
-      //msg = client.GetAsync(oDataExportConfig.OpenDataExportAPIEntryPoint  + GlobalConstants.OpenDataStrategicDocumentsEntryPoint).Result;
-      //msg = client.GetAsync(oDataExportConfig.OpenDataExportAPIEntryPoint  + GlobalConstants.OpenDataPCSubjectsEntryPoint).Result;
-      //msg = client.GetAsync(oDataExportConfig.OpenDataExportAPIEntryPoint  + GlobalConstants.OpenDataCommentsEntryPoint).Result;
-      //msg = client.GetAsync(oDataExportConfig.OpenDataExportAPIEntryPoint  + GlobalConstants.OpenDataConsultationsEntryPoint).Result;
+
+      //msg = client.GetAsync(oDataExportConfig.OpenDataExportAPIEntryPoint + GlobalConstants.OpenDataStrategicDocumentsEntryPoint).Result;
+      //msg = client.GetAsync(oDataExportConfig.OpenDataExportAPIEntryPoint + GlobalConstants.OpenDataPCSubjectsEntryPoint).Result;
+      //msg = client.GetAsync(oDataExportConfig.OpenDataExportAPIEntryPoint + GlobalConstants.OpenDataCommentsEntryPoint).Result;
+      //msg = client.GetAsync(oDataExportConfig.OpenDataExportAPIEntryPoint + GlobalConstants.OpenDataConsultationsEntryPoint).Result;
     }
 
     public Task StopAsync(CancellationToken cancellationToken)

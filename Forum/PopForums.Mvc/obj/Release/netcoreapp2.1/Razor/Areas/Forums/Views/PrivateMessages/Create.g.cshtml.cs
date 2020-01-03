@@ -159,7 +159,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span>");
             EndContext();
             BeginContext(1714, 75, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1b00b49c36484096ad0baea14d670a23", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ef264cfd2c34f459ff2eba75a73266e", async() => {
                 BeginContext(1759, 26, false);
 #line 62 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\Create.cshtml"
                                                                                                        Write(PopForums.Resources.Forums);
@@ -187,7 +187,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t<li>");
             EndContext();
             BeginContext(1801, 62, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b604aad57d84b1eaacb8261e317ed9c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2445d0231654cd29f62dff17e1d81e9", async() => {
                 BeginContext(1824, 35, false);
 #line 63 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\Create.cshtml"
                              Write(PopForums.Resources.PrivateMessages);
@@ -266,7 +266,7 @@ WriteAttributeValue("", 2421, PopForums.Resources.Search, 2421, 27, false);
             WriteLiteral(" />\n\t\t\t\t<div id=\"ToResultList\">\n\t\t\t\t\t<ul id=\"ToList\" class=\"list-unstyled\"></ul>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"modal-footer\">\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Close</button>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n");
             EndContext();
             BeginContext(2702, 1000, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91e6816e53c24ea0aea0ff8485eebad0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "52e8f3fe26064441b5c3becb5fdc0498", async() => {
                 BeginContext(2722, 196, true);
                 WriteLiteral("\n\t<input type=\"hidden\" id=\"UserIDs\" name=\"UserIDs\"/>\n\t<div role=\"form\">\n\t\t<div class=\"form-group\">\n\t\t\t<label><input type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#ToModal\"");
                 EndContext();

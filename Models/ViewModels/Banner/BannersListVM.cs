@@ -22,6 +22,8 @@ namespace Models.ViewModels
 
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
+        public bool IsApproved { get; set; }
+        public bool IsDeleted { get; set; }
 
         [JsonProperty("dateCreated")]
         public DateTime DateCreated { get; set; }

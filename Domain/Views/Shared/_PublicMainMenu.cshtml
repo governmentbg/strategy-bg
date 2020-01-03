@@ -1,0 +1,28 @@
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+    string controller = (string)ViewBag.controllerName ?? "";
+}
+
+<li class="@if(controller == "PublicConsultation"){<text>active</text>}">
+    <a href="@Url.Action("Index","PublicConsultation", new { area = "" })">@Localizer["MENU_PUBLIC_CONSULTATIONS"]</a>
+</li>
+<li class="@if(controller == "StrategicDocument"){<text>active</text>}">
+    <a href="@Url.Action("Index","StrategicDocument", new { area = "" })">@Localizer["MENU_STRATEGIC_DOCUMENTS"]</a>
+</li>
+
+<li class="@if(new string[]{"MulticriteriaAnalysis","OVPage","StandartForms","MSprogram"}.Contains(controller) ){<text>active</text>}">
+    <a href="@Url.Action("LawPrograms","MSprogram", new { area = "" })">@Localizer["SECTION_ASSESSMENT"]</a>
+</li>
+
+<li class="@if(controller == "Publication"){<text>active</text>}">
+    <a href="@Url.Action("Index","Publication", new { area = "" })">@Localizer["MENU_PUBLICATIONS"]</a>
+</li>
+<li class="@if(controller == "News"){<text>active</text>}">
+    <a href="@Url.Action("Index","News", new { area = "" })">@Localizer["MENU_NEWS"]</a>
+</li>
+<li class="@if(controller == "Forums"){<text>active</text>}">
+    <a href="@Url.Action("Index","Forums", new { area = "" })">@Localizer["MENU_FORUM"]</a>
+</li>
+<li class="@if(controller == "Ogp"){<text>active</text>}">
+    <a href="@Url.Action("Index","Article", new { area = "" })">@Localizer["MENU_OGP"]</a>
+</li>

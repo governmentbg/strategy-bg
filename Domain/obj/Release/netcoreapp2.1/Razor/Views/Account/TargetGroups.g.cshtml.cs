@@ -63,8 +63,23 @@ using Models.Context;
 
 #line default
 #line hidden
+#line 11 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Domain.Class;
+
+#line default
+#line hidden
+#line 12 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc.Localization;
+
+#line default
+#line hidden
+#line 13 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Microsoft.Extensions.Localization;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e4452609d4683f3b362f1be21c5a0807522419e5", @"/Views/Account/TargetGroups.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d7a9a60c20537480d66fd9d2d41d1eec08c8ef00", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3bf1412ad68915763abac5573310d172851b2661", @"/Views/_ViewImports.cshtml")]
     public class Views_Account_TargetGroups : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Profile", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -111,7 +126,7 @@ using Models.Context;
             WriteLiteral("</h3>\r\n<a href=\"#\" onclick=\"addTargetGroup(); return false;\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i> Добави целева група</a>\r\n<table id=\"mainTable\" class=\"table\" cellspacing=\"0\"></table>\r\n");
             EndContext();
             BeginContext(358, 35, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "410e6961427d45fc8858e800cc0ac8f7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1341a62f3b04897a2a4aa76c83e292c", async() => {
                 BeginContext(382, 7, true);
                 WriteLiteral("Обратно");
                 EndContext();

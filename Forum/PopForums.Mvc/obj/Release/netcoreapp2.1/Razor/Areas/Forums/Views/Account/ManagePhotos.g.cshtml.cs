@@ -119,7 +119,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(466, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3185dc8820343b6b74c72cf23667462", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bf9a8ca9494c4648b144ff3349f1e03c", async() => {
                 BeginContext(527, 26, false);
 #line 13 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\ManagePhotos.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);
@@ -174,7 +174,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral(" <span class=\"caret\"></span></a>\n\t\t\t<ul class=\"dropdown-menu\" role=\"menu\">\n\t\t\t\t<li>");
             EndContext();
             BeginContext(805, 68, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fd5e5abb259c494d920918005a168897", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "72012611ef684e58ab566b3676df6a14", async() => {
                 BeginContext(834, 35, false);
 #line 18 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\ManagePhotos.cshtml"
                                            Write(PopForums.Resources.EditYourProfile);
@@ -200,7 +200,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t\t\t<li>");
             EndContext();
             BeginContext(887, 73, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32d222b4528a4374a86dcdbaf138e94d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "714be6753e204523be42c5975e7c18ee", async() => {
                 BeginContext(913, 43, false);
 #line 19 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\ManagePhotos.cshtml"
                                         Write(PopForums.Resources.ChangeYourEmailPassword);
@@ -226,7 +226,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t\t\t<li>");
             EndContext();
             BeginContext(974, 70, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "609ff7b8c2bb46cdaa82702341c081dc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ecde5a39349d44d98db4822ea2ec4e60", async() => {
                 BeginContext(1006, 34, false);
 #line 20 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\ManagePhotos.cshtml"
                                               Write(PopForums.Resources.ExternalLogins);
@@ -252,7 +252,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t\t</ul>\n\t\t</li>\n\n\t</ul>\n</div>\n\n");
             EndContext();
             BeginContext(1083, 1327, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "36da7888296245e8beca84d0e8809fd6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ad23bb958f5b4f6aadafca90fb140d49", async() => {
                 BeginContext(1171, 6, true);
                 WriteLiteral("\n\t<h2>");
                 EndContext();
@@ -296,7 +296,7 @@ WriteAttributeValue("", 1436, Url.Action("Avatar", "Image", new {id = Model.Avat
                 WriteLiteral(" alt=\"Avatar image\" /></p>\n\t<div class=\"checkbox\">\n\t\t<label for=\"DeleteAvatar\">");
                 EndContext();
                 BeginContext(1573, 48, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a2821806279f4286b89b3888711e5ee9", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a75c1194773b433499f1996aaac3049e", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -378,7 +378,7 @@ WriteAttributeValue("", 1936, Url.Action("UserImage", "Image", new {id = Model.I
                 WriteLiteral(" alt=\"User image\" /></p>\n\t<div class=\"checkbox\">\n\t\t<label for=\"DeleteImage\">");
                 EndContext();
                 BeginContext(2072, 46, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5fd6229ca7034fe5840bca4d6ad02cb7", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2f0b8ab0bc5a456bb5334f28957d4686", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

@@ -95,7 +95,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(271, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f8dd334374846ffbdf71b83505d4423", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "94dd8869cb2b4eb1841c67976fa62dec", async() => {
                 BeginContext(332, 26, false);
 #line 9 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\EmailSent.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);

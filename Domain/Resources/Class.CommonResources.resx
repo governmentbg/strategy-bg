@@ -121,22 +121,22 @@
     <value>Начало</value>
   </data>
   <data name="MENU_FORUM" xml:space="preserve">
-    <value>ДНЕС ОБЩЕСТВОТО РЕШАВА</value>
+    <value>Дискусии</value>
   </data>
   <data name="MENU_NEWS" xml:space="preserve">
-    <value>НОВИНИ</value>
+    <value>Новини</value>
   </data>
   <data name="MENU_OGP" xml:space="preserve">
-    <value>ПАРТНЬОРСТВО ЗА ОТКРИТО УПРАВЛЕНИЕ</value>
+    <value>Парньорство за открито управление</value>
   </data>
   <data name="MENU_PUBLICATIONS" xml:space="preserve">
-    <value>ПУБЛИКАЦИИ</value>
+    <value>Публикации</value>
   </data>
   <data name="MENU_PUBLIC_CONSULTATIONS" xml:space="preserve">
-    <value>ОБЩЕСТВЕНИ КОНСУЛТАЦИИ</value>
+    <value>Обществени консултации</value>
   </data>
   <data name="MENU_STRATEGIC_DOCUMENTS" xml:space="preserve">
-    <value>СТРАТЕГИЧЕСКИ ДОКУМЕНТИ</value>
+    <value>Стратегически документи</value>
   </data>
   <data name="NEWS_LAST_EDITED" xml:space="preserve">
     <value>Последна промяна:</value>
@@ -151,19 +151,19 @@
     <value>Фраза за търсене</value>
   </data>
   <data name="SECTION_ASSESSMENT" xml:space="preserve">
-    <value>ОЦЕНКА НА ВЪЗДЕЙСТВИЕТО</value>
+    <value>Оценка на въздействието</value>
   </data>
   <data name="SECTION_LINK_LAW_PROPOSALS" xml:space="preserve">
-    <value>ЗАКОНОДАТЕЛНИ ИНИЦИАТИВИ</value>
+    <value>Законодателни инициативи</value>
   </data>
   <data name="SECTION_LINK_ZNA_PEOPLE" xml:space="preserve">
-    <value>СПИСЪК НА ЛИЦАТА ПО ЗНА</value>
+    <value>Списък на изпълнители по ЗНА</value>
   </data>
   <data name="SECTION_LINK_QUESTIONARY" xml:space="preserve">
-    <value>АНКЕТИ</value>
+    <value>Анкети</value>
   </data>
   <data name="SECTION_OTHER_RESOURCES" xml:space="preserve">
-    <value>ДРУГИ РЕСУРСИ</value>
+    <value>Други ресурси</value>
   </data>
   <data name="TOP_LINK_CONTACTS" xml:space="preserve">
     <value>Контакти</value>
@@ -172,9 +172,72 @@
     <value>Карта на сайта</value>
   </data>
   <data name="TOP_LINK_SUBSCRIBE" xml:space="preserve">
-    <value>Абонирай се</value>
+    <value>Абонаменти</value>
   </data>
   <data name="TOP_LINK_TERMS_OF_USE" xml:space="preserve">
     <value>Условия за ползване</value>
+  </data>
+  <data name="FILTER_AREA" xml:space="preserve">
+    <value>Област</value>
+  </data>
+  <data name="FILTER_BY_NAME" xml:space="preserve">
+    <value>Търсене по наименование</value>
+  </data>
+  <data name="FILTER_CATEGORY" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="FILTER_MUNICIPALITY" xml:space="preserve">
+    <value>Община</value>
+  </data>
+  <data name="FILTER_SHOW" xml:space="preserve">
+    <value>Покажи</value>
+  </data>
+  <data name="PC_FILTER_MASTER_CATEGORY" xml:space="preserve">
+    <value>Тип на консултацията</value>
+  </data>
+  <data name="SD_BUTTON_EXPORT" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="SD_FILTER_MASTER_CATEGORY" xml:space="preserve">
+    <value>Тип на документа</value>
+  </data>
+  <data name="OLD_SITE" xml:space="preserve">
+    <value>Стар сайт</value>
+  </data>
+  <data name="OTHERS_AND_PORTAL" xml:space="preserve">
+    <value>Другите и портала</value>
+  </data>
+  <data name="PORTAL_INFORMATION" xml:space="preserve">
+    <value>Информация за портала</value>
+  </data>
+  <data name="MS_PROGRAM_LAW" xml:space="preserve">
+    <value>Законодателни програми</value>
+  </data>
+  <data name="MS_PROGRAM_OP" xml:space="preserve">
+    <value>Оперативни програми</value>
+  </data>
+  <data name="MS_PROGRAM_PROJECTS_TO" xml:space="preserve">
+    <value>Проекти към програма</value>
+  </data>
+  <data name="CP_BUTTON_NEW" xml:space="preserve">
+    <value>Направи инициатива</value>
+  </data>
+  <data name="BTN_Clear" xml:space="preserve">
+    <value>Изчисти</value>
+  </data>
+  <data name="BTN_SEND" xml:space="preserve">
+    <value>Изпрати съобщението</value>
+  </data>
+  <data name="CP_NEW_TITLE" xml:space="preserve">
+    <value>Нова законодателна инициатива</value>
+  </data>
+  <data name="CP_TITLE" xml:space="preserve">
+    <value>Законодателни инициативи</value>
+  </data>
+  <data name="NOTFOUND_CONTENT" xml:space="preserve">
+    <value>Търсеното от Вас съдържание не е намерено или не е активно.</value>
+  </data>
+  <data name="NOTFOUND_TITLE" xml:space="preserve">
+    <value>Ненамерено съдържание</value>
   </data>
 </root>

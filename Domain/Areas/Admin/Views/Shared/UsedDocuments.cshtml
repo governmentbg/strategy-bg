@@ -52,7 +52,7 @@
     }
 
     function chooseFile() {
-        var uploadUrl = "@Html.Raw(Url.Action("UploadFile","FileCdn",new { area = "",sourceType = GlobalConstants.SourceTypes.Library_Documents, sourceId = 0, directUploadMethod = "libSelectDocument", stUsed=Model.SourceType }))";
+        var uploadUrl = "@Html.Raw(Url.Action("UploadFile","FileCdn",new { sourceType = GlobalConstants.SourceTypes.Library_Documents, sourceId = 0, directUploadMethod = "libSelectDocument", stUsed=Model.SourceType }))";
         ShowDialogFromAction('Добави', uploadUrl);
     }
     function libSelectDocument(fileId, fileTitle) {

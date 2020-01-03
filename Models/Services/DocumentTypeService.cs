@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Models.Context;
+using Models.Context.Consultations;
 using Models.Contracts;
 using Models.ViewModels;
 using System;
@@ -20,7 +21,7 @@ namespace Models.Services
         }
         public IQueryable<DocumentTypeListVM> GetDocumentTypeList()
         {
-            return All<DocumentType>()
+            return All<ConsultationDocumentType>()
                 .Select(d => new DocumentTypeListVM()
                 {
                     Id = d.Id,
@@ -31,7 +32,7 @@ namespace Models.Services
 
         public DocumentTypeVM GetItem(int id)
         {
-            return All<DocumentType>()
+            return All<ConsultationDocumentType>()
                 .Where(d => d.Id == id)
                 .Select(d => new DocumentTypeVM()
                 {
@@ -45,13 +46,13 @@ namespace Models.Services
         public bool SaveItem(DocumentTypeVM model)
         {
             var result = false;
-            DocumentType entity = null;
+            ConsultationDocumentType entity = null;
 
             try
             {
                 if (model.Id > 0)
                 {
-                    entity = All<DocumentType>().Find(model.Id);
+                    entity = All<ConsultationDocumentType>().Find(model.Id);
 
                     if (entity != null)
                     {
@@ -61,14 +62,14 @@ namespace Models.Services
                 }
                 else
                 {
-                    entity = new DocumentType()
+                    entity = new ConsultationDocumentType()
                     {
                         IsActive = model.IsActive,
                         Label = model.Label,
                         DateCreated = DateTime.Now
                     };
 
-                    db.DocumentTypes.Add(entity);
+                    db.ConsultationDocumentTypes.Add(entity);
                 }
 
                 if (entity != null)

@@ -91,7 +91,7 @@ Write(PopForums.Resources.CategoryEditTitle);
             WriteLiteral("</h3>\n\n");
             EndContext();
             BeginContext(66, 328, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4e02da98ebbe4f6a95824d17583b01e2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1f431558ae24495ac48ee1c48aee50c", async() => {
                 BeginContext(156, 36, true);
                 WriteLiteral("\n\t<input type=\"text\" name=\"newTitle\"");
                 EndContext();

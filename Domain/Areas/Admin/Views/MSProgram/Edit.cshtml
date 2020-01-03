@@ -1,0 +1,55 @@
+﻿@model Models.Context.Consultations.MSProgram
+@{
+    switch (Model.ProgramTypeId)
+    {
+        case GlobalConstants.MSProgramTypes.Zakonodatelna:
+            ViewData["Title"] = "Законодателна програма";
+            break;
+        case GlobalConstants.MSProgramTypes.Operativna:
+            ViewData["Title"] = "Оперативна програма";
+            break;
+    }
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            <form asp-action="@ViewBag.actionName">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="ProgramTypeId" type="hidden" />
+                <input asp-for="LanguageId" type="hidden" />
+                <partial name="LangView" model="@Model.LanguageId" />
+
+                <textbox for="Title" type="textarea"></textbox>
+                <date-picker for="DateFrom"></date-picker>
+                <date-picker for="DateTo"></date-picker>
+                <textbox for="Description" type="textarea" edit-class="summernote"></textbox>
+                <checkbox for="IsActive" text-class="label label-primary"></checkbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" asp-route-type="@Model.ProgramTypeId" asp-route-lang="@Model.LanguageId" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    @if (Model.Id > 0)
+    {
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Прикачени документи</h4>
+                <partial name="UsedDocuments" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.MSPRogram, SourceID = Model.Id.ToString() })" />
+            </div>
+        </div>
+    }
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            var snEditor = $('#Description').summernote();
+        });
+    </script>
+}
+

@@ -51,6 +51,19 @@ namespace WebCommon.Extensions
             return new SelectList(source, "Value", "Text", selected);
         }
 
+        public static IEnumerable<SelectListItem> DecodeIfNeeded(this IEnumerable<SelectListItem> source)
+        {
+            if (source == null)
+            {
+                return null;
+            }
+            foreach (var item in source)
+            {
+                item.Text = item.Text.DecodeIfNeeded();
+            }
+            return source;
+        }
+
         public static IEnumerable<SelectListItem> AddAllItem(
          this IEnumerable<SelectListItem> source, string allText = "Изберете", string allValue = "-1")
         {

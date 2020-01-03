@@ -10,14 +10,15 @@
 
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-3">
-            <partial name="_OgpLeftMenu" model="@("91023")" />
-        </div>
+
         <div class="col-md-9 body">
             <h2>
                 @ViewData["SectionTitle"]
             </h2>
             <div id="calendar"></div>
+        </div>
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
         </div>
     </div>
 </div>

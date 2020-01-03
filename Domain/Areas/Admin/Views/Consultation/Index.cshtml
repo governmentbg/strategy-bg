@@ -28,12 +28,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Покажи</label>
+                    <label>Валидност</label>
                     @Html.DropDownList("validState", (IEnumerable<SelectListItem>)ViewBag.validStates, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
                     <label>Вид на консултирания акт</label>
                     @Html.DropDownList("docType", (IEnumerable<SelectListItem>)ViewBag.docType, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Покажи</label>
+                    <select id="activeOnly" class="form-control">
+                        <option value="true" selected>Само активни</option>
+                        <option value="false">Всички</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -44,7 +51,7 @@
     <script>
     $(function () {
         $('#CategoryMasterId').change(function () {
-            if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+            if ($(this).val() === '@GlobalConstants.Categories.Type_National') {
                 $('#natCat').show();
                 $('#districtCat').hide();
             } else {
@@ -84,6 +91,7 @@
                      }
                      d.validState = $('#validState').val();
                      d.docType = $('#docType').val();
+                     d.activeOnly = $('#activeOnly').val();
                  },
                  "type": "POST"
              },
@@ -139,14 +147,11 @@
                      searchable: false
                  }
              ]
-             //rowCallback: function (row, data) {
-             //    if (data["isActive"] === false) {
-             //        $(row).addClass("disabled");
-             //    }
-             //    if (data["isConfirmed"] === false) {
-             //        $(row).addClass("unconfirmed");
-             //    }
-             //}
+             ,rowCallback: function (row, data) {
+                 if (data["isActive"] == false) {
+                     $(row).addClass("disabled");
+                 }                 
+             }
         });
         //$('#cboxActive, #cboxConfirmed').change(function () {
         //    dt.ajax.reload();

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<SelectListItem>
+@inject Models.Contracts.IArticleService articleService
+<div class="aside row">   
+
+    <ul class="list--default">
+        @foreach (var cat in Model.Where(x=>x.Value != "-1"))
+        {
+            <li class="@if (cat.Selected) { <text>active</text>}"><a asp-action="Index" asp-controller="Publication" asp-route-category="@cat.Value" >@Html.Raw(cat.Text)</a></li>
+        }
+    </ul>
+    
+</div>

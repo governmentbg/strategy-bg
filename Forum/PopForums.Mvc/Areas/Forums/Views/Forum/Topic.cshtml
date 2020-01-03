@@ -8,13 +8,13 @@
     var profile = UserRetrievalShim.GetProfile(Context);
 }
 @{
-    ViewData["Title"] = "Днес обществото решава";
+    ViewData["Title"] = "Дискусии";
     ViewData["SectionTitle"] = ViewData["Title"];
 }
 @section breadcrumbs{
 <div class="breadcrumbs">
     / <a href="@Url.Action("Index","Home")">Начало</a>
-    / <a asp-controller="@HomeController.Name" asp-action="Index">Днес обществото решава</a>
+    / <a asp-controller="@HomeController.Name" asp-action="Index">Дискусии</a>
     / <a asp-controller="Forum" asp-action="Index" asp-route-urlName="@Model.Forum.UrlName" asp-route-page="">@Model.Forum.Title</a>
     / @Model.Topic.Title
 

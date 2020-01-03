@@ -1,20 +1,21 @@
 ﻿@using Models.Context
 @model GenericContent
+@inject IStringLocalizer<CommonResources> Localizer
 @{
-    ViewData["SectionTitle"] = Model.Title;
+    ViewData["SectionTitle"] = Localizer["MENU_OGP"];
 }
 @section breadcrumbs{
-    <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        
-    </div>
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="@Url.Action("Index","Article")">@Localizer["MENU_OGP"]</a>
+    / <a href="#">@Html.Raw(Model.Title)</a>
+
+</div>
 }
 
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-3">
-            <partial name="_OgpLeftMenu" model="@("91023")" />
-        </div>
+
         <div class="col-md-9 body">
             <h2>
                 @Html.Raw(Model.Title)
@@ -22,6 +23,9 @@
             <p class="title">
                 @Html.Raw(Model.Text)
             </p>
+        </div>
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
         </div>
     </div>
 </div>

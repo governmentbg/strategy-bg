@@ -63,8 +63,23 @@ using Models.Context;
 
 #line default
 #line hidden
+#line 11 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Domain.Class;
+
+#line default
+#line hidden
+#line 12 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc.Localization;
+
+#line default
+#line hidden
+#line 13 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Microsoft.Extensions.Localization;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c9191c98a2075cbbaa12d193b9890f88730b2191", @"/Views/FileCdn/SelectImageForInsert.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d7a9a60c20537480d66fd9d2d41d1eec08c8ef00", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3bf1412ad68915763abac5573310d172851b2661", @"/Views/_ViewImports.cshtml")]
     public class Views_FileCdn_SelectImageForInsert : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Models.ViewModels.ImageSelectVM>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "hidden", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -97,7 +112,7 @@ using Models.Context;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             BeginContext(40, 40, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "80b3055a3f3b47cb91e84ee1ceca4b55", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2816ce5771974dc68943970bf2f5d613", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -132,12 +147,12 @@ WriteAttributeValue("", 147, Html.Raw(Url.Action("ViewImage","FileCdn",new { id=
             WriteLiteral(" />\r\n    </div>\r\n    <div class=\"col-lg-6\">\r\n        ");
             EndContext();
             BeginContext(276, 219, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "78abc4909cd04ce3a56dc39e437fa7c8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3808b1a550b4a49af9cc5e730645640", async() => {
                 BeginContext(323, 14, true);
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(337, 29, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textbox", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cb8c977f3fb34e78b0b2b12e020ceaab", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textbox", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "667d959aad834ebd92c0e01bf2d0deb9", async() => {
                 }
                 );
                 __WebCommon_TagHelpers_TextBoxTagHelper = CreateTagHelper<global::WebCommon.TagHelpers.TextBoxTagHelper>();
@@ -160,7 +175,7 @@ __WebCommon_TagHelpers_TextBoxTagHelper.For = ModelExpressionProvider.CreateMode
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(380, 52, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("ddl", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5f59356bafa340c3a7bab394de784723", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("ddl", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "126be0b46c8e4b3fbceccd421159e454", async() => {
                 }
                 );
                 __WebCommon_TagHelpers_DropDownListTagHelper = CreateTagHelper<global::WebCommon.TagHelpers.DropDownListTagHelper>();
@@ -189,7 +204,7 @@ __WebCommon_TagHelpers_DropDownListTagHelper.Data = ViewBag.positions;
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(446, 32, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textbox", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2384e5625f884692b0b92f9c4d5b08b9", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textbox", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fdcee2c347804dfb9caf5e53eb9716f8", async() => {
                 }
                 );
                 __WebCommon_TagHelpers_TextBoxTagHelper = CreateTagHelper<global::WebCommon.TagHelpers.TextBoxTagHelper>();

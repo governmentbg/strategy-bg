@@ -1,25 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Партньорство за открито управление";
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+    ViewData["Title"] = Localizer["MENU_OGP"];
     ViewData["SectionTitle"] = ViewData["Title"];
 }
 @section breadcrumbs{
-    <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="@Url.Action("Index")">Новини и събития</a>
-        @if (ViewBag.category > 0)
-        {
-            <text> / @ViewBag.categoryName</text>
-        }
-    </div>
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="@Url.Action("Index","Article")">@Localizer["MENU_OGP"]</a>
+    / <a href="@Url.Action("Index")">Новини и събития</a>
+    @if (ViewBag.category > 0)
+    {
+        <text> / @Html.Raw(ViewBag.categoryName)</text>
+    }
+</div>
 }
 
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-2">
-            <partial name="_OgpLeftMenu" model="@("91023")" />
+        <div class="col-md-3">
+            <partial name="_OgpAgenda" />
         </div>
-        <div class="col-md-10">
-            <div id="gridview"></div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 body cat-combos search-form-container round-right">
+                    <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                        <label>Търсене по наименование</label>
+                        @Html.TextBox("searchTerm", "", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div>
+                    <table id="mainTable" class="table" cellspacing="0"></table>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
         </div>
     </div>
 </div>
@@ -27,9 +44,90 @@
 
 
 @section scripts{
+    <style>
+        table#mainTable {
+            min-width: unset;
+        }
+
+        .dt-article-item div.list-image {
+            min-width: 55px;
+        }
+    </style>
     <script>
         $(function () {
-            $('#gridview').gridView({
+            var _dt;
+            $('.cat-combos input').keyup(function () {
+                setTimeout(function () {
+                    //setBreadcrumb();
+                    _dt.ajax.reload();
+                }, 100);
+            });
+             setTimeout(function () {
+                //setBreadcrumb();
+                _dt  = $('#mainTable').DataTable({
+                     "ajax": {
+                         "url": '@Url.Action("LoadData")',
+                         data: function (d) {
+                             d.categoryId =@(ViewBag.category);
+                             d.searchTerm = $('#searchTerm').val();
+                         },
+                         "type": "POST"
+                     },
+                     fnDrawCallback: function (settings) {
+                         $('.dataTables_paginate').toggle(settings.fnRecordsDisplay() > 0);
+                     },
+                    filter: false,
+                    "pageLength": 10,
+                    "order": [[0, "asc"]],
+                     "columns": [
+                         {
+                             data: "title",
+                             name: 'title',
+                             title: 'Наименование',
+                             render: function (data, type, item, meta) {
+                                 var url = '@Url.Action("View",new { id = "123"})'.replace('123', item.id);
+                                 var target = '_self';
+                                 if (item.rssPostLink) {
+                                     url = item.rssPostLink;
+                                     var target = '_blank';
+                                 }
+                                 var content = '<table><tr><td><a href="' + url + '" class="dt-article-item" target="' + target+'">' ;
+                                 var textClass = "";
+                                 if (item.mainImageFileId) {
+                                     content += '<div class="list-image">';
+                                     var imgUrl = '@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs,max=50})+"&sourceId")=' + item.mainImageFileId;
+                                     content += '<img src="' + imgUrl + '" /></div></a></td><td><a href="' + url + '" class="dt-article-item">';
+                                     textClass="has-image";
+                                 }
+                                 content += '<div class="' + textClass + '">' + unescape(item.title) + '<br/><div class="pull-left"><b>' + item.eventDateTXT+ '</b></div></div>';
+                                 content += '</a></td></tr></table>';
+
+                                 return content;
+                             },
+                             sortable: true
+                         },
+
+                         {
+                             data: "categoryName",
+                             name: "categoryName",
+                             title: 'Категория',
+                             className: "dt-head-center",
+                              render: function (data, type, item, meta) {
+                                  var catUrl = '@(Url.Action("Index"))?category='+item.categoryId;
+                                  var a = '<a href="' + catUrl + '">&nbsp;' + item.categoryName;
+                                  return a;
+                             },
+                             sortable: true
+                         }
+                        ]
+                });
+            }, 200);
+
+
+
+
+
+            @*$('#gridview').gridView({
                 url: '@(Url.Action("LoadDataGrid"))',
                 data: { category:@(ViewBag.category)},
                 size_selector: false,
@@ -37,25 +135,25 @@
                 lang:'@ViewBag.lang',
                 template: '#articleTemplate',
                 empty_text: 'Няма намерени елементи.'
-            });
+            });*@
         });
     </script>
-    <script type="text/x-handlebars-template" id="articleTemplate">
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <article class="article--news image--left">
-                <a {{#if isRss}} href="{{rssPostLink}}" target="_blank" {{else}} href="@Url.Action("View")?id={{id}}" {{/if}}>
-                    {{#if mainImageFileId}}
-                    <div class="image">
-                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs,max=75})+"&sourceId")={{mainImageFileId}}">
-                    </div>
-                    {{/if}}
-                    <h4 class="title">
-                        {{{title}}}
-                    </h4>
-                    <p class="date">{{eventDateTXT}}</p>
-                </a>
-                <p class="type"><i class="fa fa-folder" title="Категория"></i>&nbsp;<a href="@Url.Action("Index")?category={{categoryId}}" title="Преглед на всички статии в категория: {{{categoryName}}}">{{{categoryName}}}</a></p>
-            </article>
-        </div>
-    </script>
+    @*<script type="text/x-handlebars-template" id="articleTemplate">
+            <div class="col-md-12">
+                <article class="article--news image--left">
+                    <a {{#if isRss}} href="{{rssPostLink}}" target="_blank" {{else}} href="@Url.Action("View")?id={{id}}" {{/if}}>
+                        {{#if mainImageFileId}}
+                        <div class="image">
+                            <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs,max=75})+"&sourceId")={{mainImageFileId}}">
+                        </div>
+                        {{/if}}
+                        <h4 class="title">
+                            {{{title}}}
+                        </h4>
+                        <p class="date">{{eventDateTXT}}</p>
+                    </a>
+                    <p class="type"><i class="fa fa-folder" title="Категория"></i>&nbsp;<a href="@Url.Action("Index")?category={{categoryId}}" title="Преглед на всички статии в категория: {{{categoryName}}}">{{{categoryName}}}</a></p>
+                </article>
+            </div>
+        </script>*@
 }

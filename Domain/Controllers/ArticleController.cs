@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataTables.AspNet.AspNetCore;
+using DataTables.AspNet.Core;
+using Microsoft.AspNetCore.Mvc;
 using Models.Contracts;
 using Models.ViewModels;
 using Models.ViewModels.Ogp;
@@ -27,6 +29,15 @@ namespace Domain.Controllers
                 ViewBag.categoryName = service.ArticleCategories_GetById(category)?.Name;
             }
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult LoadData(IDataTablesRequest request, int? categoryId, string searchTerm)
+        {
+            string sanitizedSearch = searchTerm.EmptyToNull();
+            var data = service.Article_Select(categoryId.EmptyToNull(), searchTerm.EmptyToNull());
+            var response = request.GetResponse(data, data);
+            return new DataTablesJsonResult(response, true);
         }
 
         [HttpPost]

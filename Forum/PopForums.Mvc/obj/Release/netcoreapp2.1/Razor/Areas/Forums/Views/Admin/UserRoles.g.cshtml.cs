@@ -137,7 +137,7 @@ WriteAttributeValue("", 413, PopForums.Resources.CreateNewRole, 413, 34, false);
 #line default
 #line hidden
             BeginContext(726, 36, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0aad23427b64bd3876e29fb29869a05", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5e0ea813b4804c9dbd00db91fcc3a525", async() => {
                 BeginContext(749, 4, false);
 #line 24 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Admin\UserRoles.cshtml"
                                   Write(role);

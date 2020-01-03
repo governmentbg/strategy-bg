@@ -117,7 +117,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(393, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f8530bffca934f8b8df98625de32c77d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b7b6692dd2f94598923683f347711999", async() => {
                 BeginContext(454, 26, false);
 #line 11 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\Security.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);
@@ -172,7 +172,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral(" <span class=\"caret\"></span></a>\n\t\t\t<ul class=\"dropdown-menu\" role=\"menu\">\n\t\t\t\t<li>");
             EndContext();
             BeginContext(743, 68, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8e2e9c6e80b146c3b3c681668c59d7d9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d47ef265872f41aa91c92a732dd713d0", async() => {
                 BeginContext(772, 35, false);
 #line 16 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\Security.cshtml"
                                            Write(PopForums.Resources.EditYourProfile);
@@ -198,7 +198,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t\t\t<li>");
             EndContext();
             BeginContext(825, 70, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a3a0ba3fe8e840ccb397bf537e6dc3ca", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82146302eed743569dea953e061369cc", async() => {
                 BeginContext(855, 36, false);
 #line 17 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\Security.cshtml"
                                             Write(PopForums.Resources.ManageYourPhotos);
@@ -224,7 +224,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t\t\t<li>");
             EndContext();
             BeginContext(909, 70, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97d8286f1a8d4bdfb7c86ddae21827e9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "508193d6bd8a4b299f62f54081fa5a36", async() => {
                 BeginContext(941, 34, false);
 #line 18 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\Security.cshtml"
                                               Write(PopForums.Resources.ExternalLogins);
@@ -250,7 +250,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t\t</ul>\n\t\t</li>\n\n\t</ul>\n</div>\n\n");
             EndContext();
             BeginContext(1018, 869, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1f3a51a9a2dc4208a11074be89072d21", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e76c28129bb4d42a7bd878d67fbb7c4", async() => {
                 BeginContext(1078, 30, true);
                 WriteLiteral("\n\t<div class=\"form-group\"><h2>");
                 EndContext();
@@ -350,7 +350,7 @@ WriteAttributeValue("", 1711, PopForums.Resources.ChangePassword, 1711, 35, fals
             WriteLiteral("\n\n");
             EndContext();
             BeginContext(1889, 930, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "43c1f1b691b14892bc3299eeae7e7b6a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ec99d3e0c25f4daaa7c5f0a6eab9ea44", async() => {
                 BeginContext(1946, 33, true);
                 WriteLiteral("\n\t<div class=\"form-group\">\n\t\t<h2>");
                 EndContext();

@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
+using static WebCommon.CommonConstants;
 
 namespace WebCommon.Services
 {
@@ -33,6 +34,22 @@ namespace WebCommon.Services
                 if (this.user != null)
                 {
                     var val = this.user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value;
+                    if (!string.IsNullOrEmpty(val))
+                    {
+                        result = int.Parse(val);
+                    }
+                }
+                return result;
+            }
+        }
+        public int UserTypeId
+        {
+            get
+            {
+                int result = 0;
+                if (this.user != null)
+                {
+                    var val = this.user.Claims.FirstOrDefault(c => c.Type == CustomClaims.UserType)?.Value;
                     if (!string.IsNullOrEmpty(val))
                     {
                         result = int.Parse(val);

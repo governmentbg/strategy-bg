@@ -9,5 +9,6 @@ namespace Models.ViewModels.Ogp
         public PlanItemVM Plan { get; set; }
         public PlanItemVM Parent { get; set; }
         public IEnumerable<PlanItemVM> SubElements { get; set; }
+       
     }
 }

@@ -31,9 +31,9 @@
                         title: 'Област',
                         render: function (item) {
                             switch (item.categoryParent) {
-                                case @(GlobalConstants.Category.Type_District) :
+                                case @(GlobalConstants.Categories.Type_District) :
                                     return 'обл. '+item.categoryName;
-                                case @(GlobalConstants.Category.Type_Municipal) :
+                                case @(GlobalConstants.Categories.Type_Municipal) :
                                     return 'общ. '+item.categoryName;
                                 default:
                                     return item.categoryName;

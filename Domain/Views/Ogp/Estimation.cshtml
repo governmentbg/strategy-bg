@@ -1,11 +1,13 @@
 ﻿@using Models.ViewModels.Ogp
+@inject IStringLocalizer<CommonResources> Localizer
 @model EstimationVM
 @{
-    ViewData["SectionTitle"] = Model.Title;
+    ViewData["SectionTitle"] = Localizer["MENU_OGP"];
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
         / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","Article")">@Localizer["MENU_OGP"]</a>
         / <a href="@Url.Action("Element",new { id = Model.ElementId})">
             @Html.Raw(Model.ElementName)
         </a>
@@ -14,9 +16,7 @@
 
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-3">
-            <partial name="_OgpLeftMenu" model="@("91023")" />
-        </div>
+
         <div class="col-md-9 body">
             <h2>
                 @Html.Raw(Model.Title)
@@ -29,6 +29,9 @@
             </p>
             @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.PlanEstimations, sourceId = Model.Id })
 
+        </div>
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@ namespace Domain.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string bannerType)
         {
-            IEnumerable<BannersListVM> model = await bannerService.GetBannersList(1, this.Lang)
+            IEnumerable<BannersListVM> model = await bannerService.GetBannersList(1, this.Lang).Where(x => x.IsApproved && !x.IsDeleted)
                 .Where(x => x.BannerType == bannerType)
                 .ToListAsync();
 

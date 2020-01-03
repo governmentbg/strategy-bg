@@ -11,7 +11,7 @@ namespace Models.Contracts
     public interface IPublicationService : IBaseService
     {
         IEnumerable<TextValueVM> PublicationCategories_SelectCombo(int lang = GlobalConstants.LangBG);
-        IQueryable<ArticleListAdminVM> Publication_AdminSelect(DateTime? dateFrom, DateTime? dateTo, int? category, string term, int active=-1);
+        IQueryable<ArticleListAdminVM> Publication_AdminSelect(DateTime? dateFrom, DateTime? dateTo, int? category, string term, bool activeOnly);
 
         PublicationCategories PublicationCategories_GetById(int id);
 

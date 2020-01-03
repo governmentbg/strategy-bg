@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using WebCommmon.Controllers;
 using WebCommon.Services;
+using static Models.GlobalConstants;
 
 namespace Domain.Areas.Admin.Controllers
 {
@@ -22,8 +23,7 @@ namespace Domain.Areas.Admin.Controllers
   /// Public Consultation Subjects
   /// </summary>
   [Area(nameof(Admin))]
-  [Authorize(Roles = GlobalConstants.Roles.Admin)]
-  public class PCSubjectsController : BaseController
+  public class PCSubjectsController : BaseAdminController
   {
     private readonly IPCSubjectsService PCSubjectsService;
     private readonly IUserContext userContext;
@@ -87,6 +87,7 @@ namespace Domain.Areas.Admin.Controllers
     [ValidateAntiForgeryToken]
     public IActionResult EditPCSubjects(PCSubjectsViewModel model)
     {
+      int logState = 0;
       SetSavedMessage = false;
       SetComboViewBags(false);
 
@@ -94,11 +95,21 @@ namespace Domain.Areas.Admin.Controllers
       {
         return View("EditPCSubjects", model);
       }
-
+      if (model.Id == 0)
+      { logState = SiteLogAction.Add; }
+      else
+      {
+        logState = SiteLogAction.Edit;
+ 
+      }
       SetSavedMessage = PCSubjectsService.SavePCSubjects(model);
 
       if (SetSavedMessage)
       {
+   
+          SaveSiteLog(SiteLogTableNames.PCSubjects, logState, model.Id,true, model.ActivityDescription);
+   
+
         return RedirectToAction(nameof(EditPCSubjects), new { id = model.Id });
       }
 
@@ -110,8 +121,8 @@ namespace Domain.Areas.Admin.Controllers
       ViewBag.PCSubjectsTypeID_ddl = PCSubjectsService.GetPCSubjectTypesDDL(addAll);
 
       ViewBag.catMasters = PCSubjectsService.GetCategoriesDDL(0, null);
-      ViewBag.catNational = PCSubjectsService.GetCategoriesDDL(GlobalConstants.Category.Type_National, null);
-      ViewBag.catDistrict = PCSubjectsService.GetCategoriesDDL(GlobalConstants.Category.Type_District, null);
+      ViewBag.catNational = PCSubjectsService.GetCategoriesDDL(GlobalConstants.Categories.Type_National, null);
+      ViewBag.catDistrict = PCSubjectsService.GetCategoriesDDL(GlobalConstants.Categories.Type_District, null);
     }
     #endregion
 

@@ -15,12 +15,12 @@ using Models.Context.Legacy;
 using Elastic.Models.Data;
 using System.Text;
 using Elastic.Models.Contracts;
+using static Models.GlobalConstants;
 
 namespace Domain.Areas.Admin.Controllers
 {
     [Area(nameof(Areas.Admin))]
-    [Authorize(Roles = GlobalConstants.Roles.Admin)]
-    public class NewsController : BaseController
+    public class NewsController : BaseAdminController
     {
         private readonly INewsService service;
         private readonly IDataIndexerService dataIndexerService;
@@ -29,25 +29,25 @@ namespace Domain.Areas.Admin.Controllers
             service = _service;
             dataIndexerService = _dataIndexerService;
         }
-        public IActionResult Index(int lang = GlobalConstants.LangBG)
+        public IActionResult Index(int lang = GlobalConstants.LangBG, bool activeOnly = true)
         {
             ViewBag.lang = lang;
             return View();
         }
 
         [HttpPost]
-        public IActionResult LoadData(IDataTablesRequest request, DateTime? dateFrom, DateTime? dateTo, string term, int lang)
+        public IActionResult LoadData(IDataTablesRequest request, DateTime? dateFrom, DateTime? dateTo, string term, int lang, bool activeOnly)
         {
-            var data = service.News_AdminSelect(dateFrom, dateTo, null, term.EmptyToNull()).Where(x => x.LanguageId == lang);
+            var data = service.News_AdminSelect(dateFrom, dateTo, null, term.EmptyToNull(), activeOnly).Where(x => x.LanguageId == lang);
             var filtered = data;
             var response = request.GetResponse(data, filtered);
 
             return new DataTablesJsonResult(response, true);
-        }        
+        }
 
         public IActionResult Add(int lang)
         {
-      var model = new News()
+            var model = new News()
             {
                 LanguageId = lang,
                 IsActive = true,
@@ -60,16 +60,17 @@ namespace Domain.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(News model)
         {
-      model.IsApproved = true;
-      SetViewBag(model);
+            model.IsApproved = true;
+            SetViewBag(model);
             if (!ModelState.IsValid)
             {
                 return View(nameof(Edit), model);
             }
-
-            SetSavedMessage = service.News_SaveData(model);
+    
+      SetSavedMessage = service.News_SaveData(model);
             if (SetSavedMessage)
             {
+                SaveSiteLog(SiteLogTableNames.News, SiteLogAction.Add, model.Id, model.IsApproved, model.Title);
                 //***Indexing in Elastic******************************************************************
                 try
                 {
@@ -94,7 +95,7 @@ namespace Domain.Areas.Admin.Controllers
             model.Title = model.Title.DecodeIfNeeded();
             model.Text = model.Text.DecodeIfNeeded();
 
-      model.IsApproved = true;
+            model.IsApproved = true;
 
             SetViewBag(model);
             return View(model);
@@ -103,14 +104,23 @@ namespace Domain.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(News model)
         {
-      model.IsApproved = true;
+      int logState = SiteLogAction.Edit;
+            model.IsApproved = true;
             SetViewBag(model);
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+    
+        if (model.IsDeleted == true)
+        { logState = SiteLogAction.Delete; }
+    
 
-            this.SetSavedMessage = service.News_SaveData(model);
+      this.SetSavedMessage = service.News_SaveData(model);
+            if (SetSavedMessage)
+            {
+                SaveSiteLog(SiteLogTableNames.News, logState, model.Id, model.IsApproved, model.Title);
+            }
             return View(model);
         }
 

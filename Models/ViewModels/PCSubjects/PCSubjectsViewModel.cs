@@ -14,6 +14,8 @@ namespace Models.ViewModels.PCSubjectsModels
 
     [Display(Name = "Вид на лицето")]
     public int IsUL { get; set; }
+    [Display(Name = "Вид на лицето")]
+    public string sIsUL { get; set; }
 
     [Display(Name = "ЕИК")]
     [StringLength(15, MinimumLength = 9, ErrorMessage = "{0} трябва да е между {2} и {1} символа")]
@@ -77,6 +79,7 @@ namespace Models.ViewModels.PCSubjectsModels
 
       entity.Id = this.Id;
       entity.IsUL = this.IsUL == 1 ? true : false;
+
       entity.EIK = this.EIK;
       entity.Name = this.Name;
       entity.PaymentValue = this.PaymentValue;
@@ -97,6 +100,7 @@ namespace Models.ViewModels.PCSubjectsModels
     {
       Id = entity.Id;
       IsUL = entity.IsUL ? 1 : 0;
+      sIsUL= entity.IsUL ? "Юридическо": "Физическо";
       EIK = entity.EIK;
       Name = entity.Name;
       PaymentValue = entity.PaymentValue;

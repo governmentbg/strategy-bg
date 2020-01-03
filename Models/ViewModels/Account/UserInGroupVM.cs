@@ -11,6 +11,7 @@ namespace Models.ViewModels.Account
         public int GroupUserId { get; set; }
         public string GroupName { get; set; }
         public int UserId { get; set; }
+        
         public string UserFullName { get; set; }
         public string UserEmail { get; set; }
     }

@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Localization
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture.RequestCulture.UICulture.TwoLetterISOLanguageName;
+}
+<script>
+    var currentLang = '@currentCulture';
+</script>
+<form asp-action="SetLanguage" asp-controller="Home" method="post" class="lang-select">
+    <input name="returnUrl" type="hidden" value="@(Html.ViewContext.HttpContext.Request.Path+Html.ViewContext.HttpContext.Request.QueryString)" />
+    @switch (currentCulture)
+    {
+        case "en":
+            <input type="hidden" name="culture" value="bg" />
+            <div class="button--users--flag">
+                <a href="#" data-lang="bg">
+                    &nbsp;&nbsp;
+                    <img src="/images/bulgaria-flag-round-icon-32.png" />
+                    @*<span>Български</span>*@
+                </a>
+            </div>
+            break;
+        default:
+            <input type="hidden" name="culture" value="en" />
+            <div class="button--users--flag">
+                <a href="#" data-lang="en">
+                    &nbsp;&nbsp;
+                    <img src="/images/united-kingdom-flag-round-icon-32.png" />
+                    @*<span>English</span>*@
+                </a>
+            </div>
+            break;
+    }
+</form>

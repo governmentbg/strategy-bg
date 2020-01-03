@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using WebCommon.Extensions;
+using WebCommon.Services;
 
 namespace Models.Services
 {
@@ -21,19 +22,22 @@ namespace Models.Services
     {
         private readonly ILogger logger;
 
-    private readonly IUrlHelper urlHelper;
+        private readonly IUrlHelper urlHelper;
+        private readonly IUserContext userContext;
 
-    public ConsultationService(
-            MainContext context,
-            ILogger<ConsultationService> _logger,
-            IUrlHelper _urlHelper)
-    {
-      this.db = context;
-      logger = _logger;
-      urlHelper = _urlHelper;
-    }
+        public ConsultationService(
+                MainContext context,
+                ILogger<ConsultationService> _logger,
+                IUrlHelper _urlHelper,
+                IUserContext _userContext)
+        {
+            this.db = context;
+            logger = _logger;
+            urlHelper = _urlHelper;
+            userContext = _userContext;
+        }
 
-    public IQueryable<ConsultationListViewModel> GetConsultations()
+        public IQueryable<ConsultationListViewModel> GetConsultations()
         {
             return this.All<PublicConsultation>()
                 .Select(c => new ConsultationListViewModel()
@@ -53,8 +57,17 @@ namespace Models.Services
                             .Include(x => x.InstitutionType)
                             .Include(x => x.LinksCategory)
                             .ThenInclude(l => l.Links)
+                            .Include(x => x.MSProgramProject)
                             .Where(x => x.Id == id).FirstOrDefault();
+
+            if (entity == null)
+            {
+                return null;
+            }
+
             var model = new ConsultationViewModel();
+
+
             model.FromEntity(entity);
 
             model.ParentCategoryName = this.All<Category>()
@@ -67,7 +80,37 @@ namespace Models.Services
 
             return model;
         }
+        public ConsultationViewModel GetConsultationByProject(int id)
 
+        {
+            var entity = this.All<PublicConsultation>()
+                            .Include(x => x.Category)
+                            .Include(x => x.InstitutionType)
+                            .Include(x => x.LinksCategory)
+                            .ThenInclude(l => l.Links)
+                            .Include(x => x.MSProgramProject)
+                            .Where(x => x.MSProgramProjectId == id).FirstOrDefault();
+
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var model = new ConsultationViewModel();
+
+
+            model.FromEntity(entity);
+
+            model.ParentCategoryName = this.All<Category>()
+                .Find(model.ParentCategoryId)
+                ?.CategoryName;
+
+            model.SectionName = this.All<Category>()
+                .Find(model.SectionId)
+                ?.CategoryName;
+
+            return model;
+        }
         public int GetInstitutionTypeId(int userId)
         {
             return All<Users>(u => u.Id == userId)
@@ -110,7 +153,7 @@ namespace Models.Services
 
                     if (entity != null)
                     {
-                        if (model.OpenningDate < entity.DateCreated)
+                        if (model.OpenningDate < entity.DateCreated.Date)
                         {
                             throw new ApplicationException("Openning date can not be before Date Created");
                         }
@@ -150,7 +193,7 @@ namespace Models.Services
             return result;
         }
 
-        public IQueryable<PublicConsultationVM> Portal_List(int langId = GlobalConstants.LangBG, int? validMode = null, int? docType = null)
+        public IQueryable<PublicConsultationVM> Portal_List(int langId = GlobalConstants.LangBG, int? validMode = null, int? docType = null, bool activeOnly = true)
         {
             Expression<Func<PublicConsultation, bool>> whereValid = x => true;
             switch (validMode)
@@ -163,6 +206,12 @@ namespace Models.Services
                     break;
             }
 
+            Expression<Func<PublicConsultation, bool>> whereActive = x => true;
+            if (activeOnly)
+            {
+                whereActive = x => x.IsActive && !x.IsDeleted && x.IsApproved;
+            }
+
             Expression<Func<PublicConsultation, bool>> docTypeFilter = x => true;
 
             if (docType != null)
@@ -171,9 +220,7 @@ namespace Models.Services
             }
 
             return (from pc in All<PublicConsultation>()
-                        .Where(g => g.IsActive)
-                        .Where(g => g.IsApproved)
-                        .Where(g => !g.IsDeleted)
+                        .Where(whereActive)
                         .Where(g => g.LanguageId == langId)
                         .Where(whereValid)
                         .Where(docTypeFilter)
@@ -190,7 +237,8 @@ namespace Models.Services
                             CategorySectionId = x.Category.SectionId,
                             CategoryImagePath = (x.Category.ImagePath == null || x.Category.ImagePath == "") ? "icon_default.png" : x.Category.ImagePath,
                             OpenningDate = x.OpenningDate,
-                            ClosingDate = x.ClosingDate
+                            ClosingDate = x.ClosingDate,
+                            IsActive = (x.IsActive && (!x.IsDeleted) && x.IsApproved)
                         })
                     join c in All<v_Comments_PublicConsultations>() on pc.Id equals c.PublicConsultationId
                     select new PublicConsultationVM()
@@ -204,7 +252,8 @@ namespace Models.Services
                         CategoryImagePath = pc.CategoryImagePath,
                         OpenningDate = pc.OpenningDate,
                         ClosingDate = pc.ClosingDate,
-                        CommentsCount = c.CommentsCount
+                        CommentsCount = c.CommentsCount,
+                        IsActive = pc.IsActive
                     }
                      )
                     .AsQueryable();
@@ -473,11 +522,11 @@ namespace Models.Services
             {
                 entity.DateModified = DateTime.Now;
                 entity.DocumentContent = model.Content;
-                entity.IsFinal = model.IsFinal;
+                entity.IsFinal = true; //model.IsFinal;
                 entity.ModifiedByUserId = userId;
                 entity.Title = model.Title;
                 entity.DocumentTypeId = model.DocumentTypeId;
-                entity.CanComment = model.CanComment;
+                entity.CanComment = true; // model.CanComment;
 
                 db.SaveChanges();
             }
@@ -492,13 +541,13 @@ namespace Models.Services
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
                 DocumentContent = model.Content,
-                IsFinal = model.IsFinal,
+                IsFinal = true, // model.IsFinal,
                 IsLastRevision = true,
                 ModifiedByUserId = userId,
                 PublicConsultationId = model.ConsultationId,
                 RevisionNo = 1,
                 Title = model.Title,
-                CanComment = model.CanComment,
+                CanComment = true, // model.CanComment,
                 DocumentTypeId = model.DocumentTypeId
             };
 
@@ -578,7 +627,8 @@ namespace Models.Services
 
         public List<SelectListItem> GetDocumentTypesDDL()
         {
-            return All<DocumentType>(d => d.IsActive)
+            return All<ConsultationDocumentType>(d => d.IsActive)
+                .OrderBy(t => t.Id)
                 .Select(d => new SelectListItem()
                 {
                     Text = d.Label,
@@ -601,41 +651,169 @@ namespace Models.Services
                      .Count();
 
         }
-    public IQueryable<ConsultationsExportListVM> GetConsultationsListForExport()
-    {
-      var _Url = urlHelper.Action("View", "PublicConsultation", new { area = "" });
+        public IQueryable<ConsultationsExportListVM> GetConsultationsListForExport()
+        {
+            var _Url = urlHelper.Action("View", "PublicConsultation", new { area = "" });
 
-      var result = (from pub_cons in All<PublicConsultation>()
-                               .Where(g => g.IsActive)
-                               .Where(g => g.IsApproved)
-                               .Where(g => !g.IsDeleted)
-                               .Include(x => x.Category)
-                               .OrderByDescending(x => x.OpenningDate)
-                    join docs in All<PublicConsultationDocument>() on pub_cons.Id equals docs.PublicConsultationId
-                    select new ConsultationsExportListVM()
-                    {
-                      Id = pub_cons.Id,
-                      Title = pub_cons.Title,
-                      CategoryId = pub_cons.Category.Id,
-                      CategoryName = pub_cons.Category.CategoryName,
-                      CategoryParentId = pub_cons.Category.ParentId,
-                      CategoryParentName = pub_cons.Category.CategoryName,
-                      CategorySectionId = pub_cons.Category.SectionId,
-                      CategorySectionName = pub_cons.Category.CategoryName,
-                      DocumentTypeId = (docs.DocumentTypeId == null ? 0 : docs.DocumentTypeId.Value),
-                      DocumentType = docs.DocumentType.Label,
-                      OpenningDate = pub_cons.OpenningDate,
-                      ClosingDate = pub_cons.ClosingDate,
-                      InstututionType = (pub_cons.InstitutionType.InstitutionTypeName == null ? "" : pub_cons.InstitutionType.InstitutionTypeName),
-                      InstututionTypeId = (pub_cons.InstitutionType.Id == null ? 0 : pub_cons.InstitutionType.Id),
-                      CommentsCount = pub_cons.Comments.Count,
-                      ShortTermReason = pub_cons.ShortTermReason,
-                      // URL = new Uri($"{Url}/{pub_cons.Id}").ToString()
-                      URL = _Url.ToString() + "/" + pub_cons.Id.ToString()
-                    })
-                  .AsQueryable();
-      return result;
+            var result = (from pub_cons in All<PublicConsultation>()
+                                     .Where(g => g.IsActive)
+                                     .Where(g => g.IsApproved)
+                                     .Where(g => !g.IsDeleted)
+                                     .Include(x => x.Category)
+                                     .OrderByDescending(x => x.OpenningDate)
+                          join docs in All<PublicConsultationDocument>() on pub_cons.Id equals docs.PublicConsultationId
+                          select new ConsultationsExportListVM()
+                          {
+                              Id = pub_cons.Id,
+                              Title = pub_cons.Title,
+                              CategoryId = pub_cons.Category.Id,
+                              CategoryName = pub_cons.Category.CategoryName,
+                              CategoryParentId = pub_cons.Category.ParentId,
+                              CategoryParentName = pub_cons.Category.CategoryName,
+                              CategorySectionId = pub_cons.Category.SectionId,
+                              CategorySectionName = pub_cons.Category.CategoryName,
+                              DocumentTypeId = (docs.DocumentTypeId == null ? 0 : docs.DocumentTypeId.Value),
+                              DocumentType = docs.DocumentType.Label,
+                              OpenningDate = pub_cons.OpenningDate,
+                              ClosingDate = pub_cons.ClosingDate,
+                              InstututionType = (pub_cons.InstitutionType.InstitutionTypeName == null ? "" : pub_cons.InstitutionType.InstitutionTypeName),
+                              InstututionTypeId = (pub_cons.InstitutionType.Id == null ? 0 : pub_cons.InstitutionType.Id),
+                              CommentsCount = pub_cons.Comments.Count,
+                              ShortTermReason = pub_cons.ShortTermReason,
+                              // URL = new Uri($"{Url}/{pub_cons.Id}").ToString()
+                              URL = _Url.ToString() + "/" + pub_cons.Id.ToString()
+                          })
+                        .AsQueryable();
+            return result;
+        }
+
+        public IQueryable<MSProgram> Program_Select(int langId, int type, string title)
+        {
+            return All<MSProgram>().Where(x => x.LanguageId == langId && x.ProgramTypeId == type && x.Title.Contains(title ?? x.Title)).OrderByDescending(x => x.DateFrom);
+        }
+
+        public bool Program_SaveData(MSProgram model)
+        {
+            try
+            {
+                if (model.Id > 0)
+                {
+                    var saved = Find<MSProgram>(model.Id);
+                    saved.IsActive = model.IsActive;
+                    saved.DateFrom = model.DateFrom;
+                    saved.DateTo = model.DateTo;
+                    saved.Title = model.Title;
+                    saved.Description = model.Description;
+                    saved.ModifiedByUserId = userContext.UserId;
+                    saved.DateModified = DateTime.Now;
+                    All<MSProgram>().Update(saved);
+
+                }
+                else
+                {
+                    model.CreatedByUserId = userContext.UserId;
+                    model.DateCreated = DateTime.Now;
+                    All<MSProgram>().Add(model);
+                }
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return false;
+            }
+        }
+
+        public IQueryable<MSProgramProject> ProgramProject_Select(int langId, int? programId, string title)
+        {
+            return All<MSProgramProject>()
+                .Include(x => x.InstitutionType)
+                .Where(x => x.LanguageId == langId && x.MSProgramId == (programId ?? x.MSProgramId) && x.Title.Contains(title ?? x.Title));
+        }
+        public MSProgramProject ProgramProject_GetById(int id)
+        {
+            return All<MSProgramProject>()
+               .Include(x => x.InstitutionType)
+               .Where(x => x.Id == id)
+               .FirstOrDefault();
+        }
+
+        public bool ProgramProject_SaveData(MSProgramProject model)
+        {
+            try
+            {
+                if (model.Id > 0)
+                {
+                    var saved = Find<MSProgramProject>(model.Id);
+                    saved.IsActive = model.IsActive;
+                    saved.Title = model.Title;
+                    //saved.Initiator = model.Initiator;
+                    //saved.DocumentTypeId = model.DocumentTypeId;
+                    saved.IncludedInEUplan = model.IncludedInEUplan;
+                    saved.InstitutionTypeId = model.InstitutionTypeId;
+                    saved.DateCoordinated = model.DateCoordinated;
+                    saved.DateMS = model.DateMS;
+                    saved.Description = model.Description;
+                    saved.HasAssessment = model.HasAssessment;
+                    saved.OtherLawsImpact = model.OtherLawsImpact;
+                    saved.ModifiedByUserId = userContext.UserId;
+                    saved.DateModified = DateTime.Now;
+                    All<MSProgramProject>().Update(saved);
+
+                }
+                else
+                {
+                    model.CreatedByUserId = userContext.UserId;
+                    model.DateCreated = DateTime.Now;
+                    All<MSProgramProject>().Add(model);
+                }
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return false;
+            }
+        }
+
+        public List<SelectListItem> GetProjects(int actId, int userId)
+        {
+            int[] institutionIds = this.All<UsersInGroups>(ug => ug.UserId == userId)
+                    .Select(ug => ug.Group.InstitutionTypeId ?? 0)
+                    .ToArray();
+
+            int actTypeId = this.All<DocumentType>(d => d.Id == actId)
+                .Select(d => d.ActType)
+                .FirstOrDefault() ?? 0;
+
+            Expression<Func<MSProgramProject, bool>> instFilter = p => institutionIds.Contains(p.InstitutionTypeId ?? 0);
+            if (userContext.IsInRole(GlobalConstants.Roles.Admin))
+            {
+                instFilter = p => true;
+            }
+
+            return this.All<MSProgram>()
+                .Where(p => p.ProgramTypeId == actTypeId)
+                .Where(p => p.IsActive && p.LanguageId == GlobalConstants.LangBG)
+                .SelectMany(p => p.MSProgramProjects)
+                .Where(p => p.IsActive)
+                .Where(instFilter)
+                //.Where(p => institutionIds.Contains(p.InstitutionTypeId ?? 0))
+                .OrderBy(p => p.Title)
+                .Select(p => new SelectListItem()
+                {
+                    Value = p.Id.ToString(),
+                    Text = p.Title
+                }).ToList()
+                .Prepend(new SelectListItem()
+                {
+                    Text = "Изберете",
+                    Value = "-1"
+                }).ToList();
+
+        }
     }
-  }
 
 }

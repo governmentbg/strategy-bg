@@ -178,7 +178,7 @@ Write(PopForums.Resources.ForumPermisions);
 #line default
 #line hidden
             BeginContext(2429, 52, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c7400725184a44f3bbae3e3e4366ec75", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "90710cae5d85403b84d338b6e7e244d7", async() => {
                 BeginContext(2461, 11, false);
 #line 78 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Admin\ForumPermissions.cshtml"
                                                                                      Write(forum.Title);
@@ -239,7 +239,7 @@ WriteAttributeValue("", 2559, category.Key.Title, 2559, 19, false);
 #line default
 #line hidden
             BeginContext(2625, 52, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e7677b8ae3654054882c4ee96a776b5b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07c3247cc7e940a0917413a6e67c60a9", async() => {
                 BeginContext(2657, 11, false);
 #line 81 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Admin\ForumPermissions.cshtml"
                                                                                   Write(forum.Title);

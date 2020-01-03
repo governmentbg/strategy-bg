@@ -44,6 +44,7 @@ namespace Domain.Controllers
                                     Title = x.Title
                                   });
       ViewBag.httpScheme = HttpContext.Request.Scheme;
+      if (model.PageTypeId == GlobalConstants.PageTypes.OV) { ViewBag.controllerName = "OVPage"; }
       return View(model);
     }
 

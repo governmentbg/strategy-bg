@@ -1,0 +1,65 @@
+@inject IStringLocalizer<AccountResources> Localizer
+@using System.Linq;
+@{
+    var currentUser = User.Identity;
+    bool isAuthenticated = currentUser?.IsAuthenticated ?? false;
+    var fullName = "";
+    var userId = "";
+    if (isAuthenticated)
+    {
+
+        var claims = (System.Security.Claims.ClaimsIdentity)currentUser;
+        fullName = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Name).FirstOrDefault()?.Value;
+        userId = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Sid).FirstOrDefault()?.Value;
+        if (string.IsNullOrEmpty(fullName?.Trim()))
+        {
+            fullName = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Email).FirstOrDefault()?.Value;
+        }
+    }
+}
+
+@if (isAuthenticated)
+{
+@inject Models.Contracts.INotificationService notificationService;
+@inject WebCommon.Services.IUserContext userContext;
+    var notificationCount = notificationService.CurrentUserSystemNotification_NewMessages();
+    if (notificationCount > 0)
+    {
+<div class="button--users hidden-md hidden-sm hidden-xs">
+    <a asp-action="Index" asp-controller="Notifications" asp-area="" class="hidden-md hidden-sm hidden-xs">
+        <span><i class="fa fa-bell-o"></i> @notificationCount</span>
+    </a>
+</div>
+
+    }
+<div class="button--users hidden-md hidden-sm hidden-xs">
+    <a href="#"><span>@fullName</span></a>
+    <ul>
+        <li><a asp-action="Profile" asp-controller="Account" asp-area="">@Localizer["Profile"]</a></li>
+
+        <li>
+            <a asp-action="Index" asp-controller="Notifications" asp-area="">
+                @Localizer["Messages"] @if (notificationCount > 0)
+                    {<span> (@notificationCount)</span>}
+            </a>
+        </li>
+
+        @if (userContext.IsInRole(GlobalConstants.Roles.AdminForum))
+            {
+        <li><a asp-action="Index" asp-controller="Admin" asp-area="Forums">@Localizer["ForumAdmin"]</a></li>
+            }
+
+        <li><a asp-action="Logoff" asp-controller="Account" asp-area="">@Localizer["Logoff"]</a></li>
+    </ul>
+</div>
+
+    }
+    else
+    {
+<div class="button--users">    
+    <a asp-area="" asp-action="Login" asp-controller="Account">
+        <span>@Localizer["UserLogin"]</span>
+    </a>
+</div>
+
+    }

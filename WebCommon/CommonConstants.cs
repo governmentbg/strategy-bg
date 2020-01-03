@@ -13,5 +13,10 @@ namespace WebCommon
 		{
 			return new List<SelectListItem>();
 		}
-	}
+
+        public class CustomClaims
+        {
+            public const string UserType = "UserTypeClaim";
+        }
+    }
 }

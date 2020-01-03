@@ -16,6 +16,8 @@ namespace Models.ViewModels.Portal
         public string CategoryText { get; set; }
         public string CategoryImagePath { get; set; }
         public string TargetGroup { get; set; }
+        public string DocumentNumber { get; set; }
+        public DateTime? DocumentDate { get; set; }
         public DateTime ValidTo { get; set; }
         public string ValidToText
         {
@@ -29,5 +31,6 @@ namespace Models.ViewModels.Portal
         public string Description { get => Summary; set => throw new NotImplementedException(); }
         public string Category { get => CategoryText; set => throw new NotImplementedException(); }
         public DateTime PublishDate { get => CreateDate; set => throw new NotImplementedException(); }
+        public bool IsActive { get; set; }
     }
 }

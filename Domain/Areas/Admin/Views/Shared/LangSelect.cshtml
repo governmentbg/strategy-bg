@@ -2,11 +2,19 @@
 @model int
 @{
     int lang = Model;
+    var addValues = (ICollection<KeyValuePair<string, string>>)ViewData["addValues"];
 }
 <div>
     @using (Html.BeginForm())
     {
         <input type="hidden" name="lang" />
+        @if (addValues != null)
+        {
+            foreach (var item in addValues)
+            {
+                <input type="hidden" name="@item.Key" value="@item.Value" />
+            }
+        }
         @foreach (var item in GlobalConstants.SelectLangs())
         {
             var btnClass = "btn-default";
@@ -23,7 +31,7 @@
     $(function () {
         $('a.submit').click(function () {
             var lang = $(this).data('lang');
-            $(this).parents('form:first').find('input[type="hidden"]').val(lang);
+            $(this).parents('form:first').find('input[type="hidden"][name="lang"]').val(lang);
         });
     });
 </script>

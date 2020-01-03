@@ -1,0 +1,23 @@
+﻿@model Models.ViewModels.ImageSelectVM
+<input asp-for="FileId" type="hidden" />
+<div class="row">
+    <div class="col-lg-6">
+        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { id=Model.FileId,max=350}))" />
+    </div>
+    <div class="col-lg-6">
+        <form name="textform" onsubmit="return false;">
+            <textbox for="Max"></textbox>
+            <ddl for="Position" data="@ViewBag.positions"></ddl>
+            <textbox for="Margin"></textbox>
+        </form>
+        <div class="form-group">
+            <a href="#" onclick="cdnUploadButton_click();" class="btn btn-success">Вмъкване</a>
+        </div>
+    </div>
+</div>
+<script>
+    function cdnUploadButton_click()
+    {
+        @(Model.JScallback)('@Model.FileId', document.getElementById('Max').value, $('#Position').val(), document.getElementById('Margin').value+'px');
+    }
+</script>

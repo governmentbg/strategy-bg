@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Models.Context.Ogp
@@ -37,5 +38,11 @@ namespace Models.Context.Ogp
 
         [ForeignKey(nameof(NationalPlanStateId))]
         public NationalPlanStates NationalPlanState { get; set; }
+
+        public ICollection<NationalPlanEstimations> Estimations { get; set; }
+        public NationalPlanElements()
+        {
+            Estimations = new HashSet<NationalPlanEstimations>();
+        }
     }
 }

@@ -541,7 +541,7 @@ WriteAttributeValue("", 3690, PopForums.Resources.Reply, 3690, 26, false);
             WriteLiteral("\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t");
             EndContext();
             BeginContext(3948, 215, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8c4cd0f3690d44e4889a87b81bf5c5b5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "13b41344313344eab3270233142a4fbe", async() => {
                 BeginContext(4078, 20, true);
                 WriteLiteral("<input type=\"submit\"");
                 EndContext();
@@ -603,7 +603,7 @@ WriteAttributeValue("", 4106, PopForums.Resources.Undelete, 4106, 29, false);
             WriteLiteral("\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t");
             EndContext();
             BeginContext(4218, 191, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "382fcc02b1e0455bb555f6a4e94a52a8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "49aa8db0559443a88cf5154ff64c7936", async() => {
                 BeginContext(4342, 20, true);
                 WriteLiteral("<input type=\"submit\"");
                 EndContext();

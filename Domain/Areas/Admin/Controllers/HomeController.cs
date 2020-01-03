@@ -9,8 +9,7 @@ namespace Domain.Areas.Admin.Controllers
     /// Начален екран
     /// </summary>
     [Area(nameof(Areas.Admin))]
-    [Authorize]
-    public class HomeController : BaseController
+    public class HomeController : BaseAdminController
     {
         
         public IActionResult Index()

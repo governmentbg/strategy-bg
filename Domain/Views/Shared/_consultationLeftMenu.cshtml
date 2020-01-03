@@ -1,11 +1,13 @@
 ﻿@model List<MenuLinkViewModel>
 <div class="aside row">
-    @foreach (var item in Model)
-    {
-        <div class="title">
-            <a href="@item.Url" target="_blank">
-                @item.Title
-            </a>
-        </div>
-    }
+    <ul class="list--default">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="@item.Url" target="_blank">
+                    @Html.Raw(item.Title)
+                </a>
+            </li>
+        }
+    </ul>
 </div>

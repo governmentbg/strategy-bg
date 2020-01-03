@@ -7,11 +7,11 @@
 }
 
 <section class="content">
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-12">
             <h3>@(Model.Revision > 0 ? $"Версия {@Model.Revision}" : "Нова версия")</h3>
         </div>
-    </div>
+    </div>*@
     <div class="row">
         <div class="col-lg-6">
             <form asp-action="EditDocument">
@@ -28,8 +28,8 @@
                 @Html.EditorFor(m => m.Title)
                 @Html.EditorFor(m => m.Content)
 
-                @Html.EditorFor(m => m.CanComment)
-                @Html.EditorFor(m => m.IsFinal)
+                @*@Html.EditorFor(m => m.CanComment)
+                @Html.EditorFor(m => m.IsFinal)*@
                 <div class="form-group">
                     <input type="submit" value="Запис" class="btn btn-success btn-flat" />
                     @if (Model.Revision > 0)
@@ -53,12 +53,12 @@
         {
             <div class="col-lg-6">
                 <div class="toolbar pull-right">
-                    <a asp-action="AddVersion" asp-route-documentId="@Model.Id" class="btn btn-success btn-flat">Нова версия</a>
+                    @*<a asp-action="AddVersion" asp-route-documentId="@Model.Id" class="btn btn-success btn-flat">Нова версия</a>*@
                     <a asp-action="Index" asp-controller="Comments" asp-route-sourceId="@Model.Id" asp-route-sourceTypeId="@GlobalConstants.SourceTypes.PublicConsultationDocuments" class="btn btn-warning btn-flat">Коментари</a>
                     <a asp-action="Export" asp-controller="Comments" asp-route-documentId="@Model.Id" class="btn btn-info btn-flat">Експорт</a>
                 </div>
-                <h3>Версии на документа</h3>
-                <table id="documentsTable" class="table" cellspacing="0"></table>
+                @*<h3>Версии на документа</h3>
+                <table id="documentsTable" class="table" cellspacing="0"></table>*@
             </div>
         }
     </div>
@@ -67,7 +67,7 @@
 @section scripts{
     <script>
     $(function () {
-        var dt = $('#documentsTable').DataTable({
+        @*var dt = $('#documentsTable').DataTable({
              "ajax": {
                  "url": '@Url.Action("VersionIndex")',
                  data: function (d) {
@@ -112,7 +112,7 @@
                  }
             ],
             "order": [[1, "desc"]]
-        });
+        });*@
 
         var smEditor = $('#Content').summernote({
             callbacks: {
@@ -131,7 +131,8 @@
                     $('.note-toolbar').append(btnGroup);
 
                 }
-            }
+            },
+            height: 300
         });
 
         $('#backBtn').on('click', function goBack(e) {

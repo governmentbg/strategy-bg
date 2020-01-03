@@ -1,0 +1,90 @@
+﻿@{
+
+    int lang = ViewBag.lang;
+    int type = ViewBag.type;
+    switch (type)
+    {
+        case GlobalConstants.MSProgramTypes.Zakonodatelna:
+            ViewData["Title"] = "Законодателни програми";
+            break;
+        case GlobalConstants.MSProgramTypes.Operativna:
+            ViewData["Title"] = "Оперативни програми";
+            break;
+    }
+
+    var langVD = new List<KeyValuePair<string, string>>();
+    langVD.Add(new KeyValuePair<string, string>("type", type.ToString()));
+    ViewData["addValues"] = langVD;
+}
+<section class="content">
+    @*смяна на езика на съдържанието*@
+    <partial name="LangSelect" model="@lang" view-data="ViewData" />
+    @*смяна на езика на съдържанието*@
+
+    <a asp-action="Add" asp-route-type="@type" asp-route-lang="@lang" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Добави програма</a>
+
+    <div class="search-form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <span>Наименование</span>
+                    @Html.TextBox("term", null, new { @class = "form-control" })
+                </div>
+                <div>
+                    <span>&nbsp;</span>
+                    <button type="button" class="btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+        $(function () {
+            var dt = $('#mainTable').DataTable({
+                "ajax": {
+                    "url": '@Url.Action("LoadData")',
+                data: function (d) {
+                        d.term = $('#term').val();
+                        d.lang=@(lang);
+                        d.type=@(type);
+                    },
+                "type": "POST"
+                     },
+                 filter: false,
+                 fnDrawCallback: function (settings) {
+                     $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                },
+                 "columns": [
+                {
+                         data: null,
+                         title: 'Наименование',
+                    "render": function (item) {
+        var updateUrl = '@Url.Action("Index","MSProgramProject", new { programId = "666",lang=lang})'.replace('666', item.id);
+        var updButton = '<a href="' + updateUrl + '" class="" title="Проекти към програмата">'+item.title+'</a>';
+        return updButton;
+    },
+                },
+
+                {
+                    data: null,
+                    "render": function (item) {
+        var updateUrl = '@Url.Action("Edit", new { id = "666"})'.replace('666', item.id);
+        var updButton = '&nbsp;&nbsp;<a href="' + updateUrl + '" class="btn btn-warning">Редакция</a>';
+        return updButton;
+    },
+                    sortable: false
+                }
+            ]
+        });
+
+
+            $('button.dt-reload').click(function () {
+        dt.ajax.reload();
+    });
+        });
+    </script>
+
+}

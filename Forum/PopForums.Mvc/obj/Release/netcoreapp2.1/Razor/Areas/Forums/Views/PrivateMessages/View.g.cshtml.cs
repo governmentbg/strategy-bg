@@ -111,7 +111,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(639, 75, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ed4b76083c07488d8a3c5a68afbd49f5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35a5599d6d524b74b48a137be6d3de2e", async() => {
                 BeginContext(684, 26, false);
 #line 19 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\View.cshtml"
                                                                                                         Write(PopForums.Resources.Forums);
@@ -139,7 +139,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t<li>");
             EndContext();
             BeginContext(726, 62, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ee3faaeff5f40d69d0844e6660dcfe4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1cf188d6f9c42d18de902d424cae2a3", async() => {
                 BeginContext(749, 35, false);
 #line 20 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\View.cshtml"
                              Write(PopForums.Resources.PrivateMessages);
@@ -174,7 +174,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("\t<div class=\"postItem\">\n\t\t<div class=\"postUserData bg-primary\">\n\t\t\t<h3 class=\"postNameLink\">");
             EndContext();
             BeginContext(937, 95, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bc093d02b53c407fbdce8fd3ca4aa6c4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "23dc40807e6348cc96a59b2bff94a240", async() => {
                 BeginContext(1019, 9, false);
 #line 27 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\View.cshtml"
                                                                                                                  Write(post.Name);
@@ -253,7 +253,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("\n");
             EndContext();
             BeginContext(1241, 172, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "515e6ae5a21549fcae7209f5636cc3a9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b4f0818a9f1741eb873827f890a6854d", async() => {
                 BeginContext(1312, 25, true);
                 WriteLiteral("\n\t<p><input type=\"submit\"");
                 EndContext();
@@ -300,7 +300,7 @@ WriteAttributeValue("", 1345, PopForums.Resources.Archive, 1345, 28, false);
             WriteLiteral("\n\t\n<h2>Reply</h2>\n\n");
             EndContext();
             BeginContext(1432, 355, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "160f3ff2f928453fad3424ebdb69593d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6c0d1af225c4558a1aaeb48f9e97a67", async() => {
                 BeginContext(1525, 192, true);
                 WriteLiteral("\n\t<div class=\"form-group\">\n\t\t<div class=\"col-xs-12\">\n\t\t\t<textarea id=\"FullText\" name=\"FullText\" class=\"form-control\" rows=\"4\"></textarea>\n\t\t</div>\n\t</div>\n\t<input id=\"SendButton\" type=\"submit\"");
                 EndContext();

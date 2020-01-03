@@ -7,7 +7,7 @@
         <div class="fixed-item">
             <a asp-action="View" asp-controller="Publication" asp-route-id="@article.Id">
                 <p class="description">
-                    <b>@article.EventDate.ToString(GlobalConstants.DateFormat)</b>
+                    @*<b>@article.EventDate.ToString(GlobalConstants.DateFormat)</b>*@
                     @Html.Raw(article.Title)
                 </p>
             </a>

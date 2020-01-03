@@ -93,7 +93,7 @@
         });
     }
     function addFile() {
-        var uploadUrl = "@Html.Raw(Url.Action("UploadFile","FileCdn",new { area = "",sourceType = (int)ViewBag.source_type , sourceId = 666,callback= "showFiles();" }))";
+        var uploadUrl = "@Html.Raw(Url.Action("UploadFile","FileCdn",new { sourceType = (int)ViewBag.source_type , sourceId = 666,callback= "showFiles();" }))";
         uploadUrl = uploadUrl.replace('666', selectedNode.id);
         //debugger;
         ShowDialogFromAction('Добави @Html.Raw(sourceType.SingleName) в папка: ' + selectedNode.text, uploadUrl);
@@ -102,7 +102,7 @@
         if (!confirm('Потвърди премахването на @(Html.Raw(sourceType.SingleName))!')) {
             return false;
         }
-        var url = '@(Url.Action("DisableFile","FileCdn",new { area = "" }))';
+        var url = '@(Url.Action("DisableFile","FileCdn"))';
         $.post(url, {id:id}, function (content) {
             if (content == 'ok') {
                 showFiles();

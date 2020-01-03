@@ -120,7 +120,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(610, 76, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1005f10f0d4d4ed28ca09d8c0746e705", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ec82a7d2fc8e4007b895f845b741b473", async() => {
                 BeginContext(656, 26, false);
 #line 20 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\Index.cshtml"
                                                                                                          Write(PopForums.Resources.Forums);
@@ -148,7 +148,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t</ul>\n</div>\n\n<p>");
             EndContext();
             BeginContext(710, 54, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edd4098da58647a9b24edf1519deeff9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "393a248a4421455882a71ec008a1e241", async() => {
                 BeginContext(734, 26, false);
 #line 24 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\Index.cshtml"
                      Write(PopForums.Resources.SendPM);
@@ -174,7 +174,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</p>\n\n");
             EndContext();
             BeginContext(770, 207, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pagerlinks", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5852c160adfa4d60bffef50efce2cc9e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pagerlinks", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e54c5e61c77041d794ca6b2777606c3f", async() => {
             }
             );
             __PopForums_Mvc_Areas_Forums_TagHelpers_PagerLinksTagHelper = CreateTagHelper<global::PopForums.Mvc.Areas.Forums.TagHelpers.PagerLinksTagHelper>();
@@ -216,9 +216,9 @@ __PopForums_Mvc_Areas_Forums_TagHelpers_PagerLinksTagHelper.PagerContext = (Page
             WriteLiteral("\t\t<tr>\n\t\t\t<td class=\"newIndicator\">\n\t\t\t\t");
             EndContext();
             BeginContext(1089, 120, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "995e4a95a593457cbb1e5685a8fac121", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2e1568a6677049bb854bfbfbbd97c0d6", async() => {
                 BeginContext(1134, 71, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pmReadIndicator", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ea9456ea39d142ddb568fffd33cb7eed", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pmReadIndicator", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b19af0e67f324b168267993906a41611", async() => {
                 }
                 );
                 __PopForums_Mvc_Areas_Forums_TagHelpers_PMReadIndicatorTagHelper = CreateTagHelper<global::PopForums.Mvc.Areas.Forums.TagHelpers.PMReadIndicatorTagHelper>();
@@ -270,7 +270,7 @@ __PopForums_Mvc_Areas_Forums_TagHelpers_PMReadIndicatorTagHelper.PrivateMessage 
             WriteLiteral("\n\t\t\t</td>\n\t\t\t<td class=\"topicListButton\">\n\t\t\t\t");
             EndContext();
             BeginContext(1255, 144, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f08f7aed21194f18ac6bf51bcbc90741", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cc5afde21fe642beb4d00158b461bdd7", async() => {
                 BeginContext(1308, 20, true);
                 WriteLiteral("<input type=\"submit\"");
                 EndContext();
@@ -317,7 +317,7 @@ WriteAttributeValue("", 1336, PopForums.Resources.Archive, 1336, 28, false);
             WriteLiteral("\n\t\t\t</td>\n\t\t\t<td>");
             EndContext();
             BeginContext(1416, 60, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fad35afa9957415fbd93cf56b5fda76f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "807453acf5914c8ea82868943e3e09e1", async() => {
                 BeginContext(1462, 10, false);
 #line 38 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\Index.cshtml"
                                                         Write(pm.Subject);
@@ -394,7 +394,7 @@ WriteAttributeValue("", 1336, PopForums.Resources.Archive, 1336, 28, false);
             WriteLiteral("</table>\n<p>");
             EndContext();
             BeginContext(1680, 69, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86edcac62ca74f53ab6c4d270c836042", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "92337c5bf32e4328bf9eb77da63c6ce2", async() => {
                 BeginContext(1705, 40, false);
 #line 44 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\PrivateMessages\Index.cshtml"
                       Write(PopForums.Resources.ViewArchivedMessages);

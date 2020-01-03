@@ -102,7 +102,7 @@ Write(PopForums.Resources.ErrorLog);
             WriteLiteral("</h1>\n\n");
             EndContext();
             BeginContext(189, 160, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bbcbdbbe38044814977f0638311858b0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "21527b3f40074c729b5ef118da456552", async() => {
                 BeginContext(240, 25, true);
                 WriteLiteral("\n\t<p><input type=\"submit\"");
                 EndContext();
@@ -138,7 +138,7 @@ WriteAttributeValue("", 273, PopForums.Resources.DeleteAllErrors, 273, 36, false
             WriteLiteral("\n\n");
             EndContext();
             BeginContext(351, 148, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pagerlinks", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6c4f6563bd2e427f9b782e58beccd5c0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pagerlinks", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "133c9370c67c4f0e8d2af5a29446a441", async() => {
             }
             );
             __PopForums_Mvc_Areas_Forums_TagHelpers_PagerLinksTagHelper = CreateTagHelper<global::PopForums.Mvc.Areas.Forums.TagHelpers.PagerLinksTagHelper>();
@@ -176,7 +176,7 @@ __PopForums_Mvc_Areas_Forums_TagHelpers_PagerLinksTagHelper.PagerContext = ((Pag
             WriteLiteral("\t<p>\n\t\t");
             EndContext();
             BeginContext(540, 178, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c1eb06d1a6ba49d08df6ab1d59ecd14b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b94cd73142643799a16979225866950", async() => {
                 BeginContext(588, 24, true);
                 WriteLiteral("\n\t\t\t<input type=\"submit\"");
                 EndContext();

@@ -101,7 +101,7 @@ namespace Domain.Areas.Admin.Controllers
 				})
 				.ToList();
 
-			ViewBag.catNational = nomService.ComboCategories(GlobalConstants.Category.Type_National)
+			ViewBag.catNational = nomService.ComboCategories(GlobalConstants.Categories.Type_National)
 				.Select(g => new SelectListItem()
 				{
 					Text = g.Text,
@@ -114,7 +114,7 @@ namespace Domain.Areas.Admin.Controllers
 				})
 				.ToList();
 			
-			ViewBag.catDistrict = nomService.ComboCategories(GlobalConstants.Category.Type_District)
+			ViewBag.catDistrict = nomService.ComboCategories(GlobalConstants.Categories.Type_District)
 				.Select(g => new SelectListItem()
 				{
 					Text = g.Text,

@@ -1,42 +1,62 @@
-﻿@model List<Models.ViewModels.ChangeProposalsListViewModel>
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@model List<Models.ViewModels.ChangeProposalsListViewModel>
 @{
-    ViewData["Title"] = "Списък със законодателни инициативи";
+    ViewData["Title"] = "Законодателни инициативи";
     ViewData["SectionTitle"] = ViewData["Title"];
+    int munincipalityId = (int)(ViewBag.MunicipalityId ?? -1);
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
         / <a href="@Url.Action("Index", "Home")">Начало</a>
-        / <a href="@Url.Action("ListChangeProposals", "ChangeProposals")">Списък със законодателни инициативи</a>
+        / <a href="@Url.Action("ListChangeProposals", "ChangeProposals")">Законодателни инициативи</a>
     </div>
 }
 
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-12 body">
-            <div class="form-group col-lg-2  col-lg-2 col-sm-2">
-                <label>Група</label>
+        <div class="col-md-12 body cat-combos search-form-container">
+            <div class="form-group col-lg-2  col-lg-4 col-sm-6">
+                <label>Тип на инициативата</label>
                 @Html.DropDownList("CategoryMasterId", (IEnumerable<SelectListItem>)ViewBag.catMasters, new { @class = "form-control" })
             </div>
-            <div id="natCat" class="form-group col-lg-2  col-lg-2 col-sm-3">
+            <div id="natCat" class="form-group col-lg-3  col-lg-4 col-sm-6" >
                 <label>Категория</label>
                 @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.catNational, new { @class = "form-control" })
             </div>
 
-            <div id="districtCat">
-                <div id="districtCat" class="form-group col-lg-2  col-lg-2 col-sm-3">
+            <div id="districtCat" style="display:none;">
+                <div id="districtCat" class="form-group col-lg-3  col-lg-4 col-sm-6">
                     <label>Област</label>
                     @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.catDistrict, new { @class = "form-control" })
                 </div>
-                <div class="form-group col-lg-3  col-lg-2 col-sm-3">
+                <div class="form-group col-lg-3  col-lg-4 col-sm-6">
                     <label>Община</label>
                     @Html.DropDownList("MunicipalityId", (IEnumerable<SelectListItem>)@GlobalConstants.EmptyComboList, new { @class = "form-control" })
                 </div>
             </div>
 
-            <div class="form-group col-lg-1  col-lg-1 col-sm-1">
-                <label>&nbsp; </label>
-                <button type="submit" class="form-control btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
+
+            <div class="rss-export-search-form col-lg-1 col-md-1 col-sm-1">
+
+                <table>
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("NewChangeProposal", "ChangeProposals",new { area=""})" class="form-control btn btn-info">
+                                <p>@Localizer["CP_BUTTON_NEW"]</p>
+                            </a>
+                            @*<button type="button" class="form-control btn btn-info" onclick="newCP();">@Localizer["CP_BUTTON_NEW"]</button>*@
+                        </td>
+                        <td style="padding-left:4px">
+                            &nbsp;
+                        </td>
+
+                    </tr>
+                </table>
+
+
+
             </div>
+
         </div>
     </div>
     <table id="mainTable" class="table" cellspacing="0"></table>
@@ -44,7 +64,37 @@
 
 <script>
     $(function () {
-        var dt = $('#mainTable').DataTable({
+
+            $('#CategoryMasterId').change(function () {
+                if ($(this).val() === '@GlobalConstants.Categories.Type_National') {
+                    $('#natCat').show();
+                    $('#districtCat').hide();
+                } else {
+                    $('#natCat').hide();
+                    $('#districtCat').show();
+                }
+            }).trigger('change');
+            $('#DistrictId').change(function () {
+                if ($(this).val() === '-1') {
+                    $('#MunicipalityId').html('');
+                    return false;
+                }
+                requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val(), municipalityId: @munincipalityId  });
+            }).trigger('change');
+
+            $('.cat-combos select').each(function (i, e) {
+                $(e).change(function () {
+                    setTimeout(function () {
+                        //updateRss();
+                        //setBreadcrumb();
+                        dt.ajax.reload();
+                    }, 100);
+                });
+            });
+
+        var dt;
+        setTimeout(function () {
+        dt = $('#mainTable').DataTable({
              searching: false,
              "ajax": {
                  "url": '@Url.Action("LoadDataChangeProposals")',
@@ -58,15 +108,27 @@
                  $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
              },
              "columns": [
-                 {
-                     data: "title",
-                     title: 'Заглавие',
-                     sortable: true,
-                     searchable: true
-                 },
+                 //{
+                 //    data: "title",
+                 //    title: 'Заглавие',
+
+                 //    sortable: true,
+                 //    searchable: true
+                 //},
+
+
+               {
+                            data: "title",
+                            title: 'Заглавие',
+                            render: function (data, type, item, meta) {
+                                var url = '@Url.Action("ViewChangeProposals",new { id = "666"})'.replace('666', item.id);
+                                var btn = '<a href="' + url + '">' + item.title + '</a>';
+                                return btn;
+                            }
+                        },
                  {
                      data: "categoryName",
-                     title: 'Категория/Община',
+                     title: 'Категория',
                      sortable: true,
                      searchable: true
                  },
@@ -89,23 +151,23 @@
                          return value == "1" ? 'ДА' : 'НЕ';
                      }
                  },
-                 {
-                     data: "isRejected",
-                     title: 'Отказана',
-                     sortable: true,
-                     searchable: false,
-                     className: "text-center",
-                     "render": function (value) {
-                         return value == "1" ? 'ДА' : 'НЕ';
-                     }
-                 },
-                 {
-                     data: "adminRemark",
-                     title: 'Причина за отказ',
-                     sortable: true,
-                     searchable: true
-                 },
-                 {
+                 //{
+                 //    data: "isRejected",
+                 //    title: 'Отказана',
+                 //    sortable: true,
+                 //    searchable: false,
+                 //    className: "text-center",
+                 //    "render": function (value) {
+                 //        return value == "1" ? 'ДА' : 'НЕ';
+                 //    }
+                 //},
+                 //{
+                 //    data: "adminRemark",
+                 //    title: 'Причина за отказ',
+                 //    sortable: true,
+                 //    searchable: true
+                 //},
+                 @*{
                      data: "id",
                      "render": function (value) {
                          var updateUrl = '@Url.Action("ViewChangeProposals", new { id = "666"})'.replace('666', value);
@@ -114,16 +176,17 @@
                      },
                      sortable: false,
                      searchable: false
-                 }
+                 }*@
              ],
-        });
+            });
+        }, 200);
 
-        $('button.dt-reload').click(function () {
+        @*$('button.dt-reload').click(function () {
             dt.ajax.reload();
         });
 
         $('#CategoryMasterId').change(function () {
-            if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+            if ($(this).val() === '@GlobalConstants.Categories.Type_National') {
                 $('#natCat').show();
                 $('#districtCat').hide();
             } else {
@@ -138,7 +201,7 @@
                 return false;
             }
             requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val() });
-        }).trigger('change');
+        }).trigger('change');*@
 
         function GetCategoryId() {
             if ($('#natCat').is(":visible")) {
@@ -162,6 +225,17 @@
             else {
                 return false;
             }
+        }
+
+       function newCP() {
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("ExportChoice","StrategicDocument")',
+                success: function (data) {
+                        ShowDialog('Експорт', data);
+                    }
+                });
         }
     });
 </script>

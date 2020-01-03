@@ -1,47 +1,77 @@
-﻿@{
-    ViewData["Title"] = "Стратегически документи";
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+    ViewData["Title"] = Localizer["MENU_STRATEGIC_DOCUMENTS"];
     ViewData["SectionTitle"] = ViewData["Title"];
     int munincipalityId = (int)(ViewBag.MunicipalityId ?? -1);
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="#">Стратегически документи</a>
+        / <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a>
+        / <a href="#">@Localizer["MENU_STRATEGIC_DOCUMENTS"]</a>
     </div>
 }
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-12 body cat-combos">
-            <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                <label>Група</label>
+        <div class="col-md-12 body cat-combos search-form-container" >
+            <div class="form-group col-lg-2 col-md-4 col-sm-6" >
+                <label>@Localizer["SD_FILTER_MASTER_CATEGORY"]</label>
                 @Html.DropDownList("CategoryMasterId", (IEnumerable<SelectListItem>)ViewBag.catMasters, new { @class = "form-control" })
             </div>
-            <div id="natCat" class="form-group col-lg-3 col-md-4 col-sm-6">
-                <label>Категория</label>
+            <div id="natCat" class="form-group col-lg-2 col-md-4 col-sm-6"  >
+                <label>@Localizer["FILTER_CATEGORY"]</label>
                 @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.catNational, new { @class = "form-control" })
             </div>
             <div id="districtCat">
-                <div id="districtCat" class="form-group col-lg-2 col-md-4 col-sm-6">
-                    <label>Област</label>
+                <div id="districtCat" class="form-group col-lg-2 col-md-4 col-sm-6"  >
+                    <label>@Localizer["FILTER_AREA"]</label>
                     @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.catDistrict, new { @class = "form-control" })
                 </div>
-                <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                    <label>Община</label>
+                <div class="form-group col-lg-2 col-md-4 col-sm-6"  >
+                    <label>@Localizer["FILTER_MUNICIPALITY"]</label>
                     @Html.DropDownList("MunicipalityId", GlobalConstants.EmptyComboList, new { @class = "form-control" })
                 </div>
             </div>
-            <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                <label>Покажи</label>
+            <div class="form-group col-lg-2 col-md-4 col-sm-6"  >
+                <label>@Localizer["FILTER_SHOW"]</label>
                 @Html.DropDownList("validState", (IEnumerable<SelectListItem>)ViewBag.validStates, new { @class = "form-control" })
+
             </div>
-            <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                <label>Наименование</label>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6"  >
+                <label>@Localizer["FILTER_BY_NAME"]</label>
                 @Html.TextBox("searchTerm", "", new { @class = "form-control" })
             </div>
-            <div class="form-group col-lg-1 col-md-2 col-sm-3">
-                <label>&nbsp; </label>
-                <button type="button" class="form-control btn btn-info" onclick="exp();"><i class="fa fa-file-pdf-o"></i> Експорт</button>
+       
+            <div class="rss-export-search-form col-lg-1 col-md-1 col-sm-1"  >
+             
+                <table>
+                    <tr>
+                        <td>
+                            <button type="button" class="form-control btn btn-info" onclick="exp();">@Localizer["SD_BUTTON_EXPORT"]</button>
+                   
+
+                        </td>
+                        <td style="padding-left:4px">
+
+                            @if (ViewBag.RssLink != null)
+
+                            {
+
+                                <div class='demopadding'>
+                                    <a href="@ViewBag.RssLink" target="_blank" id="rssLink" title="RSS"><div class='toplink-icon social rss'><i class='fa fa-rss'></i></div></a>
+
+                                </div>
+
+                            }
+                        </td>
+
+                    </tr>
+                </table>
+                    
+               
+                
             </div>
+        
+
         </div>
     </div>
     <table id="mainTable" class="table" cellspacing="0"></table>
@@ -53,7 +83,7 @@
     <script>
         $(function () {
             $('#CategoryMasterId').change(function () {
-                if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+                if ($(this).val() === '@GlobalConstants.Categories.Type_National') {
                     $('#natCat').show();
                     $('#districtCat').hide();
                 } else {
@@ -106,8 +136,11 @@
                         },
                         "type": "POST"
                     },
+                    //"oLanguage": {
+                    //    "sEmptyTable": "My Custom Message On Empty Table"
+                    //},
                     fnDrawCallback: function (settings) {
-                        $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                        $('.dataTables_paginate').toggle(settings.fnRecordsDisplay() > 0);
                     },
                     filter: false,
                     "columns": [
@@ -120,16 +153,18 @@
                                 return btn;
                             }
                         },
-
-                        @*{
-                            data: "categoryText",
-                            title: 'Категория',
-                            render: function (data, type, item, meta) {
-                                var imgSrc = '@Url.Content("~/img/categories/1.png")'.replace('1.png', item.categoryImagePath);
-                                var img = '<img src="' + imgSrc + '">&nbsp;' + item.categoryText;
-                                return img;
-                            }
-                        },*@
+                 {
+                     data: "categoryText",
+                     name: "categoryText",
+                     title: 'Категория',
+                     className: "dt-head-center",
+                      render: function (data, type, item, meta) {
+                          var imgSrc = '@Url.Content("~/img/categories/1.png")'.replace('1.png', item.categoryImagePath);
+                          var img = '<table><tr><td><div class="tbl-img-cell"><img src="' + imgSrc + '"></div></td><td align=left>' + item.categoryText+"</td></tr></table>";
+                          return img;
+                     },
+                     sortable: true
+                 },
                         //{
                         //    data: "createDate",
                         //    title: 'Дата на публикуване',
@@ -138,10 +173,26 @@
                         //        return JsonBGdate(value);
                         //    }
                         //}
-                        //,
+                        //
+                        {
+                            data: "documentDate",
+                            title: 'Дата на приемане',
+                            className: "dt-head-center",
+                            render: function (data, type, item, meta) {
+                                {
+                                    if (item.documentDate) {
+                                        return JsonBGdate(item.documentDate);
+                                    } else {
+                                        return "Не е указано";
+                                    }
+                                }
+                            }
+                        },
                         {
                             data: "validToText",
+                            className: "dt-head-center",
                             title: 'Валиден до'
+
                         }
                  @*,
                  {

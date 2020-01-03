@@ -1,9 +1,10 @@
 ﻿@model Models.Context.Account.CheckBoxListItem
 
-<div class="col-md-3">
+<div class="col-md-4 check-list">
     @Html.HiddenFor(x => x.ID)
-    @*@Html.HiddenFor(x => x.ParentCategoryID)*@
     @Html.HiddenFor(x => x.Display)
-    @Html.CheckBoxFor(x => x.IsChecked)
-    @Html.LabelFor(x => x.IsChecked, Model.Display)
+    <div>
+        @Html.CheckBoxFor(x => x.IsChecked)
+        @Html.LabelFor(x=>x.IsChecked, Model.Display)
+    </div>    
 </div>

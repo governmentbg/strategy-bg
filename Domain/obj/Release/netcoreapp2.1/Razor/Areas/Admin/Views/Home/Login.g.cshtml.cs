@@ -123,12 +123,12 @@ using Models.Context;
             WriteLiteral("</p>\r\n\r\n        ");
             EndContext();
             BeginContext(423, 793, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edef25e6804f4177bff23ed63c8c2114", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "722c207448c846f39c7880a67fb0bd0d", async() => {
                 BeginContext(462, 14, true);
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(476, 43, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "2847390e5ec04d27b66e4ab1db23e034", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "7af2733c049247b0b2e42d1d5218dcbb", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -153,7 +153,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(533, 60, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textbox", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f99b63b5dde442b29461fae22e92357f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textbox", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b584e800dfc1497cbf96d9facfb7c086", async() => {
                 }
                 );
                 __WebCommon_TagHelpers_TextBoxTagHelper = CreateTagHelper<global::WebCommon.TagHelpers.TextBoxTagHelper>();
@@ -178,7 +178,7 @@ __WebCommon_TagHelpers_TextBoxTagHelper.For = ModelExpressionProvider.CreateMode
                 WriteLiteral("\r\n            ");
                 EndContext();
                 BeginContext(607, 65, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textbox", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "51723ec59d0c4231b46b81bee4a75b51", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textbox", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6743240f3da444a6a48835a6876d6383", async() => {
                 }
                 );
                 __WebCommon_TagHelpers_TextBoxTagHelper = CreateTagHelper<global::WebCommon.TagHelpers.TextBoxTagHelper>();
@@ -205,7 +205,7 @@ __WebCommon_TagHelpers_TextBoxTagHelper.For = ModelExpressionProvider.CreateMode
                 WriteLiteral("\r\n            <div class=\"row\">\r\n                <div class=\"col-xs-8\">\r\n                    ");
                 EndContext();
                 BeginContext(765, 60, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81bd5b941bf548d79c34268807aa9b09", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d04d54905784de085c5148d9a2cbbe1", async() => {
                     BeginContext(810, 11, true);
                     WriteLiteral("Регистрация");
                     EndContext();
@@ -228,7 +228,7 @@ __WebCommon_TagHelpers_TextBoxTagHelper.For = ModelExpressionProvider.CreateMode
                 WriteLiteral("<br />\r\n                    ");
                 EndContext();
                 BeginContext(853, 74, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b426b43d2fe74f60a1bcbfdcff0e05e8", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "93cfe393b9c64a5d906d79cb385edaad", async() => {
                     BeginContext(907, 16, true);
                     WriteLiteral("Забравена парола");
                     EndContext();
@@ -294,7 +294,7 @@ __WebCommon_TagHelpers_TextBoxTagHelper.For = ModelExpressionProvider.CreateMode
             WriteLiteral("            <div class=\"social-auth-links text-center\">\r\n                <p>- OR -</p>\r\n                ");
             EndContext();
             BeginContext(1375, 229, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c90de277ef0244d482676e891d1f97df", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4038e0f973b648ccb8bc3ccfb094c67f", async() => {
                 BeginContext(1514, 86, true);
                 WriteLiteral("\r\n                    <i class=\"fa fa-facebook\"></i> Вход с Facebook\r\n                ");
                 EndContext();

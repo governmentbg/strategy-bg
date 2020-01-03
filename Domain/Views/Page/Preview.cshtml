@@ -1,14 +1,24 @@
 ﻿@model Page
+@inject IStringLocalizer<CommonResources> Localizer
 @{
-    ViewData["Title"] = Model.Title;
+    @*ViewData["Title"] = Model.Title;*@
+    @if (Model.PageTypeId == GlobalConstants.PageTypes.OV)
+    {
+        ViewData["SectionTitle"] = Localizer["SECTION_ASSESSMENT"];
+    }
+    else
+    {
+        ViewData["SectionTitle"] = Model.Title;
+    }
+
     var breadcrumbs = (IEnumerable<BreadcrumbVM>)ViewBag.breadcrumbs;
 
     var url = Url.Action("Preview", "Home", new { id = Model.ContentId, url = Model.Url }, (string)ViewBag.httpScheme);
     var parents = (IQueryable<PageVM>)ViewBag.parents;
-    var rCol = "col-lg-12";
+    var rCol = "col-lg-9";
     if (Model.PageLinks?.Count() > 0)
     {
-        rCol = "col-lg-9";
+        rCol = "col-lg-6";
     }
 }
 @section breadcrumbs{
@@ -27,34 +37,45 @@
 
 <div class="container-fluid information">
     <div class="row">
+        @if (Model.PageTypeId == GlobalConstants.PageTypes.OV)
+        {
+            <div class="col-lg-3">
+                @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+            </div>
+        }
 
+        <div class="@rCol">
+            <h3>@Model.Title</h3>
+            @if (!string.IsNullOrEmpty(Model.SubTitle))
+            {
+                <h4>@Model.SubTitle</h4>
+            }
+            @Html.Raw(Model.Content)
+            @*<div class="published pull-right">
+                    Дата: @Model.DatePublished?.ToString("dd.MM.yyyy")
+                </div>*@
+        </div>
 
         @if (Model.PageLinks?.Count() > 0)
         {
 
             <div class="col-lg-3">
                 <div class="aside row">
-                    @foreach (var item in Model.PageLinks)
-                    {
-                        <div class="title">
-                            <a href="@item.Href">
-                                @item.Title
-                            </a>
-                        </div>
-                    }
-
+                    <ul class="list--default">
+                        @foreach (var item in Model.PageLinks)
+                        {
+                            <li>
+                                <a href="@item.Href">
+                                    @item.Title
+                                </a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
+
         }
-        <div class="@rCol">
-            <h2>@Model.Title</h2>
-            @if (!string.IsNullOrEmpty(Model.SubTitle))
-            {
-                <h4>@Model.SubTitle</h4>
-            }
-            @Html.Raw(Model.Content)
-        </div>
-        <div class="published pull-right">Дата: @Model.DatePublished?.ToString("dd.MM.yyyy")</div>
+
 
     </div>
 </div>

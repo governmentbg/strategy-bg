@@ -12,16 +12,18 @@
     <textbox for="Username" label="@(Localizer["UserName"].Value)"></textbox>
     <textbox for="Password" label="@(Localizer["Password"].Value)" type="password"></textbox>
     <div class="row">
-        <div class="col-xs-8">
-            <a asp-action="Register" class="text-center">@Localizer["Register"]</a><br />
-            <a asp-action="ForgottenPassword" class="text-center">@Localizer["ForgottenPassword"]</a>
+        <div class="col-xs-4">
+            <a asp-action="Register" class="btn form--button">@Localizer["Register"]</a><br />
         </div>
-        <div class="col-xs-4 submit">
-            <div class="pull--right">
-                <button type="submit" class="btn btn-default">@Localizer["Login"]</button>
+        <div class="col-xs-4">
+            <a asp-action="ForgottenPassword" class="btn form--button">@Localizer["ForgottenPassword"]</a>
+        </div>
+            <div class="col-xs-4">
+                <div class="pull--right">
+                    <button type="submit" class="btn form--button green">@Localizer["Login"]</button>
+                </div>
             </div>
         </div>
-    </div>
 </form>
 @if (Model.ExternalLoginEnabled || true)
 {

@@ -13,9 +13,8 @@ using WebCommon.Services;
 namespace Domain.Areas.Admin.Controllers
 {
 	[Area(nameof(Admin))]
-	[Authorize(Roles = GlobalConstants.Roles.Admin)]
-	public class TargetGroupsController : BaseController
-	{
+	public class TargetGroupsController : BaseAdminController
+    {
 		private readonly ITargetGroupsService targetGroupsService;
 		private readonly IUserContext userContext;
 

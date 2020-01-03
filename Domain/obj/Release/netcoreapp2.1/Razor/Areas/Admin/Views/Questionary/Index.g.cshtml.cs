@@ -91,7 +91,7 @@ using Models.Context;
             WriteLiteral("\r\n<section class=\"content\">\r\n    <div class=\"pull-left\">\r\n        ");
             EndContext();
             BeginContext(108, 75, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d8eafccb7f64473ea868be845cd52b63", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4b25cc512ee4fed8e094cb591b04909", async() => {
                 BeginContext(161, 18, true);
                 WriteLiteral("Добави нова анкета");
                 EndContext();

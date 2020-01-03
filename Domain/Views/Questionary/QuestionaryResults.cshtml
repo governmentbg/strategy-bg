@@ -1,10 +1,36 @@
 ﻿@model Models.ViewModels.Questionary.QuestionaryResultsListViewModel
-@section breadcrumbs{
-<div class="breadcrumbs">
-    / <a href="@Url.Action("Index","Home")">Начало</a>
-    / <a href="@Url.Action("Index","Questionary")">Анкети</a>
-    / <a href="#">Резултати от анкета</a>
-</div>
+@{
+    SourceItemVM sourceItem = (SourceItemVM)ViewBag.sourceItem;
 }
-
-<partial name="_QuestionaryResults" model="@Model" />
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","Questionary")">Анкети</a>
+        @if (sourceItem != null)
+        {
+            <span>/</span> <a href="@sourceItem.BackUrl">@sourceItem.SourceTypeName</a>
+        }
+        / <a href="#">Резултати от анкета</a>
+    </div>
+}
+<div class="container-fluid information">
+    <div class="row">
+        @if (Model.SourceType == GlobalConstants.SourceTypes.PublicConsultation)
+        {
+            <div class="col-lg-3">
+                <div class="aside row">
+                    <ul class="list--default">
+                        <li>
+                            <a href="@Url.Action("View","PublicConsultation",new { id=Model.SourceId})">
+                                @Model.SourceTitle
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+        <div class="col-lg-9">
+            <partial name="_QuestionaryResults" model="@Model" />
+        </div>
+    </div>
+</div>

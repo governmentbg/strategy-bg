@@ -11,7 +11,6 @@ using System.Linq;
 namespace Domain.Areas.Admin.Controllers
 {
   [Area(nameof(Admin))]
-  [Authorize(Roles = GlobalConstants.Roles.Admin)]
   public class PublicationCategoriesController : BaseAdminController
   {
     public readonly IPublicationCategoriesService publicationCategoriesService;

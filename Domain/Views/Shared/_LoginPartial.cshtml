@@ -17,6 +17,12 @@
         }
     }
 }
+<div class="button--users user-notification hidden-md hidden-sm hidden-xs">
+    <a asp-action="Index" asp-controller="Home" asp-area="">
+        <i class="fa fa-home"></i>
+        <span>@Localizer["Home"]</span>
+    </a>
+</div>
 @if (isAuthenticated)
 {
     @inject Models.Contracts.INotificationService notificationService;

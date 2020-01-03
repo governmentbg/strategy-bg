@@ -43,7 +43,7 @@ namespace Models.Context.Consultations
         public PublicConsultation Consultation { get; set; }
 
         [ForeignKey(nameof(DocumentTypeId))]
-        public DocumentType DocumentType { get; set; }
+        public ConsultationDocumentType DocumentType { get; set; }
 
         public ICollection<PublicConsultationComment> Comments { get; set; }
 

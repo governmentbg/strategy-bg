@@ -1,4 +1,5 @@
-﻿using WebCommon.Models;
+﻿using System.Collections.Generic;
+using WebCommon.Models;
 
 namespace Models.ViewModels.Ogp
 {
@@ -14,6 +15,8 @@ namespace Models.ViewModels.Ogp
         public int? StateId { get; set; }
         public string StateName { get; set; }
         public bool IsActive { get; set; }
+
+        public IEnumerable<EstimationVM> Estimations { get; set; }
 
         public TextValueVM GetComboElement()
         {

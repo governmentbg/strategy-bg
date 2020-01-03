@@ -98,12 +98,12 @@ using Models.Context;
             WriteLiteral("\r\n<section class=\"content\">\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-6\">\r\n            ");
             EndContext();
             BeginContext(187, 2178, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d57f9d3e0884667bb0c65468ce8e399", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "02e0ce2c0d9b4d2d862946b54e74109c", async() => {
                 BeginContext(211, 18, true);
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(229, 66, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f466690cd344454820dec8c9ab24f9a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "425bd4f261a44262a844fb3bcd029450", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper>();
@@ -136,7 +136,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
                 WriteLiteral("                    ");
                 EndContext();
                 BeginContext(404, 41, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("display", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "49128fcb2abc42639ebfd534a011ee0f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("display", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb2212ec327b45b4a086033ec44c30e3", async() => {
                 }
                 );
                 __WebCommon_TagHelpers_DisplayTagHelper = CreateTagHelper<global::WebCommon.TagHelpers.DisplayTagHelper>();

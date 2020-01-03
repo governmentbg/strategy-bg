@@ -20,9 +20,9 @@ namespace Models.Services
     public class CommentService : BaseService, ICommentService
     {
         private readonly ILogger logger;
-    private readonly IUrlHelper urlHelper;
+        private readonly IUrlHelper urlHelper;
 
-    private readonly IConsultationService consultationService;
+        private readonly IConsultationService consultationService;
 
         public CommentService(
             MainContext context,
@@ -33,7 +33,7 @@ namespace Models.Services
             db = context;
             logger = _logger;
             consultationService = _consultationService;
-      urlHelper = _urlHelper;
+            urlHelper = _urlHelper;
         }
 
         public bool AddComment(PostCommentVM comment, int UserId)
@@ -78,7 +78,7 @@ namespace Models.Services
             }
 
             return db.Comments.Where(c => c.SourceType == sourceTypeId && c.SourceId == sourceId)
-                .Join(db.Users, c => c.CreatedByUserId, u => u.Id, (c, u) => new CommentVM()
+                .Join(db.Users.Where(u => u.IsActive), c => c.CreatedByUserId, u => u.Id, (c, u) => new CommentVM()
                 {
                     CommentId = c.Id,
                     FullName = u.FullName,
@@ -151,31 +151,31 @@ namespace Models.Services
                 }).OrderByDescending(c => c.CreateDate);
         }
 
-    public IQueryable<CommentsExportListVM> GetCommentsListForExport()
-    {
-      IQueryable<Comments> comments = null;
-      var _Url = urlHelper.Action("View", "PublicConsultation", new { area = "" });
-      comments = All<Comments>()
-            .Include(c => c.State); 
-      return comments
-          .Join(db.vSourceItems, c => new { c.SourceType, c.SourceId }, i => new { i.SourceType, i.SourceId }, (c, i) => new CommentsExportListVM()
-          {
-            commentId = c.Id,
-            //sourceItemURL = new Uri($"{Url}/{i.SourceId}").ToString(),
-            sourceItemURL = _Url.ToString() + "/" + i.SourceId.ToString(),
-            commentTitle = c.Title,
-            SourceItemId = i.SourceId,
-            sourceItemTitle = i.Title,
-            commentState = c.State.Name,
-            //commentText = c.Text,
-            createDate = c.DateCreated.ToString(),
-            Remark = c.ModeratorRemark,
-            TookIntoConsideration = (c.TookIntoConsideration==null)? "Неразгледан" : (c.TookIntoConsideration==true) ? "Взет предвид" : "Не взет предвид",
-            TookIntoConsiderationReason = c.TookIntoConsiderationReason
-          }).OrderByDescending(c => c.createDate);
-    }
+        public IQueryable<CommentsExportListVM> GetCommentsListForExport()
+        {
+            IQueryable<Comments> comments = null;
+            var _Url = urlHelper.Action("View", "PublicConsultation", new { area = "" });
+            comments = All<Comments>()
+                  .Include(c => c.State);
+            return comments
+                .Join(db.vSourceItems, c => new { c.SourceType, c.SourceId }, i => new { i.SourceType, i.SourceId }, (c, i) => new CommentsExportListVM()
+                {
+                    commentId = c.Id,
+              //sourceItemURL = new Uri($"{Url}/{i.SourceId}").ToString(),
+              sourceItemURL = _Url.ToString() + "/" + i.SourceId.ToString(),
+                    commentTitle = c.Title,
+                    SourceItemId = i.SourceId,
+                    sourceItemTitle = i.Title,
+                    commentState = c.State.Name,
+              //commentText = c.Text,
+              createDate = c.DateCreated.ToString(),
+                    Remark = c.ModeratorRemark,
+                    TookIntoConsideration = (c.TookIntoConsideration == null) ? "Неразгледан" : (c.TookIntoConsideration == true) ? "Взет предвид" : "Не взет предвид",
+                    TookIntoConsiderationReason = c.TookIntoConsiderationReason
+                }).OrderByDescending(c => c.createDate);
+        }
 
-    public bool SaveItem(CommentVM model, int userId)
+        public bool SaveItem(CommentVM model, int userId)
         {
             bool result = false;
 
@@ -271,7 +271,7 @@ namespace Models.Services
                 .Where(x => x.UserId == userId)
                 .Select(x => x.GroupUserId)
                 .ToArray();
-            
+
             return All<Users>(u => u.Id == userId)
                 .Union(All<Users>(u => groupUserIds.Contains(u.Id)))
                 .Select(u => new SelectListItem()
@@ -285,7 +285,7 @@ namespace Models.Services
         {
             var comments = (from pc in All<Comments>(x => x.SourceType == GlobalConstants.SourceTypes.PublicConsultation && x.SourceId == consultationId &&
                      x.CommentStateId == GlobalConstants.CommentStatus.Approved)
-                            join us in All<Users>() on pc.CreatedByUserId equals us.Id
+                            join us in All<Users>(u=>u.IsActive) on pc.CreatedByUserId equals us.Id
                             select new CommentVM
                             {
                                 CommentId = pc.Id,
@@ -313,7 +313,7 @@ namespace Models.Services
             return (from pcd in document
                     join pc in All<Comments>(x => x.SourceType == GlobalConstants.SourceTypes.PublicConsultationDocuments &&
                         x.CommentStateId == GlobalConstants.CommentStatus.Approved) on pcd.Id equals pc.SourceId
-                    join us in All<Users>() on pc.CreatedByUserId equals us.Id
+                    join us in All<Users>(u => u.IsActive) on pc.CreatedByUserId equals us.Id
                     select new CommentVM
                     {
                         CommentId = pc.Id,

@@ -11,17 +11,39 @@
     </style>
 }
 
+@section scripts{
+    <script>
+        function strategicDocumentExport() {
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("ExportChoice","StrategicDocument")',
+                success: function (data) {
+                        ShowDialog('Експорт', data);
+                    }
+                });
+        }
+    </script>
+}
 <section class="section__wrapper">
     <div class="row">
-        <div class="section col-lg-3 col-md-6 col-sm-12">
-            <a href="@Url.Action("Index","StrategicDocument",new { area=""})" class="home--button default btn-block">
+        <div class="section col-lg-3 col-md-6 col-sm-12" style="vertical-align:middle;">
+            <a href="@Url.Action("LawPrograms", "MSprogram",new { area=""})" class="home--button default btn-block">
+                <i class="fa fa-balance-scale"></i>
+                <p>@Localizer["MS_PROGRAM_LAW"]</p>
+            </a>
+            <a href="@Url.Action("OpPrograms", "MSprogram",new { area=""})" class="home--button default btn-block">
+                <i class="fa fa-recycle"></i>
+                <p>@Localizer["MS_PROGRAM_OP"]</p>
+            </a>
+            <a href="#" onclick="strategicDocumentExport(); return false;" class="home--button default btn-block">
                 <i class="fa fa-paperclip"></i>
                 <p>@Localizer["MENU_STRATEGIC_DOCUMENTS"]</p>
             </a>
-            <a href="@Url.Action("Index","MulticriteriaAnalysis",new { area=""})" class="home--button default btn-block">
-                <i class="fa fa-list-alt"></i>
-                <p>@Localizer["SECTION_ASSESSMENT"]</p>
-            </a>
+            @*<a href="@Url.Action("Index","MulticriteriaAnalysis",new { area=""})" class="home--button default btn-block">
+                    <i class="fa fa-list-alt"></i>
+                    <p>@Localizer["SECTION_ASSESSMENT"]</p>
+                </a>*@
             <a href="@Url.Action("ListPCSubjects", "PCSubjects",new { area=""})" class="home--button default btn-block">
                 <i class="fa fa-users"></i>
                 <p>@Localizer["SECTION_LINK_ZNA_PEOPLE"]</p>
@@ -29,6 +51,15 @@
             <a href="@Url.Action("ListChangeProposals", "ChangeProposals",new { area=""})" class="home--button default btn-block">
                 <i class="fa fa-plus-circle"></i>
                 <p>@Localizer["SECTION_LINK_LAW_PROPOSALS"]</p>
+            </a>
+            <a href="@Url.Action("Index", "Questionary",new { area=""})" class="home--button default btn-block">
+                <i class="fa fa-question"></i>
+                <p>@Localizer["SECTION_LINK_QUESTIONARY"]</p>
+                @{ if ((bool)ViewBag.hasNewQuestionary)
+                    {
+                        <i class="fa fa-bell-o right-icon"></i>
+                    }
+                }
             </a>
             @*<a href="@Url.Action("Index", "Questionary",new { area=""})" class="home--button default btn-block">
                     <i class="fa fa-users"></i>
@@ -46,14 +77,14 @@
         </div>
         <div class="section col-lg-3 col-md-6 col-sm-12">
             <p class="type">@Localizer["MENU_PUBLIC_CONSULTATIONS"]</p>
-            @await Component.InvokeAsync("PublicConsultationWidget", new { loadCount = 5,type="new" })
+            @await Component.InvokeAsync("PublicConsultationWidget", new { loadCount = 5, type = "comment" })
         </div>
         <div class="section col-lg-3 col-md-6 col-sm-12">
             <p class="type">@Localizer["MENU_STRATEGIC_DOCUMENTS"]</p>
             @await Component.InvokeAsync("StrategicDocumentsWidget", new { loadCount = 5 })
         </div>
         <div class="section col-lg-3 col-md-6 col-sm-12" style="vertical-align:top;">
-            <ul class="nav nav-tabs" style="margin-top: -10px;">
+            <ul class="nav nav-tabs" style="margin-top: -5px;">
                 <li class="active"><a href="#tabNews" role="tab" data-toggle="tab"><p class="type">@(Localizer["MENU_NEWS"])</p></a></li>
                 <li><a href="#tabPublications" role="tab" data-toggle="tab"><p class="type">@(Localizer["MENU_PUBLICATIONS"])</p></a></li>
             </ul>
@@ -68,22 +99,27 @@
         </div>
     </div>
 </section>
-
-<section class="section__wrapper" style="width:100%;">
+@*<section class="section__wrapper" style="width:100%;">
     <div class="row">
-        <div class="section col-lg-9 col-md-12 col-sm-12  col-xs-12">
-            <div class="row">
-                @await Component.InvokeAsync("BannerWidget", new { bannerType = "home1" })
-            </div>
-        </div>
         <div class="section col-lg-3 col-md-12 col-sm-12 col-xs-12" style="vertical-align:top;">
             @await Component.InvokeAsync("QuestionaryWidget")
             <hr />
             <a href="@Url.Action("Index", "Questionary",new { area=""})" class="text-primary">
                 Преглед на всички анкети
-                @*@Localizer["SECTION_LINK_QUESTIONARY"]*@
-            </a>
+
+                </a>
+                </div>
+
+                </div>
+                </section>*@
+<section class="section__wrapper" style="width:100%;">
+    <div class="row">
+        <div class="section col-lg-12 col-md-12 col-sm-12  col-xs-12">
+            <center>
+                @await Component.InvokeAsync("BannerWidget", new { bannerType = "home1" })
+            </center>
         </div>
+
 
     </div>
 </section>

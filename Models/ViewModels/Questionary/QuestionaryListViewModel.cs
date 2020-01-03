@@ -27,5 +27,8 @@ namespace Models.ViewModels.Questionary
 
     [JsonProperty("closingDate")]
     public DateTime? ClosingDate { get; set; }
-  }
+
+		[JsonProperty("participantsNumber")]
+		public int ParticipantsNumber { get; set; }
+	}
 }

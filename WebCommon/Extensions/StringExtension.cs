@@ -139,5 +139,17 @@ namespace WebCommon.Extensions
 
             return null;
         }
+
+        public static string FirstLetterUpperCase(this string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+            else
+            {
+                return value.Substring(0, 1).ToUpper() + value.Substring(1);
+            }
+        }
     }
 }

@@ -27,11 +27,11 @@ namespace Domain.Controllers
             nomService = _nomService;
             urlHelper = _urlHelper;
         }
-        public IActionResult Index(int categoryMasterId = 1, int categoryId = -1, int districtId = -1, int municipalityId = -1, int validState = -1)
+        public IActionResult Index(int categoryMasterId = 1, int categoryId = -1, int districtId = -1, int municipalityId = -1, int validState = 1)
         {
             ViewBag.catMasters = nomService.ComboCategories(0).ToSelectList().SetSelected(categoryMasterId);
-            ViewBag.catNational = nomService.ComboCategories(GlobalConstants.Category.Type_National).ToSelectList().AddAllItem().SetSelected(categoryId);
-            ViewBag.catDistrict = nomService.ComboCategories(GlobalConstants.Category.Type_District).ToSelectList().AddAllItem().SetSelected(districtId);
+            ViewBag.catNational = nomService.ComboCategories(GlobalConstants.Categories.Type_National).ToSelectList().AddAllItem().SetSelected(categoryId);
+            ViewBag.catDistrict = nomService.ComboCategories(GlobalConstants.Categories.Type_District).ToSelectList().AddAllItem().SetSelected(districtId);
 
             var validStates = new List<TextValueVM>();
             validStates.Add(new TextValueVM(GlobalConstants.ValidStates.Active.ToString(), "Действащи"));
@@ -42,7 +42,7 @@ namespace Domain.Controllers
             ViewBag.RssLink = urlHelper.Action("GetDocumentFeed", "Rss", new
             {
                 type = RssFeedType.StrategicDocuments,
-                categoryMasterId = GlobalConstants.Category.Type_National
+                categoryMasterId = GlobalConstants.Categories.Type_National
             });
 
             return View();
@@ -61,6 +61,12 @@ namespace Domain.Controllers
         public IActionResult View(int id)
         {
             var model = service.GetStrategicDocument(id);
+
+            if(model == null || !model.IsActive || model.IsDeleted)
+            {
+                return View("NotFound");
+            }
+
             model.Title = model.Title.DecodeIfNeeded();
             model.Summary = model.Summary.DecodeIfNeeded();
 

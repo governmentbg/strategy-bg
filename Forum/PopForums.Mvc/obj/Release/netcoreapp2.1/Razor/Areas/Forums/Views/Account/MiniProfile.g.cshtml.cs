@@ -154,7 +154,7 @@ Write(PopForums.Resources.Posts);
             WriteLiteral(": ");
             EndContext();
             BeginContext(457, 127, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "464aad5090e240feba2c5ceaa4c0abfe", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8fd0e9727fef4aa089501a5fbd8c0839", async() => {
                 BeginContext(550, 30, false);
 #line 13 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\MiniProfile.cshtml"
                                                                                                                        Write(Model.PostCount.ToString("N0"));
@@ -216,7 +216,7 @@ Write(PopForums.Resources.Posts);
             WriteLiteral("<br/>\n\t");
             EndContext();
             BeginContext(655, 89, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dcf6a021d2764213ad5b31d53c3452d2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "27e65ed2a4eb466f97fb265ccd590c6b", async() => {
                 BeginContext(728, 12, true);
                 WriteLiteral("Full Profile");
                 EndContext();
@@ -264,7 +264,7 @@ Write(PopForums.Resources.Posts);
             WriteLiteral("| \n\t\t");
             EndContext();
             BeginContext(780, 116, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a77843155f340a196d76f838f023dcd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b7e592af462247f6b105a93fbe5ef199", async() => {
                 BeginContext(866, 26, false);
 #line 17 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\MiniProfile.cshtml"
                                                                                         Write(PopForums.Resources.SendPM);
@@ -308,7 +308,7 @@ Write(PopForums.Resources.Posts);
             WriteLiteral("| \n\t\t");
             EndContext();
             BeginContext(904, 120, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "22f1c5cd8bd241ca8005d0f42a625f53", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "769d2f311d3d4965a3c2c8f2a2c903b6", async() => {
                 BeginContext(985, 35, false);
 #line 18 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\MiniProfile.cshtml"
                                                                                    Write(PopForums.Resources.SendEmailButton);

@@ -63,8 +63,23 @@ using Models.Context;
 
 #line default
 #line hidden
+#line 11 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Domain.Class;
+
+#line default
+#line hidden
+#line 12 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Mvc.Localization;
+
+#line default
+#line hidden
+#line 13 "C:\Projects\Strategy\newSingleSite\Domain\Views\_ViewImports.cshtml"
+using Microsoft.Extensions.Localization;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"582f3a56403a1a34a4b9c1200df26dc7373836a7", @"/Views/Account/TargetGroups_Add.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d7a9a60c20537480d66fd9d2d41d1eec08c8ef00", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3bf1412ad68915763abac5573310d172851b2661", @"/Views/_ViewImports.cshtml")]
     public class Views_Account_TargetGroups_Add : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<UserInTargetGroupVM>
     {
         #line hidden
@@ -101,12 +116,12 @@ using Models.Context;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(57, 497, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81fc71d4c3994181a1a27fc0c922b1f7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d8c758ccbff44e98731eb01ab284476", async() => {
                 BeginContext(96, 6, true);
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(102, 54, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("ddl", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d1f2204038547f099afd601e9aea1b7", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("ddl", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8de54a8886a14e3aa3410f39bd7d43ff", async() => {
                 }
                 );
                 __WebCommon_TagHelpers_DropDownListTagHelper = CreateTagHelper<global::WebCommon.TagHelpers.DropDownListTagHelper>();

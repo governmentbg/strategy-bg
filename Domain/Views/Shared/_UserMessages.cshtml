@@ -8,7 +8,7 @@
                 <div class="alert alert-danger no-margin-bottom">
                     <button data-dismiss="alert" class="close">×</button>
                     <i class="glyphicon glyphicon-ban-circle"></i>
-                    @TempData[GlobalConstants.UserMessages.Danger]
+                    @Html.Raw(TempData[GlobalConstants.UserMessages.Danger])
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                 <div class="alert alert-warning no-margin-bottom">
                     <button data-dismiss="alert" class="close">×</button>
                     <i class="glyphicon glyphicon-warning-sign"></i>
-                    @TempData[GlobalConstants.UserMessages.Warning]
+                    @Html.Raw(TempData[GlobalConstants.UserMessages.Warning])
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="alert alert-success no-margin-bottom">
                     <button data-dismiss="alert" class="close">×</button>
                     <i class="glyphicon glyphicon-check"></i>
-                    @TempData[GlobalConstants.UserMessages.Success]
+                    @Html.Raw(TempData[GlobalConstants.UserMessages.Success])
                 </div>
             </div>
         </div>

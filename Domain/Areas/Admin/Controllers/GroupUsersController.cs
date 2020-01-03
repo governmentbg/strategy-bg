@@ -128,6 +128,7 @@ namespace Domain.Areas.Admin.Controllers
         private void SetViewBag(GroupUserVM model)
         {
             ViewBag.institutions = nomService.GetInstitutionTypesDDL().ToSelectList(x => x.Value, x => x.Text, model.InstitutionTypeId);
+            ViewBag.LinksCategoryId_ddl = nomService.GetLinksCategoriesDDL();
         }
     }
 }

@@ -1,0 +1,50 @@
+2019-11-02 18:52:45,997 [10] ERROR App  
+ Request matched multiple actions resulting in ambiguity. Matching actions: Domain.Controllers.FileCdnController.GetFileList (Domain)
+Domain.Areas.Admin.Controllers.FileCdnController.GetFileList (Domain) 
+ 
+2019-11-02 18:52:46,371 [10] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+Microsoft.AspNetCore.Mvc.Internal.AmbiguousActionException: Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+Domain.Controllers.FileCdnController.GetFileList (Domain)
+Domain.Areas.Admin.Controllers.FileCdnController.GetFileList (Domain)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionSelector.SelectBestCandidate(RouteContext context, IReadOnlyList`1 candidates)
+   at Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.Route.OnRouteMatched(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteBase.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-11-02 18:53:09,325 [15] ERROR App  
+ Request matched multiple actions resulting in ambiguity. Matching actions: Domain.Controllers.FileCdnController.GetFileList (Domain)
+Domain.Areas.Admin.Controllers.FileCdnController.GetFileList (Domain) 
+ 
+2019-11-02 18:53:09,333 [15] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+Microsoft.AspNetCore.Mvc.Internal.AmbiguousActionException: Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+Domain.Controllers.FileCdnController.GetFileList (Domain)
+Domain.Areas.Admin.Controllers.FileCdnController.GetFileList (Domain)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionSelector.SelectBestCandidate(RouteContext context, IReadOnlyList`1 candidates)
+   at Microsoft.AspNetCore.Mvc.Internal.MvcRouteHandler.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.Route.OnRouteMatched(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteBase.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)

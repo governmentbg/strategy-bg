@@ -96,7 +96,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(284, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ebe2ee59aac841b88adff7993871dd6a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "53734f3051ae41999eb4eab56a2d94a9", async() => {
                 BeginContext(345, 26, false);
 #line 9 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\AccountCreated.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);
@@ -151,7 +151,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</p>\n\n<p>");
             EndContext();
             BeginContext(480, 68, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cf3a96bf4c80482faef8ceeb180c15a9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "76424c183a8241769dfb996d4d3e56a9", async() => {
                 BeginContext(509, 35, false);
 #line 15 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\AccountCreated.cshtml"
                           Write(PopForums.Resources.EditYourProfile);

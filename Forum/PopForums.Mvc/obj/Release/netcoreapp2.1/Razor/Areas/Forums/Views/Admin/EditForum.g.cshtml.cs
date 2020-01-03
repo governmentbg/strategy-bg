@@ -99,7 +99,7 @@ Write(PopForums.Resources.EditForum);
             WriteLiteral("</h2>\n\n");
             EndContext();
             BeginContext(178, 299, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b6a703cf73d4078b3ac90ca607ee439", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83fac0b6973648dc853f3b4d0d207d37", async() => {
                 BeginContext(198, 46, true);
                 WriteLiteral("\n\t<div class=\"form-horizontal\" role=\"form\">\n\t\t");
                 EndContext();

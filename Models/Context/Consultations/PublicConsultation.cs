@@ -33,6 +33,8 @@ namespace Models.Context.Consultations
 
         public int? InstututionTypeId { get; set; }
 
+        public string InstitutionTypeName { get; set; }
+
         public bool ShouldAlertSubscribers { get; set; }
 
         public string ResponsiblePerson { get; set; }
@@ -43,6 +45,10 @@ namespace Models.Context.Consultations
 
         public string Email { get; set; }
 
+        public int? MSProgramProjectId { get; set; }
+
+        public int? ActTypeId { get; set; }
+
         [ForeignKey(nameof(InstututionTypeId))]
         public InstitutionTypes InstitutionType { get; set; }
 
@@ -51,6 +57,9 @@ namespace Models.Context.Consultations
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
+
+        [ForeignKey(nameof(MSProgramProjectId))]
+        public MSProgramProject MSProgramProject { get; set; }
 
         public ICollection<PublicConsultationComment> Comments { get; set; }
 

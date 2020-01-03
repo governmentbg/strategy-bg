@@ -52,12 +52,14 @@
     <h2>@Model.Title</h2>
     @foreach (var cat in Model.CategoryRows.Where(x => x.LinkRows.Any()))
     {
+        int i = 0;
         <div class="catTitle">Категория : @cat.Title</div>
         <table>
             @foreach (var doc in cat.LinkRows)
             {
+                i++;
                 <tr class="link">
-                    <td class="col1">@doc.OrderNumber</td>
+                    <td class="col1">@i</td>
                     <td class="col2"><a href="@Url.Action("View","StrategicDocument",new { area="",id=doc.Id})"> @doc.Title</a></td>
                     <td class="col3">валиден до : @(doc.ValidTo.Year >= 2100 ? "Не е указан срок" : doc.ValidTo.ToString("yyyy г."))</td>
                 </tr>
@@ -65,8 +67,9 @@
                 {
                     foreach (var docFile in doc.Files)
                     {
+                        i++;
                         <tr >
-                            <td class="col1">@(Int32.Parse(doc.OrderNumber)+1)</td>
+                            <td class="col1">@i</td>
                             <td class="col2">@docFile.Title </td>
                             <td class="col3">валиден до : @(docFile.ValidTo.Year >= 2100 ? "Не е указан срок" : docFile.ValidTo.ToString("yyyy г."))</td>
                         </tr>

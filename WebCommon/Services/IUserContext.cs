@@ -3,6 +3,7 @@
     public interface IUserContext
     {
         int UserId { get; }
+        int UserTypeId { get; }
         string Email { get; }
         string FullName { get; }
 

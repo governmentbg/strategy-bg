@@ -121,22 +121,22 @@
     <value>Home</value>
   </data>
   <data name="MENU_FORUM" xml:space="preserve">
-    <value>SOCIETY DECIDES TODAY</value>
+    <value>Scociety decides today</value>
   </data>
   <data name="MENU_NEWS" xml:space="preserve">
-    <value>NEWS</value>
+    <value>News</value>
   </data>
   <data name="MENU_OGP" xml:space="preserve">
-    <value>OPEN GOVERNANCE PARTNERSHIP</value>
+    <value>Open governance partnership</value>
   </data>
   <data name="MENU_PUBLICATIONS" xml:space="preserve">
-    <value>PUBLICATIONS</value>
+    <value>Publications</value>
   </data>
   <data name="MENU_PUBLIC_CONSULTATIONS" xml:space="preserve">
-    <value>PUBLIC CONSULTATIONS</value>
+    <value>Public consultations</value>
   </data>
   <data name="MENU_STRATEGIC_DOCUMENTS" xml:space="preserve">
-    <value>STRATEGIC DOCUMENTS</value>
+    <value>Strategic documents</value>
   </data>
   <data name="NEWS_LAST_EDITED" xml:space="preserve">
     <value>Last edited:</value>
@@ -151,19 +151,19 @@
     <value>Search phrase</value>
   </data>
   <data name="SECTION_ASSESSMENT" xml:space="preserve">
-    <value>IMPACT ASSESSMENT</value>
+    <value>Impact assessment</value>
   </data>
   <data name="SECTION_LINK_LAW_PROPOSALS" xml:space="preserve">
-    <value>LAW PROPOSAL INITIATIVES</value>
+    <value>Law proposal initiatives</value>
   </data>
   <data name="SECTION_LINK_ZNA_PEOPLE" xml:space="preserve">
-    <value>LLA PEOPLE LIST</value>
+    <value>LLA people list</value>
   </data>
   <data name="SECTION_LINK_QUESTIONARY" xml:space="preserve">
-    <value>QUESTIONARY</value>
+    <value>Questionary</value>
   </data>
   <data name="SECTION_OTHER_RESOURCES" xml:space="preserve">
-    <value>OTHER RESOURCES</value>
+    <value>Other resources</value>
   </data>
   <data name="TOP_LINK_CONTACTS" xml:space="preserve">
     <value>Contacts</value>
@@ -176,5 +176,68 @@
   </data>
   <data name="TOP_LINK_TERMS_OF_USE" xml:space="preserve">
     <value>Terms of use</value>
+  </data>
+  <data name="FILTER_AREA" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="FILTER_BY_NAME" xml:space="preserve">
+    <value>Search by name</value>
+  </data>
+  <data name="FILTER_CATEGORY" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="FILTER_MUNICIPALITY" xml:space="preserve">
+    <value>Municipality</value>
+  </data>
+  <data name="FILTER_SHOW" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="PC_FILTER_MASTER_CATEGORY" xml:space="preserve">
+    <value>Consultation type</value>
+  </data>
+  <data name="SD_BUTTON_EXPORT" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="SD_FILTER_MASTER_CATEGORY" xml:space="preserve">
+    <value>Document type</value>
+  </data>
+  <data name="OLD_SITE" xml:space="preserve">
+    <value>Old site</value>
+  </data>
+  <data name="OTHERS_AND_PORTAL" xml:space="preserve">
+    <value>Others and the portal</value>
+  </data>
+  <data name="PORTAL_INFORMATION" xml:space="preserve">
+    <value>Portal informatin</value>
+  </data>
+  <data name="MS_PROGRAM_LAW" xml:space="preserve">
+    <value>Law Programmes</value>
+  </data>
+  <data name="MS_PROGRAM_OP" xml:space="preserve">
+    <value>Operational Programmes</value>
+  </data>
+  <data name="MS_PROGRAM_PROJECTS_TO" xml:space="preserve">
+    <value>Project in programme</value>
+  </data>
+  <data name="CP_BUTTON_NEW" xml:space="preserve">
+    <value>New Change Proposal</value>
+  </data>
+  <data name="BTN_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="BTN_SEND" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="CP_NEW_TITLE" xml:space="preserve">
+    <value>New change proposal</value>
+  </data>
+  <data name="CP_TITLE" xml:space="preserve">
+    <value>Change proposals</value>
+  </data>
+  <data name="NOTFOUND_CONTENT" xml:space="preserve">
+    <value>The content you seek is not found or is not active.</value>
+  </data>
+  <data name="NOTFOUND_TITLE" xml:space="preserve">
+    <value>Content not found</value>
   </data>
 </root>

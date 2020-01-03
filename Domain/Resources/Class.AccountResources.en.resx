@@ -162,6 +162,9 @@
   <data name="GotoMainClientDescription" xml:space="preserve">
     <value>You are seeing this screeen, bacause you have followed a wrong or uncomplete url address.</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="Iagree" xml:space="preserve">
     <value>I agree than my personal data will be stored as electronic service provider requirement </value>
   </data>

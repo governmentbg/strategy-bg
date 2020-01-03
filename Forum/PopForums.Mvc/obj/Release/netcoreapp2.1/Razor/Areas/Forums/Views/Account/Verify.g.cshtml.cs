@@ -100,7 +100,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(279, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "77487d7b5bfa4a49b5391690ef0377fc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ffefee91617b4a3ab76a48454c726b89", async() => {
                 BeginContext(340, 26, false);
 #line 9 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\Verify.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);
@@ -172,7 +172,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("\n<div class=\"row\">\n\t<div class=\"col-xs-6\">\n\t\t");
             EndContext();
             BeginContext(593, 381, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f872a7b037ca4597a0fbdfb0b51a6fb4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "559e1ba1bb2048a2984b0760ba0372b2", async() => {
                 BeginContext(637, 87, true);
                 WriteLiteral("\n\t\t\t<div role=\"form\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"authorizationCode\">");
                 EndContext();
@@ -218,7 +218,7 @@ WriteAttributeValue("", 890, PopForums.Resources.VerifyCodeButton, 890, 37, fals
             WriteLiteral("\n\t</div>\n\t<div class=\"col-xs-6\">\n\t\t");
             EndContext();
             BeginContext(1009, 370, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ab8468be66f04cf49d419e9caec59f40", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bf2d7b89f2f74dbdb47a31a105326088", async() => {
                 BeginContext(1054, 75, true);
                 WriteLiteral("\n\t\t\t<div role=\"form\">\n\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t<label for=\"email\">");
                 EndContext();

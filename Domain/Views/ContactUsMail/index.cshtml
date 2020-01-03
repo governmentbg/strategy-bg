@@ -15,15 +15,15 @@
     </div>
 }
 
-<section class="container-fluid information">
-    <div class="row">
+<section class="container-fluid information center">
+    <div class="row center" >
         @*<div class="col-lg-3">
             @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.StaticPages, display = "menu", title = "Свържете се с нас" })
         </div>*@
 
-        <div class="col-lg-9">
+        <div class="col-lg-12">
             <div style="padding: 10px">
-                <form asp-action="SendMessage" id="form1">
+                <form asp-action="SendMessage" id="form1" >
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <h2>
                         <div align="center">

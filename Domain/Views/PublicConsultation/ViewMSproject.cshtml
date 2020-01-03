@@ -1,0 +1,60 @@
+﻿@model Models.ViewModels.Consultations.ConsultationViewModel
+@using Models.Context.Consultations
+@using Domain.Extensions
+@using Models
+
+@{
+  ViewData["SectionTitle"] = "Обществени консултации";
+  var project = (MSProgramProject)ViewBag.project;
+ 
+  List<BreadcrumbVM> breadcrumb = ViewBag.Breadcrumb != null ? (List<BreadcrumbVM>)ViewBag.Breadcrumb : new List<BreadcrumbVM>();
+}
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        @foreach (var item in breadcrumb)
+        {
+            <a href="@item.Url">/ @item.Title </a>
+        }
+    </div>
+}
+
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-md-3">
+            @(await Html.PartialAsync("_consultationLeftMenu", Model.MenuLinks))
+        </div>
+        <div class="col-md-5 col-lg-6 body">
+            <h3>
+                @Html.Raw(project.Title)
+            </h3>
+            <p class="title">
+                @Html.Raw(project.Description)
+        
+                <a href="@Url.Action("View","PublicConsultation",new {  id = Model.Id })">ОК:@Model.Title</a>
+            </p>
+          
+
+            <!-- TABLE DATES -->
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table table-bordered table--dates table--stripped">
+                        <tbody>
+                            <!-- LOOP -->
+                            <tr>
+                                <td>Месец:</td>
+                                <td>@string.Format("{0:MMMM, yyyy}", project.DateCoordinated)</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END TABLE DATES -->
+            @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.MSPRogramProject, sourceId = project.Id })
+        </div>
+    </div>
+
+
+</div>
+

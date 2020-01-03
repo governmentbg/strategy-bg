@@ -176,7 +176,7 @@ WriteAttributeValue("", 471, Url.Action("UserImage", "Image", new {id = item.Key
             WriteLiteral(" alt=\"User image\" /><br />\n\t\t");
             EndContext();
             BeginContext(567, 205, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d4240b08b6449fc821a993793918f36", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5dea8cc8d32b44ffb152721f6ebcecd0", async() => {
                 BeginContext(702, 63, true);
                 WriteLiteral("<input type=\"submit\" value=\"Approve\" class=\"btn btn-primary\" />");
                 EndContext();
@@ -222,7 +222,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Antiforgery = false;
             WriteLiteral("\n\t\t");
             EndContext();
             BeginContext(775, 224, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2953b59c485d4eb8a76478a90d28dcd3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "405aa044381144a8a3af9f6740d317cc", async() => {
                 BeginContext(909, 20, true);
                 WriteLiteral("<input type=\"submit\"");
                 EndContext();

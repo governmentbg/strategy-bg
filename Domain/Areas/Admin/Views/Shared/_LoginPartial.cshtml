@@ -32,14 +32,13 @@
                     @*<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">*@
                     <p>
                         @fullName
-                        <small>Member since Nov @userId. 2012</small>
                     </p>
                 </li>
 
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <div class="pull-left">
-                        <a href="#" class="btn btn-default btn-flat">Профил</a>
+                        <a asp-action="Profile" asp-controller="Account" asp-area="" target="_blank" class="btn btn-default btn-flat">Профил</a>
                     </div>
                     <div class="pull-right">
                         <form asp-action="Logoff" asp-controller="Account" asp-area="">

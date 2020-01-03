@@ -1,8 +1,12 @@
 ﻿@model Models.ViewModels.StandartForms.StandartForm_3VM
-@{
+@*@{
     ViewData["Title"] = "Електронни формуляри";
-}
+}*@
 
+@{
+    ViewData["Title"] = "Оценка на въздействието ";
+    ViewData["SectionTitle"] = ViewData["Title"];
+}
 
 @section breadcrumbs{
     <div class="breadcrumbs">
@@ -14,7 +18,7 @@
 <section class="container-fluid information">
     <div class="row">
         <div class="col-lg-3">
-            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu",title="Оценка на въздействието" })
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
         </div>
         <div class="col-lg-9">
             <h2>Електронни формуляри</h2>
@@ -22,5 +26,6 @@
             &nbsp;&nbsp;&nbsp;<p><a href="~/standartforms/index_standartform_2"><b>Приложение №2<font color="#b00000"> </font></b></a>(към чл. 22, ал. 1 от Наредбата за обхвата и методологията за извършване на оценка на въздействието)</p>
             &nbsp;&nbsp;&nbsp;<p><a href="~/standartforms/index_standartform_3"><b>Приложение №3<font color="#b00000"> </font></b></a>(към чл. 26 от Наредбата за обхвата и методологията за извършване на оценка на въздействието)<br></p><p><br></p>
         </div>
+
     </div>
 </section>

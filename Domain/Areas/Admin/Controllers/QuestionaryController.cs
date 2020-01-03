@@ -12,12 +12,12 @@ using System.ComponentModel;
 using System.Linq;
 using WebCommmon.Controllers;
 using WebCommon.Services;
+using static Models.GlobalConstants;
 
 namespace Domain.Areas.Admin.Controllers
 {
 	[Area(nameof(Admin))]
-	[Authorize(Roles = GlobalConstants.Roles.Admin)]
-	public class QuestionaryController : BaseController
+	public class QuestionaryController : BaseAdminController
 	{
 		private readonly IQuestionaryService questionaryService;
 		private readonly IUserContext userContext;
@@ -74,18 +74,28 @@ namespace Domain.Areas.Admin.Controllers
 		[ValidateAntiForgeryToken]
 		public IActionResult Edit(QuestionaryViewModel model)
 		{
-			SetSavedMessage = false;
+      int logState = 0;
 
-			if (!ModelState.IsValid)
+      SetSavedMessage = false;
+      if (model.Id == 0)
+      { logState = SiteLogAction.Add; }
+      else
+      {
+        logState = SiteLogAction.Edit;
+        
+      }
+      if (!ModelState.IsValid)
 			{
 				return View(model);
 			}
 
 			SetSavedMessage = questionaryService.SaveQuestionary(model, UserId);
+     
 
-			if (SetSavedMessage)
+      if (SetSavedMessage)
 			{
-				return RedirectToAction(nameof(Edit), new { id = model.Id });
+        SaveSiteLog(SiteLogTableNames.Questionary, logState, model.Id,true , model.QuestionaryTitle);
+        return RedirectToAction(nameof(Edit), new { id = model.Id });
 			}
 
 			return View(model);

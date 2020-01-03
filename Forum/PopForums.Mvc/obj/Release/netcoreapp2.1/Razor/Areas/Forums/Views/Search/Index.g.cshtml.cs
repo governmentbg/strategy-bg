@@ -126,7 +126,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li>");
             EndContext();
             BeginContext(745, 111, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3e3be64d2c65462fbbc3a5eacaf4f6a8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b2f2cab4ca29404090b5ac291c72b372", async() => {
                 BeginContext(826, 26, false);
 #line 24 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Search\Index.cshtml"
                                                                                        Write(PopForums.Resources.Recent);
@@ -167,7 +167,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(921, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "692bd5bec6a842f988a80aad582a6f07", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4411faf7423c4e04a2ffd395f78c4f68", async() => {
                 BeginContext(982, 26, false);
 #line 25 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Search\Index.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);
@@ -202,7 +202,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t</ul>\n\t<ul id=\"FixedBreadcrumb\" class=\"breadcrumb\">\n\t\t<li>");
             EndContext();
             BeginContext(1077, 111, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2432f23b4ebe468e847805290e07f4a0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4f363088649148489a79c8fc56516680", async() => {
                 BeginContext(1158, 26, false);
 #line 28 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Search\Index.cshtml"
                                                                                        Write(PopForums.Resources.Recent);
@@ -243,7 +243,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(1253, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f35692cbdafc46eda7d324798cc37039", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba4886e2dc92473cb6fa16b9da34a208", async() => {
                 BeginContext(1314, 26, false);
 #line 29 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Search\Index.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);
@@ -278,7 +278,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</li>\n\t</ul>\n</div>\n\n<div id=\"SearchForm\">\n\t");
             EndContext();
             BeginContext(1388, 460, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fc02ef9295974b6d84de493bfdef7acb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4aba84b83c44105b7f64e0663a42daa", async() => {
                 BeginContext(1485, 94, true);
                 WriteLiteral("\n\t\t<div class=\"form-group\">\n\t\t\t<input type=\"text\" name=\"Query\" id=\"Query\" class=\"form-control\"");
                 EndContext();
@@ -342,7 +342,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Antiforgery = false;
             WriteLiteral("\n</div>\n\n");
             EndContext();
             BeginContext(1857, 219, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pagerlinks", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a38685ebbbaa4f089f32907e3d89b993", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-pagerlinks", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "05b26272a557426488b6dd1adb27284d", async() => {
             }
             );
             __PopForums_Mvc_Areas_Forums_TagHelpers_PagerLinksTagHelper = CreateTagHelper<global::PopForums.Mvc.Areas.Forums.TagHelpers.PagerLinksTagHelper>();
@@ -444,9 +444,9 @@ else
             WriteLiteral("\t\t\t\t\t\t");
             EndContext();
             BeginContext(2432, 176, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e6a137659af4c74b869c888ec32ee41", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "936d58b69c6541f2a8c8ebcc05e7c2ef", async() => {
                 BeginContext(2507, 97, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-topicReadIndicator", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "1c333888239a4233b276ab2721fe4c77", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-topicReadIndicator", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0f34467b743b4228b2e27a2f467c7baf", async() => {
                 }
                 );
                 __PopForums_Mvc_Areas_Forums_TagHelpers_TopicReadIndicatorTagHelper = CreateTagHelper<global::PopForums.Mvc.Areas.Forums.TagHelpers.TopicReadIndicatorTagHelper>();
@@ -516,9 +516,9 @@ __PopForums_Mvc_Areas_Forums_TagHelpers_TopicReadIndicatorTagHelper.PagedTopicCo
             WriteLiteral("\t\t\t\t\t\t");
             EndContext();
             BeginContext(2639, 201, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b64c78e34d424fc2bca4bf65d15635ac", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6c6b12bc6bdb456cb58153e4c349e91f", async() => {
                 BeginContext(2739, 97, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-topicReadIndicator", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fb5a3cedff5e4ace96c8e6b2b548b49a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("pf-topicReadIndicator", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "51298f99457745c78b1e7a80f026a986", async() => {
                 }
                 );
                 __PopForums_Mvc_Areas_Forums_TagHelpers_TopicReadIndicatorTagHelper = CreateTagHelper<global::PopForums.Mvc.Areas.Forums.TagHelpers.TopicReadIndicatorTagHelper>();

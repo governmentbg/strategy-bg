@@ -154,7 +154,7 @@
     <value>Забравена парола</value>
   </data>
   <data name="ForumAdmin" xml:space="preserve">
-    <value>Форум</value>
+    <value>Дискусии</value>
   </data>
   <data name="GivenName" xml:space="preserve">
     <value>Собствено име</value>
@@ -167,6 +167,9 @@
   </data>
   <data name="GotoMainClientDescription" xml:space="preserve">
     <value>Виждате този екран, защото сте последвали невалиден или грешен адрес.</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Начало</value>
   </data>
   <data name="Iagree" xml:space="preserve">
     <value>Съгласен съм данните ми да бъдат съхранявани с цел осигуряване на нормалната работа на системата</value>

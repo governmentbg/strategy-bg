@@ -11,86 +11,143 @@
 }
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-12 body cat-combos">
-            <div class="form-group col-lg-4 col-md-4 col-sm-6">
-                <label>Категория</label>
-                @Html.DropDownList("categoryId", (IEnumerable<SelectListItem>)ViewBag.categories, new { @class = "form-control" })
+        @*<div class="col-md-3">
+            <partial name="_PublicationLeftMenu" model="@ViewBag.categories" />
+        </div>*@
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12 body cat-combos search-form-container round-right">
+                    @*<div class="form-group col-lg-4 col-md-4 col-sm-6">
+            <label>Категория</label>
+            @Html.DropDownList("categoryId", (IEnumerable<SelectListItem>)ViewBag.categories, new { @class = "form-control" })
+        </div>*@
+                    <input type="hidden" id="categoryId" name="categoryId" value="@ViewBag.categoryID">
+                    <input type="hidden" id="categoryNM" name="categoryNM" value="@ViewBag.categoryName">
+                    <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                        <label>Търсене по наименование</label>
+                        @Html.TextBox("searchTerm", "", new { @class = "form-control" })
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                <label>Заглавие</label>
-                @Html.TextBox("searchTerm", "", new { @class = "form-control" })
-            </div>
+            <section>
+                <table id="mainTable" class="table" cellspacing="0"></table>
+            </section>
         </div>
     </div>
-    <section>
-        <div id="gridview"></div>
-    </section>
 </div>
 
 
 @section scripts{
     <script>
         $(function () {
+            var _dt;
             $('.cat-combos select').change(function () {
-                setBreadcrumb();
-                LoadData();
+                setTimeout(function () {
+                    setBreadcrumb();
+                    _dt.ajax.reload();
+                }, 100);
             });
             $('.cat-combos input').keyup(function () {
-                setBreadcrumb();
-                LoadData();
-            }).trigger('keyup');
-        });
-        function LoadData() {
-            $('#gridview').gridView({
-                url: '@(Url.Action("LoadDataGrid"))',
-                data: {
-                    category: $('#categoryId').val(),
-                    searchTerm: $('#searchTerm').val()
-                },
-                filter: false,
-                size: 8,
-                size_selector:false,
-                lang:'@ViewBag.lang',
-                template: '#publicationTemplate',
-                empty_text: 'Няма намерени елементи.'
+                setTimeout(function () {
+                    setBreadcrumb();
+                    _dt.ajax.reload();
+                }, 100);
             });
-        }
+
+
+
+            setTimeout(function () {
+                setBreadcrumb();
+                _dt  = $('#mainTable').DataTable({
+                     "ajax": {
+                         "url": '@Url.Action("LoadData")',
+                         data: function (d) {
+                             d.categoryId = $('#categoryId').val();
+                             d.searchTerm = $('#searchTerm').val();
+                         },
+                         "type": "POST"
+                     },
+                     fnDrawCallback: function (settings) {
+                         $('.dataTables_paginate').toggle(settings.fnRecordsDisplay() > 0);
+                     },
+                    filter: false,
+                    "pageLength": 15,
+                    "order": [[0, "asc"]],
+                    "columns": [
+                             
+                        {
+                             data: "title",
+                             name: 'title',
+                             title: 'Наименование',
+                           
+                             render: function (data, type, item, meta) {
+                                 var url = '@Url.Action("View",new { id = "123"})'.replace('123', item.id);
+                                 var content = '<table><tr><td><a href="' + url + '" class="dt-article-item">' ;
+                                 var textClass = "";
+                                 if (item.mainImageFileId) {
+                                     content += '<div class="list-image">';
+                                     var imgUrl = '@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs,max=100})+"&sourceId")=' + item.mainImageFileId;
+                                     content += '<img src="' + imgUrl + '" /></div></a></td><td><a href="' + url + '" class="dt-article-item">';
+                                     textClass="has-image";
+                                 }
+                                 content += '<div class="' + textClass + '">' + item.title +'</div>';
+                                 content += '</a></td></tr></table>';
+
+                                 return content;
+                             },
+                             sortable: true
+                         },
+                         {
+                             data: "categoryName",
+                             name: "categoryName",
+                             title: 'Категория',
+                             className: "dt-head-center",
+                              render: function (data, type, item, meta) {
+                                  var catUrl = '@(Url.Action("Index"))?category='+item.categoryId;
+                                  var a = '<a href="' + catUrl + '">&nbsp;' + item.categoryName;
+                                  return a;
+                             },
+                             sortable: true
+                         }
+                        ]
+                });
+            }, 200);
+        });
 
         function setBreadcrumb() {
             var category = $('#categoryId').val();
             var initialBreadcrumb = '/ <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a> / <a href="@Url.Action("Index")">Публикации</a>';
 
             if (category > 0) {
-                var categoryName = $('#categoryId  option:selected').text();
-                var breadcrumb = initialBreadcrumb + ' / <a href="@Url.Action("Index")?category=' + category + '">' + categoryName + '</a>';
 
+                var categoryName = $('#categoryNM').val();
+                var breadcrumb = initialBreadcrumb + ' / <a href="@Url.Action("Index")?category=' + category + '">' + categoryName + '</a>';
                 $('.breadcrumbs').html(breadcrumb);
             } else {
                 $('.breadcrumbs').html(initialBreadcrumb);
             }
         }
     </script>
-    <script type="text/x-handlebars-template" id="publicationTemplate">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <article class="article--news image--left">
-                <a href="@Url.Action("View")?id={{id}}">
-                    {{#if mainImageFileId}}
-                    <div class="image">
-                        <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs,max=75})+"&sourceId")={{mainImageFileId}}">
-                    </div>
-                    {{else}}
-                    <div class="image">
-                        <img src="@Url.Content("~/img/defaults/publication.jpg")">
-                    </div>
-                    {{/if}}
-                    <h4 class="title">
-                        {{{title}}}
-                    </h4>
-                    <p class="date">{{eventDateTXT}}</p>
-                </a>
-                <p class="type"><i class="fa fa-folder" title="Категория"></i>&nbsp;<a href="@Url.Action("Index")?category={{categoryId}}" title="Преглед на всички публикации в категория: {{{categoryName}}}">{{{categoryName}}}</a></p>
-            </article>
-        </div>
-    </script>
+    @*<script type="text/x-handlebars-template" id="publicationTemplate">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <article class="article--news image--left">
+                    <a href="@Url.Action("View")?id={{id}}">
+                        {{#if mainImageFileId}}
+                        <div class="image">
+                            <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",sourceType=GlobalConstants.SourceTypes.Library_ImagesThumbs,max=75})+"&sourceId")={{mainImageFileId}}">
+                        </div>
+                        {{else}}
+                        <div class="image">
+                            <img src="@Url.Content("~/img/defaults/publication.jpg")">
+                        </div>
+                        {{/if}}
+                        <h4 class="title">
+                            {{{title}}}
+                        </h4>
+                        <p class="date">{{eventDateTXT}}</p>
+                    </a>
+                    <p class="type"><i class="fa fa-folder" title="Категория"></i>&nbsp;<a href="@Url.Action("Index")?category={{categoryId}}" title="Преглед на всички публикации в категория: {{{categoryName}}}">{{{categoryName}}}</a></p>
+                </article>
+            </div>
+        </script>*@
 }

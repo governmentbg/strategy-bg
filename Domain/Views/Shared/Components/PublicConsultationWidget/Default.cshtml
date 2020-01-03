@@ -20,9 +20,19 @@
                 </a>
             </div>
         }
-        <div id="pcwidgetContainerTools">
-            <a href="#" data-type="new">Най-нови</a>&nbsp;|&nbsp;<a href="#" data-type="comment">Най-коментирани</a>
-        </div>
+        @if (sortType == "new")
+        {
+            <div id="pcwidgetContainerTools" >
+                <a href="#" class="select-comment-type" style="width:117px" data-type="new">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Най-нови&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</a>&nbsp;&nbsp;<a href="#" style="width:117px" data-type="comment">Най-коментирани</a>
+            </div>
+        }
+        else
+        {
+            <div id="pcwidgetContainerTools">
+                <a href="#" data-type="new" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Най-нови&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>&nbsp;&nbsp;<a href="#" class="select-comment-type" style="width:117px"  data-type="comment">Най-коментирани</a>
+            </div>
+        }
+
 
     }
     else

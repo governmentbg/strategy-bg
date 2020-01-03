@@ -1,0 +1,31 @@
+2019-03-20 23:45:57,925 [7] ERROR App  
+ An unhandled exception has occurred while executing the request. 
+ 
+System.ArgumentException: 'title' is not a member of type 'Models.ViewModels.Categories.ICategorySearchableItem'
+Parameter name: propertyOrFieldName
+   at System.Linq.Expressions.Expression.PropertyOrField(Expression expression, String propertyOrFieldName)
+   at WebCommon.Extensions.LinqExtensions.OrderBy[T](IQueryable`1 source, IEnumerable`1 sortModels) in C:\Projects\Strategy\newSingleSite\WebCommon\Extensions\LinqExtension.cs:line 96
+   at WebCommon.Extensions.DataTablesExtension.GetResponse[T](IDataTablesRequest request, IQueryable`1 data, IQueryable`1 filteredData, Nullable`1 recordCount) in C:\Projects\Strategy\newSingleSite\WebCommon\Extensions\DataTablesExtension.cs:line 26
+   at Domain.Areas.Admin.Controllers.StrategicDocumentController.LoadData(IDataTablesRequest request, Int32 categoryMasterId, Nullable`1 categoryId, Nullable`1 municipalityId, Nullable`1 validState) in C:\Projects\Strategy\newSingleSite\Domain\Areas\Admin\Controllers\StrategicDocumentController.cs:line 45
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)

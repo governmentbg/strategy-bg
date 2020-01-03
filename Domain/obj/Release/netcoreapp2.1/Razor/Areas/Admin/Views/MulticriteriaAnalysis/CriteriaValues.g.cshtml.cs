@@ -93,7 +93,7 @@ using Models.Context;
             WriteLiteral("<section class=\"content\">\r\n    <div class=\"pull-left\">\r\n        ");
             EndContext();
             BeginContext(162, 167, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "298afbdbe3c94e7f926d129758abc836", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "de9cff29fdd44808979190883dfe130c", async() => {
                 BeginContext(319, 6, true);
                 WriteLiteral("Добави");
                 EndContext();
@@ -138,7 +138,7 @@ using Models.Context;
             WriteLiteral("\r\n    </div>\r\n    <table id=\"mainTable\" class=\"table\" cellspacing=\"0\"></table>\r\n    <div class=\"pull-right\">\r\n        ");
             EndContext();
             BeginContext(447, 84, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d0aeba0ff2034725944e9466e114d407", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1614caddb2bb4a3390a1efebdebf36b2", async() => {
                 BeginContext(505, 22, true);
                 WriteLiteral("Обратно към критериите");
                 EndContext();

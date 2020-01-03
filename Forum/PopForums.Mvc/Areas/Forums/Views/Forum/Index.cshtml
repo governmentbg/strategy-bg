@@ -11,13 +11,13 @@
 }
 
 @{
-    ViewData["Title"] = "Днес обществото решава";
+    ViewData["Title"] = "Дискусии";
     ViewData["SectionTitle"] = ViewData["Title"];
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
         / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a asp-controller="@HomeController.Name" asp-action="Index">Днес обществото решава</a>
+        / <a asp-controller="@HomeController.Name" asp-action="Index">Дискусии</a>
         / @Model.Forum.Title
 
         @if (ViewBag.category > 0)

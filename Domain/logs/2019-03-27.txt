@@ -1,0 +1,143 @@
+2019-03-27 16:24:05,986 [9] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:24:05,986 [13] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:24:05,986 [6] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:26:35,253 [23] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:26:35,299 [22] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:26:41,036 [10] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:40:31,165 [43] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 15
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147
+2019-03-27 16:40:31,167 [46] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 15
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147
+2019-03-27 16:40:31,228 [45] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 15
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147
+2019-03-27 16:46:00,188 [17] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:46:00,270 [26] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:46:00,357 [32] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150
+2019-03-27 16:46:32,068 [14] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 15
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147
+2019-03-27 16:46:32,121 [26] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 15
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147
+2019-03-27 16:46:32,176 [22] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 15
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147
+2019-03-27 16:57:22,452 [7] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 15
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147
+2019-03-27 16:58:06,275 [9] ERROR App  
+ Buffer cannot be null.
+Parameter name: buffer 
+ 
+System.ArgumentNullException: Buffer cannot be null.
+Parameter name: buffer
+   at System.IO.MemoryStream..ctor(Byte[] buffer, Boolean writable)
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 150

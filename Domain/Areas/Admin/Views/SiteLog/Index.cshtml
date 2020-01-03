@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Последни промени";
+}
+
+@section breadcrumbs{
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index", "SiteLog")">Последни промени</a>
+    </div>
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-1">
+                    <label>Покажи</label>
+                </div>
+                <div class="col-lg-1">
+                    <select id="ddlLogType">
+                        <option value="-1">Всички</option>
+                        <option value="0">Чакащи одобрение</option>
+                        <option value="1">Списък промени</option>
+                        <option value="2">Изтрити</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table id="mainTable" class="table" cellspacing="0"></table>
+</section>
+@section scripts{
+    <script>
+    $(function () {
+         var dt  = $('#mainTable').DataTable({
+             "ajax": {
+                 "url": '@Url.Action("LoadData")',
+                 data: function (d) {
+                     d.logType = $("#ddlLogType").val();
+                 },
+                 "type": "POST"
+             },
+             fnDrawCallback: function (settings) {
+                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+             },
+             "columns": [
+                 {
+                     data: "id",
+                     title: '#',
+                     sortable: true,
+                     searchable: false
+                 },
+                 {
+                     data: "moduleName",
+                     title: 'Модул',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "actionName",
+                     title: 'Действие',
+                     sortable: true,
+                     searchable: false
+                 },
+                 {
+                     data: "details",
+                     title: 'Детайли',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "createDate",
+                     title: 'Дата на създаване',
+                     sortable: true,
+                     searchable: false,
+                     "render": function (value) {
+                         return JsonBGdateLong(value);
+                     }
+                 },
+                 {
+                     data: "userName",
+                     title: 'Потребител',
+                     sortable: true,
+                     searchable: true
+                 },
+                 {
+                     data: "editLink",
+                     "render": function (value) {
+                        
+                             var updButton = '<a href="' + value + '" class="btn btn-success">Покажи</a>';
+                       
+                         return updButton;
+                     },
+                     sortable: false,
+                     searchable: false
+                 }
+             ],
+             "order": [[0, "desc"]],
+        });
+
+        $('#ddlLogType').change(function () {
+            dt.ajax.reload();
+        });
+
+        function JsonBGdateLong(value) {
+            if (value === null) return "";
+
+            return moment(value).format('DD.MM.YYYY HH:mm:ss');
+        }
+    });
+    </script>
+}
+

@@ -100,7 +100,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(284, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ec24bfec06d54c84b0e9411ad30f3d6a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97239a6b37d84109b1589923a1bbe439", async() => {
                 BeginContext(345, 26, false);
 #line 9 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\Forgot.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);
@@ -145,7 +145,7 @@ Write(PopForums.Resources.ForgotInstructions);
             WriteLiteral("</p>\n\n");
             EndContext();
             BeginContext(444, 322, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2002a59d6034f80a5d5ebeb8cd635dc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "20b990ceae554bf6bb479d31d025a57c", async() => {
                 BeginContext(496, 101, true);
                 WriteLiteral("\n\t<div class=\"form-group\">\n\t\t<input name=\"Email\" class=\"form-control\"/>\n\t</div>\n\t<input type=\"submit\"");
                 EndContext();

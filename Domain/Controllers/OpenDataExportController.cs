@@ -7,11 +7,12 @@ using Models.ViewModels;
 using Models.ViewModels.Consultations;
 using Models.ViewModels.PCSubjectsModels;
 using Models.ViewModels.Portal;
+using Newtonsoft.Json;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using System.Xml;
 
 namespace Domain.Controllers
 {
@@ -64,6 +65,15 @@ namespace Domain.Controllers
     {
       return new FileStreamResult(Comments_GetExportData(), "text/csv") { FileDownloadName = "Справка_Коментари.csv" };
     }
+
+    [HttpGet]
+    [Description("JSON експорт на Коментари")]
+    public JsonResult CommentsJSONExport()
+    {
+      IQueryable<CommentsExportListVM> model = commentService.GetCommentsListForExport();
+      return Json(model);
+    }
+
 
     public string CommentsCSVFileExport()
     {
@@ -144,6 +154,15 @@ namespace Domain.Controllers
       return new FileStreamResult(StrategicDocuments_GetExportData(), "text/csv") { FileDownloadName = "Справка_Стратегически_документи.csv" };
     }
 
+    [HttpGet]
+    [Description("JSON експорт на Стратегически документи")]
+    public JsonResult StrategicDocumentsJSONExport()
+    {
+      //return new FileStreamResult(StrategicDocuments_GetExportData(), "text/csv") { FileDownloadName = "Справка_Стратегически_документи.csv" };
+      IQueryable<StrategicDocumensListVM> model = StrategicDocumentsService.StrategicDocumentsGetExport();
+      return Json(model);
+    }
+
 
     private MemoryStream PCSubjects_GetExportData()
     {
@@ -194,6 +213,16 @@ namespace Domain.Controllers
       return new FileStreamResult(PCSubjects_GetExportData(), "text/csv") { FileDownloadName = "Справка_Лицат_по_ЗНА.csv" };
     }
 
+    [HttpGet]
+    [Description("JSON експорт на лицата по ЗНА")]
+    public JsonResult PCSubjectsJSONExport(int questionaryHeaderId, int? userId, string userEmail)
+    {
+
+      //  return new FileStreamResult(PCSubjects_GetExportData(), "text/csv") { FileDownloadName = "Справка_Лицат_по_ЗНА.csv" };
+      IQueryable<PCSubjectsExportListViewModel> model = PCSubjectsService.GetPCSubjectsGetExport();
+      return Json(model);
+    }
+
 
     private MemoryStream Consultations_GetExportData()
     {
@@ -226,6 +255,14 @@ namespace Domain.Controllers
     public ActionResult ConsultationsCSVExport()
     {
       return new FileStreamResult(Consultations_GetExportData(), "text/csv") { FileDownloadName = "Справка_Консултации.csv" };
+    }
+
+    [HttpGet]
+    [Description("JSON експорт на Консултации")]
+    public JsonResult ConsultationsJSONExport()
+    {
+      IQueryable<ConsultationsExportListVM> model = consultationService.GetConsultationsListForExport();
+      return Json(model);
     }
 
     public string ConsultationsCSVFileExport()

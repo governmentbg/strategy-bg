@@ -9,6 +9,7 @@ using System;
 using WebCommon.Services;
 using WebCommon.Models;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Models.Services
 {
@@ -47,14 +48,21 @@ namespace Models.Services
                      });
         }
 
-        public IQueryable<ArticleListAdminVM> News_AdminSelect(DateTime? dateFrom, DateTime? dateTo, int? category, string term)
+        public IQueryable<ArticleListAdminVM> News_AdminSelect(DateTime? dateFrom, DateTime? dateTo, int? category, string term, bool activeOnly)
         {
+
+            Expression<Func<News, bool>> whereActive = x => true;
+            if (activeOnly)
+            {
+                whereActive = x => x.IsActive && !x.IsDeleted;
+            }
             return
                 (from n in
                 db.News
                 .Include(x => x.NewsCategory)
                 .Where(x => (x.Date >= (dateFrom ?? x.Date)) && (x.Date <= (dateTo ?? x.Date)))
                 .Where(x => x.NewsCategoryId == (category ?? x.NewsCategoryId) && x.Title.Contains(term ?? x.Title))
+                .Where(whereActive)
                 //.Where(x => x.IsActive && !x.IsDeleted && !x.IsArchive && x.IsApproved)
                 .OrderByDescending(x => x.Date)
 
@@ -95,10 +103,14 @@ namespace Models.Services
                     CategoryId = x.NewsCategoryId,
                     CategoryName = x.NewsCategory.Name,
                     EventDate = x.Date,
-                    LastModified = x.DateModified
+                    LastModified = x.DateModified,
+                    IsActive = x.IsActive && !x.IsDeleted
                 }).FirstOrDefault();
 
-
+            if (model == null)
+            {
+                return null;
+            }
             var images = commService.FileCdn_GetList(GlobalConstants.SourceTypes.NewsImage, model.Id).ToList();
             if (images.Any())
             {

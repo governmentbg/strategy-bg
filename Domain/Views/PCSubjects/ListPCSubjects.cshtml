@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Списък на физическите и юридическите лица съгласно ЗНА";
+    ViewData["Title"] = "Списък на изпълнители по ЗНА";
     ViewData["SectionTitle"] = ViewData["Title"];
 }
 <div class="breadcrumbs">
@@ -8,30 +8,28 @@
 </div>
 
 <section class="content">
-    <div class="search-form">
+    <div class="container-fluid information">
         <div class="row">
-            <div class="col-lg-12">
-                <div>
-                    <span>Вид лице</span>
+            <div class="col-md-12 body cat-combos search-form-container">
+                <div class="form-group col-lg-2  col-lg-4 col-sm-6">
+                    <label>Тип на изпълнител</label>
                     @Html.DropDownList("PCSubjectsTypeID", (IEnumerable<SelectListItem>)ViewBag.PCSubjectsTypeID_ddl, new { @class = "form-control" })
                 </div>
-                <div>
-                    <span>Име</span>
+                <div class="form-group col-lg-2  col-lg-4 col-sm-6">
+                    <label>Търси по изпълнител</label>
                     @Html.TextBox("name", null, new { @class = "form-control" })
                 </div>
                 <div id="eik_div">
-                    <div>
-                        <span>ЕИК</span>
+                    <div class="form-group col-lg-2  col-lg-4 col-sm-6">
+                        <label>Търси по ЕИК</label>
                         @Html.TextBox("eik", null, new { @class = "form-control" })
                     </div>
                 </div>
                 <div>
-                    <span>&nbsp;</span>
-                    <button type="button" class="btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
-                </div>
-                <div>
-                    <span>&nbsp;</span>
-                    @Html.ActionLink("PDF eкспорт", "PCSubjectsPDF", "PCSubjects", null, new { @class = "btn btn-default" })
+                    <div class="form-group col-lg-3  col-lg-5 col-sm-7">
+                        <label>&nbsp;</label>
+                        @Html.ActionLink("Справка на всички изпълнители", "PCSubjectsPDF", "PCSubjects", null, new { @class = "form-control btn btn-default" , @target = "_blank"})
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,31 +52,44 @@
                  "type": "POST"
              },
              fnDrawCallback: function (settings) {
-                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                 $('.dataTables_paginate').toggle(settings.fnRecordsDisplay() > 0);
              },
-             "columns": [
-                 {
+            filter: false,
+            "columns": [
+
+                {
                      data: "name",
-                     title: 'Име',
-                     sortable: false,
-                     searchable: false
+                     title: 'Изпълнител',
+                     render: function (data, type, item, meta) {
+                         var url = '@Url.Action("View",new { id = "666"})'.replace('666', item.id);
+                         var btn = '<a href="' + url + '">' + item.name + '</a>';
+                         return btn;
+
+                         }
+
                  },
                  {
                      data: "isUL",
-                     title: 'Вид лице',
+                     title: 'ЮЛ / ФЛ',
                      sortable: false,
                      searchable: false,
                      className: "text-center",
                      "render": function (value) {
                          return value == "1" ? 'ЮЛ' : 'ФЛ';
                      }
-                 },
-                 {
-                     data: "eik",
-                     title: 'ЕИК',
-                     sortable: false,
-                     searchable: false
-                 },
+                },
+                {
+                    data: "contractingAuthority",
+                    title: 'Възложител',
+                    sortable: true,
+                    searchable: false
+                },
+                 //{
+                 //    data: "eik",
+                 //    title: 'ЕИК',
+                 //    sortable: false,
+                 //    searchable: false
+                 //},
                  {
                      data: "datePayment",
                      title: 'Дата на договор',
@@ -89,41 +100,37 @@
                      }
                  },
                  {
-                     data: "contractingAuthority",
-                     title: 'Възложител',
-                     sortable: true,
-                     searchable: false
-                 },
-                 {
                      data: "paymentValue",
-                     title: 'Възнаграждение за извършените услуги в лева',
-                     sortable: true,
-                     searchable: false
-                 },
-                 {
-                     data: "paymentValue",
-                     title: 'с ДДС',
+                     title: 'Цена на договора',
                      sortable: true,
                      searchable: false,
-                     className: "text-center",
-                     "render": function (value) {
-                         return value == "1" ? 'ДА' : 'НЕ';
-                     }
+                     className: "text-right",
                  },
-                 {
-                     data: "activityDescription",
-                     title: 'Описание на извършените услуги',
-                     sortable: false,
-                     searchable: false
-                 },
+                 //{
+                 //    data: "paymentValue",
+                 //    title: 'с ДДС',
+                 //    sortable: true,
+                 //    searchable: false,
+                 //    className: "text-center",
+                 //    "render": function (value) {
+                 //        return value == "1" ? 'ДА' : 'НЕ';
+                 //    }
+                 //},
+                 //{
+                 //    data: "activityDescription",
+                 //    title: 'Описание на извършените услуги',
+                 //    sortable: false,
+                 //    searchable: false
+                 ////},
                  {
                      data: "filesForDownload",
-                     title: 'Прикачени файлове',
+                     title: 'Файл',
+                     sortable: false,
+                     searchable: false,
                      "render": function (value) {
                          return value;
-                     },
-                     sortable: false,
-                     searchable: false
+                     }
+
                  }
              ],
         });
@@ -143,6 +150,23 @@
 
             dt.ajax.reload();
         });
+
+        $('#name').keyup(function () {
+            if ($(this).val().length >= 3)
+                setTimeout(function () {
+                    dt.ajax.reload();
+                }, 100);
+
+        });
+
+        $('#eik').keyup(function () {
+            if ($(this).val().length >= 3)
+                setTimeout(function () {
+                    dt.ajax.reload();
+                }, 100);
+
+        });
+
         });
     </script>
 }

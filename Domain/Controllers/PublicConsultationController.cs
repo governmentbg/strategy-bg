@@ -15,7 +15,7 @@ using WebCommon.Models;
 
 namespace Domain.Controllers
 {
-  public class PublicConsultationController : BasePortalController
+    public class PublicConsultationController : BasePortalController
     {
         private readonly IConsultationService consultationService;
         private readonly INomenclatureService nomService;
@@ -35,8 +35,8 @@ namespace Domain.Controllers
         public IActionResult Index(int categoryMasterId = 1, int categoryId = -1, int districtId = -1, int municipalityId = -1, int validState = -1)
         {
             ViewBag.catMasters = nomService.ComboCategories(0).ToSelectList().SetSelected(categoryMasterId);
-            ViewBag.catNational = nomService.ComboCategories(GlobalConstants.Category.Type_National).ToSelectList().AddAllItem().SetSelected(categoryId);
-            ViewBag.catDistrict = nomService.ComboCategories(GlobalConstants.Category.Type_District).ToSelectList().AddAllItem().SetSelected(districtId);
+            ViewBag.catNational = nomService.ComboCategories(GlobalConstants.Categories.Type_National).ToSelectList().AddAllItem().SetSelected(categoryId);
+            ViewBag.catDistrict = nomService.ComboCategories(GlobalConstants.Categories.Type_District).ToSelectList().AddAllItem().SetSelected(districtId);
 
             var validStates = new List<TextValueVM>();
             validStates.Add(new TextValueVM(GlobalConstants.ValidStates.Active.ToString(), "Активни"));
@@ -46,7 +46,7 @@ namespace Domain.Controllers
             ViewBag.RssLink = urlHelper.Action("GetDocumentFeed", "Rss", new
             {
                 type = RssFeedType.PublicConsultations,
-                categoryMasterId = GlobalConstants.Category.Type_National
+                categoryMasterId = GlobalConstants.Categories.Type_National
             });
 
             return View();
@@ -61,20 +61,26 @@ namespace Domain.Controllers
 
             var orderColums = request.Columns.Where(x => x.Sort != null);
             var page = filteredData.OrderBy(orderColums).Skip(request.Start).Take((request.Length > 0) ? request.Length : filteredData.Count());
-            List<PublicConsultationVM> dataPage = new List<PublicConsultationVM>();
-                       
-            foreach (PublicConsultationVM item in page)
-            {
-                item.CommentsCount = consultationService.GetConsultationCommentsCount(item.Id);
-                dataPage.Add(item);
-            }
+            //List<PublicConsultationVM> dataPage = new List<PublicConsultationVM>();
 
-            return new DataTablesJsonResult(DataTablesResponse.Create(request, data.Count(), filteredData.Count(), dataPage), true);
+            //foreach (PublicConsultationVM item in page)
+            //{
+            //    item.CommentsCount = consultationService.GetConsultationCommentsCount(item.Id);
+            //    dataPage.Add(item);
+            //}
+
+            return new DataTablesJsonResult(DataTablesResponse.Create(request, data.Count(), filteredData.Count(), page), true);
         }
 
         public IActionResult View(int id)
         {
             var model = consultationService.GetConsultation(id);
+
+            if(model == null || !model.IsActive || model.IsDeleted)
+            {
+                return View("NotFound");
+            }
+
             model.Title = model.Title.DecodeIfNeeded();
             model.Summary = model.Summary.DecodeIfNeeded();
             model.CanComment = this.User.Identity.IsAuthenticated;
@@ -86,6 +92,15 @@ namespace Domain.Controllers
 
             ViewBag.hasQuestionary = consultationService.All<QuestionaryHeaders>().Where(x => x.SourceTypeId == GlobalConstants.SourceTypes.PublicConsultation && x.SourceId == id).Any();
             ViewBag.UserIdentityList = commentService.GetUserDDL(UserId);
+            ViewBag.Breadcrumb = GetBreadcrump(model);
+
+            return View(model);
+        }
+
+        public IActionResult ViewMSproject(int id)
+        {
+            var model = consultationService.GetConsultation(id);
+            ViewBag.project = consultationService.Find<Models.Context.Consultations.MSProgramProject>(model.MSProgramProjectId);
             ViewBag.Breadcrumb = GetBreadcrump(model);
 
             return View(model);
@@ -111,7 +126,7 @@ namespace Domain.Controllers
                 new BreadcrumbVM(){ Title = "Обществени консултации", Url = urlHelper.Action("Index") }
             };
 
-            if (model.ParentCategoryId == GlobalConstants.Category.Type_National)
+            if (model.ParentCategoryId == GlobalConstants.Categories.Type_National)
             {
                 result.Add(new BreadcrumbVM()
                 {
@@ -130,21 +145,21 @@ namespace Domain.Controllers
                 result.Add(new BreadcrumbVM()
                 {
                     Title = "Областни и общински",
-                    Url = urlHelper.Action("Index", new { categoryMasterId = GlobalConstants.Category.Type_District })
+                    Url = urlHelper.Action("Index", new { categoryMasterId = GlobalConstants.Categories.Type_District })
                 });
 
                 result.Add(new BreadcrumbVM()
                 {
                     Title = model.SectionName,
-                    Url = urlHelper.Action("Index", 
-                    new { categoryMasterId = GlobalConstants.Category.Type_District, categoryId = -1, districtId = model.SectionId })
+                    Url = urlHelper.Action("Index",
+                    new { categoryMasterId = GlobalConstants.Categories.Type_District, categoryId = -1, districtId = model.SectionId })
                 });
 
                 result.Add(new BreadcrumbVM()
                 {
                     Title = model.CategoryName,
                     Url = urlHelper.Action("Index",
-                    new { categoryMasterId = GlobalConstants.Category.Type_District, categoryId = -1, districtId = model.SectionId, municipalityId = model.CategoryId })
+                    new { categoryMasterId = GlobalConstants.Categories.Type_District, categoryId = -1, districtId = model.SectionId, municipalityId = model.CategoryId })
                 });
             }
 

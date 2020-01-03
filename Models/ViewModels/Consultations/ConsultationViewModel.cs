@@ -18,6 +18,8 @@ namespace Models.ViewModels.Consultations
 
         public string CategoryName { get; set; }
 
+        [Display(Name = "Тип на консултацията")]
+        [Range(1, Int32.MaxValue, ErrorMessage = "Полето {0} е задължително")]
         public int ParentCategoryId { get; set; }
 
         public string ParentCategoryName { get; set; }
@@ -25,6 +27,9 @@ namespace Models.ViewModels.Consultations
         public int SectionId { get; set; }
 
         public string SectionName { get; set; }
+
+        [Display(Name = "Тип на акта")]
+        public int? ActId { get; set; }
 
         [Display(Name = "Заглавие")]
         [Required(ErrorMessage = "Полето {0} е задължително")]
@@ -74,9 +79,13 @@ namespace Models.ViewModels.Consultations
         [Display(Name = "Категория връзки")]
         public int LinksCategoryId { get; set; }
 
-        [Display(Name = "Отговорно звено")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Полето {0} е задължително")]
+        //[Display(Name = "Отговорно звено")]
+        //[Range(1, Int32.MaxValue, ErrorMessage = "Полето {0} е задължително")]
         public int InstututionTypeId { get; set; }
+
+        [Display(Name = "Отговорно звено")]
+        [Required(ErrorMessage = "Полето {0} е задължително")]
+        public string InstitutionType { get; set; }
 
         public string InstitutionName { get; set; }
 
@@ -100,6 +109,10 @@ namespace Models.ViewModels.Consultations
 
         public bool CanComment { get; set; }
 
+        [Display(Name = "Проект по програма")]
+        public int? MSProgramProjectId { get; set; }
+        public string MSProgramProjectName { get; set; }
+
         public List<MenuLinkViewModel> MenuLinks { get; set; }
 
         public PublicConsultation ToEntity(PublicConsultation entity = null)
@@ -110,6 +123,7 @@ namespace Models.ViewModels.Consultations
             }
 
             entity.CategoryId = this.CategoryId;
+            entity.ActTypeId = this.ActId == -1 ? null : this.ActId;
             entity.Title = this.Title;
             entity.Summary = this.Summary;
             entity.OpenningDate = this.OpenningDate;
@@ -118,13 +132,23 @@ namespace Models.ViewModels.Consultations
             entity.IsActive = this.IsActive;
             entity.IsDeleted = this.IsDeleted;
             entity.LinksCategoryId = this.LinksCategoryId;
-            entity.InstututionTypeId = this.InstututionTypeId;
+
+            if (this.InstututionTypeId > 0)
+            {
+                entity.InstututionTypeId = this.InstututionTypeId;
+            }
+            else
+            {
+                entity.InstututionTypeId = null;
+            }
+
+            entity.InstitutionTypeName = this.InstitutionType;
             entity.ShouldAlertSubscribers = this.ShouldAlertSubscribers;
             entity.ResponsiblePerson = this.ResponsiblePerson;
             entity.Address = this.Address;
             entity.Telephone = this.Telephone;
             entity.Email = this.Email;
-
+            entity.MSProgramProjectId = this.MSProgramProjectId == -1 ? null : this.MSProgramProjectId;
             return entity;
         }
 
@@ -132,6 +156,7 @@ namespace Models.ViewModels.Consultations
         {
             Id = entity.Id;
             CategoryId = entity.CategoryId;
+            ActId = entity.ActTypeId ?? -1;
             CategoryName = entity.Category.CategoryName;
             ParentCategoryId = entity.Category.ParentId;
             SectionId = entity.Category.SectionId;
@@ -144,13 +169,17 @@ namespace Models.ViewModels.Consultations
             IsDeleted = entity.IsDeleted;
             LinksCategoryId = entity.LinksCategoryId ?? -1;
             InstututionTypeId = entity.InstututionTypeId ?? -1;
+            InstitutionType = entity.InstitutionTypeName;
             ShouldAlertSubscribers = entity.ShouldAlertSubscribers;
             ResponsiblePerson = entity.ResponsiblePerson;
             Address = entity.Address;
             Telephone = entity.Telephone;
             Email = entity.Email;
             InstitutionName = entity.InstitutionType?.InstitutionTypeName;
+            MSProgramProjectId = entity.MSProgramProjectId ?? -1;
+            MSProgramProjectName = (entity.MSProgramProject != null) ? entity.MSProgramProject.Title : string.Empty;
             MenuLinks = entity.LinksCategory != null ? entity.LinksCategory.Links
+                .Where(x => x.IsActive && !x.IsDeleted)
                 .Select(l => new MenuLinkViewModel()
                 {
                     Title = l.Title,

@@ -18,7 +18,8 @@ namespace WebCommon.TagHelpers
     [HtmlTargetElement("date-picker", Attributes = "for")]
     public class DatePickerHelper : BaseTagHelper
     {
-
+        [HtmlAttributeName("dtp-class")]
+        public string DtpClass { get; set; }
         public DatePickerHelper(IHtmlGenerator _iHtmlGenerator) : base(_iHtmlGenerator)
         {
         }
@@ -31,7 +32,7 @@ namespace WebCommon.TagHelpers
                 // Създаване на основния елемент ('DatePicker')     
                 TagBuilder inputElement = null;
 
-                inputElement = MakeTextBox(For, ViewContext, "{0:dd.MM.yyyy}", new { @class = "form-control date-picker" });
+                inputElement = MakeTextBox(For, ViewContext, "{0:dd.MM.yyyy}", new { @class = "form-control "+ (DtpClass ?? "date-picker") });
 
                 inputElement.Attributes.Add("placeholder", string.IsNullOrEmpty(Label) ? For.Metadata.DisplayName : Label);
                 DisableElement(ref inputElement, Disabled);

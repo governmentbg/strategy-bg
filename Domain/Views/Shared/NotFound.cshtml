@@ -1,0 +1,12 @@
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{ 
+    ViewData["Title"] = @Localizer["NOTFOUND_TITLE"];
+    ViewData["SectionTitle"] = ViewData["Title"];
+}
+<h3 style="margin-bottom:20px;">@Localizer["NOTFOUND_TITLE"]</h3>
+<p>
+    @Localizer["NOTFOUND_CONTENT"]
+</p>
+<p style="margin-top:30px;">
+    <a asp-action="Index" asp-controller="Home" asp-area="" class="text-center">Към @MessageConstants.SystemTitle</a><br />
+</p>

@@ -1,0 +1,40 @@
+@inject IStringLocalizer<AccountResources> Localizer
+@inject WebCommon.Services.IUserContext userContext;
+@using System.Linq;
+@{
+
+}
+
+@if (userContext.UserId > 0)
+{
+    @inject Models.Contracts.INotificationService notificationService;
+    var notificationCount = notificationService.CurrentUserSystemNotification_NewMessages();
+    if (notificationCount > 0)
+    {
+        <li class="to_activate users">
+            <a asp-action="Index" asp-controller="Notifications" asp-area="">
+                <span><i class="fa fa-bell-o"></i> @notificationCount</span>
+            </a>
+        </li>
+
+    }
+    <li class="to_activate users">
+        <a asp-action="Profile" asp-controller="Account" asp-area="">
+            @userContext.FullName
+        </a>
+    </li>
+
+    <li class="to_activate users">
+        <a asp-action="ChangePassword" asp-controller="Account" asp-area="">@Localizer["ChangePassword"]</a>
+    </li>
+    <li class="to_activate users">
+        <a asp-action="Logoff" asp-controller="Account" asp-area="">@Localizer["Logoff"]</a>
+    </li>
+
+}
+else
+{
+    <li class="to_activate users">
+        <a asp-area="" asp-action="Login" asp-controller="Account">@Localizer["UserLogin"]</a>
+    </li>
+}

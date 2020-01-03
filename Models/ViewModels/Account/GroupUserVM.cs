@@ -17,6 +17,9 @@ namespace Models.ViewModels.Account
         [Display(Name = "Институция")]
         public int? InstitutionTypeId { get; set; }
 
+        [Display(Name = "Категория връзки")]
+        public int? LinksCategoryId { get; set; }
+
         [Display(Name = "Наименование")]
         [Required(ErrorMessage = "Въведете '{0}'")]
         public string Organization { get; set; }

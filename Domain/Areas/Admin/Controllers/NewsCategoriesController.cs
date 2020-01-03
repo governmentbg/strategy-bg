@@ -7,11 +7,11 @@ using Models;
 using Models.Contracts;
 using Models.ViewModels;
 using System.Linq;
+using static Models.GlobalConstants;
 
 namespace Domain.Areas.Admin.Controllers
 {
   [Area(nameof(Admin))]
-  [Authorize(Roles = GlobalConstants.Roles.Admin)]
   public class NewsCategoriesController : BaseAdminController
   {
     public readonly INewsCategoriesService newsCategoriesService;
@@ -61,13 +61,24 @@ namespace Domain.Areas.Admin.Controllers
     [HttpPost]
     public IActionResult Edit(NewsCategoriesVM model)
     {
+      int logState = 0;
       if (!ModelState.IsValid)
       {
         return View(model);
       }
-
+      if (model.Id == 0)
+      { logState = SiteLogAction.Add; }
+      else
+      {
+        logState = SiteLogAction.Edit;
+        if (model.IsDeleted == true)
+        { logState = SiteLogAction.Delete; }
+      }
       SetSavedMessage = newsCategoriesService.SaveItem(model);
-
+      if (SetSavedMessage)
+      {
+        SaveSiteLog(SiteLogTableNames.NewsCategories, logState, model.Id, true, model.Label);
+      }
       return View(model);
     }
   }

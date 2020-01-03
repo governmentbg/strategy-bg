@@ -15,20 +15,24 @@ namespace Domain.Controllers
     {
         private readonly ISearchService searchService;
         private readonly IAccountService accountService;
-        public HomeController(IAccountService _accountService, ISearchService _searchService)
+        private readonly IQuestionaryService questionaryService;
+        public HomeController(IAccountService _accountService, ISearchService _searchService, IQuestionaryService _questionaryService)
         {
             accountService = _accountService;
             searchService = _searchService;
+            questionaryService = _questionaryService;
         }
 
         public IActionResult Index()
         {
+            ViewBag.hasNewQuestionary = questionaryService.GetQuestionaries(1)?.Count() > 0;
             return View();
         }
         public IActionResult SamplePage()
         {
             return View();
         }
+
 
         public IActionResult Message(bool isError = false)
         {

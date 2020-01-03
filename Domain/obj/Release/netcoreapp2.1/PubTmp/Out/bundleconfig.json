@@ -32,9 +32,10 @@
       "wwwroot/lib/treeview/css/style.min.css",
       "wwwroot/lib/gridview2smarterOne/gridview.css",
       "wwwroot/lib/datetimePicker/bootstrap-datepicker.min.css",
-      "wwwroot/lib/datatables/buttons.dataTables.min.css",
+      //"wwwroot/lib/datatables/buttons.dataTables.min.css",
+      "wwwroot/lib/datatables-bs3/datatables.min.css",
       "wwwroot/lib/fullcalendar/fullcalendar.min.css",
-     // "wwwroot/lib/fullcalendar/fullcalendar.print.min.css",
+      // "wwwroot/lib/fullcalendar/fullcalendar.print.min.css",
       "wwwroot/css/site.css"
     ],
     "minify": {
@@ -75,6 +76,11 @@
       "wwwroot/lib/datatables/buttons.print.min.js",
       "wwwroot/lib/datatables/jszip.js",
       "wwwroot/lib/datatables/export-extensions.js",
+
+      //"wwwroot/lib/datatables-bs3/datatables.min.js",
+      //"wwwroot/lib/datatables-bs3/Responsive-2.2.2/datatables.min.js",
+
+
       "wwwroot/lib/summernote/summernote.js",
       "wwwroot/lib/summernote/plugin/specialchars/summernote-ext-specialchars.js",
       "wwwroot/js/init.js",
@@ -97,16 +103,21 @@
       "wwwroot/lib/datetimePicker/bootstrap-datepicker.min.js",
       "wwwroot/lib/datetimePicker/bootstrap-datepicker.bg.min.js",
 
-      "wwwroot/lib/datatables/jquery.dataTables.min.js",
-      "wwwroot/lib/datatables/dataTables.bootstrap.min.js",
-      "wwwroot/lib/datatables/html5shiv.js",
-      "wwwroot/lib/datatables/dataTables.buttons2.min.js",
-      "wwwroot/lib/datatables/buttons.colVis.min.js",
-      "wwwroot/lib/datatables/buttons.flash.min.js",
-      "wwwroot/lib/datatables/buttons.html5.min.js",
-      "wwwroot/lib/datatables/buttons.print.min.js",
-      "wwwroot/lib/datatables/jszip.js",
-      "wwwroot/lib/datatables/export-extensions.js",
+      //"wwwroot/lib/datatables/jquery.dataTables.min.js",
+      //"wwwroot/lib/datatables/dataTables.bootstrap.min.js",
+      //"wwwroot/lib/datatables/html5shiv.js",
+      //"wwwroot/lib/datatables/dataTables.buttons2.min.js",
+      //"wwwroot/lib/datatables/buttons.colVis.min.js",
+      //"wwwroot/lib/datatables/buttons.flash.min.js",
+      //"wwwroot/lib/datatables/buttons.html5.min.js",
+      //"wwwroot/lib/datatables/buttons.print.min.js",
+      //"wwwroot/lib/datatables/jszip.js",
+      //"wwwroot/lib/datatables/export-extensions.js",
+
+      "wwwroot/lib/datatables-bs3/datatables.min.js",
+      //"wwwroot/lib/datatables-bs3/Responsive-2.2.2/js/datatables.min.js",
+
+
       "wwwroot/lib/summernote/summernote.js",
       "wwwroot/lib/summernote/plugin/specialchars/summernote-ext-specialchars.js",
       "wwwroot/lib/fullcalendar/fullcalendar.min.js",

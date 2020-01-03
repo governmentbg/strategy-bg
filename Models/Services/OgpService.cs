@@ -244,5 +244,21 @@ namespace Models.Services
             }
         }
 
+        public IQueryable<PlanItemVM> SelectPlansForOgpMenu()
+        {
+            return All<NationalPlanElements>()
+                        .Include(x => x.Estimations)
+                        .ThenInclude(x => x.EstimationType)
+                        .Where(x => x.ElementTypeId == GlobalConstants.OgpElementTypes.NationalPlan && x.ParentID == null && x.IsActive)
+                        .OrderByDescending(x => x.NationalPlanStateId)
+                        .ThenByDescending(x => x.Id)
+                        .Select(x => new PlanItemVM
+                        {
+                            Id = x.Id,
+                            Title = x.Title,
+                            StateId = x.NationalPlanStateId,
+                            Estimations = x.Estimations.Where(e => e.IsActive).Select(e => new EstimationVM { Id = e.Id, EstimationTypeName = e.EstimationType.Title, Title = e.Title })
+                        }).AsQueryable();
+        }
     }
 }

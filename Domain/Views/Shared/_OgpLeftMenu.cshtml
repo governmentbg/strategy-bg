@@ -1,7 +1,9 @@
 ﻿@model string
 @inject Models.Contracts.IArticleService articleService
+@inject Models.Contracts.IOgpService orgService
 @{
     var articleCatergories = articleService.ArticleCategories_SelectCombo();
+    var planElements = orgService.SelectPlansForOgpMenu();
 }
 <div class="aside row">
     <div class="title">
@@ -9,24 +11,44 @@
             Национални планове
         </a>
     </div>
+    <ul class="list--default">
+        @foreach (var plan in planElements)
+        {
+            var planclass = "inactive";
+            if (plan.StateId == GlobalConstants.OgpElementStates.Actual)
+            {
+                planclass = "";
+            }
+            <li class="@planclass"><a asp-action="Element" asp-controller="Ogp" asp-route-id="@plan.Id">@Html.Raw(plan.Title)</a></li>
+            @foreach (var est in plan.Estimations)
+            {
+                <li class="level3"><a asp-action="Estimation" asp-controller="Ogp" asp-route-id="@est.Id">@est.EstimationTypeName : @Html.Raw(est.Title)</a></li>
+            }
+        }
+
+    </ul>
     @*<div class="title">
-        <a asp-action="Index" asp-controller="Article">
-            Оценки
-        </a>
-    </div>*@
+            <a asp-action="Index" asp-controller="Article">
+                Оценки
+            </a>
+        </div>*@
     <div class="title">
         <a asp-action="Index" asp-controller="Article">
             Новини и събития
         </a>
     </div>
-
-    <ul class="list--default">
-        <li><a asp-action="Agenda" asp-controller="Ogp">Календар на събитията</a></li>
-        @foreach (var cat in articleCatergories)
-        {
-            <li><a asp-action="Index" asp-controller="Article" asp-route-category="@cat.Value">@Html.Raw(cat.Text)</a></li>
-        }
-    </ul>
+    @*<div class="title">
+        <a asp-action="Agenda" asp-controller="Ogp">
+            Календар на събитията
+        </a>
+    </div>*@
+    @*<ul class="list--default">
+             <li><a asp-action="Agenda" asp-controller="Ogp">Календар на събитията</a></li>
+            @foreach (var cat in articleCatergories)
+                 {
+                     <li><a asp-action="Index" asp-controller="Article" asp-route-category="@cat.Value">@Html.Raw(cat.Text)</a></li>
+                 }
+        </ul>*@
     <div class="title">
         <a asp-action="Contacts" asp-controller="Ogp">
             Контакти

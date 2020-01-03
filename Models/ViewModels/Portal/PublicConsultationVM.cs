@@ -19,7 +19,7 @@ namespace Models.ViewModels.Portal
         public DateTime ClosingDate { get; set; }
         public int CategoryParentId { get; set; }
         public int CategorySectionId { get; set; }
-
+        public bool IsActive { get; set; }
         public int ActiveDays
         {
             get

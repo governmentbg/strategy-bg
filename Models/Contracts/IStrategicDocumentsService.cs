@@ -15,7 +15,7 @@ namespace Models.Contracts
     {
         StrategicDocuments GetStrategicDocument(int id);
         //CBorisoff
-        IQueryable<StrategicDocumentVM> Portal_List(int langId = GlobalConstants.LangBG, int? validMode = null);
+        IQueryable<StrategicDocumentVM> Portal_List(int langId = GlobalConstants.LangBG, int? validMode = null, bool activeOnly = true);
         IQueryable<DocumentLinkVM> Portal_GetFileList(int id);
         StrategicDocumentPDFVM GetPDFModel(int mainCategoryId, DateTime? fromDate, DateTime? toDate, int langId = GlobalConstants.LangBG);
         bool StrategicDocuments_SaveData(StrategicDocuments model);

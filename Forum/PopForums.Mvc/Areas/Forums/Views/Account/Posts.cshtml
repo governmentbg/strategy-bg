@@ -17,7 +17,7 @@
 @section breadcrumbs{
     <div class="breadcrumbs">
         / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a asp-controller="@HomeController.Name" asp-action="Index">Днес обществото решава</a>
+        / <a asp-controller="@HomeController.Name" asp-action="Index">Дискусии</a>
         / @String.Format(@PopForums.Resources.NamePosts, ViewBag.PostUserName)
     </div>
 }

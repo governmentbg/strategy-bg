@@ -27,7 +27,7 @@ namespace Models.Services
         public IQueryable<BannersListVM> GetBannersList(int active = -1, int lang = GlobalConstants.LangBG)
         {
             return (from d in All<Banners>()
-                .Where(x => x.LanguageId == lang && (x.IsActive == ((active == -1) ? x.IsActive : (active == 1 ? true : false))) && x.IsApproved && !x.IsDeleted)
+                .Where(x => x.LanguageId == lang && (x.IsActive == ((active == -1) ? x.IsActive : (active == 1 ? true : false))))
 
                     join f in db.FilesCDNUsed.Where(fu => fu.source_type == GlobalConstants.SourceTypes.BannerImage)
                     on d.Id equals f.source_id into n_f
@@ -38,6 +38,8 @@ namespace Models.Services
                         Label = d.BannerName,
                         Link = d.Link,
                         IsActive = d.IsActive,
+                        IsDeleted = d.IsDeleted,
+                        IsApproved = d.IsApproved,
                         DateCreated = d.DateCreated,
                         BannerType = d.BannerType,
                         MainImageFileId = (x != null) ? x.cdn_file_id : null
@@ -53,6 +55,7 @@ namespace Models.Services
                     Id = d.Id,
                     Label = d.BannerName,
                     IsActive = d.IsActive,
+                    IsApproved = d.IsApproved,
                     IsDeleted = d.IsDeleted,
                     LanguageId = d.LanguageId,
                     Link = d.Link,
@@ -79,6 +82,7 @@ namespace Models.Services
                         entity.ModifiedByUserId = userContext.UserId;
                         entity.DateModified = DateTime.Now;
                         entity.IsDeleted = model.IsDeleted;
+                        entity.IsApproved = model.IsApproved;
                         entity.Link = model.Link;
                         entity.BannerType = model.BannerType ?? "";
                     }

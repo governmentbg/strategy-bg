@@ -38,7 +38,7 @@ namespace Models.Services
     {
       var result = this.All<PCSubjects>()
         .Where(x => x.IsUL == (pcSubjectsTypeID == -1 ? x.IsUL : (pcSubjectsTypeID == 1 ? true : false))
-          && (string.IsNullOrEmpty(eik) ? true : (pcSubjectsTypeID == 0 ? true : x.EIK == eik))
+          && (string.IsNullOrEmpty(eik) ? true : (pcSubjectsTypeID == 0 ? true : x.EIK.StartsWith(eik)))
           && (x.Name == (name == "" ? x.Name : name) || (x.Name.StartsWith(name)))
         )
         .OrderBy(x => x.Name)
@@ -64,14 +64,14 @@ namespace Models.Services
 
         if (files != null && files.Count > 0)
         {
-          item.FilesForDownload = "<ul><li>";
+          item.FilesForDownload = "<ul>";
 
           foreach (var file in files)
           {
-            item.FilesForDownload += "<a href='/FileCdn/DownloadFile?id=" + file.cdn_file_id + "'>" + file.FileCdn.FileTitle + "</a>";
+            item.FilesForDownload += "<li><a href='/FileCdn/DownloadFile?id=" + file.cdn_file_id + "'>" + file.FileCdn.FileTitle + "</a></li>";
           }
 
-          item.FilesForDownload += "</ul></li>";
+          item.FilesForDownload += "</ul>";
         }
       }
 
@@ -154,7 +154,7 @@ namespace Models.Services
       if (category.SectionId == 0)
       {
         // национални
-        model.CategoryMasterId = GlobalConstants.Category.Type_National;
+        model.CategoryMasterId = GlobalConstants.Categories.Type_National;
         model.CategoryId = model.CategoryId;
         model.DistrictId = null;
         model.MunicipalityId = null;
@@ -163,7 +163,7 @@ namespace Models.Services
       else
       {
         // областни и общински
-        model.CategoryMasterId = GlobalConstants.Category.Type_District;
+        model.CategoryMasterId = GlobalConstants.Categories.Type_District;
         model.CategoryId = category.Id;
         model.DistrictId = category.SectionId;
         model.MunicipalityId = category.Id;
@@ -204,7 +204,7 @@ namespace Models.Services
           All<PCSubjects>().Add(entity);
         }
 
-        if (model.CategoryMasterId == GlobalConstants.Category.Type_District)
+        if (model.CategoryMasterId == GlobalConstants.Categories.Type_District)
         {
           // областни и общински
           entity.CategoryId = (int)model.MunicipalityId;
@@ -264,15 +264,15 @@ namespace Models.Services
 
       if (categoryId == 0)
       {
-        result.Add(new SelectListItem() { Text = "Национални", Value = GlobalConstants.Category.Type_National.ToString() });
-        result.Add(new SelectListItem() { Text = "Областни и общински", Value = GlobalConstants.Category.Type_District.ToString() });
+        result.Add(new SelectListItem() { Text = "Национални", Value = GlobalConstants.Categories.Type_National.ToString() });
+        result.Add(new SelectListItem() { Text = "Областни и общински", Value = GlobalConstants.Categories.Type_District.ToString() });
         return result;
       }
 
-      if (categoryId == GlobalConstants.Category.Type_National)
+      if (categoryId == GlobalConstants.Categories.Type_National)
       {
         result.AddRange(
-           allCat.Where(x => x.ParentId == GlobalConstants.Category.Type_National)
+           allCat.Where(x => x.ParentId == GlobalConstants.Categories.Type_National)
                 .OrderBy(x => x.CategoryName)
                 .Select(x => new SelectListItem
                 {
@@ -285,10 +285,10 @@ namespace Models.Services
       }
 
 
-      if (categoryId == GlobalConstants.Category.Type_District)
+      if (categoryId == GlobalConstants.Categories.Type_District)
       {
         result.AddRange(
-            allCat.Where(x => x.ParentId == GlobalConstants.Category.Type_District)
+            allCat.Where(x => x.ParentId == GlobalConstants.Categories.Type_District)
             .OrderBy(x => x.CategoryName)
                 .Select(x => new SelectListItem
                 {

@@ -62,8 +62,8 @@ namespace Domain.Areas.Admin.Controllers
         private void SendByFilter_ViewBag()
         {
             ViewBag.catMasters = nomService.ComboCategories(0).ToSelectList();
-            ViewBag.catNational = nomService.ComboCategories(GlobalConstants.Category.Type_National).ToSelectList().AddAllItem();
-            ViewBag.catDistrict = nomService.ComboCategories(GlobalConstants.Category.Type_District).ToSelectList().AddAllItem();
+            ViewBag.catNational = nomService.ComboCategories(GlobalConstants.Categories.Type_National).ToSelectList().AddAllItem();
+            ViewBag.catDistrict = nomService.ComboCategories(GlobalConstants.Categories.Type_District).ToSelectList().AddAllItem();
 
             ViewBag.targetGroups = consultationService.GetTargetGroupsDDL();
 

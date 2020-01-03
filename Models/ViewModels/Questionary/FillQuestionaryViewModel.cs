@@ -15,9 +15,11 @@ namespace Models.ViewModels.Questionary
 
 		public int Id { get; set; }
 		public int QuestionaryHeaderId { get; set; }
-        public int SourceType { get; set; }
-        public int SourceId { get; set; }
-        public string QuestionaryTitle { get; set; }
+		public int SourceType { get; set; }
+		public int SourceId { get; set; }
+		public string SourceTitle { get; set; }
+		public string QuestionaryTitle { get; set; }
+		public string QuestionaryDescription { get; set; }
 		public int? AnsweredUserId { get; set; }
 
 		[Display(Name = "Имена на отговорилия")]

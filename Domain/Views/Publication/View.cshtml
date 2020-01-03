@@ -12,69 +12,50 @@
 
 
 <div class="container-fluid information">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="aside row">
-                <div class="title">
-                    Публикации
-                </div>
-                @*<ul class="list--default">
-                        <li><a href="#">Заглавие</a></li>
-                        <li class="active"><a href="#">Заглавие</a></li>
-                        <li><a href="#">Заглавие</a></li>
-                    </ul>
-                    <div class="title">
-                        Ресурсни източници
-                    </div>
-                    <ul class="list--default">
-                        <li><a href="#">Линк</a></li>
-                        <li><a href="#">Линк</a></li>
-                        <li><a href="#">Линк</a></li>
-                    </ul>*@
-            </div>
-        </div>
-        <div class="col-md-9 body">
-            @if (!string.IsNullOrEmpty(Model.MainImageFileId))
-            {
-                <div class="article-image">
-                    <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",id=Model.MainImageFileId,max=400}))" />
-                </div>
-            }
-            <h2>
-                @Html.Raw(Model.Title)
-            </h2>
-            <h4>
-                @Model.EventDate.ToString(GlobalConstants.DateFormat)
-            </h4>
-            <p class="title">
-                @Html.Raw(Model.Content)
-            </p>
-            @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.Publications, sourceId = Model.Id })
-
-            <!-- TABLE DATES -->
-            @*<div class="row">
-                <div class="col-md-5">
-                    <table class="table table-bordered table--dates table--stripped">
-                        <tbody>
-                            <!-- LOOP -->
-                            <tr>
-                                <td>Последна промяна:</td>
-                                <td>@Model.LastModified.ToString(GlobalConstants.DateFormat)</td>
-                            </tr>
-                            <!-- END LOOP -->
-                        </tbody>
-                    </table>
-                </div>*@
-            <table border="0" width="100%">
-                <tr>
-                    <td><p align="center"><a href="@Url.Action("View")?id=@Model.prev_Id"><b>< Предишна</b></a></p></td>
-                    <td><p align="center"><a href="@Url.Action("View")?id=@Model.next_Id"><b>Следваща ></b></a></p></td>
-                </tr>
-            </table>
-        </div>
-        <!-- END TABLE DATES -->
-
+    <div class="col-md-3">
+        <partial name="_PublicationLeftMenu" model="@ViewBag.categories" />
     </div>
+    <div class="col-md-9 body">
+        @if (!string.IsNullOrEmpty(Model.MainImageFileId))
+        {
+            <div class="article-image">
+                <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",id=Model.MainImageFileId,max=200}))" />
+            </div>
+        }
+        <h3>
+            @Html.Raw(Model.Title)
+        </h3>
+        <h4>
+            @Model.EventDate.ToString(GlobalConstants.DateFormat)
+        </h4>
+        <p class="title">
+            @Html.Raw(Model.Content)
+        </p>
+        @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.Publications, sourceId = Model.Id })
+
+        <!-- TABLE DATES -->
+        @*<div class="row">
+            <div class="col-md-5">
+                <table class="table table-bordered table--dates table--stripped">
+                    <tbody>
+                        <!-- LOOP -->
+                        <tr>
+                            <td>Последна промяна:</td>
+                            <td>@Model.LastModified.ToString(GlobalConstants.DateFormat)</td>
+                        </tr>
+                        <!-- END LOOP -->
+                    </tbody>
+                </table>
+            </div>*@
+        <table border="0" width="100%">
+            <tr>
+                <td><p align="center"><a href="@Url.Action("View",new { id = Model.prev_Id })"><b>< Предишна</b></a></p></td>
+                <td><p align="center"><a href="@Url.Action("View",new { id = Model.next_Id })"><b>Следваща ></b></a></p></td>
+            </tr>
+        </table>
+    </div>
+    <!-- END TABLE DATES -->
+
 </div>
 
 <!-- END COMMENTS -->

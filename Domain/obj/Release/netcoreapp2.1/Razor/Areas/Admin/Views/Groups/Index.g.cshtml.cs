@@ -91,7 +91,7 @@ using Models.Context;
             WriteLiteral("<section class=\"content\">\r\n    <div class=\"pull-left\">\r\n        ");
             EndContext();
             BeginContext(117, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6a0980485f2b40019e7ee02f094b502d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f477542dd90a4ca1bf253549c3faad2c", async() => {
                 BeginContext(170, 6, true);
                 WriteLiteral("Добави");
                 EndContext();

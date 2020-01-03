@@ -82,7 +82,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("<!DOCTYPE html>\n\n<html>\n");
             EndContext();
             BeginContext(24, 190, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4e00162678ee416f82c790d30cbcb3d1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0311a3ef61f44a25b3dd1628bc27b254", async() => {
                 BeginContext(30, 9, true);
                 WriteLiteral("\n\t<title>");
                 EndContext();
@@ -107,7 +107,7 @@ using PopForums.Mvc.Areas.Forums.Services;
                 WriteLiteral("</title>\n\t");
                 EndContext();
                 BeginContext(115, 91, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "cfb40fe876b843e6ac12b17e2ef91c03", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "356797243b654bd3be11f2a4cb4d8701", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -142,7 +142,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("\n");
             EndContext();
             BeginContext(215, 275, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7c9486825bdf4b73892ed21ab3fa582e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4f84472aca25490a95ac90d4d5422b2d", async() => {
                 BeginContext(221, 53, true);
                 WriteLiteral("\n\t<div class=\"container\">\n\t\t<div class=\"row\">\n\t\t\t<h1>");
                 EndContext();

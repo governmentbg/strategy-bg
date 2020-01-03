@@ -13,8 +13,7 @@ using WebCommon.Services;
 namespace Domain.Areas.Admin.Controllers
 {
   [Area(nameof(Admin))]
-  [Authorize(Roles = GlobalConstants.Roles.Admin)]
-  public class LinksController : BaseController
+  public class LinksController : BaseAdminController
   {
     private readonly ILinksService linksService;
     private readonly IUserContext userContext;

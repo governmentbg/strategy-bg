@@ -9,18 +9,38 @@
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @Html.HiddenFor(m => m.Id)
+
                 @*@Html.EditorFor(m => m.CategoryId, "Categories")*@
+                @Html.EditorFor(m => m.ParentCategoryId, "GenericDropDown")
                 @Html.EditorFor(m => m.CategoryId, "GenericDropDown")
-                @Html.EditorFor(m => m.LinksCategoryId, "GenericDropDown")
+                <div id="actTypeContainer" class="">
+                    @Html.EditorFor(m => m.ActId, "GenericDropDown")
+                </div>
+                <div id="msProgramProjectContainer" class="">
+                    @Html.EditorFor(m => m.MSProgramProjectId, "GenericDropDown")
+                </div>
+                @if (ViewBag.SingleLinkCategory != null)
+                {
+                    @Html.Hidden(nameof(Model.LinksCategoryId), ((SelectListItem)ViewBag.SingleLinkCategory).Value)
+                    @Html.DisplayFor(x => x.LinksCategoryId, "obj", new { display = ((SelectListItem)ViewBag.SingleLinkCategory).Text })
+                }
+                else
+                {
+                    @Html.EditorFor(m => m.LinksCategoryId, "GenericDropDown")
+                }
                 @Html.EditorFor(m => m.Title)
                 @Html.EditorFor(m => m.Summary)
+                <p id="durationHint" class="text-muted"></p>
                 @Html.EditorFor(m => m.OpenningDate)
                 @Html.EditorFor(m => m.ClosingDate)
                 <div id="shortTermContainer" class="">
                     @Html.EditorFor(m => m.ShortTermReason)
                 </div>
-                @Html.EditorFor(m => m.InstututionTypeId, "GenericDropDown")
+                @*@Html.EditorFor(m => m.InstututionTypeId, "GenericDropDown")*@
+                @Html.HiddenFor(m => m.InstututionTypeId)
+                @Html.EditorFor(m => m.InstitutionType)
                 @Html.EditorFor(m => m.ResponsiblePerson)
+                @*<ddl for="MSProgramProjectId" data="@ViewBag.MSProgramProjectId_ddl"></ddl>*@
                 @Html.EditorFor(m => m.Address)
                 @Html.EditorFor(m => m.Email, "String")
                 @Html.EditorFor(m => m.Telephone)
@@ -59,7 +79,7 @@
              "ajax": {
                  "url": '@Url.Action("DocumentIndex")',
                  data: function (d) {
-                     d.consultationId = @Model.Id;
+                     d.consultationId = @Model.Id
                  },
                  "type": "POST"
              },
@@ -102,7 +122,7 @@
             var start = moment($('#@nameof(Model.OpenningDate)').val(), 'DD.MM.YYYY');
             var end = moment($('#@nameof(Model.ClosingDate)').val(), 'DD.MM.YYYY');
 
-            if (@Model.Id == 0 && start.isBefore(moment())) {
+            if (@Model.Id == 0 && start.isBefore(moment().startOf('day'))) {
                 $('#@nameof(Model.OpenningDate)').parent().next('span').text('Не може да създадете консултация със задна дата');
             } else if (@Model.Id == 0) {
                 $('#@nameof(Model.OpenningDate)').parent().next('span').text('');
@@ -114,16 +134,54 @@
                 $('#@nameof(Model.ClosingDate)').parent().next('span').text('');
                 var diff = end.diff(start, 'days');
 
+                if (diff > 0) {
+                    var strDays = diff === 1 ? ' ден' : ' дни';
+                    $('#durationHint').text('Продължителност на консултацията ' + diff + strDays);
+                }
+
                 if (diff < 14) {
+                    $('#@nameof(Model.ClosingDate)').parent().next('span').text('Не може датата на приключване да е по малко от 14 дни след датата на откриване');
+                }
+
+                if (diff >= 14 && diff <= 30) {
                     $('#shortTermContainer').show();
                 } else {
                     $('#shortTermContainer').hide();
                     $('#@nameof(Model.ShortTermReason)').val('');
                 }
             }
-        }
+            }
 
-        $('#Summary').summernote();
+        $('#ParentCategoryId').change(function () {
+            if ($(this).val() === '@GlobalConstants.Categories.Type_National') {
+                requestCombo('#ActId', '@Url.Action("GetActTypes", "Consultation", new { area="Admin"})');
+                $('#actTypeContainer').show();
+                $('#msProgramProjectContainer').show();
+                //$('#districtCat').hide();
+            } else {
+                $('#actTypeContainer').hide();
+                $('#msProgramProjectContainer').hide();
+                requestCombo('#ActId', '@Url.Action("GetEmptyList", "Consultation", new { area="Admin"})');
+                requestCombo('#MSProgramProjectId', '@Url.Action("GetEmptyList", "Consultation", new { area="Admin"})');
+            }
+
+            requestCombo('#CategoryId', '@Url.Action("GetCategories", "Consultation", new { area="Admin"})', { typeId: $(this).val() });
+        });
+
+        $('#ActId').change(function () {
+            requestCombo('#MSProgramProjectId', '@Url.Action("GetProjects", "Consultation", new { area="Admin"})', { actId: $(this).val() });
+            });
+
+
+        if ('@Model.ParentCategoryId' === '@GlobalConstants.Categories.Type_National') {
+                $('#actTypeContainer').show();
+                $('#msProgramProjectContainer').show();
+            } else {
+                $('#actTypeContainer').hide();
+                $('#msProgramProjectContainer').hide();
+            }
+
+        $('#Summary').summernote({height: 300});
 
     });
 

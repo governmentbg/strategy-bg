@@ -61,7 +61,7 @@ namespace Models.Services
                     }).AsQueryable();
         }
 
-        public IQueryable<StrategicDocumentVM> Portal_List(int langId = GlobalConstants.LangBG, int? validMode = null)
+        public IQueryable<StrategicDocumentVM> Portal_List(int langId = GlobalConstants.LangBG, int? validMode = null, bool activeOnly = true)
         {
             Expression<Func<StrategicDocuments, bool>> whereValid = x => true;
             switch (validMode)
@@ -73,38 +73,45 @@ namespace Models.Services
                     whereValid = x => x.ValidTo < DateTime.Now;
                     break;
             }
+            Expression<Func<StrategicDocuments, bool>> whereActive = x => true;
+            if (activeOnly)
+            {
+                whereActive = x => x.IsActive && !x.IsDeleted && x.IsApproved;
+            }
             return All<StrategicDocuments>()
-                        .Where(g => g.IsActive)
-                        .Where(g => !g.IsDeleted)
-                        .Where(g => g.LanguageId == langId)
-                        .Where(whereValid)
-                        .Include(x => x.Category)
-                        .OrderBy(x => x.Category.ParentId)
-                        .ThenByDescending(x => x.DateCreated)
-                        .Select(x => new StrategicDocumentVM()
-                        {
-                            Id = x.Id,
-                            Title = x.Title,
-                            CategoryId = x.CategoryId,
-                            CategoryParentId = x.Category.ParentId,
-                            CategorySectionId = x.Category.SectionId,
-                            CategoryText = x.Category.CategoryName,
-                            CategoryImagePath = (x.Category.ImagePath == null || x.Category.ImagePath == "") ? "icon_default.png" : x.Category.ImagePath,
-                            ValidTo = x.ValidTo,
-                            CreateDate = x.DateCreated
-                        })
-                        .AsQueryable();
+                  .Where(whereActive)
+                  .Where(g => g.LanguageId == langId)
+                  .Where(whereValid)
+                  .Include(x => x.Category)
+                  .OrderBy(x => x.Category.ParentId)
+                  .ThenByDescending(x => x.DateCreated)
+                  .Select(x => new StrategicDocumentVM()
+                  {
+                      Id = x.Id,
+                      Title = x.Title,
+                      CategoryId = x.CategoryId,
+                      CategoryParentId = x.Category.ParentId,
+                      CategorySectionId = x.Category.SectionId,
+                      CategoryText = x.Category.CategoryName,
+                      CategoryImagePath = (x.Category.ImagePath == null || x.Category.ImagePath == "") ? "icon_default.png" : x.Category.ImagePath,
+                      DocumentDate = x.DocumentDate,
+                      DocumentNumber = x.DocumentNumber,
+                      ValidTo = x.ValidTo,
+                      CreateDate = x.DateCreated,
+                      IsActive = x.IsActive && !x.IsDeleted && x.IsApproved
+                  })
+                  .AsQueryable();
         }
 
         public IQueryable<StrategicDocumensListVM> StrategicDocumentsGetExport()
         {
-      var _Url = urlHelper.Action("View", "StrategicDocument", new { area = "" });
-      return (from std_doc in All<StrategicDocuments>()
-                                  .Where(g => g.IsActive)
-                                  .Where(g => !g.IsDeleted)
-                                  .Include(x => x.Category)
-                                  .OrderBy(x => x.Category.ParentId)
-                                  .ThenByDescending(x => x.DateCreated)
+            var _Url = urlHelper.Action("View", "StrategicDocument", new { area = "" });
+            return (from std_doc in All<StrategicDocuments>()
+                                        .Where(g => g.IsActive)
+                                        .Where(g => !g.IsDeleted)
+                                        .Include(x => x.Category)
+                                        .OrderBy(x => x.Category.ParentId)
+                                        .ThenByDescending(x => x.DateCreated)
                     join usr in All<Users>() on std_doc.CreatedByUserId equals usr.Id
                     join cats in All<Category>() on std_doc.Category.ParentId equals cats.Id
                     join doc_types in All<StrategicDocumentTypes>() on std_doc.DocumentTypeId equals doc_types.Id
@@ -113,8 +120,8 @@ namespace Models.Services
                     {
                         Id = std_doc.Id,
                         Title = std_doc.Title,
-                       // URL = new Uri($"{Url}/{std_doc.Id}").ToString(),
-                       URL= _Url.ToString()+"/"+ std_doc.Id.ToString(),
+                        // URL = new Uri($"{Url}/{std_doc.Id}").ToString(),
+                        URL = _Url.ToString() + "/" + std_doc.Id.ToString(),
                         Category = std_doc.Category.CategoryName,
                         CategoryParent = cats.CategoryName,
                         CreateDate = std_doc.DateCreated.ToString(GlobalConstants.DateFormat),
@@ -139,34 +146,54 @@ namespace Models.Services
         public StrategicDocumentPDFVM GetPDFModel(int mainCategoryId, DateTime? fromDate, DateTime? toDate, int langId = GlobalConstants.LangBG)
         {
             StrategicDocumentPDFVM PDFModel = new StrategicDocumentPDFVM();
-            if (fromDate == null) fromDate = new DateTime(1900, 1, 1);
-            if (toDate == null) toDate = new DateTime(2100, 1, 1);
+            string strFromDate = "";
+            string strToDate = "";
+            DateTime tmpDate = DateTime.Now;
+            if (fromDate == null)
+            { fromDate = new DateTime(1900, 1, 1); }
+            else
+            {
+                bool success = DateTime.TryParse(fromDate.ToString(), out tmpDate);
+                strFromDate = " от дата " + tmpDate.ToString(GlobalConstants.DateFormat) + "г.";
+            };
+
+
+            if (toDate == null)
+            { toDate = new DateTime(2100, 1, 1); }
+            else
+            {
+                bool success = DateTime.TryParse(toDate.ToString(), out tmpDate);
+                strToDate = " до дата " + tmpDate.ToString(GlobalConstants.DateFormat) + "г.";
+
+            };
+            var firstDate = new DateTime(1900, 1, 1);
             var lastDate = new DateTime(2200, 1, 1);
 
             if (mainCategoryId == 1)
             {
-                PDFModel.Title = "Стратегически документи на национално ниво";
+                PDFModel.Title = "Справка на действащите стратегически документи" + strFromDate + strToDate + " на национално ниво";
             }
             else
             {
-                PDFModel.Title = "Стратегически документи на областно и общинско ниво";
+                PDFModel.Title = "Справка на действащите стратегически документи" + strFromDate + strToDate + "на общинско ниво";
             }
             PDFModel.DocumentsCount = 0;
 
             var categories = All<Category>(x => x.IsActive && x.IsApproved && x.ParentId == mainCategoryId && x.LanguageId == GlobalConstants.LangBG).ToList();
-      var strategicUsedFiles = (from uf in db.FilesCDNUsed.Where(u => u.source_type == GlobalConstants.SourceTypes.StrategicDocuments )
-                        join f in db.FileCdn on uf.cdn_file_id equals f.Id
-                        where f.IsActive && (f.IsReportVisible == true)
-                        && (f.DateExparing ?? lastDate).Year >= fromDate.Value.Year
-                        orderby uf.order_by
-                        select new Files
-                        {
-                          Id = uf.source_id,
-                          Name = f.FileTitle,
-                          DateExparing = (f.DateExparing ?? lastDate)
-                        }).ToList();
+            var strategicUsedFiles = (from uf in db.FilesCDNUsed.Where(u => u.source_type == GlobalConstants.SourceTypes.StrategicDocuments)
+                                      join f in db.FileCdn on uf.cdn_file_id equals f.Id
+                                      where f.IsActive && (f.IsReportVisible == true)
+                                        //&& (f.DateExparing ?? lastDate).Year >= fromDate.Value.Year
+                                        && (f.DateExparing ?? lastDate) >= toDate
+                                      orderby uf.order_by
+                                      select new Files
+                                      {
+                                          Id = uf.source_id,
+                                          Name = f.FileTitle,
+                                          DateExparing = (f.DateExparing ?? lastDate)
+                                      }).ToList();
 
-      foreach (var cat in categories)
+            foreach (var cat in categories)
             {
 
                 StrategicDocumentCategoryRowVM categoryRow = new StrategicDocumentCategoryRowVM();
@@ -175,8 +202,10 @@ namespace Models.Services
                                 .Where(g => g.IsActive)
                                 .Where(g => !g.IsDeleted)
                                 .Where(g => g.LanguageId == langId)
-                                .Where(g => g.DocumentDate <= toDate)
-                                .Where(g => g.ValidTo >= fromDate)
+                                //.Where(g => g.DocumentDate <= toDate)
+                                //.Where(g => g.ValidTo >= fromDate)
+                                .Where(g => (g.DocumentDate ?? firstDate) <= fromDate)
+                                .Where(g => g.ValidTo >= toDate)
                                 .Include(x => x.Category)
                                 .Where(x =>
                                 (
@@ -190,23 +219,24 @@ namespace Models.Services
                                     OrderNumber = " ",
                                     Title = x.Title,
                                     ValidTo = x.ValidTo,
-                                  //Files = (from uf in db.FilesCDNUsed.Where(u => u.source_type == GlobalConstants.SourceTypes.StrategicDocuments && u.source_id == x.Id)
-                                  //         join f in db.FileCdn on uf.cdn_file_id equals f.Id
-                                  //         where f.IsActive && (f.IsReportVisible == true)
-                                  //         && (f.DateExparing ?? lastDate).Year >= fromDate.Value.Year
-                                  //         orderby uf.order_by
-                                  //         select new StrategicDocumentLinkRowVM
-                                  //         {
-                                  //             Title = f.FileTitle,
-                                  //             ValidTo = (f.DateExparing ?? lastDate)
-                                  //         })
-                                  Files = (from f in strategicUsedFiles.Where(u =>  u.Id == x.Id)
-                                         
-                                           select new StrategicDocumentLinkRowVM 
-                                           {
-                                             Title = f.Name,
-                                             ValidTo = (f.DateExparing ?? lastDate)
-                                           })
+                            //Files = (from uf in db.FilesCDNUsed.Where(u => u.source_type == GlobalConstants.SourceTypes.StrategicDocuments && u.source_id == x.Id)
+                            //         join f in db.FileCdn on uf.cdn_file_id equals f.Id
+                            //         where f.IsActive && (f.IsReportVisible == true)
+                            //         && (f.DateExparing ?? lastDate).Year >= fromDate.Value.Year
+                            //         orderby uf.order_by
+                            //         select new StrategicDocumentLinkRowVM
+                            //         {
+                            //             Title = f.FileTitle,
+                            //             ValidTo = (f.DateExparing ?? lastDate)
+                            //         })
+                            Files = (from f in strategicUsedFiles.Where(u => u.Id == x.Id)
+
+                                             select new StrategicDocumentLinkRowVM
+                                             {
+                                                 Id = f.Id,
+                                                 Title = f.Name,
+                                                 ValidTo = (f.DateExparing ?? lastDate)
+                                             })
                                 }).ToList();
 
                 int i = 0;
@@ -215,13 +245,13 @@ namespace Models.Services
                     i++;
                     Link.OrderNumber = i.ToString();
                     PDFModel.DocumentsCount = PDFModel.DocumentsCount + 1;
-                    if (Link.Files.Count()>0)
+                    if (Link.Files.Count() > 0)
                     {
                         foreach (var docFile in Link.Files)
                         {
                             i++;
                             docFile.OrderNumber = i.ToString();
-                           // docFile.OrderNumber = "opsa";
+                            // docFile.OrderNumber = "opsa";
                         }
                     }
                 }
@@ -285,7 +315,7 @@ namespace Models.Services
                 new BreadcrumbVM(){ Title = "Стратегически документи", Url = urlHelper.Action("Index") }
             };
 
-            if (category.ParentId == GlobalConstants.Category.Type_National)
+            if (category.ParentId == GlobalConstants.Categories.Type_National)
             {
                 result.Add(new BreadcrumbVM()
                 {
@@ -306,7 +336,7 @@ namespace Models.Services
                 result.Add(new BreadcrumbVM()
                 {
                     Title = "Областни и общински",
-                    Url = urlHelper.Action("Index", new { categoryMasterId = GlobalConstants.Category.Type_District })
+                    Url = urlHelper.Action("Index", new { categoryMasterId = GlobalConstants.Categories.Type_District })
                 });
 
                 result.Add(new BreadcrumbVM()
@@ -315,14 +345,14 @@ namespace Models.Services
                         .Find(category.SectionId)
                         ?.CategoryName,
                     Url = urlHelper.Action("Index",
-                    new { categoryMasterId = GlobalConstants.Category.Type_District, categoryId = -1, districtId = category.SectionId })
+                    new { categoryMasterId = GlobalConstants.Categories.Type_District, categoryId = -1, districtId = category.SectionId })
                 });
 
                 result.Add(new BreadcrumbVM()
                 {
                     Title = category.CategoryName,
                     Url = urlHelper.Action("Index",
-                    new { categoryMasterId = GlobalConstants.Category.Type_District, categoryId = -1, districtId = category.SectionId, municipalityId = category.Id })
+                    new { categoryMasterId = GlobalConstants.Categories.Type_District, categoryId = -1, districtId = category.SectionId, municipalityId = category.Id })
                 });
             }
 

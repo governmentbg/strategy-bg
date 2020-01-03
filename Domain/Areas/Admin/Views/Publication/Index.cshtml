@@ -25,12 +25,12 @@
                     @Html.DropDownList("categoryId", (IEnumerable<SelectListItem>)ViewBag.categories, new { @class = "form-control" })
                 </div>
                 <div>
-                    <span>Активен</span>
-                    @Html.DropDownList("activeId", (IEnumerable<SelectListItem>)ViewBag.active, new { @class = "form-control" })
-                </div>
-                <div>
                     <span>Заглавие</span>
                     @Html.TextBox("term", null, new { @class = "form-control" })
+                </div>
+                <div>
+                    <span>Покажи</span>
+                    <label>@Html.CheckBox("activeOnly", true)&nbsp;Само активни</label>
                 </div>
                 <div>
                     <span>&nbsp;</span>
@@ -53,7 +53,7 @@
                     d.dateTo = $('#dateTo').val();
                     d.term = $('#term').val();
                     d.category = $('#categoryId').val()
-                    d.active = $('#activeId').val()
+                    d.activeOnly = $('#activeOnly').is(':checked');
                     d.lang=@((int)ViewBag.lang);
                 },
                 "type": "POST"
@@ -88,7 +88,11 @@
                     },
                     sortable: false
                 }
-            ]
+                 ], rowCallback: function (row, data) {
+                     if (data["isActive"] == false || data["isDeleted"] == true) {
+                         $(row).addClass("disabled");
+                     }
+                 }
         });
             $('button.dt-reload').click(function () {
                 dt.ajax.reload();

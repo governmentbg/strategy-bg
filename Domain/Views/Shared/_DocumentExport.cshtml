@@ -10,7 +10,7 @@
 
             @foreach (var version in Model.Versions)
             {
-                <h3>Версия @version.RevisionNumber, @version.DocumentTitle</h3>
+                <h3>@*Версия @version.RevisionNumber,*@ @version.DocumentTitle</h3>
                 @if (version.AttachedFiles.Any())
                 {
                     <div class="title">Прикачени файлове</div>

@@ -1,0 +1,41 @@
+﻿@model DeactivateUserViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutDialog.cshtml";
+    ViewData["Title"] = "Деактивиране на профил";
+}
+<h3>@ViewData["Title"]</h3>
+<form asp-route="DeactivateUser">
+    <input asp-for="Code" type="hidden" />
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label"></label>
+        <div class="input-group">
+            <input type="text" asp-for="UserName" class="form-control" />
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        </div>
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <div class="input-group">
+            <input type="password" asp-for="Password" class="form-control" />
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+        </div>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PasswordAgain" class="control-label"></label>
+        <div class="input-group">
+            <input type="password" asp-for="PasswordAgain" class="form-control" />
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+        </div>
+        <span asp-validation-for="PasswordAgain" class="text-danger"></span>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-sm-4 col-xs-6">
+                <button class="btn btn-danger btn-block btn-flat" name="button" onclick="if (!confirm('Потвърди деактивирането на потребителския профил!')) { return false;}">Изпрати</button>
+            </div>
+        </div>
+    </div>
+    <!-- /.col -->
+</form>

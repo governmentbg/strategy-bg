@@ -1,49 +1,27 @@
 ﻿@using Models.ViewModels.Ogp
+@inject IStringLocalizer<CommonResources> Localizer
 @model PlanVM
 @{
-    ViewData["SectionTitle"] = Model.Plan.Title;
+    ViewData["SectionTitle"] = Localizer["MENU_OGP"];
     var estimations = (IQueryable<EstimationVM>)ViewBag.estimations;
 }
 @section breadcrumbs{
-    <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        @if (Model.Parent != null)
-        {
-            <span>/</span> <a href="@Url.Action("Element",new { id = Model.Parent.Id})">
-                @Html.Raw(Model.Parent.Title)
-            </a>
-        }
-    </div>
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">Начало</a>
+    / <a href="@Url.Action("Index","Article")">@Localizer["MENU_OGP"]</a>
+    / <a href="@Url.Action("Plans","Ogp")">Национални планове</a>
+    @if (Model.Parent != null)
+    {
+        <span>/</span> <a href="@Url.Action("Element",new { id = Model.Parent.Id})">
+            @Html.Raw(Model.Parent.Title)
+        </a>
+    }
+</div>
 }
 
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-3">
-            @if (estimations.Any())
-            {
 
-                <div class="aside row">
-                    <div class="title">
-                        Оценки
-                    </div>
-                    <ul class="list--default">
-                        @foreach (var estimation in estimations)
-                        {
-                            var urlView = Url.Action("Estimation", new { id = estimation.Id });
-                            <li>
-                                <a href="@urlView">
-                                    <b>@estimation.EstimationTypeName:</b>
-                                    <br />
-                                    @estimation.Title
-                                </a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-
-            }
-            <partial name="_OgpLeftMenu" model="@("91023")" />
-        </div>
         <div class="col-md-9 body">
             <h2>
                 @Html.Raw(Model.Plan.Title)
@@ -78,12 +56,38 @@
                                 </td>
                                 <td>
                                     <a href="@urlView">@Html.Raw(element.Title)</a>
-                                </td>                               
+                                </td>
                             </tr>
                         }
                     </tbody>
                 </table>
             }
+        </div>
+        <div class="col-md-3">
+            @*@if (estimations.Any())
+                {
+
+                    <div class="aside row">
+                        <div class="title">
+                            Оценки
+                        </div>
+                        <ul class="list--default">
+                            @foreach (var estimation in estimations)
+                            {
+                                var urlView = Url.Action("Estimation", new { id = estimation.Id });
+                                <li>
+                                    <a href="@urlView">
+                                        <b>@estimation.EstimationTypeName:</b>
+                                        <br />
+                                        @estimation.Title
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                }*@
+            <partial name="_OgpLeftMenu" model="@("91023")" />
         </div>
     </div>
 </div>

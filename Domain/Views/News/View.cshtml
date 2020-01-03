@@ -16,27 +16,9 @@
 <div class="container-fluid information">
     <div class="row">
         <div class="col-md-3">
-            <div class="aside row">
-                <div class="title">
-                    @ViewData["Title"]
-                </div>
-                @*<ul class="list--default">
-                        <li><a href="#">Заглавие</a></li>
-                        <li class="active"><a href="#">Заглавие</a></li>
-                        <li><a href="#">Заглавие</a></li>
-                    </ul>
-                    <div class="title">
-                        Ресурсни източници
-                    </div>
-                    <ul class="list--default">
-                        <li><a href="#">Линк</a></li>
-                        <li><a href="#">Линк</a></li>
-                        <li><a href="#">Линк</a></li>
-                    </ul>*@
-            </div>
+            <partial name="_NewsLeftMenu" model="@ViewBag.categories" />
         </div>
         <div class="col-md-9 body">
-
 
             @if (!string.IsNullOrEmpty(Model.MainImageFileId))
             {
@@ -44,9 +26,9 @@
                     <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",id=Model.MainImageFileId,max=400}))" />
                 </div>
             }
-            <h2>
+            <h3>
                 @Html.Raw(Model.Title)
-            </h2>
+            </h3>
             <h4>
                 @Model.EventDate.ToString(GlobalConstants.DateFormat)
             </h4>

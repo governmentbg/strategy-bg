@@ -49,11 +49,11 @@
         <div class="col-md-3">
             @if ((bool)ViewBag.hasQuestionary)
             {
-                @*<div class="aside row">
+                <div class="aside row">
                     <div class="title">
                         <a asp-action="FillQuestionaryBySourceType" asp-controller="Questionary" asp-area="" asp-route-sourceTypeID="@GlobalConstants.SourceTypes.PublicConsultation" asp-route-sourceId="@Model.Id">Анкета</a>
                     </div>
-                </div>*@
+                </div>
             }
             @(await Html.PartialAsync("_consultationLeftMenu", Model.MenuLinks))
         </div>
@@ -66,7 +66,7 @@
             </p>
             <!-- TABLE DATES -->
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <table class="table table-bordered table--dates table--stripped">
                         <tbody>
                             <!-- LOOP -->
@@ -86,22 +86,14 @@
                                     }
                                 </td>
                             </tr>
-                            @if (!String.IsNullOrEmpty(Model.ShortTermReason))
-                            {
-                                <tr>
-                                    <td colspan="2">@Model.ShortTermReason</td>
-                                </tr>
-                            }
+
                             <tr>
                                 <td>
-
-
-
-                                    @if (Model.ParentCategoryId == GlobalConstants.Category.Type_District)
+                                    @if (Model.ParentCategoryId == GlobalConstants.Categories.Type_District)
                                     {
                                         <span>Област: </span>
                                     }
-                                    else if (Model.ParentCategoryId == GlobalConstants.Category.Type_Municipal)
+                                    else if (Model.ParentCategoryId == GlobalConstants.Categories.Type_Municipal)
                                     {
                                         <span>Община: </span>
                                     }
@@ -111,19 +103,25 @@
                                     }
                                 </td>
                                 <td>
-
-
                                     @Html.Raw(Model.CategoryName)
                                 </td>
                             </tr>
                             <tr>
                                 <td>Oтговорно звено:</td>
-                                <td>@Model.InstitutionName</td>
+                                <td>@(Model.InstitutionType ?? Model.InstitutionName)</td>
                             </tr>
                             <tr>
                                 <td>Отговорно лице:</td>
                                 <td>@Model.ResponsiblePerson</td>
                             </tr>
+                            @if (Model.InstututionTypeId > 0)
+	                        {
+                                <tr>
+                                    <td>Отговорна институция:</td>
+                                    <td>@Model.InstitutionName</td>
+                                </tr>
+	                        }
+                            
                             <tr>
                                 <td>Адрес:</td>
                                 <td>@Model.Address</td>
@@ -141,6 +139,12 @@
                 </div>
             </div>
             <!-- END TABLE DATES -->
+            @if (!String.IsNullOrEmpty(Model.ShortTermReason))
+            {
+            <p class="text-muted">
+                Мотиви за по кратък срок: @Model.ShortTermReason
+            </p>
+            }
             <!-- TABLE DOCUMENTS -->
             @if (documents.Any())
             {
@@ -189,19 +193,27 @@
             }
 
             @{await Html.RenderPartialAsync("_Comments",
-                      new CommentsRequestModel
-                      {
-                          SourceTypeId = GlobalConstants.SourceTypes.PublicConsultation,
-                          SourceId = Model.Id,
-                          SectionList = tagDdl,
-                          CanComment = Model.CanComment,
-                          UpdateCommentsCallback = "updateCommentsCount",
-                          UserIdentityList = userIdentityDdl
-                      });
+                          new CommentsRequestModel
+                          {
+                              SourceTypeId = GlobalConstants.SourceTypes.PublicConsultation,
+                              SourceId = Model.Id,
+                              SectionList = tagDdl,
+                              CanComment = Model.CanComment,
+                              UpdateCommentsCallback = "updateCommentsCount",
+                              UserIdentityList = userIdentityDdl
+                          });
             }
         </div>
         <div class="col-md-4 col-lg-3">
             <ul class="timeline">
+                @if (!string.IsNullOrEmpty(Model.MSProgramProjectName))
+                {
+                    <li class="time-label">
+                        <span class="bg-info">
+                            По проект: <a asp-action="Project" asp-controller="MSprogram" asp-route-id="@Model.MSProgramProjectId">@Model.MSProgramProjectName</a>
+                        </span>
+                    </li>
+                }
                 <li class="time-label">
                     <span class="bg-danger">
                         Приключване @Model.ClosingDate.ToLongDateString()
@@ -222,7 +234,7 @@
                             <div class="clearfix">
                                 <span class="time-line-time"><i class="fa fa-calendar"></i> @item.DateCreated.ToString(GlobalConstants.DateFormat)</span>
                                 <span class="time-line-info"><i class="fa fa-comments-o"></i> @item.CommentsCount</span>
-                                <span class="time-line-info">Версия @item.RevisionNumber </span>
+                                @*<span class="time-line-info">Версия @item.RevisionNumber </span>*@
                             </div>
                         </div>
                     </li>

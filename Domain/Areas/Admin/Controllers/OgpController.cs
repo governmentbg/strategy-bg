@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Context.Ogp;
 using Models.Contracts;
 using WebCommon.Extensions;
+using static Models.GlobalConstants;
 
 namespace Domain.Areas.Admin.Controllers
 {
@@ -72,7 +73,8 @@ namespace Domain.Areas.Admin.Controllers
             SetSavedMessage = ogpService.Element_SaveData(model);
             if (SetSavedMessage)
             {
-                return RedirectToAction(nameof(PlanElements_Edit), new { id = model.Id });
+        SaveSiteLog(SiteLogTableNames.OGP, SiteLogAction.Add, model.Id, true, model.Title);
+        return RedirectToAction(nameof(PlanElements_Edit), new { id = model.Id });
             }
             return View(nameof(PlanElements_Edit), model);
         }
@@ -93,8 +95,9 @@ namespace Domain.Areas.Admin.Controllers
 
             SetSavedMessage = ogpService.Element_SaveData(model);
             if (SetSavedMessage)
-            {
-                return RedirectToAction(nameof(PlanElements_Edit), new { id = model.Id });
+      {
+        SaveSiteLog(SiteLogTableNames.OGP, SiteLogAction.Edit, model.Id, true, model.Title);
+        return RedirectToAction(nameof(PlanElements_Edit), new { id = model.Id });
             }
             return View(nameof(PlanElements_Edit), model);
         }

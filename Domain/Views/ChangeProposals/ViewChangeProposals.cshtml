@@ -1,13 +1,13 @@
 ﻿@model Models.ViewModels.ChangeProposalsViewModel
 @{
-    ViewData["Title"] = "Законодателнa инициативa";
+    ViewData["Title"] = "Законодателни инициативи";
     ViewData["SectionTitle"] = ViewData["Title"];
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
         / <a href="@Url.Action("Index", "Home")">Начало</a>
-        / <a href="@Url.Action("ListChangeProposals", "ChangeProposals")">Списък със законодателни инициативи</a>
-        / <a href="#">Законодателнa инициативa</a>
+        / <a href="@Url.Action("ListChangeProposals", "ChangeProposals")">Законодателни инициативи</a>
+        / <a href="#">@Html.Raw(Model.Title)</a>
     </div>
 }
 

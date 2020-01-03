@@ -91,6 +91,12 @@
     <Content Update="Areas\Admin\Views\DocumentKind\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\Admin\Views\FileCdn\SelectImageForInsert.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\FileCdn\UploadFile.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\Admin\Views\InstitutionType\Edit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -119,6 +125,18 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Areas\Admin\Views\GenericContent\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\MSProgramProject\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\MSProgramProject\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\MSProgram\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\MSProgram\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Areas\Admin\Views\NewsCategories\Edit.cshtml">
@@ -235,6 +253,9 @@
     <Content Update="Areas\Admin\Views\PublicationCategories\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\Admin\Views\SiteLog\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\Admin\Views\StrategicDocument\Edit.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -259,6 +280,9 @@
     <Content Update="Areas\Admin\Views\UsersInfo\UsersInfo.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Account\DeactivateUser.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Account\ChangePassword.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -271,6 +295,9 @@
     <Content Update="Views\Article\View.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\ChangeProposals\NewChangeProposal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\ChangeProposals\ViewChangeProposals.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -280,10 +307,28 @@
     <Content Update="Views\ContactUsMail\index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\DisplayTemplates\obj.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\NotFound.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Home\Search.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Home\IndexOldWithPeshka.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MSprogram\Projects.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MSprogram\Programs.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MSprogram\Project.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\News\IndexOldWithGrid.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Page\Preview.cshtml">
@@ -302,6 +347,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Ogp\Plans.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\PCSubjects\View.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\PCSubjects\ListPCSubjects.cshtml">
@@ -325,6 +373,9 @@
     <Content Update="Views\Calculator\NewCalculation.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\PublicConsultation\ViewMSproject.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Questionary\FillQuestionaryError.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -335,6 +386,12 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Calculator\_CalculationPDF.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LoginPartialMobile.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_OgpAgenda.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\Components\QuestionaryWidget\Default.cshtml">
@@ -382,7 +439,25 @@
     <Content Update="Views\Shared\_FillQuestionaryError.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_LangSelectToolbar.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LoginPartialToolbarGoogle.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_PublicMainMenu.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_LayoutStandartForms.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LoginPartialToolbar.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_PublicationLeftMenu.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_NewsLeftMenu.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\_PCSubjectsPDF.cshtml">
@@ -583,10 +658,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Shared\DisplayTemplates\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\dist\assets\Coat_of_arms_of_Bulgaria.svg" />
     <None Include="wwwroot\dist\assets\magnifier.svg" />
     <None Include="wwwroot\dist\assets\users.svg" />
@@ -594,6 +665,88 @@
     <None Include="wwwroot\dist\bundle.min.js" />
     <None Include="wwwroot\dist\swiper.js" />
     <None Include="wwwroot\dist\swiper.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\css\common.scss" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\css\mixins.scss" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.bootstrap.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.bootstrap.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.bootstrap4.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.colVis.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.colVis.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.flash.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.flash.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.foundation.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.foundation.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.html5.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.html5.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.jqueryui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.jqueryui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.print.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.print.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.semanticui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\buttons.semanticui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\dataTables.buttons.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\js\dataTables.buttons.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Buttons-1.5.6\swf\flashExport.swf" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.bootstrap.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.foundation.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.foundation.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.jqueryui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.jqueryui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.semanticui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\dataTables.semanticui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\jquery.dataTables.js" />
+    <None Include="wwwroot\lib\datatables-bs3\DataTables-1.10.18\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\datatables.js" />
+    <None Include="wwwroot\lib\datatables-bs3\datatables.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\dataTables.fixedColumns.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\dataTables.fixedColumns.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.bootstrap.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.bootstrap.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.bootstrap4.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.dataTables.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.foundation.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.foundation.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.jqueryui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.jqueryui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.semanicui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.semanticui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedColumns-3.2.5\js\fixedColumns.semanticui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\dataTables.fixedHeader.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\dataTables.fixedHeader.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.bootstrap.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.bootstrap.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.bootstrap4.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.dataTables.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.foundation.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.foundation.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.jqueryui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.jqueryui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.semanicui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.semanticui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\FixedHeader-3.1.4\js\fixedHeader.semanticui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\JSZip-2.5.0\jszip.js" />
+    <None Include="wwwroot\lib\datatables-bs3\JSZip-2.5.0\jszip.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\pdfmake-0.1.36\pdfmake.js" />
+    <None Include="wwwroot\lib\datatables-bs3\pdfmake-0.1.36\pdfmake.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\pdfmake-0.1.36\vfs_fonts.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\dataTables.responsive.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\dataTables.responsive.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.bootstrap.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.bootstrap.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.bootstrap4.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.foundation.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.foundation.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.jqueryui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.jqueryui.min.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.semanticui.js" />
+    <None Include="wwwroot\lib\datatables-bs3\Responsive-2.2.2\js\responsive.semanticui.min.js" />
   </ItemGroup>
 
 </Project>

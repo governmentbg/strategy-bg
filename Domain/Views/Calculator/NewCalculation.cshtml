@@ -2,13 +2,15 @@
 
 @{
     ViewData["Title"] = "Интерактивен калкулатор на Административната тежест";
+    ViewData["SectionTitle"] = "Оценка на въздействието ";
 }
+
 @section breadcrumbs{
-<div class="breadcrumbs">
-    / <a href="@Url.Action("Index","Home")">Начало</a>
-    / <a href="@Url.Action("Index","PublicConsultation")">Обществени консултации</a>
-    / <a href="#">Интерактивен калкулатор на Административната тежест</a>
-</div>
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","PublicConsultation")">Обществени консултации</a>
+        / <a href="#">Интерактивен калкулатор на Административната тежест</a>
+    </div>
 }
 
 <section class="container-fluid information">
@@ -16,17 +18,18 @@
         <div class="col-lg-3">
             @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-9">
             <form asp-action="NewCalculation">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @Html.EditorFor(m => m.AdministrativeBurdenName)
-                @Html.EditorFor(m => m.ActivityNumbers)
+                <div style="width: 20%"> @Html.EditorFor(m => m.ActivityNumbers, new { style = "width: 30px;" })</div>
                 @Html.HiddenFor(m => m.CalculatorActivities)
                 <div class="form-group">
-                    <input type="submit" value="Продължи" class="btn btn-success btn-flat" />
+                    <input type="submit" value="Продължи" class="btn btn-info btn-flat" />
                 </div>
             </form>
         </div>
+
     </div>
 </section>
 

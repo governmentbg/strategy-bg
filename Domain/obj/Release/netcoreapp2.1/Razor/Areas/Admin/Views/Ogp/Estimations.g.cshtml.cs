@@ -185,7 +185,7 @@ WriteAttributeValue("", 687, Url.Action("Estimations",new { elementId=parent.Ele
             WriteLiteral("            ");
             EndContext();
             BeginContext(942, 175, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d6fb6c44e7c4329a29c9ba82821e090", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7ad4d88904d7792a96256811d1aa5", async() => {
                 BeginContext(1080, 33, true);
                 WriteLiteral("<i class=\"fa fa-plus\"></i> Добави");
                 EndContext();
@@ -240,7 +240,7 @@ WriteAttributeValue("", 687, Url.Action("Estimations",new { elementId=parent.Ele
             WriteLiteral("            ");
             EndContext();
             BeginContext(1167, 143, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "59180da9cf244e5cb96d7aa36c2eb072", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1455ba6eaa0f400a9121c457472e3414", async() => {
                 BeginContext(1273, 33, true);
                 WriteLiteral("<i class=\"fa fa-plus\"></i> Добави");
                 EndContext();

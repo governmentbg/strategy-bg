@@ -1,0 +1,12 @@
+2019-03-22 09:58:33,199 [64] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 66
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147
+2019-03-22 10:24:37,421 [45] ERROR App  
+ Object reference not set to an instance of an object. 
+ 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ImageProcessor.ImageService.Resize(Byte[] imgData, Int32 maxSize, String contentType) in C:\Projects\Strategy\newSingleSite\ImageProcessor\ImageService.cs:line 66
+   at Domain.Controllers.FileCdnController.ViewImage(String id, Nullable`1 sourceType, String sourceId, Int32 max) in C:\Projects\Strategy\newSingleSite\Domain\Controllers\FileCdnController.cs:line 147

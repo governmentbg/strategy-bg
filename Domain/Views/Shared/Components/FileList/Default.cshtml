@@ -18,7 +18,7 @@
                             </td>
                             <td>
                                 <a href="@Url.Action("DownloadFile", "FileCDN", new { id = file.FileId })">
-                                    @Html.Raw(file.FileTitle)
+                                    @Html.Raw(file.FileTitle ?? file.FileName)
                                 </a>
                             </td>
                         </tr>

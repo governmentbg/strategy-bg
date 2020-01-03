@@ -13,9 +13,11 @@
     <textbox for="FirstName"></textbox>
     <textbox for="LastName"></textbox>
     <div class="row">
-        <div class="col-xs-8">
-            <a asp-action="Index" asp-controller="Home" class="text-center">Обратно</a><br />
-            <a asp-action="Categories" class="text-center">Абонирай се</a><br />
+        <div class="col-xs-4">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-default">Обратно</a>
+        </div>
+        <div class="col-xs-4">
+            <a asp-action="Categories" class="btn btn-default">Абонаменти</a><br />
             @*<a asp-action="TargetGroups" class="text-center">Моите целеви групи</a><br />*@
         </div>
         <div class="col-xs-4 submit">
@@ -23,6 +25,12 @@
                 <button type="submit" class="btn btn-default">Запази</button>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <a asp-action="DeactivateUser" class="text-danger">Деактивиране на потребител</a>
+        </div>
+        
     </div>
 </form>
 

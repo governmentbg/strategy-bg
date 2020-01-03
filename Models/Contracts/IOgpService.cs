@@ -19,6 +19,7 @@ namespace Models.Contracts
         bool Estimation_SaveData(NationalPlanEstimations model);
         IQueryable<TextValueVM> EstimationType_Combo();
 
+        IQueryable<PlanItemVM> SelectPlansForOgpMenu();
 
         //============ Portal ============================
         PlanVM Portal_GetElement(int id);

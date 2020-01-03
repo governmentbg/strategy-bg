@@ -118,7 +118,7 @@ WriteAttributeValue("", 269, Url.Action("Index","GroupUsers"), 269, 33, false);
             WriteLiteral("<section class=\"content\">\r\n    <div class=\"pull-left\">\r\n        ");
             EndContext();
             BeginContext(412, 141, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4770e2b5f88840ba9c6191a0ea92318e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c4b3cddc18784cc8be6dc38d68fcf811", async() => {
                 BeginContext(523, 26, true);
                 WriteLiteral("Регистрирай нов потребител");
                 EndContext();

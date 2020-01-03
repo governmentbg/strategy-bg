@@ -193,7 +193,7 @@ WriteAttributeValue("", 521, category.CategoryID, 521, 20, false);
             WriteLiteral(" class=\"btn btn-primary\" /></td>\n\t\t<td>\n\t\t\t");
             EndContext();
             BeginContext(586, 244, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c225a5b510254edb8e3a02f14d6fbda3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c208b7e41efc4b99ae241a926aa03722", async() => {
                 BeginContext(658, 43, true);
                 WriteLiteral("\n\t\t\t\t<input type=\"hidden\" name=\"categoryID\"");
                 EndContext();

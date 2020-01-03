@@ -1,0 +1,67 @@
+﻿@model MSProgramProject
+@using Models.Context.Consultations
+@{
+
+    ViewData["Title"] = "Проект към програма";
+    string otherLawImpactTitle = null;
+    var program = (MSProgram)ViewBag.program;
+    switch (program.ProgramTypeId)
+    {
+        case GlobalConstants.MSProgramTypes.Zakonodatelna:
+            otherLawImpactTitle = "Необходими промени в други закони";
+            break;
+        case GlobalConstants.MSProgramTypes.Operativna:
+            otherLawImpactTitle = "Законово основание за приемане";
+            break;
+    }
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            <form asp-action="@ViewBag.actionName">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="MSProgramId" type="hidden" />
+                <input asp-for="LanguageId" type="hidden" />
+                <partial name="LangView" model="@Model.LanguageId" />
+
+                <textbox for="Title" type="textarea"></textbox>
+                <ddl for="InstitutionTypeId" data="ViewBag.insitutionTypes"></ddl>
+                <textbox for="IncludedInEUplan" type="textarea"></textbox>
+                <textbox for="Description" type="textarea" edit-class="summernote"></textbox>
+                <textbox for="OtherLawsImpact" type="textarea" label="@otherLawImpactTitle"></textbox>
+                <checkbox for="HasAssessment"></checkbox>
+                <month-picker for="DateCoordinated"></month-picker>
+                <month-picker for="DateMS"></month-picker>
+
+
+
+                <checkbox for="IsActive" text-class="label label-primary"></checkbox>
+                <div class="form-group">
+                    <input type="submit" value="Запис" class="btn btn-success btn-flat" />
+                    <a asp-action="Index" asp-route-programId="@Model.MSProgramId" asp-route-lang="@Model.LanguageId" class="btn btn-danger btn-flat">Назад</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    @if (Model.Id > 0)
+    {
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Прикачени документи</h4>
+                <partial name="UsedDocuments" model="@(new FileCDN.Models.FileSelect() { SourceType = GlobalConstants.SourceTypes.MSPRogramProject, SourceID = Model.Id.ToString() })" />
+            </div>
+        </div>
+    }
+</section>
+
+@section scripts{
+    <script>
+        $(function () {
+            var snEditor = $('#Description').summernote();
+        });
+    </script>
+}
+

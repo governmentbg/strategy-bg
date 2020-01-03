@@ -94,7 +94,7 @@ using Models.Context;
             WriteLiteral("<section class=\"content\">\r\n\r\n    ");
             EndContext();
             BeginContext(80, 126, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "172c9b93a2f349bca0c68104f6eb027d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "104ae207a1bd40febdd330b7ccd9f560", async() => {
                 BeginContext(138, 64, true);
                 WriteLiteral("<i class=\"fa fa-user-plus\"></i>  Регистрирай вътрешен потребител");
                 EndContext();
@@ -147,7 +147,7 @@ using Models.Context;
             WriteLiteral("\r\n                </div>\r\n                <div>\r\n                    <span>Потвърдени/Непотвърдени</span>\r\n                    <select id=\"isApproved\" name=\"isApproved\" class=\"form-control\">\r\n                        ");
             EndContext();
             BeginContext(1082, 25, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c1c4871856f74a788646872594d7cd21", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "586e84d611874475bd7cef3be79a02b1", async() => {
                 BeginContext(1090, 8, true);
                 WriteLiteral("Изберете");
                 EndContext();
@@ -167,7 +167,7 @@ using Models.Context;
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1133, 40, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "049f91c32ab34c3d8b9b4f58c493bdf9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2620a4a5799c414cb7e76b420f2be038", async() => {
                 BeginContext(1154, 10, true);
                 WriteLiteral("Потвърдени");
                 EndContext();
@@ -189,7 +189,7 @@ using Models.Context;
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(1199, 43, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "913b6d82c7584da6a6f3dd8130e3bcc9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d59634f18d6a46b3ae6152070e90f354", async() => {
                 BeginContext(1221, 12, true);
                 WriteLiteral("Непотвърдени");
                 EndContext();

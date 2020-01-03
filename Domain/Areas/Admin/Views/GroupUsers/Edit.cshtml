@@ -17,6 +17,7 @@
                 <input asp-for="Id" type="hidden" />
                 @Html.EditorFor(m => m.CategoryId, "Categories")
                 <ddl for="InstitutionTypeId" data="@ViewBag.institutions"></ddl>
+                @Html.EditorFor(m => m.LinksCategoryId, "GenericDropDown")
                 <textbox for="Organization"></textbox>
                 <textbox for="Address"></textbox>
                 <textbox for="Email"></textbox>

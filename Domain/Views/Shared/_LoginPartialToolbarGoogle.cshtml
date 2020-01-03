@@ -1,0 +1,74 @@
+@inject IStringLocalizer<AccountResources> Localizer
+@using System.Linq;
+@{
+    var currentUser = User.Identity;
+    bool isAuthenticated = currentUser?.IsAuthenticated ?? false;
+    var fullName = "";
+    var userId = "";
+    var userFirstChar = "";
+    if (isAuthenticated)
+    {
+
+        var claims = (System.Security.Claims.ClaimsIdentity)currentUser;
+        fullName = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Name).FirstOrDefault()?.Value;
+        userId = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Sid).FirstOrDefault()?.Value;
+        if (string.IsNullOrEmpty(fullName?.Trim()))
+        {
+            fullName = claims.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Email).FirstOrDefault()?.Value;
+
+        }
+        userFirstChar = fullName.Substring(0, 1);
+    }
+}
+
+@if (isAuthenticated)
+{
+    @inject Models.Contracts.INotificationService notificationService;
+    @inject WebCommon.Services.IUserContext userContext;
+    var notificationCount = notificationService.CurrentUserSystemNotification_NewMessages();
+    if (notificationCount > 0)
+    {
+        <a asp-action="Index" asp-controller="Notifications" asp-area="" class="hidden-md hidden-sm hidden-xs">
+            <div class='toplink-icon social notification'>
+                <span><i class="fa fa-bell-o"></i> @notificationCount</span>
+            </div>
+        </a>        
+    }
+    <div class="user-menu">
+        <a href="#" title="@fullName" class="user-name">
+            <div class='toplink-icon social loggedin'>
+                <span>@(userFirstChar)</span>
+            </div>
+        </a>
+        <ul>
+
+            <li><a asp-action="Profile" asp-controller="Account" asp-area="" title="@Localizer["Profile"]">@fullName</a></li>
+
+            <li>
+                <a asp-action="Index" asp-controller="Notifications" asp-area="">
+                    @Localizer["Messages"] @if (notificationCount > 0)
+                    {<span> (@notificationCount)</span>}
+                </a>
+            </li>
+
+            @if (userContext.IsInRole(GlobalConstants.Roles.AdminForum))
+            {
+                <li><a asp-action="Index" asp-controller="Admin" asp-area="Forums">@Localizer["ForumAdmin"]</a></li>
+            }
+
+            <li><a asp-action="ChangePassword" asp-controller="Account" asp-area="">@Localizer["ChangePassword"]</a></li>
+            <li><a asp-action="Logoff" asp-controller="Account" asp-area="">@Localizer["Logoff"]</a></li>
+        </ul>
+    </div>
+}
+else
+{
+
+
+    <a asp-area="" asp-action="Login" asp-controller="Account" title="@Localizer["UserLogin"]">
+        <div class='toplink-icon social login'>
+            <i class='fa fa-user'></i>
+        </div>
+    </a>
+
+}

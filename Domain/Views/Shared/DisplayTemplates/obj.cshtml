@@ -1,0 +1,10 @@
+﻿@model object
+@{
+var displayValue = (string)ViewData["display"];
+}
+<div class="form-group">
+    <label asp-for="@Model" class="control-label"></label>
+    <div>
+        <span>@(displayValue ?? Model?.ToString())</span>
+    </div>
+</div>

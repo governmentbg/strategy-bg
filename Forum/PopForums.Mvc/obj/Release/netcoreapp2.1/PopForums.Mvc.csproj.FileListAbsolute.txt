@@ -116,3 +116,13 @@ C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\obj\Release\netcoreapp2.1
 C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\obj\Release\netcoreapp2.1\PopForums.Mvc.csproj.CopyComplete
 C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\obj\Release\netcoreapp2.1\PopForums.Mvc.dll
 C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\obj\Release\netcoreapp2.1\PopForums.Mvc.pdb
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\Elastic.Models.dll
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\FileCDN.Models.dll
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\ImageProcessor.dll
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\Models.dll
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\WebCommon.dll
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\Models.pdb
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\WebCommon.pdb
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\Elastic.Models.pdb
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\FileCDN.Models.pdb
+C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\bin\Release\netcoreapp2.1\ImageProcessor.pdb

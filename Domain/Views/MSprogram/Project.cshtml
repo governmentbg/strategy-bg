@@ -1,0 +1,108 @@
+﻿@model MSProgramProject
+@using Models.Context.Consultations;
+@using Models.ViewModels.Consultations;
+@using Domain.Extensions;
+@using Models;
+
+@inject IStringLocalizer<CommonResources> Localizer
+@{
+  var consultation = (ConsultationViewModel)ViewBag.consultation;
+  var program = (MSProgram)(ViewBag.program);
+  string programTypeName = null;
+  string urlProgram = null;
+  string otherLawImpactTitle = null;
+  switch (program.ProgramTypeId)
+  {
+      case GlobalConstants.MSProgramTypes.Zakonodatelna:
+          programTypeName = Localizer["MS_PROGRAM_LAW"];
+          urlProgram = Url.Action("LawPrograms");
+          otherLawImpactTitle = "Необходими промени в други закони";
+          break;
+      case GlobalConstants.MSProgramTypes.Operativna:
+          programTypeName = Localizer["MS_PROGRAM_OP"];
+          urlProgram = Url.Action("OpPrograms");
+          otherLawImpactTitle = "Законово основание за приемане";
+          break;
+  }
+  ViewData["Title"] = "Оценка на въздействието";
+  ViewData["SectionTitle"] = ViewData["Title"];
+  var assessmentValue = "Не";
+  if (Model.HasAssessment == true)
+  {
+      assessmentValue = "Да";
+  }
+}
+@section breadcrumbs{
+<div class="breadcrumbs">
+    / <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a>
+    / <a href="@Url.Action("LawPrograms","MSProgram")">@ViewData["Title"]</a>
+    / <a href="@Html.Raw(urlProgram)">@programTypeName</a>
+    @*/ <a href="#">@ViewData["Title"]</a>*@
+</div>
+}
+
+
+<div class="container-fluid information">
+    <div class="row">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+        </div>
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 body">
+                    <h3>
+                        @Html.Raw(Model.Title)
+                    </h3>
+                    <!-- TABLE DATES -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table--dates table--stripped">
+                                <tbody>
+                                    <!-- LOOP -->
+                                    <tr>
+                                        <td width="50%">Вносител:</td>
+                                        <td>@Model.InstitutionType.InstitutionTypeName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Включен в Плана за действие с мерките, произтичащи от членството на РБ в ЕС:</td>
+                                        <td>@Model.IncludedInEUplan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Основни положения и очаквани резултати:</td>
+                                        <td>@Html.Raw(Model.Description)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@otherLawImpactTitle:</td>
+                                        <td>@Html.Raw(Model.OtherLawsImpact)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Изготвена на цялостна оценка на въздействието:</td>
+                                        <td>@assessmentValue</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Месец на изпращане за предварително съгласуване:</td>
+                                        <td>@string.Format("{0:MMMM, yyyy}", Model.DateCoordinated)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Месец на внасяне в Министерския съвет:
+                                        </td>
+                                        <td>@string.Format("{0:MMMM, yyyy}", Model.DateMS)</td>
+                                    </tr>
+                                    @if (consultation != null) { 
+                                    <tr>
+                                        <td>Обществена консултация</td>
+                                        <td>  <a href="@Url.Action("View", "PublicConsultation", new { id = consultation.Id })">@consultation.Title</a></td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END TABLE DATES -->
+                    @await Component.InvokeAsync("FileList", new { sourceType = GlobalConstants.SourceTypes.MSPRogramProject, sourceId = Model.Id })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

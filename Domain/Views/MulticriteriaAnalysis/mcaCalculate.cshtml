@@ -14,6 +14,9 @@
 
 <section class="content">
     <div class="row">
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
+        </div>
         <div class="col-lg-9">
             <form asp-action="mcaCalculate" id="form1">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

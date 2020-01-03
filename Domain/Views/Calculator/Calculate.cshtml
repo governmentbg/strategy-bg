@@ -1,21 +1,23 @@
 ﻿@model Models.ViewModels.Calculator.CalculatorViewModel
 
+
+
 @{
-    ViewData["Title"] = "Интерактивен калкулатор на Административната тежест";
+  ViewData["Title"] = "Интерактивен калкулатор на Административната тежест"; 
+  ViewData["SectionTitle"] = "Оценка на въздействието ";
 }
+
 @section breadcrumbs{
-<div class="breadcrumbs">
-    / <a href="@Url.Action("Index","Home")">Начало</a>
-    / <a href="@Url.Action("Index","PublicConsultation")">Обществени консултации</a>
-    / <a href="#">Интерактивен калкулатор на Административната тежест</a>
-</div>
+    <div class="breadcrumbs">
+        / <a href="@Url.Action("Index","Home")">Начало</a>
+        / <a href="@Url.Action("Index","PublicConsultation")">Обществени консултации</a>
+        / <a href="#">Интерактивен калкулатор на Административната тежест</a>
+    </div>
 }
 
 <section class="content">
     <div class="row">
-        <div class="col-lg-3">
-            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
-        </div>
+
         <div class="col-lg-9">
             <p>
                 При оценката на въздействието задължително се изчислява административният товар. (виж <a href="#">Формулярите</a>).
@@ -34,15 +36,19 @@
                     @Html.EditorFor(x => x.TotalAdministrativeBurden)
                 </span>
 
-                <div class="form-group">
-                    <input type="submit" value="Изчисли" class="btn btn-success btn-flat" />
-                    <a asp-action="NewCalculation" class="btn btn-danger btn-flat">Назад</a>
+                <div class="form-group" align="center">
+                    <br><br>
+                    <input type="submit" value="Изчисли" class="btn btn-info btn-flat" />
+                    <a asp-action="NewCalculation" class="btn btn-inactive btn-flat">Назад</a>
                     @if (Model.TotalAdministrativeBurden > 0)
                     {
                         <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/Calculator/ExportCalculationToPDF">
                     }
                 </div>
             </form>
+        </div>
+        <div class="col-lg-3">
+            @await Component.InvokeAsync("MasterPage", new { pageTypeId = GlobalConstants.PageTypes.OV, display = "menu", title = "Оценка на въздействието" })
         </div>
     </div>
 </section>

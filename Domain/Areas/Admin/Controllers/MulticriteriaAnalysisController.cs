@@ -14,8 +14,7 @@ using Models;
 namespace Domain.Areas.Admin.Controllers
 {
   [Area(nameof(Admin))]
-  [Authorize(Roles = GlobalConstants.Roles.Admin)]
-  public class MulticriteriaAnalysisController : BaseController
+  public class MulticriteriaAnalysisController : BaseAdminController
     {
         private readonly IMulticriteriaAnalisysService MulticriteriaAnalisysService;
         private readonly IUserContext userContext;

@@ -1,8 +1,8 @@
 ﻿@model Models.ViewModels.StandartForms.StandartForm_1VM
 @{
     ViewData["Title"] = "Приложение № 1";
+      ViewData["SectionTitle"] = "Оценка на въздействието ";
 }
-
 
 @section breadcrumbs{
     <div class="breadcrumbs">
@@ -105,8 +105,8 @@
                             <td width="49%">@Html.EditorFor(m => m.DateEnd)</td>
                         </tr>
                     </table>
-                    
-                    
+
+
                     <div class="form-group">
                         <input class="btn btn-default btn-flat" type="submit" value="Печат PDF" formaction="/StandartForms/ExportSF1ToPDF">
                         <a asp-action="Index_StandartForm_1" class="btn btn-danger btn-flat">Изчисти</a>
@@ -114,6 +114,7 @@
                 </form>
             </div>
         </div>
+
     </div>
 </section>
 

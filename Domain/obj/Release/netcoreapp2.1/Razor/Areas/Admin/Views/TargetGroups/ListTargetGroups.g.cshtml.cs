@@ -121,7 +121,7 @@ WriteAttributeValue("", 188, Url.Action("ListTargetGroups", "TargetGroups"), 188
             WriteLiteral("\r\n<section class=\"content\">\r\n    <div class=\"pull-left\">\r\n        ");
             EndContext();
             BeginContext(343, 88, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ea33a8c7477b4047a7fe01e0d3f891b5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a2928514ff5f425ba124e190c405026c", async() => {
                 BeginContext(408, 19, true);
                 WriteLiteral("Добави целева група");
                 EndContext();
@@ -155,7 +155,7 @@ WriteAttributeValue("", 188, Url.Action("ListTargetGroups", "TargetGroups"), 188
                         ");
             EndContext();
             BeginContext(752, 34, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "74d119d49e6b4dd8990bb2bbc0c65045", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "27faea1a5e024adbabd5e672741b6d64", async() => {
                 BeginContext(771, 6, true);
                 WriteLiteral("Всички");
                 EndContext();
@@ -177,7 +177,7 @@ WriteAttributeValue("", 188, Url.Action("ListTargetGroups", "TargetGroups"), 188
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(812, 34, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aeb7553afe874452a704b8de58b8f145", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b9ef163aa52b4619a3462d5bb73af495", async() => {
                 BeginContext(830, 7, true);
                 WriteLiteral("Активни");
                 EndContext();
@@ -199,7 +199,7 @@ WriteAttributeValue("", 188, Url.Action("ListTargetGroups", "TargetGroups"), 188
             WriteLiteral("\r\n                        ");
             EndContext();
             BeginContext(872, 36, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa2e787d51024e94b6c3ea32eef8ec01", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "839dffe96d614882b0e73524e93e9346", async() => {
                 BeginContext(890, 9, true);
                 WriteLiteral("Неактивни");
                 EndContext();

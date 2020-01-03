@@ -97,7 +97,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("</h1>\n\t<ul id=\"TopBreadcrumb\" class=\"breadcrumb\">\n\t\t<li><span class=\"glyphicon glyphicon-chevron-up\"></span> ");
             EndContext();
             BeginContext(291, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "390d40b6be87462387bef91c1c95c1f7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b2005e70a834c68a37924112a1a1e47", async() => {
                 BeginContext(352, 26, false);
 #line 9 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\VerifyFail.cshtml"
                                                                                                                         Write(PopForums.Resources.Forums);
@@ -142,7 +142,7 @@ Write(PopForums.Resources.VerificationLinkBad);
             WriteLiteral(" ");
             EndContext();
             BeginContext(447, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b5e0ba0da1f5471da20831757ba2938d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5a5d8e537a0245fc9cac14242635c920", async() => {
                 BeginContext(487, 47, false);
 #line 13 "C:\Projects\Strategy\newSingleSite\Forum\PopForums.Mvc\Areas\Forums\Views\Account\VerifyFail.cshtml"
                                                                               Write(PopForums.Resources.NeedToVerifyExistingAccount);

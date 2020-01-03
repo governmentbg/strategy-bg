@@ -91,7 +91,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("<!DOCTYPE html>\n\n<html>\n");
             EndContext();
             BeginContext(176, 693, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4bd247f282f94e88811baafebfa2a15b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d2c9ba70a46444f6b727bb628cd1dadd", async() => {
                 BeginContext(182, 9, true);
                 WriteLiteral("\n\t<title>");
                 EndContext();
@@ -106,7 +106,7 @@ using PopForums.Mvc.Areas.Forums.Services;
                 WriteLiteral("</title>\n\t");
                 EndContext();
                 BeginContext(236, 75, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e80b59addb4b4fe1b2e2e4c7464c5212", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "97edf21b37cf415cb1e0a6eeaf9213f9", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -125,7 +125,7 @@ using PopForums.Mvc.Areas.Forums.Services;
                 WriteLiteral("\n\t");
                 EndContext();
                 BeginContext(313, 78, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61a48b465a714ab5b5f07f827cafde29", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9cfba954fcab494e92e9833009bfd49a", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -176,7 +176,7 @@ using PopForums.Mvc.Areas.Forums.Services;
             WriteLiteral("\n");
             EndContext();
             BeginContext(870, 3622, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "779da4cd54ca419a8c408980fd031a6e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ad35df19cf5a4c7880efbf22da627f02", async() => {
                 BeginContext(876, 53, true);
                 WriteLiteral("\n\t<div class=\"container\">\n\t\t<div class=\"row\">\n\t\t\t<h1>");
                 EndContext();
@@ -380,7 +380,7 @@ using PopForums.Mvc.Areas.Forums.Services;
                 WriteLiteral("</label>\n\t\t\t\t\t<div class=\"col-xs-10\">");
                 EndContext();
                 BeginContext(3268, 86, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "03bcac369c2648c49ee40ea18e05a075", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "62049437363a48be9f85802471ea4ec6", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper>();

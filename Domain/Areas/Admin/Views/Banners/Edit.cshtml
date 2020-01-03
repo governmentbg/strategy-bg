@@ -14,7 +14,9 @@
 
                 @Html.HiddenFor(m => m.Id)
                 @Html.HiddenFor(m => m.LanguageId)
+                @Html.HiddenFor(m => m.IsActive)
                 @Html.HiddenFor(m => m.IsApproved)
+                @Html.HiddenFor(m => m.IsDeleted)
                 @Html.EditorFor(m => m.Label)
                 @Html.EditorFor(m => m.BannerType)
                 @Html.EditorFor(m => m.Link)

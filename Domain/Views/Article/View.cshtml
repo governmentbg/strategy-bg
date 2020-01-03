@@ -13,9 +13,10 @@
 <div class="container-fluid information">
     <div class="row">
         <div class="col-md-3">
-            <partial name="_OgpLeftMenu" model="@("91023")" />
+            <partial name="_OgpAgenda" />
         </div>
-        <div class="col-md-9 body">
+
+        <div class="col-md-6 body">
 
 
             @if (!string.IsNullOrEmpty(Model.MainImageFileId))
@@ -24,9 +25,9 @@
                     <img src="@Html.Raw(Url.Action("ViewImage","FileCdn",new { area="",id=Model.MainImageFileId,max=400}))" />
                 </div>
             }
-            <h2>
+            <h3>
                 @Html.Raw(Model.Title)
-            </h2>
+            </h3>
             <h4>
                 @Model.EventDate.ToString(GlobalConstants.DateFormat)
             </h4>
@@ -50,6 +51,9 @@
                 </div>
             </div>
             <!-- END TABLE DATES -->
+        </div>
+        <div class="col-md-3">
+            <partial name="_OgpLeftMenu" model="@("91023")" />
         </div>
     </div>
 </div>

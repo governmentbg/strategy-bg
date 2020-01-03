@@ -1,4 +1,5 @@
 ﻿using Models.Context.Legacy;
+using Models.Context.LinksModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -82,6 +83,9 @@ namespace Models.Context.Account
         [Display(Name = "Институция")]
         public int? InstitutionTypeId { get; set; }
 
+        [Display(Name = "Категория връзки")]
+        public int? LinksCategoryId { get; set; }
+
         [ForeignKey(nameof(UserTypeId))]
         public virtual UsersTypes UsersType { get; set; }
 
@@ -94,6 +98,9 @@ namespace Models.Context.Account
         public virtual ICollection<UsersInGroups> UsersInGroups { get; set; }
         public virtual ICollection<UsersInCategories> UsersInCategories { get; set; }
         public virtual ICollection<UsersInTargetGroups> UsersInTargetGroups { get; set; }
+
+        [ForeignKey(nameof(LinksCategoryId))]
+        public virtual LinksCategories LinksCategory { get; set; }
 
     }
 }

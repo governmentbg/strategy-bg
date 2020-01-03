@@ -8,15 +8,23 @@
     </div>
 }
 <section class="content">
-    <div class="pull-left">
-        @Html.DropDownList("StatusID", (IEnumerable<SelectListItem>)ViewBag.StatusID_ddl, new { @class = "form-control" })
+    <div class="container-fluid information">
+        <div class="row">
+            <div class="col-md-12 body cat-combos search-form-container">
+                <div class="form-group col-lg-2  col-lg-4 col-sm-6">
+                    <label>Тип на анкетата</label>
+                    @Html.DropDownList("StatusID", (IEnumerable<SelectListItem>)ViewBag.StatusID_ddl, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
     </div>
     <table id="mainTable" class="table" cellspacing="0"></table>
 </section>
 @section scripts{
     <script>
     $(function () {
-         var dt  = $('#mainTable').DataTable({
+        var dt = $('#mainTable').DataTable({
+            searching: false,
              "ajax": {
                  "url": '@Url.Action("LoadData")',
                  data: function (d) {
@@ -30,19 +38,29 @@
              "columns": [
                  {
                      data: "title",
-                     title: 'Заглавие',
+                     title: 'Анкета',
+                     render: function (data, type, item, meta) {
+                         if (item.activeId === 0) {
+                             return item.title;
+                         }
+                         else {
+                             var url = '@Url.Action("FillQuestionary", new { questionaryHeaderId = "666"})'.replace('666', item.id);
+                             var btn = '<a href="' + url + '" title="Попълни">' + item.title + '</a>';
+                             return btn;
+                         }
+                     },
                      sortable: true,
                      searchable: true
                  },
                  {
-                     data: "description",
-                     title: 'Описание',
+                     data: "participantsNumber",
+                     title: 'Брой участници',
                      sortable: false,
                      searchable: false
                  },
                  {
                      data: "openningDate",
-                     title: 'Начало',
+                     title: 'Дата на откриване',
                      sortable: true,
                      searchable: false,
                      "render": function (value) {
@@ -51,7 +69,7 @@
                  },
                  {
                      data: "closingDate",
-                     title: 'Край',
+                     title: 'Дата на приключване',
                      sortable: true,
                      searchable: false,
                      "render": function (value) {
@@ -72,7 +90,7 @@
                          }
                      }
                  },
-                 {
+                 @*{
                      data: "activeId",
                      "render": function (value) {
                          if (value === 0) {
@@ -86,12 +104,12 @@
                      },
                      sortable: false,
                      searchable: false
-                 },
+                 },*@
                  {
                      data: "id",
                      "render": function (value) {
                          var updateUrl = '@Url.Action("QuestionaryResults",new { questionaryHeaderId = "666"})'.replace('666', value);
-                         var updButton = '<a href="' + updateUrl + '" class="btn btn-danger">Резултати</a>';
+                         var updButton = '<a href="' + updateUrl + '">Резултати</a>';
                          return updButton;
                      },
                      sortable: false,

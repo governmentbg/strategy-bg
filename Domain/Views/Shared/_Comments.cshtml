@@ -34,7 +34,7 @@
 
                 <div class="form-group">
                     <label for="comment" class="control-label">Коментар</label>
-                    <textarea name="comment" id="comment" class="form-control summernote"></textarea>
+                    <textarea name="comment" id="comment" class="form-control"></textarea>
                     <span class="text-danger" data-valmsg-for="Comment"></span>
                 </div>
                 @if (Model.UserIdentityList.Count > 1)
@@ -108,8 +108,13 @@
             }
 
             if ($('#comment').val().length < 1) {
-                $('#comment').next('div').next('span').text('Полето е задължително');
+                $('#comment').next('span').text('Полето е задължително');
                 valid = false;
+            } else {
+                if ($('#comment').val().length < 8) {
+                    $('#comment').next('span').text('Въведете поне 8 символа');
+                    valid = false;
+                }
             }
 
             if (valid) {

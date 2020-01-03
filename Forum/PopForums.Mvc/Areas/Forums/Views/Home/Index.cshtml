@@ -10,13 +10,13 @@
 }
 
 @{
-    ViewData["Title"] = "Днес обществото решава";
+    ViewData["Title"] = "Дискусии";
     ViewData["SectionTitle"] = ViewData["Title"];
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
         / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="#">Днес обществото решава</a>
+        / <a href="#">Дискусии</a>
         @if (ViewBag.category > 0)
         {
             <text> / @ViewBag.categoryName</text>

@@ -25,6 +25,11 @@
                     @Html.TextBox("term", null, new { @class = "form-control" })
                 </div>
                 <div>
+                    <span>Покажи</span>
+                    <label>@Html.CheckBox("activeOnly", true)&nbsp;Само активни</label>
+                </div>
+
+                <div>
                     <span>&nbsp;</span>
                     <button type="button" class="btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>
                 </div>
@@ -44,6 +49,7 @@
                     d.dateFrom = $('#dateFrom').val();
                     d.dateTo = $('#dateTo').val();
                     d.term = $('#term').val();
+                    d.activeOnly = $('#activeOnly').is(':checked');
                     d.lang=@((int)ViewBag.lang);
                 },
                 "type": "POST"
@@ -78,7 +84,11 @@
                     },
                     sortable: false
                 }
-            ]
+                 ], rowCallback: function (row, data) {
+                     if (data["isActive"] == false || data["isDeleted"] == true) {
+                         $(row).addClass("disabled");
+                     }
+                 }
         });
 
 

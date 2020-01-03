@@ -1,44 +1,55 @@
-﻿@{
-    ViewData["Title"] = "Обществени консултации";
+﻿@inject IStringLocalizer<CommonResources> Localizer
+@{
+    ViewData["Title"] = Localizer["MENU_PUBLIC_CONSULTATIONS"];
     ViewData["SectionTitle"] = ViewData["Title"];
     int munincipalityId = (int)(ViewBag.MunicipalityId ?? -1);
 }
 @section breadcrumbs{
     <div class="breadcrumbs">
-        / <a href="@Url.Action("Index","Home")">Начало</a>
-        / <a href="#">Обществени консултации</a>
+        / <a href="@Url.Action("Index","Home")">@Localizer["HOME_LINK"]</a>
+        / <a href="#">@Localizer["MENU_PUBLIC_CONSULTATIONS"]</a>
     </div>
 }
 <div class="container-fluid information">
     <div class="row">
-        <div class="col-md-12 body cat-combos">
-            <div class="form-group col-lg-3 col-md-4 col-sm-6">
-                <label>Група</label>
+        <div class="col-md-12 body cat-combos search-form-container">
+            <div class="form-group col-lg-2 col-md-4 col-sm-6">
+                <label>@Localizer["PC_FILTER_MASTER_CATEGORY"]</label>
                 @Html.DropDownList("CategoryMasterId", (IEnumerable<SelectListItem>)ViewBag.catMasters, new { @class = "form-control" })
             </div>
-            <div id="natCat" class="form-group col-lg-3 col-md-4 col-sm-6">
-                <label>Категория</label>
+            <div id="natCat" class="form-group col-lg-3 col-md-4 col-sm-6" style="display:none;">
+                <label>@Localizer["FILTER_CATEGORY"]</label>
                 @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.catNational, new { @class = "form-control" })
             </div>
-            <div id="districtCat">
+            <div id="districtCat" style="display:none;">
                 <div id="districtCat" class="form-group col-lg-2 col-md-4 col-sm-6">
-                    <label>Област</label>
+                    <label>@Localizer["FILTER_AREA"]</label>
                     @Html.DropDownList("DistrictId", (IEnumerable<SelectListItem>)ViewBag.catDistrict, new { @class = "form-control" })
                 </div>
                 <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                    <label>Община</label>
+                    <label>@Localizer["FILTER_MUNICIPALITY"]</label>
                     @Html.DropDownList("MunicipalityId", GlobalConstants.EmptyComboList, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                @*<label>&nbsp; </label>
-                    <button type="submit" class="form-control btn btn-primary dt-reload"><i class="fa fa-search"></i> Търсене</button>*@
-                <label>Покажи</label>
+                <label>@Localizer["FILTER_SHOW"]</label>
                 @Html.DropDownList("validState", (IEnumerable<SelectListItem>)ViewBag.validStates, new { @class = "form-control" })
             </div>
-            <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                <label>Наименование</label>
+            <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                <label>@Localizer["FILTER_BY_NAME"]</label>
                 @Html.TextBox("searchTerm", "", new { @class = "form-control" })
+            </div>
+
+            <div class="rss-search-form col-lg-1 col-md-1 col-sm-1  ">
+
+                @if (ViewBag.RssLink != null)
+
+                {
+                    <div class='demopadding'>
+                        <a href="@ViewBag.RssLink" target="_blank" id="rssLink" title="RSS"><div class='toplink-icon social rss'><i class='fa fa-rss'></i></div></a>
+
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -50,7 +61,7 @@
     <script>
         $(function () {
         $('#CategoryMasterId').change(function () {
-            if ($(this).val() === '@GlobalConstants.Category.Type_National') {
+            if ($(this).val() === '@GlobalConstants.Categories.Type_National') {
                 $('#natCat').show();
                 $('#districtCat').hide();
             } else {
@@ -64,9 +75,9 @@
                 return false;
             }
             requestCombo('#MunicipalityId', '@Url.Action("GetComboCategories","Ajax",new { area=""})', { masterCat: $(this).val(), municipalityId: @munincipalityId });
-            }).trigger('change');
+         }).trigger('change');
 
-            $('.cat-combos select').each(function (i, e) {
+         $('.cat-combos select').each(function (i, e) {
                 $(e).change(function () {
                     setTimeout(function () {
                         updateRss();
@@ -76,7 +87,7 @@
                 });
             });
 
-            $('.cat-combos #searchTerm').keyup(function () {
+         $('.cat-combos #searchTerm').keyup(function () {
                 if ($(this).val().length >= 3 || $(this).val() === '')
                     setTimeout(function () {
                         updateRss();
@@ -85,11 +96,11 @@
 
             });
 
-            var dt;
+         var dt;
             setTimeout(function () {
                 setBreadcrumb();
                 dt  = $('#mainTable').DataTable({
-             "ajax": {
+                 "ajax": {
                  "url": '@Url.Action("LoadData")',
                  data: function (d) {
                      d.categoryMasterId = $('#CategoryMasterId').val();
@@ -102,17 +113,20 @@
                      d.searchTerm = $('#searchTerm').val();
                  },
                  "type": "POST"
-             },
+                    },
+
              fnDrawCallback: function (settings) {
-                 $(this).parent().toggle(settings.fnRecordsDisplay() > 0);
+                 $('.dataTables_paginate').toggle(settings.fnRecordsDisplay() > 0);
              },
                     filter: false,
                     "order": [[3, "desc"]],
+                    //responsive: true,
              "columns": [
                  {
                      data: "title",
                      name: 'Title',
                      title: 'Наименование',
+                     "width":"50%",
                      render: function (data, type, item, meta) {
                          var url = '@Url.Action("View",new { id = "666"})'.replace('666', item.id);
                          var content = '<a href="' + url + '">' + item.title + '</a>';
@@ -122,19 +136,29 @@
                              content += '<br /><span style="color:#5095E3;">(Активна - остават ' + item.activeDays + ' дни)</span>';
                          }
 
-                         content += '<br /><br />Коментари (' + item.commentsCount + ')';
+                         //content += '<br /><br />Коментари (' + item.commentsCount + ')';
 
                          return content;
                      },
                      sortable: true
                  },
+
+                 {
+                     data: "commentsCount",
+                     name: "CommentsCount",
+                     className: "dt-head-center",
+                     title: 'Коментари',
+                     sortable: true
+                 },
+
                  {
                      data: "categoryText",
                      name: "categoryText",
-                     title: 'Област',
+                     className: "dt-head-center",
+                     title: 'Категория',
                       render: function (data, type, item, meta) {
-                          var imgSrc = '@Url.Content("~/img/categories/1.png")'.replace('1.png', item.categoryImagePath);
-                          var img = '<img src="' + imgSrc + '">&nbsp;' + item.categoryText;
+                         var imgSrc = '@Url.Content("~/img/categories/1.png")'.replace('1.png', item.categoryImagePath);
+                          var img = '<table><tr><td><div class="tbl-img-cell"><img src="' + imgSrc + '"></div></td><td align=left>' + item.categoryText+"</td></tr></table>";
                           return img;
                      },
                      sortable: true
@@ -143,6 +167,7 @@
                  {
                      data: "openningDate",
                      name: "openningDate",
+                     className: "dt-head-center",
                      title: 'Дата на откриване',
                      orderDataType: 'date',
                      "render": function (value) {
@@ -152,6 +177,7 @@
                  {
                      data: "closingDate",
                      name: "closingDate",
+                     className: "dt-head-center",
                      title: 'Дата на приключване',
                      orderDataType: 'date',
                      "render": function (value) {
@@ -169,6 +195,10 @@
                      sortable: false
                  }*@
              ]
+                    //,language: {
+                    //    "url": rootPath + "prod/js/dataTables.bgBG.json",
+                    //    "zeroRecords":"opsa"
+                    //}
              //"order": [[1, "asc"]],
              //rowCallback: function (row, data) {
              //    if (data["isActive"] == false) {
@@ -178,7 +208,10 @@
              //        $(row).addClass("unconfirmed");
              //    }
              //}
-            });
+                });
+                //debugger;
+                //var dtSet = dt.settings();
+                //dtSet.language.emptyTable = "Now empty";
             }, 200);
 
             function updateRss() {

@@ -13,7 +13,7 @@ namespace Domain.Areas.Admin.Controllers
     /// </summary>
     [Area(nameof(Areas.Admin))]
     [Authorize]
-    public class LibraryController : BaseController
+    public class LibraryController : BaseAdminController
     {
         private readonly ILibraryService libService;
         public LibraryController(ILibraryService _libService)

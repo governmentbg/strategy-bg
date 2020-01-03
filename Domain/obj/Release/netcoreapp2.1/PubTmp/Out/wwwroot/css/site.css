@@ -1,6 +1,15 @@
 ﻿/*!
     site.css
 */
+/*body {
+    overflow-y: hidden;
+}
+    */
+
+body .wrapper {
+    overflow-y: hidden;
+}
+
 .flags {
     display: inline-block;
     width: 48px;
@@ -21,10 +30,15 @@ div#messageContainer {
     right: 10px;
 }
 
-.sidebar-menu ul li a {
-    white-space: normal;
-    word-wrap: break-word;
+.sidebar-menu {
+    padding: 0px 5px;
+    overflow-y: visible;
 }
+
+    .sidebar-menu ul li a {
+        white-space: normal;
+        word-wrap: break-word;
+    }
 
 li.jstree-node a {
     font-size: 12pt;
@@ -67,6 +81,15 @@ li.jstree-node a {
             margin-left: 0;
             margin-right: 0;
         }
+
+        .search-form div.col-lg-12 {
+            margin: 0;
+            padding: 0;
+        }
+
+    .search-form input.date-picker {
+        max-width: 100px;
+    }
 
 .icon-wrapper {
     position: relative;
@@ -129,10 +152,71 @@ section.content-header h2 {
     color: #5d5d99;
 }
 
+
+.used-file-block .add-info {
+    font-style: italic;
+}
+
 h3.plainModal-title {
     margin-top: 5px;
 }
 
 .used-file-block i {
     color: #fff;
+}
+
+span.lang-name {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.checkbox label.control-label {
+    font-size: 100% !important;
+    font-weight: 700;
+}
+
+.paging_bootstrap {
+    text-align: center;
+}
+
+    .paging_bootstrap ul {
+        width: 100%;
+        list-style: none;
+    }
+
+        .paging_bootstrap ul li {
+            display: inline;
+        }
+
+            .paging_bootstrap ul li a {
+                text-decoration: none;
+                display: inline-block;
+                border-radius: 5px;
+                line-height: 30px;
+                height: 30px;
+                min-width: 30px;
+                padding: 0 5px;
+                border: 1px solid #aaa;
+                margin-right: 5px;
+                color: #444;
+            }
+
+                .paging_bootstrap ul li a:hover {
+                    background-color: #eee;
+                }
+
+            .paging_bootstrap ul li.active a {
+                background-color: rgb(126, 169, 212);
+                color: #fff;
+            }
+
+div.dataTables_wrapper div.dataTables_paginate {
+    white-space: nowrap;
+    text-align: center;
+}
+
+table.dataTable tr.disabled td{
+    color:#888;
 }
